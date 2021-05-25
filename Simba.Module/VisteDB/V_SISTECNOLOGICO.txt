@@ -1,7 +1,0 @@
-﻿create or replace view v_sistecnologico as
-select 'STECN'||stecn.oid as oid,
-       stecn.descrizione,
-       stecn.descrizione as Name,
-       stecn.oid as sistematecnologico
-
-from sistematecnologico stecn;

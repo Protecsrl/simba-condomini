@@ -11,8 +11,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simba.DataLayer", "Simba.Da
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simba.Businness", "Simba.Businness\Simba.Businness.csproj", "{263842C0-3EFD-4C93-BC56-AA346225D8C3}"
 EndProject
-Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "Simba.Database", "Simba.Database\Simba.Database.sqlproj", "{53AF7FB9-CF31-4721-AD62-CC3DAE6172C8}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -53,18 +51,6 @@ Global
 		{263842C0-3EFD-4C93-BC56-AA346225D8C3}.EasyTest|Any CPU.Build.0 = Release|Any CPU
 		{263842C0-3EFD-4C93-BC56-AA346225D8C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{263842C0-3EFD-4C93-BC56-AA346225D8C3}.Release|Any CPU.Build.0 = Release|Any CPU
-		{53AF7FB9-CF31-4721-AD62-CC3DAE6172C8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{53AF7FB9-CF31-4721-AD62-CC3DAE6172C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{53AF7FB9-CF31-4721-AD62-CC3DAE6172C8}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
-		{53AF7FB9-CF31-4721-AD62-CC3DAE6172C8}.DebugEamsXAF|Any CPU.ActiveCfg = Debug|Any CPU
-		{53AF7FB9-CF31-4721-AD62-CC3DAE6172C8}.DebugEamsXAF|Any CPU.Build.0 = Debug|Any CPU
-		{53AF7FB9-CF31-4721-AD62-CC3DAE6172C8}.DebugEamsXAF|Any CPU.Deploy.0 = Debug|Any CPU
-		{53AF7FB9-CF31-4721-AD62-CC3DAE6172C8}.EasyTest|Any CPU.ActiveCfg = Debug|Any CPU
-		{53AF7FB9-CF31-4721-AD62-CC3DAE6172C8}.EasyTest|Any CPU.Build.0 = Debug|Any CPU
-		{53AF7FB9-CF31-4721-AD62-CC3DAE6172C8}.EasyTest|Any CPU.Deploy.0 = Debug|Any CPU
-		{53AF7FB9-CF31-4721-AD62-CC3DAE6172C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{53AF7FB9-CF31-4721-AD62-CC3DAE6172C8}.Release|Any CPU.Build.0 = Release|Any CPU
-		{53AF7FB9-CF31-4721-AD62-CC3DAE6172C8}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

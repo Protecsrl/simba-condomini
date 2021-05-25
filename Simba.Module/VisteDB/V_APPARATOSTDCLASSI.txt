@@ -1,9 +1,0 @@
-﻿create or replace view v_apparatostdclassi as
-select 'STAPCL'||stapcl.oid as oid,
-       stapcl.descrizione,
-       stapcl.descrizione as Name,
-       'SIST'||stapcl.sistema as sistema,
-       stapcl.oid as apparatostdclassi
-
-from apparatostdclassi stapcl
-where stapcl.sistema is not null;

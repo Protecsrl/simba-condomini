@@ -1,7 +1,0 @@
-﻿create or replace view v_stdapparato as
-select distinct std.oid as oid,
-       std.descrizione as Name,
-       std.descrizione
-
-from APPARATOSTD std, PCRAPPPROBLEMA ap
-where ap.stdapparato=std.oid;

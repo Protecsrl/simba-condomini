@@ -1,9 +1,0 @@
-﻿create or replace view v_problema_causa as
-select 'PRO' || std.oid || '-' || pr.oid as PROBLEMA,
-       ca.descrizione as Name,
-       ca.descrizione,
-       ca.oid as CAUSA,
-       'CA' || std.oid || '-' || pr.oid || '-' || ca.oid as oid
-
-from APPARATOSTD std, PCRAPPPROBLEMA ap, PCRPROBLEMI pr, PCRCAUSE ca, PCRPROBCAUSA prca
-where ap.stdapparato=std.oid and pr.oid=ap.pcrproblemi and prca.pcrcause=ca.oid and prca.pcrappproblema=pr.oid;

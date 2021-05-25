@@ -1,9 +1,0 @@
-﻿create or replace view v_schedemp as
-select 'SCHMP'||schmp.oid as oid,
-       schmp.codschedemp||schmp.descrizionemanutenzione as DESCRIZIONE,
-       schmp.codschedemp||schmp.descrizionemanutenzione as Name,
-       'APPSTD'||schmp.apparatostd as apparatostd,
-       schmp.oid as schedemp
-
-from schedemp schmp
-where schmp.apparatostd is not null;

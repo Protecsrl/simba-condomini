@@ -1,9 +1,0 @@
-﻿create or replace view v_sisclassi as
-select 'SCLAS'||sclas.oid as oid,
-       sclas.descrizione,
-       sclas.descrizione as Name,
-       'STECN'||sclas.sistematecnologico as sistematecnologico,
-       sclas.oid as sistemaclassi
-
-from sistemaclassi sclas
-where sclas.sistematecnologico is not null;
