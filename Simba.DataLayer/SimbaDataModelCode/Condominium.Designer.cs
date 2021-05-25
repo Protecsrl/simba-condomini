@@ -66,12 +66,14 @@ namespace Simba.DataLayer.simba_condomini
         }
         [Association(@"CommunicationsReferencesCondominium")]
         public XPCollection<Communications> CommunicationsCollection { get { return GetCollection<Communications>(nameof(CommunicationsCollection)); } }
+        [Association(@"UserReferencesCondominium")]
+        public XPCollection<User> Users { get { return GetCollection<User>(nameof(Users)); } }
+        [Association(@"TicketReferencesCondominium")]
+        public XPCollection<Ticket> Tickets { get { return GetCollection<Ticket>(nameof(Tickets)); } }
         [Association(@"StairReferencesCondominium")]
         public XPCollection<Stair> Stairs { get { return GetCollection<Stair>(nameof(Stairs)); } }
         [Association(@"ContractsReferencesCondominium")]
         public XPCollection<Contracts> ContractsCollection { get { return GetCollection<Contracts>(nameof(ContractsCollection)); } }
-        [Association(@"UserReferencesCondominium")]
-        public XPCollection<User> Users { get { return GetCollection<User>(nameof(Users)); } }
     }
 
 }

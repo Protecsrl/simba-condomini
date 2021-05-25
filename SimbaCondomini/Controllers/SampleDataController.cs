@@ -21,6 +21,7 @@ namespace SimbaCondomini.Controllers
             {
                 datac.Add(new SimbaCondomini.Models.Condominio(cc.Oid, cc.Comune, cc.NomeCondominio, cc.Indirizzo, cc.PartitaIva, cc.Latitudine, cc.Longitudine));
             }
+
             return Request.CreateResponse(DataSourceLoader.Load(datac, loadOptions));
 
         }

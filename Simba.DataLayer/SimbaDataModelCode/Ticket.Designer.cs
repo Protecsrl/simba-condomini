@@ -68,12 +68,19 @@ namespace Simba.DataLayer.simba_condomini
             get { return fDateUpdate; }
             set { SetPropertyValue<DateTime>(nameof(DateUpdate), ref fDateUpdate, value); }
         }
-        User fUserId;
+        User fUser;
         [Association(@"TicketReferencesUser")]
-        public User UserId
+        public User User
         {
-            get { return fUserId; }
-            set { SetPropertyValue<User>(nameof(UserId), ref fUserId, value); }
+            get { return fUser; }
+            set { SetPropertyValue<User>(nameof(User), ref fUser, value); }
+        }
+        Condominium fCondominium;
+        [Association(@"TicketReferencesCondominium")]
+        public Condominium Condominium
+        {
+            get { return fCondominium; }
+            set { SetPropertyValue<Condominium>(nameof(Condominium), ref fCondominium, value); }
         }
     }
 

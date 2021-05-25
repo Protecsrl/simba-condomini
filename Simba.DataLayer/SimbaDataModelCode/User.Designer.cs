@@ -109,10 +109,10 @@ namespace Simba.DataLayer.simba_condomini
             get { return fDateUpdate; }
             set { SetPropertyValue<DateTime>(nameof(DateUpdate), ref fDateUpdate, value); }
         }
-        [Association(@"CommunicationsReferencesUser")]
-        public XPCollection<Communications> CommunicationsCollection { get { return GetCollection<Communications>(nameof(CommunicationsCollection)); } }
         [Association(@"TicketReferencesUser")]
         public XPCollection<Ticket> Tickets { get { return GetCollection<Ticket>(nameof(Tickets)); } }
+        [Association(@"CommunicationsReferencesUser")]
+        public XPCollection<Communications> CommunicationsCollection { get { return GetCollection<Communications>(nameof(CommunicationsCollection)); } }
     }
 
 }

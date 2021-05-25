@@ -5,14 +5,14 @@ using System.Linq;
 
 namespace Simba.Businness
 {
-    public class Comunicazioni : BusinnessBase
+    public class Ticket : BusinnessBase
     {
-        public List<Communications> GetUserCommunication(int? userId)
+        public List<Simba.DataLayer.simba_condomini.Ticket> GetUserTicket(int? userId)
         {
             using (UnitOfWork uw = new UnitOfWork())
             {
-                var data = uw.Query<Communications>().
-                Where(c=>!userId.HasValue || c.User.Oid == userId.Value).
+                var data = uw.Query<Simba.DataLayer.simba_condomini.Ticket>().
+                Where(c => !userId.HasValue || c.User.Oid == userId.Value).
                 ToList();
                 return data;
             }

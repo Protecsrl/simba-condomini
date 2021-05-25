@@ -53,6 +53,7 @@
     <Compile Include="Comunicazioni.cs" />
     <Compile Include="Condomini.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Ticket.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Simba.DataLayer\Simba.DataLayer.csproj">
