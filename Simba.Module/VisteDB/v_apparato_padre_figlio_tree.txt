@@ -1,0 +1,53 @@
+﻿create or replace view v_apparato_padre_figlio_tree as
+select a.oid as OIDAPPARATO,
+          a.oid AS APPARATO,
+       a.descrizione /*||
+       '-(Codice: ' || a.cod_descrizione || ' ' ||
+       ' Targhetta: ' || a.targhetta || ' ' ||
+       ' Fluido Primario: ' ||  a.fluidoprimario ||
+       ' Matricola: ' || a.matricola ||
+       ' Entità: ' ||
+      -- a.entitaapparato
+        CASE a.entitaapparato WHEN 0 THEN 'Apparato Reale'
+                          WHEN 1 THEN 'Apparato di Ragruppamento'
+                          ELSE 'Apparato Virtuale'
+                          END
+       || ')'*/ as nome,
+
+       a.apparatopadre  as OIDPADRE
+/*       CASE eq.catasset WHEN 'R' THEN 'Asset escluso dalla Manutenzione Programmata'
+                          WHEN 'C' THEN 'Asset escluso dalla Manutenzione Programmata'
+                          ELSE 'Asset incluso nella Manutenzione Programmata'
+                          END
+         AS STOOTIP*/
+
+  from apparato a
+ -- where a.apparatopadre is not null
+  union
+  select a.oid as OIDAPPARATO,
+          a.oid AS APPARATO,
+       a.descrizione/* ||
+       '-(Codice: ' || a.cod_descrizione || ' ' ||
+       ' Targhetta: ' || a.targhetta || ' ' ||
+       ' Fluido Primario: ' ||  a.fluidoprimario ||
+       ' Matricola: ' || a.matricola ||
+       ' Entità: ' ||
+      -- a.entitaapparato
+        CASE a.entitaapparato WHEN 0 THEN 'Apparato Reale'
+                          WHEN 1 THEN 'Apparato di Ragruppamento'
+                          ELSE 'Apparato Virtuale'
+                          END
+       || ')'*/ as nome,
+
+       a.apparatopadre  as OIDPADRE
+/*       CASE eq.catasset WHEN 'R' THEN 'Asset escluso dalla Manutenzione Programmata'
+                          WHEN 'C' THEN 'Asset escluso dalla Manutenzione Programmata'
+                          ELSE 'Asset incluso nella Manutenzione Programmata'
+                          END
+         AS STOOTIP*/
+
+  from apparato a
+  where a.oid in (
+  select ap.apparatopadre from apparato ap where ap.apparatopadre is not null
+  )
+;

@@ -1,0 +1,69 @@
+﻿ public XPCollection<StatoSmistamento> ListaFiltraComboSmistamento
+        {
+            get
+            {
+                if (this.Oid == -1) return null;
+                if (fListaFiltraComboSmistamento == null && UltimoStatoSmistamento != null)
+                {
+                    var rdl = Session.Query<RdL>().Where(d => d.Oid == this.Oid).FirstOrDefault(); //.Select(s => s.UltimoStatoSmistamento.Oid)
+                    int caseSwitch = ((RdL)rdl).UltimoStatoSmistamento.Oid;
+                    fListaFiltraComboSmistamento = new XPCollection<StatoSmistamento>(Session);
+                       IList<StatoSmistamento> ssc = Session.Query<StatoSmistamentoCombo>().
+                        Where(d => d.StatoSmistamento == UltimoStatoSmistamento).Select(s => s.StatoSmistamentoxCombo).ToList();
+                    IList<StatoSmistamento> listaSKFiltrata = new XPCollection<StatoSmistamentoCombo>(this.Session).
+                        Where(d => d.StatoSmistamento == UltimoStatoSmistamento).Select(s=> s.StatoSmistamentoxCombo).ToList();
+                    var sscid = Session.Query<StatoSmistamentoCombo>().
+                        Where(d => d.StatoSmistamento == UltimoStatoSmistamento).Select(s => s.Oid).AsEnumerable();
+                    //var  ids = sscid.
+
+                   //  StatoSmistamento mio=  this.UltimoStatoSmistamento.StatoSmistamentoCombos.SelectMany(sm => sm.StatoSmistamentoxCombo);
+
+                    var IDs = new XPCollection<StatoSmistamentoCombo>(Session).Where(Sto => Sto.StatoSmistamento == this.UltimoStatoSmistamento).Select( s=> (int) s.Oid).ToList();
+
+                     fListaFiltraComboSmistamento = new XPCollection<StatoSmistamento>(Session) ;
+                     fListaFiltraComboSmistamento.Where(w => IDs.Contains(w.Oid)).Cast<StatoSmistamento>();
+                    OnChanged("ListaFiltraComboSmistamento");
+                    //RefreshListaFiltraSmistamento();
+                    //string ParCriteria = "";
+                    ////int caseSwitch = UltimoStatoSmistamento.Oid;
+                    //switch (caseSwitch)
+                    //{
+                    //    case 1:// 1	In Attesa di Assegnazione
+                    //        ParCriteria = string.Format("Oid In ({0})", "2,6,7");
+                    //        break;
+                    //    case 2://2	Assegnata
+                    //        ParCriteria = string.Format("Oid In ({0})", "3,6,7");
+                    //        break;
+                    //    case 3://3	Emessa In lavorazione
+                    //        ParCriteria = string.Format("Oid In ({0})", "4,6,7");
+                    //        break;
+                    //    case 6://6	Sospesa SO
+                    //        ParCriteria = string.Format("Oid In ({0})", "2,7");
+                    //        break;
+                    //    default://4	Lavorazione Conclusa//5	Richiesta chiusa //7	Annullato//8	Rendicontazione Operativa
+                    //        //9	Rendicontazione Economica //10	In Emergenza da Assegnare
+                    //        ParCriteria = string.Format("Oid = {0} ", "-1");
+                    //        break;
+                    //}
+                 
+                    //var tmpLst = lstSchedeMP.Where(smp => smp.Sistema == ImpiantoSelezionato.Sistema)
+                    //            .Select(smp => smp.Eqstd).Distinct().Where(std => !lstDaEscludere.Contains(std)).ToList();
+                    //XPCollection<StatoSmistamento> sssc = UltimoStatoSmistamento.StatoSmistamentoCombos.Where(;
+                    //fListaFiltraComboSmistamento = () sssc.Select(s => s.StatoSmistamentoxCombo);
+                   // var ssc = new (Session).;
+                   //var ListaFiltraComboSmistamentoCombo =  ssc.Select(g => g.StatoSmistamentoxCombo);
+                   //// fListaFiltraComboSmistamento.Criteria = // CriteriaOperator.Parse(ParCriteria);
+                   // fListaFiltraComboSmistamento.Remove();
+                      
+                }
+                return fListaFiltraComboSmistamento;
+            }
+        }
+
+		 //fListaFiltraComboSmistamento = new XPCollection<StatoSmistamento>(Session);
+                    //   IList<StatoSmistamento> ssc = Session.Query<StatoSmistamentoCombo>().
+                    //    Where(d => d.StatoSmistamento == UltimoStatoSmistamento).Select(s => s.StatoSmistamentoxCombo).ToList();
+                    //IList<StatoSmistamento> listaSKFiltrata = new XPCollection<StatoSmistamentoCombo>(this.Session).
+                    //    Where(d => d.StatoSmistamento == UltimoStatoSmistamento).Select(s=> s.StatoSmistamentoxCombo).ToList();
+                    //var sscid = Session.Query<StatoSmistamentoCombo>().
+                    //    Where(d => d.StatoSmistamento == UltimoStatoSmistamento).Select(s => s.Oid).AsEnumerable();

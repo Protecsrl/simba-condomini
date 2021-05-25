@@ -1,0 +1,9 @@
+﻿create or replace view v_sistema as
+select 'SIST'||sist.oid as oid,
+       sist.descrizione,
+       sist.descrizione as Name,
+       sist.oid as sistema,
+       'SCLAS'||sist.sistemaclassi as sistemaclassi
+
+from sistema sist
+where sist.sistemaclassi is not null;

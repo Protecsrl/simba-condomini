@@ -1,0 +1,402 @@
+﻿create or replace view v_rdl_poi as
+select
+z.anno||z.oidapparato||z.cod_procedura as Codice,
+z.anno,
+z.Edificio,
+z.Impianto,
+z.Apparato,
+z.descrizione,
+z.piano, z.stanza, z.reparto,
+z.areadipolo,
+z.centrocosto,
+z.oidedificio,
+z.oidimpianto,
+z.oidreferentecofely, z.oidcategoria,
+z.richiedente, z.priorita, z.prioritatipointervento,
+z.cod_apparato, z.tipoapparato, z.categoriamanutenzione,
+z.cod_procedura,
+z.frequenza,
+z.oidapparato,
+max(gennaio) as gennaio,
+max(febbraio) as febbraio,
+max(marzo)  as marzo,
+max(aprile) as aprile,
+max(maggio) as maggio,
+max(giugno) as giugno,
+max(luglio) as luglio,
+max(agosto) as agosto,
+max(settembre) as settembre,
+max(ottobre)as ottobre,
+max(novembre) as novembre,
+max(dicembre) as dicembre,
+/*
+(select listagg(x.notecompletamento,', <BR> ') within group(order by x.Codice) csv
+                    from v_rdl_list x
+                    where x.descrizione  = z.descrizione
+                    and  x.Apparato=z.Apparato
+                    and x.anno=z.anno ) */
+nvl(z.note,' ') as note,
+
+' ' as materiale,
+
+/*(select listagg((nvl(x.datacompletamento,x.datapianificata)-x.datapianificata),',') within group(order by x.Codice) csv
+                    from v_rdl_list x
+                    where x.descrizione  = v.descrizione
+                    and  x.Apparato=Apparato )*/
+to_char(z.durata_intervento)  as durata_intervento,
+CASE to_number(to_char(sysdate, 'Q'))
+    WHEN 1 THEN
+      'I Trimestre'
+    WHEN 2 THEN
+      'II Trimestre'
+    WHEN 3 THEN
+      'III Trimestre'
+    WHEN 4 THEN
+     'IV Trimestre'
+    ELSE
+     'NULL'
+  END TRIMESTRE
+from
+(select
+y.anno,
+y.Edificio,
+y.Impianto,
+y.Apparato,
+y.descrizione,
+nvl(y.piano,'NA') piano,
+nvl(y.stanza,'NA') as stanza,
+nvl(y.reparto,'NA') as reparto,
+y.areadipolo, y.centrocosto,
+y.oidedificio,
+y.oidreferentecofely,
+y.oidcategoria,
+y.oidimpianto,
+y.richiedente,
+y.priorita,
+y.prioritatipointervento,
+y.cod_apparato, y.tipoapparato,
+y.categoriamanutenzione,
+y.cod_procedura,
+y.frequenza,
+y.note,
+y.durata_intervento,
+y.oidapparato,
+
+case  when y.mese=1 then
+y.STATUSSETTIMANE
+else
+ ' '
+end
+as gennaio,
+case  when y.mese=2 then
+y.STATUSSETTIMANE
+else
+ ' '
+end
+as febbraio,
+
+case  when y.mese=3 then
+y.STATUSSETTIMANE
+else
+ ' '
+end
+as marzo,
+
+case  when y.mese=4 then
+y.STATUSSETTIMANE
+else
+ ' '
+end
+as aprile,
+
+case  when y.mese=5 then
+y.STATUSSETTIMANE
+else
+ ' '
+end
+as maggio,
+
+case  when y.mese=6 then
+y.STATUSSETTIMANE
+else
+ ' '
+end
+as giugno,
+
+case  when y.mese=7 then
+y.STATUSSETTIMANE
+else
+ ' '
+end
+as luglio,
+
+case  when y.mese=8 then
+y.STATUSSETTIMANE
+else
+ ' '
+end
+as agosto,
+
+case  when y.mese=9 then
+y.STATUSSETTIMANE
+else
+ ' '
+end
+as settembre,
+
+case  when y.mese=10 then
+y.STATUSSETTIMANE
+else
+ ' '
+end
+as ottobre,
+
+case  when y.mese=11 then
+y.STATUSSETTIMANE
+else
+ ' '
+end
+as novembre,
+
+case  when y.mese=12 then
+y.STATUSSETTIMANE
+else
+ ' '
+end
+as dicembre
+
+from
+(
+select
+
+(select listagg((nvl(rr.datacompletamento,rr.datapianificata)-rr.datapianificata),',')
+within group(order by rr.oid) csv
+                    from rdl rr
+                    where rr.descrizione  = x.descrizione
+                    and  x.oidapparato=rr.apparato ) as durata_intervento,
+
+(select listagg(rr.notecompletamento,',')
+within group(order by rr.oid) csv
+                    from rdl rr
+                    where rr.descrizione  = x.descrizione
+                    and  x.oidapparato=rr.apparato ) as note,
+
+CASE settmese
+    WHEN '1' THEN
+    x.status||'|| || || ||'
+    WHEN '2' THEN
+    '||'||x.status||'|| || ||'
+    WHEN '3' THEN
+    '|| ||'||x.status||'|| ||'
+    WHEN '4' THEN
+    '|| || ||'||x.status||'||'
+    WHEN '5' THEN
+    '|| || || ||' ||x.status
+    ELSE
+     'NULL'
+  END STATUSSETTIMANE,
+
+x.mese,
+x.anno,
+x.Edificio,
+x.Impianto,
+x.Apparato,
+x.descrizione,
+x.piano,x.stanza, x.reparto,
+x.areadipolo,x.centrocosto,  x.oidedificio,--x.impianto as oidimpianto,
+x.oidreferentecofely, x.oidcategoria,
+x.richiedente, x.priorita, x.prioritatipointervento,
+x.cod_apparato, x.tipoapparato, x.categoriamanutenzione,
+x.cod_procedura,
+x.frequenza,
+x.settmese,
+x.OIDSMISTAMENTO,
+x.oidapparato,
+x.oidimpianto,
+x. status
+from
+(select
+d.mese,
+d.anno,
+d.Edificio,
+d.Impianto,
+d.Apparato,
+d.descrizione,
+d.piano, d.stanza, d.reparto,
+d.areadipolo, d.centrocosto,  d.oidedificio,
+d.oidimpianto ,
+d.oidreferentecofely, d.oidcategoria,
+d.richiedente, d.priorita, d.prioritatipointervento,
+a.cod_descrizione as cod_apparato, d.tipoapparato, d.categoriamanutenzione,
+m.codschedemp as cod_procedura,
+f.descrizione as frequenza,
+to_char(nvl(d.datacompletamento, nvl(d.datapianificata,d.datarichiesta)),'W')
+as settmese,
+d.OIDSMISTAMENTO,
+d.oidapparato,
+case when d.OIDSMISTAMENTO<>4
+  then 'P'
+  else 'C'
+   end status
+--count(d.CodRegRdL) as conto
+from
+(
+select
+  t.oid as Codice,
+  e.descrizione as Edificio,
+  cu.denominazioneitaliano as Comune,
+  arp.descrizione as AreadiPolo,
+  cm.centrocosto  ,
+  i.descrizione as Impianto,
+  a.descrizione as Apparato,
+  ap.descrizione || '(' || ap.cod_uni || ')' as TipoApparato,
+
+  c.descrizione as CategoriaManutenzione,
+  case when length(t.descrizione) > 500 then
+  substr( t.descrizione ,1,497) || '...'
+  else
+  t.descrizione
+  end
+  as descrizione ,
+  t.datarichiesta,
+  t.dataupdate dataaggiornamento,
+  --NUOVI CAMPI
+  t.data_sopralluogo,
+  nvl(t.reparto,' ') as reparto,
+
+
+  case when t.locali is not null
+  then l.piano
+  else ' '
+  end piano,
+  case when t.locali is not null
+  then l.stanza
+  else ' '
+  end stanza,
+  case when t.categoria=5 or t.categoria=1
+  then
+  to_number(to_char(t.datapianificata, 'IW'))
+  else to_number(to_char(t.datarichiesta, 'IW'))
+  end as settimana,
+
+  case when t.categoria=5 or t.categoria=1
+  then
+  to_number(to_char(t.datapianificata, 'MM'))
+  else to_number(to_char(t.datarichiesta, 'MM'))
+  end as mese,
+
+  case when t.categoria=5 or t.categoria=1
+  then
+  to_number(to_char(t.datapianificata, 'yyyy'))
+  else to_number(to_char(t.datarichiesta, 'yyyy'))
+  end as anno,
+
+  t.datapianificata,
+  t.dataassegnazioneodl dataassegnazione,
+  t.datacompletamento,
+  /*t.datariavvio
+  t.datafermo,*/
+
+  sm.statosmistamento,
+  so.codstato as  statooperativo,
+  t.notecompletamento,
+  case when ri.telefono is not null
+  then ri.nomecognome ||'('||tir.descrizione||','||ri.telefono ||')'
+  else
+  ri.nomecognome ||'('||tir.descrizione||')'
+  end  as Richiedente,
+
+
+  p.descrizione       as Priorita,
+  tp.descrizione      as PrioritaTipoIntervento,
+  t.odl    as CodiceOdL,
+  t.regrdl as CodRegRdL,
+
+  e.oid as OidEdificio,
+  cm.referentecofely as oidreferentecofely,
+  t.categoria as oidcategoria,
+  sm.oid as OIDSMISTAMENTO,
+  a.impianto as oidimpianto,
+  a.oid as oidapparato
+  from RDL t,
+  edificio e,
+  indirizzo iz,
+  comuni cu,
+  commesse cm,
+  areadipolo arp,
+  impianto i,
+  priorita p,
+  tipointervento tp,
+  Apparato a,
+  categoria c,
+  statosmistamento sm,
+  statooperativo so,
+  apparatostd ap,
+  richiedente ri,
+  richiedentetipo tir,
+  (select li.oid,
+  pi.descrizione as piano,
+  li.descrizione as stanza
+  from
+  locali li,
+  piani pi,
+  categoriapiano cpi
+  where cpi.oid=pi.categoriapiano
+  and pi.oid=li.piani
+  ) l
+
+
+  where e.oid = t.edificio
+  and cm.oid = e.commessa
+  and p.oid = t.priorita
+  and tp.oid = t.tipointervento
+  and i.oid = t.impianto
+  and a.oid = t.apparato
+  and c.oid = t.categoria
+  and iz.oid=e.indirizzo
+  and cu.oid=iz.comuni
+  and arp.oid=cm.areadipolo
+  and sm.oid = t.statosmistamento
+  and so.oid(+) = t.statooperativo
+  and ri.oid = t.richiedente
+  and ap.oid = a.stdapparato
+  and tir.oid=ri.tiporichiedente
+  and l.oid(+)=t.locali
+  and a.abilitato=1
+  and a.abilitazionetrasmessa=1
+)
+d,
+rdlapparatoschedemp r,
+apparatoschedamp am,
+apparato a,
+schedemp m,
+frequenze f
+where d.oidcategoria in (1,5)
+and r.rdl=d.Codice
+and r.apparatoschedamp=am.oid
+and am.schedamp=m.oid
+and m.frequenzaopt=f.oid
+and am.apparato=a.oid) x
+) y
+)z
+group by
+
+z.anno,
+z.Edificio,
+z.Impianto,
+z.Apparato,
+z.descrizione,
+z.piano, z.stanza, z.reparto,
+z.areadipolo,
+z.centrocosto,
+z.oidedificio,
+z.oidimpianto,
+z.oidreferentecofely, z.oidcategoria,
+z.richiedente, z.priorita, z.prioritatipointervento,
+z.cod_apparato, z.tipoapparato, z.categoriamanutenzione,
+z.cod_procedura,
+z.frequenza,
+z.note,
+z.durata_intervento,
+z.oidapparato
+;

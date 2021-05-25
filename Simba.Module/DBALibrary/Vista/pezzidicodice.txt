@@ -1,0 +1,68 @@
+﻿
+
+        //private string fDescrizione;
+        //[Persistent("DESCRIZIONE")]
+        //[Browsable(false)]
+        //public string Descrizione
+        //{
+        //    get
+        //    {
+        //        return fDescrizione;
+        //    }
+        //    set
+        //    {
+        //        SetPropertyValue<string>("Descrizione", ref fDescrizione, value);
+        //    }
+        //}
+
+        //[Association(@"SisTecnologvista_SisClassivista", typeof(SistemaClassiTree)),       DevExpress.Xpo.DisplayName("Sistema Classi")]
+        //public XPCollection<SistemaClassiTree> SistemaClassis
+        //{
+        //    get
+        //    {
+        //        return GetCollection<SistemaClassiTree>("SistemaClassis");
+        //    }
+        //}
+
+        //private SistemaTecnologico fSistemaTecnologico;
+        //[Persistent("SISTEMATECNOLOGICO"),  DevExpress.Xpo.DisplayName("Sistema Tecnologico")]
+        //[Browsable(false)]
+        //public SistemaTecnologico SistemaTecnologico
+        //{
+        //    get
+        //    {
+        //        return fSistemaTecnologico;
+        //    }
+        //    set
+        //    {
+        //        SetPropertyValue<SistemaTecnologico>("SistemaTecnologico", ref fSistemaTecnologico, value);
+        //    }
+        //}
+        ////  [VisibleInDetailView(false), VisibleInListView(true), VisibleInLookupListView(true)]
+        ////public override string Name
+        ////{
+        ////    get
+        ////    {
+        ////        return Descrizione;
+        ////    }
+        ////    set
+        ////    {
+        ////        SetPropertyValue("Name", ref fDescrizione, value);
+        ////    }
+        ////}
+
+        //protected override IBindingList Children
+        //{
+        //    get
+        //    {
+        //        return SistemaClassis;
+        //    }
+        //}
+
+        //protected override ITreeNode Parent
+        //{
+        //    get
+        //    {
+        //        return null;
+        //    }
+        //}

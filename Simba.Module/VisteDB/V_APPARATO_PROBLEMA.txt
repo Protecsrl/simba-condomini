@@ -1,0 +1,10 @@
+﻿CREATE OR REPLACE VIEW V_APPARATO_PROBLEMA AS
+
+select 'PRO' || std.oid || '-' || pr.oid as oid,
+       pr.descrizione as Name,
+       pr.descrizione,
+       std.oid as STDAPPARATO,
+       pr.oid as PROBLEMA
+
+from APPARATOSTD std, PCRAPPPROBLEMA ap, PCRPROBLEMI pr
+where ap.stdapparato=std.oid and pr.oid=ap.pcrproblemi

@@ -1,0 +1,9 @@
+﻿create or replace view v_apparatostd as
+select 'APPSTD'||appstd.oid as oid,
+       appstd.descrizione,
+       appstd.descrizione as Name,
+       'STAPCL'||appstd.apparatostdclassi as apparatostdclassi,
+       appstd.oid as apparatostd
+
+from apparatostd appstd
+where appstd.apparatostdclassi is not null;

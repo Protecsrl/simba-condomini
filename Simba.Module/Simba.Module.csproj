@@ -1,0 +1,3411 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <OwnerKey>{FE3BBBB6-72D5-11d2-9ACE-00C04F79A2A4}</OwnerKey>
+    <ProjectType>Local</ProjectType>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{D7B72244-7C11-414B-ABE5-A3EB78567D93}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ApplicationIcon>
+    </ApplicationIcon>
+    <AssemblyKeyContainerName>
+    </AssemblyKeyContainerName>
+    <AssemblyName>Simba.Module</AssemblyName>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
+    <DefaultClientScript>JScript</DefaultClientScript>
+    <DefaultHTMLPageLayout>Grid</DefaultHTMLPageLayout>
+    <DefaultTargetSchema>IE50</DefaultTargetSchema>
+    <DelaySign>false</DelaySign>
+    <OutputType>Library</OutputType>
+    <RootNamespace>Simba.Module</RootNamespace>
+    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+    <StartupObject>
+    </StartupObject>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <TargetFrameworkProfile />
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DocumentationFile>
+    </DocumentationFile>
+    <DebugSymbols>true</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn>
+    </NoWarn>
+    <Optimize>false</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>full</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>TRACE</DefineConstants>
+    <DocumentationFile>
+    </DocumentationFile>
+    <DebugSymbols>false</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn>
+    </NoWarn>
+    <Optimize>true</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>none</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'EasyTest|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\EasyTest\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;EASYTEST</DefineConstants>
+    <BaseAddress>285212672</BaseAddress>
+    <FileAlignment>4096</FileAlignment>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'DebugEamsXAF|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\DebugEamsXAF\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <BaseAddress>285212672</BaseAddress>
+    <FileAlignment>4096</FileAlignment>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DevExpress.DataAccess.v20.2.UI, Version=20.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Dashboard.v20.2.Core, Version=20.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Data.v20.2">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DevExpress.DataAccess.v20.2, Version=20.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.ExpressApp.AuditTrail.v20.2, Version=20.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.ExpressApp.Chart.v20.2, Version=20.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.ExpressApp.ConditionalAppearance.v20.2">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DevExpress.ExpressApp.Dashboards.v20.2, Version=20.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.ExpressApp.Kpi.v20.2, Version=20.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.ExpressApp.Notifications.v20.2">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DevExpress.ExpressApp.PivotChart.v20.2">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DevExpress.Charts.v20.2.Core">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DevExpress.ExpressApp.PivotGrid.v20.2, Version=20.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.ExpressApp.ReportsV2.v20.2">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DevExpress.ExpressApp.Security.Xpo.v20.2">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DevExpress.ExpressApp.Xpo.v20.2">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DevExpress.Office.v20.2.Core, Version=20.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Pdf.v20.2.Core">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DevExpress.Printing.v20.2.Core">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DevExpress.RichEdit.v20.2.Core, Version=20.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.DataVisualization.v20.2.Core, Version=20.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Spreadsheet.v20.2.Core, Version=20.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Data.Desktop.v20.2, Version=20.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Utils.v20.2, Version=20.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Utils.v20.2.UI, Version=20.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraCharts.v20.2.Wizard">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraCharts.v20.2">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DevExpress.PivotGrid.v20.2.Core">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraGauges.v20.2.Core, Version=20.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraPivotGrid.v20.2">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraReports.v20.2.Extensions">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DevExpress.Sparkline.v20.2.Core">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DevExpress.CodeParser.v20.2">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DevExpress.RichEdit.v20.2.Export">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraReports.v20.2">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraPrinting.v20.2">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DevExpress.ExpressApp.v20.2">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DevExpress.ExpressApp.Objects.v20.2">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DevExpress.ExpressApp.Security.v20.2">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DevExpress.ExpressApp.ViewVariantsModule.v20.2">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DevExpress.ExpressApp.Validation.v20.2">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DevExpress.Persistent.Base.v20.2">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DevExpress.Persistent.BaseImpl.v20.2">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DevExpress.Xpo.v20.2">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraScheduler.v20.2.Reporting.Extensions, Version=20.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraScheduler.v20.2, Version=20.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraScheduler.v20.2.Core.Desktop, Version=20.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraScheduler.v20.2.Core, Version=20.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Exchange.WebServices, Version=15.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\EWS_ReadEmails\packages\Microsoft.Exchange.WebServices.2.2\lib\40\Microsoft.Exchange.WebServices.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Exchange.WebServices.Auth, Version=15.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\EWS_ReadEmails\packages\Microsoft.Exchange.WebServices.2.2\lib\40\Microsoft.Exchange.WebServices.Auth.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Identity.Client, Version=4.22.0.0, Culture=neutral, PublicKeyToken=0a613f4dd989e8ae, processorArchitecture=MSIL">
+      <HintPath>..\..\EWS_ReadEmails\packages\Microsoft.Identity.Client.4.22.0\lib\net461\Microsoft.Identity.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="System">
+      <Name>System</Name>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.configuration">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Data">
+      <Name>System.Data</Name>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data.OracleClient" />
+    <Reference Include="System.Drawing">
+      <Name>System.Drawing</Name>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.IdentityModel" />
+    <Reference Include="System.IO.Compression.FileSystem" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Web">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Windows.Forms">
+      <Name>System.Windows.Forms</Name>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Xml">
+      <Name>System.XML</Name>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BusinessObjects\Duplicate.cs" />
+    <Compile Include="BusinessObjects\DuplicatesList.cs" />
+    <Compile Include="BusinessObjects\PortfolioFileData.cs" />
+    <Compile Include="BusinessObjects\Position.cs" />
+    <Compile Include="CAMSInvioMailCN\Class1.cs" />
+    <Compile Include="CAMSInvioMailCN\GetData.cs" />
+    <Compile Include="CAMSInvioMailCN\Invio.cs" />
+    <Compile Include="CAMSInvioMailCN\SetMail.cs" />
+    <Compile Include="ClassiAsinc\InviaAsinc.cs" />
+    <Compile Include="ClassiMSDB\DB.cs" />
+    <Compile Include="ClassiMSDB\InvioMailCNGetData.cs" />
+    <Compile Include="ClassiORADB\DB.cs" />
+    <Compile Include="ClassiORADB\InvioMailCNGetData.cs" />
+    <Compile Include="Classi\ClientPopMail.cs" />
+    <Compile Include="Classi\DB.cs" />
+    <Compile Include="Classi\DBApps.cs" />
+    <Compile Include="Classi\EasterCalculation.cs" />
+    <Compile Include="Classi\Effemeridi\SunnyTimes.cs" />
+    <Compile Include="Classi\Effemeridi\Utils.cs" />
+    <Compile Include="Classi\Enum.cs" />
+    <Compile Include="Classi\GetOidRegolaAssegnazione.cs" />
+    <Compile Include="Classi\HtmlStringCode.cs" />
+    <Compile Include="Classi\LivelloAccorpamento.cs" />
+    <Compile Include="Classi\Logger.cs" />
+    <Compile Include="Classi\Mail.cs" />
+    <Compile Include="Classi\MailMessageExt.cs" />
+    <Compile Include="Classi\MapsUserControlViewItem.cs" />
+    <Compile Include="Classi\MessaggioPopUp.cs" />
+    <Compile Include="Classi\MessaggioUtente.cs" />
+    <Compile Include="Classi\PopUpAvavanzamentoSmistamentoRdLExecute.cs" />
+    <Compile Include="Classi\Report\StampaReportToFile.cs" />
+    <Compile Include="Classi\RSSDK\Config.cs" />
+    <Compile Include="Classi\RSSDK\Credit.cs" />
+    <Compile Include="Classi\RSSDK\CreditMovement.cs" />
+    <Compile Include="Classi\RSSDK\CreditType.cs" />
+    <Compile Include="Classi\RSSDK\DDate.cs" />
+    <Compile Include="Classi\RSSDK\HTTP.cs" />
+    <Compile Include="Classi\RSSDK\HTTPException.cs" />
+    <Compile Include="Classi\RSSDK\InvalidMessageContentException.cs" />
+    <Compile Include="Classi\RSSDK\InvalidRecipientException.cs" />
+    <Compile Include="Classi\RSSDK\InvalidSenderException.cs" />
+    <Compile Include="Classi\RSSDK\LookupResult.cs" />
+    <Compile Include="Classi\RSSDK\MessageStatus.cs" />
+    <Compile Include="Classi\RSSDK\Nation.cs" />
+    <Compile Include="Classi\RSSDK\Nations.cs" />
+    <Compile Include="Classi\RSSDK\PhoneNumber.cs" />
+    <Compile Include="Classi\RSSDK\ResponseParser.cs" />
+    <Compile Include="Classi\RSSDK\SendResult.cs" />
+    <Compile Include="Classi\RSSDK\SentSMS.cs" />
+    <Compile Include="Classi\RSSDK\SMS.cs" />
+    <Compile Include="Classi\RSSDK\SMSCConnection.cs" />
+    <Compile Include="Classi\RSSDK\SMSCConnectionException.cs" />
+    <Compile Include="Classi\RSSDK\SMSCException.cs" />
+    <Compile Include="Classi\RSSDK\SMSCHTTPConnection.cs" />
+    <Compile Include="Classi\RSSDK\SMSCRemoteException.cs" />
+    <Compile Include="Classi\RSSDK\SMSRecipient.cs" />
+    <Compile Include="Classi\RSSDK\SMSSender.cs" />
+    <Compile Include="Classi\RSSDK\SMSType.cs" />
+    <Compile Include="Classi\RSSDK\SMS_MO.cs" />
+    <Compile Include="Classi\RSSDK\Str.cs" />
+    <Compile Include="Classi\RSSDK\Subaccount.cs" />
+    <Compile Include="Classi\SetVarSessione.cs" />
+    <Compile Include="Classi\SMSEAMS.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Classi\test.cs" />
+    <Compile Include="Classi\UtenteRuolo.cs" />
+    <Compile Include="Classi\Util.cs" />
+    <Compile Include="Classi\UtilController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="BusinessObjects\Contact.cs" />
+    <Compile Include="Controllers\Costi\RegistroCostiController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\Costi\RegistroCostiController.Designer.cs">
+      <DependentUpon>RegistroCostiController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\Costi\RegistroLavoriConsuntiviController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\Costi\RegistroLavoriConsuntiviController.Designer.cs">
+      <DependentUpon>RegistroLavoriConsuntiviController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\Costi\RegistroLavoriPreventiviController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\Costi\RegistroLavoriPreventiviController.Designer.cs">
+      <DependentUpon>RegistroLavoriPreventiviController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\CreateRdLController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\CreateRdLController.Designer.cs">
+      <DependentUpon>CreateRdLController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\CreaUserRuoloController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\CreaUserRuoloController.Designer.cs">
+      <DependentUpon>CreaUserRuoloController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\DBAgenda\AppuntamentiRisorseController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\DBAgenda\AppuntamentiRisorseController.Designer.cs">
+      <DependentUpon>AppuntamentiRisorseController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\DBAgenda\NotificaRdLController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\DBAgenda\NotificaRdLController.Designer.cs">
+      <DependentUpon>NotificaRdLController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\DBAgenda\NotificaRdLObjSpaceController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\DBAgenda\NotificaRdLObjSpaceController.Designer.cs">
+      <DependentUpon>NotificaRdLObjSpaceController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\DBAgenda\NotificationItemController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\DBAgenda\NotificationItemController.Designer.cs">
+      <DependentUpon>NotificationItemController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\DBAgenda\NotificationsObjectController.cs" />
+    <Compile Include="Controllers\DBALibrary\StdApparatoController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\DBALibrary\StdApparatoController.Designer.cs">
+      <DependentUpon>StdApparatoController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\DBAngrafica\DestinatariController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\DBAngrafica\DestinatariController.Designer.cs">
+      <DependentUpon>DestinatariController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\DBAngrafica\DestinatariControlliNormativiController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\DBAngrafica\DestinatariControlliNormativiController.Designer.cs">
+      <DependentUpon>DestinatariControlliNormativiController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\DBAngrafica\ReportExcelController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\DBAngrafica\ReportExcelController.Designer.cs">
+      <DependentUpon>ReportExcelController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\DBAngrafica\ReportExcelDettagliController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\DBAngrafica\ReportExcelDettagliController.Designer.cs">
+      <DependentUpon>ReportExcelDettagliController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\DBAux\CriteriaController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\DBAux\CriteriaController.Designer.cs">
+      <DependentUpon>CriteriaController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\DBCallCenter\SegnalazioneCCController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\DBCallCenter\SegnalazioneCCController.Designer.cs">
+      <DependentUpon>SegnalazioneCCController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\DBClienti\ContrattiConsipDettagliController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\DBClienti\ContrattiConsipDettagliController.Designer.cs">
+      <DependentUpon>ContrattiConsipDettagliController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\DBControlliNormativi\ControlliNormativiController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\DBControlliNormativi\ControlliNormativiController.Designer.cs">
+      <DependentUpon>ControlliNormativiController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\DBControlliNormativi\ControlliNormativiRifLogController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\DBControlliNormativi\ControlliNormativiRifLogController.Designer.cs">
+      <DependentUpon>ControlliNormativiRifLogController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\DBControlliNormativi\LogEmailCtrlNormController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\DBControlliNormativi\LogEmailCtrlNormController.Designer.cs">
+      <DependentUpon>LogEmailCtrlNormController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\DBDataImport\RegistroDataImportTentativiController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\DBDataImport\RegistroDataImportTentativiController.Designer.cs">
+      <DependentUpon>RegistroDataImportTentativiController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\DBDocument\PlanimetrieController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\DBDocument\PlanimetrieController.Designer.cs">
+      <DependentUpon>PlanimetrieController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\DBGestOrari\GestioneNuoviOrariObjSpaceController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\DBGestOrari\GestioneNuoviOrariObjSpaceController.Designer.cs">
+      <DependentUpon>GestioneNuoviOrariObjSpaceController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\DBGestOrari\GestioneOrariCircuitiController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\DBGestOrari\GestioneOrariCircuitiController.Designer.cs">
+      <DependentUpon>GestioneOrariCircuitiController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\DBGestOrari\GestioneOrariObjSpaceController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\DBGestOrari\GestioneOrariObjSpaceController.Designer.cs">
+      <DependentUpon>GestioneOrariObjSpaceController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\DBGestOrari\tbCalendarioController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\DBGestOrari\tbCalendarioController.Designer.cs">
+      <DependentUpon>tbCalendarioController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\DBGestOrari\tbCalendarioObjSpaceController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\DBGestOrari\tbCalendarioObjSpaceController.Designer.cs">
+      <DependentUpon>tbCalendarioObjSpaceController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\DBHelp\ShowCustomFormWindowController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\DBMail\SegnalazioneMailController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\DBMail\SegnalazioneMailController.Designer.cs">
+      <DependentUpon>SegnalazioneMailController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\DBPlanner\ClusterEdificiController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\DBPlanner\ClusterEdificiController.Designer.cs">
+      <DependentUpon>ClusterEdificiController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\DBPlanner\ClusterEdificiInseribiliController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\DBPlanner\ClusterEdificiInseribiliController.Designer.cs">
+      <DependentUpon>ClusterEdificiInseribiliController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\DBPlanner\MPAttivitaPluriAnnualiController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\DBPlanner\MPAttivitaPluriAnnualiController.Designer.cs">
+      <DependentUpon>MPAttivitaPluriAnnualiController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\DBPlanner\MPDataFissaController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\DBPlanner\MPDataFissaController.Designer.cs">
+      <DependentUpon>MPDataFissaController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\DBPlanner\MPDataFissaDettaglioController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\DBPlanner\MPDataFissaDettaglioController.Designer.cs">
+      <DependentUpon>MPDataFissaDettaglioController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\DBPlanner\MPDataInizialeController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\DBPlanner\MPDataInizialeController.Designer.cs">
+      <DependentUpon>MPDataInizialeController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\DBPlanner\RegMPSchedaMPController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\DBPlanner\RegMPSchedaMPController.Designer.cs">
+      <DependentUpon>RegMPSchedaMPController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\DBPlanner\ScenarioController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\DBPlanner\ScenarioController.Designer.cs">
+      <DependentUpon>ScenarioController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\DBPlant\ApparatoCaratteristicheTecnicheController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\DBPlant\ApparatoCaratteristicheTecnicheController.Designer.cs">
+      <DependentUpon>ApparatoCaratteristicheTecnicheController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\DBPlant\ApparatoController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\DBPlant\ApparatoController.Designer.cs">
+      <DependentUpon>ApparatoController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\DBPlant\ApparatoListViewController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\DBPlant\ApparatoListViewController.Designer.cs">
+      <DependentUpon>ApparatoListViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\DBPlant\ApparatoMapController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\DBPlant\ApparatoMapController.Designer.cs">
+      <DependentUpon>ApparatoMapController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\DBPlant\ApparatoSchedaMPController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\DBPlant\ApparatoSchedaMPController.Designer.cs">
+      <DependentUpon>ApparatoSchedaMPController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\DBPlant\CentroOperativoController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\DBPlant\CentroOperativoController.Designer.cs">
+      <DependentUpon>CentroOperativoController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\DBPlant\EdificioController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\DBPlant\EdificioController.Designer.cs">
+      <DependentUpon>EdificioController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\DBPlant\ImpiantoController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\DBPlant\ImpiantoController.Designer.cs">
+      <DependentUpon>ImpiantoController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\DBPlant\ImpiantoLibraryAppInseribiliController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\DBPlant\ImpiantoLibraryAppInseribiliController.Designer.cs">
+      <DependentUpon>ImpiantoLibraryAppInseribiliController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\DBPlant\ImpiantoLibraryController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\DBPlant\ImpiantoLibraryController.Designer.cs">
+      <DependentUpon>ImpiantoLibraryController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\DBPlant\ImpiantoLibraryDettaglioController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\DBPlant\ImpiantoLibraryDettaglioController.Designer.cs">
+      <DependentUpon>ImpiantoLibraryDettaglioController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\DBPlant\ProvinciaController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\DBPlant\ProvinciaController.Designer.cs">
+      <DependentUpon>ProvinciaController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\DBRuoloUtente\RuoloUserController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\DBRuoloUtente\RuoloUserController.Designer.cs">
+      <DependentUpon>RuoloUserController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\DBTask\AppsCAMS\NotificheEmergenzeController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\DBTask\AppsCAMS\NotificheEmergenzeController.Designer.cs">
+      <DependentUpon>NotificheEmergenzeController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\DBTask\AppsCAMS\RegNotificheEmergenzeController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\DBTask\AppsCAMS\RegNotificheEmergenzeController.Designer.cs">
+      <DependentUpon>RegNotificheEmergenzeController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\DBTask\DC\FindSostegniCTRStaticaController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\DBTask\DC\FindSostegniCTRStaticaController.Designer.cs">
+      <DependentUpon>FindSostegniCTRStaticaController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\DBTask\Guasti\ApparatoProblemaController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\DBTask\Guasti\ApparatoProblemaController.Designer.cs">
+      <DependentUpon>ApparatoProblemaController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\DBTask\Guasti\ProblemaCausaController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\DBTask\Guasti\ProblemaCausaController.Designer.cs">
+      <DependentUpon>ProblemaCausaController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\DBTask\ListPOIController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\DBTask\ListPOIController.Designer.cs">
+      <DependentUpon>ListPOIController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\DBTask\ModificaRdLController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\DBTask\ModificaRdLController.Designer.cs">
+      <DependentUpon>ModificaRdLController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\DBTask\ParametriPopUp\ParametriPivotController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\DBTask\ParametriPopUp\ParametriPivotController.Designer.cs">
+      <DependentUpon>ParametriPivotController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\DBTask\ParametriPopUp\RdLParametriAzioniMassiveController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\DBTask\ParametriPopUp\RdLParametriAzioniMassiveController.Designer.cs">
+      <DependentUpon>RdLParametriAzioniMassiveController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\DBTask\RdLController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\DBTask\RdLController.Designer.cs">
+      <DependentUpon>RdLController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\DBTask\RdLController1.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\DBTask\RdLController1.Designer.cs">
+      <DependentUpon>RdLController1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\DBTask\RdLListSimiliViewController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\DBTask\RdLListSimiliViewController.Designer.cs">
+      <DependentUpon>RdLListSimiliViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\DBTask\RdLListViewAzioniMassiveController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\DBTask\RdLListViewAzioniMassiveController.Designer.cs">
+      <DependentUpon>RdLListViewAzioniMassiveController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\DBTask\RdLListViewClienteController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\DBTask\RdLListViewClienteController.Designer.cs">
+      <DependentUpon>RdLListViewClienteController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\DBTask\RdLListViewController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\DBTask\RdLListViewController.Designer.cs">
+      <DependentUpon>RdLListViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\DBTask\RdLListViewGuastoController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\DBTask\RdLListViewGuastoController.Designer.cs">
+      <DependentUpon>RdLListViewGuastoController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\DBTask\RdLListViewMPController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\DBTask\RdLListViewMPController.Designer.cs">
+      <DependentUpon>RdLListViewMPController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\DBTask\RdLListViewSGController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\DBTask\RdLListViewSGController.Designer.cs">
+      <DependentUpon>RdLListViewSGController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\DBTask\RdLListViewSinotticoController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\DBTask\RdLListViewSinotticoController.Designer.cs">
+      <DependentUpon>RdLListViewSinotticoController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\DBTask\RdLMultiRisorseTeamController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\DBTask\RdLMultiRisorseTeamController.Designer.cs">
+      <DependentUpon>RdLMultiRisorseTeamController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\DBTask\RdLNonPersistentController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\DBTask\RdLNonPersistentController.Designer.cs">
+      <DependentUpon>RdLNonPersistentController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\DBTask\RdLNoteController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\DBTask\RdLNoteController.Designer.cs">
+      <DependentUpon>RdLNoteController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\DBTask\RdLObjSpaceController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\DBTask\RdLObjSpaceController.Designer.cs">
+      <DependentUpon>RdLObjSpaceController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\DBTask\RdLSinotticoGroupController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\DBTask\RdLSinotticoGroupController.Designer.cs">
+      <DependentUpon>RdLSinotticoGroupController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\DBTask\RegistroPOIController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\DBTask\RegistroPOIController.Designer.cs">
+      <DependentUpon>RegistroPOIController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\DBTask\RegistroRdLController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\DBTask\RegistroRdLController.Designer.cs">
+      <DependentUpon>RegistroRdLController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\DBTask\RegistroRdLObjSpaceController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\DBTask\RegistroRdLObjSpaceController.Designer.cs">
+      <DependentUpon>RegistroRdLObjSpaceController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\DBTask\RegistroSpedizioniDettControlle1.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\DBTask\RegistroSpedizioniDettControlle1.Designer.cs">
+      <DependentUpon>RegistroSpedizioniDettControlle1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\DBTask\RegRdLListViewAzioniMassiveController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\DBTask\RegRdLListViewAzioniMassiveController.Designer.cs">
+      <DependentUpon>RegRdLListViewAzioniMassiveController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\DBTask\RegRdLListViewController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\DBTask\RegRdLListViewController.Designer.cs">
+      <DependentUpon>RegRdLListViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\DBTask\RegRdLListViewMPController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\DBTask\RegRdLListViewMPController.Designer.cs">
+      <DependentUpon>RegRdLListViewMPController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\DBTask\RisorseController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\DBTask\RisorseController.Designer.cs">
+      <DependentUpon>RisorseController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\DBTask\RisorseObjSpaceController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\DBTask\RisorseObjSpaceController.Designer.cs">
+      <DependentUpon>RisorseObjSpaceController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\DBTask\RisorseTeamController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\DBTask\RisorseTeamController.Designer.cs">
+      <DependentUpon>RisorseTeamController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\FindBySubjectController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\FindBySubjectController.Designer.cs">
+      <DependentUpon>FindBySubjectController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CAMSModule.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CAMSModule.Designer.cs">
+      <DependentUpon>CAMSModule.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BusinessObjects\Payment.cs" />
+    <Compile Include="Controllers\Misure\RegMisureController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\Misure\RegMisureController.Designer.cs">
+      <DependentUpon>RegMisureController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\NavigationWindowController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\NavigationWindowController.Designer.cs">
+      <DependentUpon>NavigationWindowController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\Tree\TreeController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\Tree\TreeController.Designer.cs">
+      <DependentUpon>TreeController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\VisualizzaDettagliController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\VisualizzaDettagliController.Designer.cs">
+      <DependentUpon>VisualizzaDettagliController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Costi\FondoCosti.cs" />
+    <Compile Include="Costi\FondoLavori.cs" />
+    <Compile Include="Costi\MagazzinoArticoli.cs" />
+    <Compile Include="Costi\RegistroApprovazioneConsuntiviLavori.cs" />
+    <Compile Include="Costi\RegistroApprovazionePreventiviLavori.cs" />
+    <Compile Include="Costi\RegistroCEL.cs" />
+    <Compile Include="Costi\RegistroCELDettaglio.cs" />
+    <Compile Include="Costi\RegistroCosti.cs" />
+    <Compile Include="Costi\RegistroCostiAltreRegRdL.cs" />
+    <Compile Include="Costi\RegistroCostiDettaglio.cs" />
+    <Compile Include="Costi\RegistroCostiPreventivo.cs" />
+    <Compile Include="Costi\RegistroCostiRicaviDettaglio.cs" />
+    <Compile Include="Costi\RegistroLavori.cs" />
+    <Compile Include="Costi\RegistroLavoriAltreRegRdL.cs" />
+    <Compile Include="Costi\RegistroLavoriConsuntivi.cs" />
+    <Compile Include="Costi\RegistroLavoriPreventivi.cs" />
+    <Compile Include="Costi\RegistroMateriali.cs" />
+    <Compile Include="Costi\TipologiaCosto.cs" />
+    <Compile Include="Crypto.cs" />
+    <Compile Include="DBAgenda\AppuntamentiRisorse.cs" />
+    <Compile Include="DBAgenda\NotificaRdL.cs" />
+    <Compile Include="DBALibrary\Categoria.cs" />
+    <Compile Include="DBALibrary\FrequenzaStagionale.cs" />
+    <Compile Include="DBALibrary\Frequenze.cs" />
+    <Compile Include="DBALibrary\IndiceCriticita.cs" />
+    <Compile Include="DBALibrary\KCondizione.cs" />
+    <Compile Include="DBALibrary\KDimensione.cs" />
+    <Compile Include="DBALibrary\KGuasto.cs" />
+    <Compile Include="DBALibrary\KOttimizzazione.cs" />
+    <Compile Include="DBALibrary\KTrasferimento.cs" />
+    <Compile Include="DBALibrary\KUbicazione.cs" />
+    <Compile Include="DBALibrary\KUtenza.cs" />
+    <Compile Include="DBALibrary\Mansioni.cs" />
+    <Compile Include="DBALibrary\PmpDettLog.cs" />
+    <Compile Include="DBALibrary\PmpLog.cs" />
+    <Compile Include="DBALibrary\PmpRegistroLog.cs" />
+    <Compile Include="DBALibrary\RiferimentiNormativi.cs" />
+    <Compile Include="DBALibrary\SchedaMp.cs" />
+    <Compile Include="DBALibrary\SchedaMpPassi.cs" />
+    <Compile Include="DBALibrary\SchedeMPOwner.cs" />
+    <Compile Include="DBALibrary\Sistema.cs" />
+    <Compile Include="DBALibrary\SistemaClassi.cs" />
+    <Compile Include="DBALibrary\SistemaTecnologico.cs" />
+    <Compile Include="DBALibrary\Skill.cs" />
+    <Compile Include="DBALibrary\SkillLevel.cs" />
+    <Compile Include="DBALibrary\StdAsset.cs" />
+    <Compile Include="DBALibrary\StdApparatoCaratteristicheTecniche.cs" />
+    <Compile Include="DBALibrary\StdApparatoClassi.cs" />
+    <Compile Include="DBALibrary\TipologiaIntervento.cs" />
+    <Compile Include="DBALibrary\Vista\SistemaTecnologicoTree.cs" />
+    <Compile Include="DBAngrafica\Anni.cs" />
+    <Compile Include="DBAngrafica\AzioniSpedizioneMail.cs" />
+    <Compile Include="DBAngrafica\Destinatari.cs" />
+    <Compile Include="DBAngrafica\DestinatariControlliNormativi.cs" />
+    <Compile Include="DBAngrafica\Festivita.cs" />
+    <Compile Include="DBAngrafica\Fornitore.cs" />
+    <Compile Include="DBAngrafica\LogSystemTrace.cs" />
+    <Compile Include="DBAngrafica\Mesi.cs" />
+    <Compile Include="DBAngrafica\ParametriGeneraliDB.cs" />
+    <Compile Include="DBAngrafica\ParametriNET.cs" />
+    <Compile Include="DBAngrafica\ParametriPopUp\InfoUtenteDataAggiornamento.cs" />
+    <Compile Include="DBAngrafica\ParametriPopUp\NuovoDestinatario.cs" />
+    <Compile Include="DBAngrafica\ReportExcel.cs" />
+    <Compile Include="DBAngrafica\ReportExcelDettagli.cs" />
+    <Compile Include="DBAngrafica\ReportVerificaStatica.cs" />
+    <Compile Include="DBAngrafica\SetMessaggioCommessa.cs" />
+    <Compile Include="DBAngrafica\SetReportCommessa.cs" />
+    <Compile Include="DBAngrafica\TipoAzioniSpedizioneMail.cs" />
+    <Compile Include="DBAPI\APIAnagrBase.cs" />
+    <Compile Include="DBAPI\APIAnagrBasePatr.cs" />
+    <Compile Include="DBAPI\APIRdLStatus.cs" />
+    <Compile Include="DBAPI\APIRdLStatusCategoriaConvert.cs" />
+    <Compile Include="DBAPI\APIRdLStatusDett.cs" />
+    <Compile Include="DBAPI\APIRdLStatusIns.cs" />
+    <Compile Include="DBAPI\APIRdLStatusSMConvert.cs" />
+    <Compile Include="DBAudit\DC\DCRegistroSmistamentoDettaglio.cs" />
+    <Compile Include="DBAudit\DC\DCRegistroOperativoRisorsa.cs" />
+    <Compile Include="DBAux\Cittadini.cs" />
+    <Compile Include="DBAux\CittadiniEdifici.cs" />
+    <Compile Include="DBAux\DCListProperty.cs" />
+    <Compile Include="DBAux\FileDataMail.cs" />
+    <Compile Include="DBAux\FilteringCriterion.cs" />
+    <Compile Include="DBAux\Giorni.cs" />
+    <Compile Include="DBAux\GruppoMesi.cs" />
+    <Compile Include="DBAux\GruppoMesiMesi.cs" />
+    <Compile Include="DBAux\ImportFile.cs" />
+    <Compile Include="DBAux\ImportFileDettaglio.cs" />
+    <Compile Include="DBAux\MigraRow.cs" />
+    <Compile Include="DBAux\RegoleAutoAssegnazioneRdL.cs" />
+    <Compile Include="DBAux\SecuritySystemUserLog.cs" />
+    <Compile Include="DBAux\tabimpfield.cs" />
+    <Compile Include="DBAux\tabimpfieldDet.cs" />
+    <Compile Include="DBBollette\Bollette.cs" />
+    <Compile Include="DBBollette\BolletteDettaglio.cs" />
+    <Compile Include="DBBollette\RegistroBollette.cs" />
+    <Compile Include="DBCallCenter\SegnalazioneCC.cs" />
+    <Compile Include="DBCensimento\CensimentoBase.cs" />
+    <Compile Include="DBCensimento\CensimentoBaseApp.cs" />
+    <Compile Include="DBClienti\Clienti.cs" />
+    <Compile Include="DBClienti\ClientiContatti.cs" />
+    <Compile Include="DBClienti\ContrattiConsipDettagli.cs" />
+    <Compile Include="DBClienti\ContrattiConsipFasi.cs" />
+    <Compile Include="DBClienti\ContrattiConsipRegistro.cs" />
+    <Compile Include="DBClienti\ContrattiConsipStato.cs" />
+    <Compile Include="DBControlliNormativi\ControlliNormativi.cs" />
+    <Compile Include="DBControlliNormativi\ControlliNormativiRifLog.cs" />
+    <Compile Include="DBControlliNormativi\LogEmailCtrlNorm.cs" />
+    <Compile Include="DBControlliNormativi\LogEmailCtrlNormRifDestinatari.cs" />
+    <Compile Include="DBControlliNormativi\TipoControlloNormativo.cs" />
+    <Compile Include="DBCreazioneXml\CreazioneXmlRuolo.cs" />
+    <Compile Include="DBDataImport\DataImportMappa.cs" />
+    <Compile Include="DBDataImport\DataImportMappaCampi.cs" />
+    <Compile Include="DBDataImport\DataImportMappaCampiVincoli.cs" />
+    <Compile Include="DBDataImport\RegistroDataImport.cs" />
+    <Compile Include="DBDataImport\RegistroDataImportTentativi.cs" />
+    <Compile Include="DBDataImport\RegistroDataManagemet.cs" />
+    <Compile Include="DBDataImport\RegistroDataManagemetFileResult.cs" />
+    <Compile Include="DBDataImport\RegistroDataManagemetFiles.cs" />
+    <Compile Include="DBDataImport\RegistroDataManagemetMapData.cs" />
+    <Compile Include="DBDataImport\ResultImportApparato.cs" />
+    <Compile Include="DBDataImport\ResultImportCommessa.cs" />
+    <Compile Include="DBDataImport\ResultImportEdificio.cs" />
+    <Compile Include="DBDataImport\ResultImportImpianto.cs" />
+    <Compile Include="DBDataImport\ResultImportXLS.cs" />
+    <Compile Include="DBEnergia\ConsumiGiornalieriApparato.cs" />
+    <Compile Include="DBEnergia\ConsumiMensileApparato.cs" />
+    <Compile Include="DBEnergia\ConsumiMensileImpianto.cs" />
+    <Compile Include="DBEnergia\FasceOrarieElettriche.cs" />
+    <Compile Include="DBGestOrari\ApprovatoreGestioneOrario.cs" />
+    <Compile Include="DBGestOrari\DCCalendarioUtente.cs" />
+    <Compile Include="DBGestOrari\GestioneNuoviOrari.cs" />
+    <Compile Include="DBGestOrari\GestioneOrari.cs" />
+    <Compile Include="DBGestOrari\GestioneOrariCircuiti.cs" />
+    <Compile Include="DBGestOrari\SettimanaTipo.cs" />
+    <Compile Include="DBGestOrari\tbcalendario.cs" />
+    <Compile Include="DBGestOrari\tbCalendarioUtente.cs" />
+    <Compile Include="DBGestOrari\tbcircuiti.cs" />
+    <Compile Include="DBGestOrari\tbimpianti.cs" />
+    <Compile Include="DBGestOrari\tbprofili.cs" />
+    <Compile Include="DBGestOrari\tbSettimanaTipoUtente.cs" />
+    <Compile Include="DBGestOrari\tbTicket.cs" />
+    <Compile Include="DBGestOrari\tbutenti.cs" />
+    <Compile Include="DBHelp\DBDocument\Documenti.cs" />
+    <Compile Include="DBHelp\DBDocument\DocumentiGuida.cs" />
+    <Compile Include="DBHelp\DBDocument\DocumentiRevisioni.cs" />
+    <Compile Include="DBHelp\DBDocument\NavigazioneDocumenti.cs" />
+    <Compile Include="DBHelp\DBDocument\Planimetrie.cs" />
+    <Compile Include="DBHelp\HelpConfiguration.cs" />
+    <Compile Include="DBHelp\TicketAssistenza.cs" />
+    <Compile Include="DBKPI\kpiCalendario.cs" />
+    <Compile Include="DBKPI\KPIMTBFBase.cs" />
+    <Compile Include="DBKPI\KPIMTBFFermi.cs" />
+    <Compile Include="DBKPI\KPIMTBFGuasti.cs" />
+    <Compile Include="DBKPI\KPIRespTecniciOperativi.cs" />
+    <Compile Include="DBKPI\KPIStatoOperativo.cs" />
+    <Compile Include="DBKPI\KPIStatoSmistamento.cs" />
+    <Compile Include="DBKPI\kpiStatoSmistamentoOperativo.cs" />
+    <Compile Include="DBKPI\KPITecniciOperativi.cs" />
+    <Compile Include="DBKPI\KPITecniciOperativiDett.cs" />
+    <Compile Include="DBKPI\KPI_AvanzamentoLavoriLT.cs" />
+    <Compile Include="DBKPI\KPI_AvanzamentoLT_Fasce.cs" />
+    <Compile Include="DBKPI\ParametriPopUp\Downloadfile.cs" />
+    <Compile Include="DBKPI\ParametriPopUp\DownLoadFileKPI.cs" />
+    <Compile Include="DBKPI\ParametriPopUp\ParametriCalcoloKPI.cs" />
+    <Compile Include="DBKPI\RdLMPDashboard.cs" />
+    <Compile Include="DBKPI\RisorsaOrariGionalieri.cs" />
+    <Compile Include="DBKPI\Vista\kpitecniciopdett.cs" />
+    <Compile Include="DBMail\RegMailRicezione.cs" />
+    <Compile Include="DBMail\DCDatiSMSMail.cs" />
+    <Compile Include="DBMail\ReportPeriodici.cs" />
+    <Compile Include="DBMail\ReportPeriodiciDettaglio.cs" />
+    <Compile Include="DBMail\SegnalazioneMail.cs" />
+    <Compile Include="DBMaps\ApparatoMapRdL.cs" />
+    <Compile Include="DBMaps\AssetMap.cs" />
+    <Compile Include="DBMaps\DC\FindSostegniCTRStatica.cs" />
+    <Compile Include="DBMaps\DC\SostegniCTRStatica.cs" />
+    <Compile Include="DBMaps\RisorseTeamUltimaPosizione.cs" />
+    <Compile Include="DBMaps\SostegniVerificaStatica.cs" />
+    <Compile Include="DBMaps\ucApparatoMapRdL.cs" />
+    <Compile Include="DBMisure\Master.cs" />
+    <Compile Include="DBMisure\MasterDettaglio.cs" />
+    <Compile Include="DBMisure\MasterTipoMisure.cs" />
+    <Compile Include="DBMisure\RegMisure.cs" />
+    <Compile Include="DBMisure\RegMisureDettaglio.cs" />
+    <Compile Include="DBMisure\RegMisureDettaglioDett.cs" />
+    <Compile Include="DBMisure\UnitaMisura.cs" />
+    <Compile Include="DBMisure\ValoriRegoleInsertDati.cs" />
+    <Compile Include="DBMisure\vw_EAMS_Anagrafica_IP.cs" />
+    <Compile Include="DBMisure\vw_EAMS_DettaglioFatture_IP.cs" />
+    <Compile Include="DBNotifiche\AvvisiSpedizioni.cs" />
+    <Compile Include="DBPlanner\DC\ParametroDescrizione.cs" />
+    <Compile Include="DBPlanner\DettagliAzioniSK.cs" />
+    <Compile Include="DBPlanner\DettaglioCreazioneOdL.cs" />
+    <Compile Include="DBPlanner\Ghost.cs" />
+    <Compile Include="DBPlanner\GhostDettaglio.cs" />
+    <Compile Include="DBPlanner\GhostDettaglioGG.cs" />
+    <Compile Include="DBPlanner\MpAttivitaPianificate.cs" />
+    <Compile Include="DBPlanner\MpAttivitaPianificateDett.cs" />
+    <Compile Include="DBPlanner\MPAttivitaPluriAnnuali.cs" />
+    <Compile Include="DBPlanner\MPDataContatore.cs" />
+    <Compile Include="DBPlanner\MPDataContatoreDettaglio.cs" />
+    <Compile Include="DBPlanner\MPDataContatoreDettaglioDate.cs" />
+    <Compile Include="DBPlanner\MPDataFissa.cs" />
+    <Compile Include="DBPlanner\MPDataFissaDettaglio.cs" />
+    <Compile Include="DBPlanner\MPDataIniziale.cs" />
+    <Compile Include="DBPlanner\MPDataInizialeDettaglio.cs" />
+    <Compile Include="DBPlanner\MPDateStagionali.cs" />
+    <Compile Include="DBPlanner\MpGiorno.cs" />
+    <Compile Include="DBPlanner\MPRegPoliMansioniCarico.cs" />
+    <Compile Include="DBPlanner\MPRegPoliMansioniCaricoDett.cs" />
+    <Compile Include="DBPlanner\MPStatoPianificazione.cs" />
+    <Compile Include="DBPlanner\RegMPSchedaMP.cs" />
+    <Compile Include="DBPlanner\RegPianificazioneMP.cs" />
+    <Compile Include="DBPlanner\RegPianificazioneMPDett.cs" />
+    <Compile Include="DBPlanner\RegPianificazioneMPRevisioni.cs" />
+    <Compile Include="DBPlanner\RegPianifMPRevisioniDett.cs" />
+    <Compile Include="DBPlanner\SK\Class1.cs" />
+    <Compile Include="DBPlanner\SK\MPAttSett.cs" />
+    <Compile Include="DBPlanner\SK\MPDataInizialeDettaglioDate.cs" />
+    <Compile Include="DBPlanner\SK\MPSettCarico.cs" />
+    <Compile Include="DBPlanner\SK\MPTraslaSet.cs" />
+    <Compile Include="DBPlant\Asset.cs" />
+    <Compile Include="DBPlant\AsettCaratteristicheTecniche.cs" />
+    <Compile Include="DBPlant\AssetImage.cs" />
+    <Compile Include="DBPlant\AssetocaliServiti.cs" />
+    <Compile Include="DBPlant\AssetOrariEsercizio.cs" />
+    <Compile Include="DBPlant\AssetSchedaMP.cs" />
+    <Compile Include="DBPlant\AppCaratteristicaValoreSelezione.cs" />
+    <Compile Include="DBPlant\Area.cs" />
+    <Compile Include="DBPlant\AreaDiPolo.cs" />
+    <Compile Include="DBPlant\CentroOperativo.cs" />
+    <Compile Include="DBPlant\ClusterEdifici.cs" />
+    <Compile Include="DBPlant\ClusterEdificiInseribili.cs" />
+    <Compile Include="DBPlant\ClusterEdificiRisorseTeam.cs" />
+    <Compile Include="DBPlant\Coefficienti\AssetkTempo.cs" />
+    <Compile Include="DBPlant\Contratti.cs" />
+    <Compile Include="DBPlant\Comuni.cs" />
+    <Compile Include="DBPlant\Conduttori.cs" />
+    <Compile Include="DBPlant\Distretto.cs" />
+    <Compile Include="DBPlant\Immobile.cs" />
+    <Compile Include="DBPlant\GeoLocalizzazione.cs" />
+    <Compile Include="DBPlant\Servizio.cs" />
+    <Compile Include="DBPlant\ServizioApparatoCarico.cs" />
+    <Compile Include="DBPlant\ServizioLibrary.cs" />
+    <Compile Include="DBPlant\ServizioLibraryAppInseribili.cs" />
+    <Compile Include="DBPlant\ServizioLibraryDettaglio.cs" />
+    <Compile Include="DBPlant\ServizioMansioneCarico.cs" />
+    <Compile Include="DBPlant\Indirizzo.cs" />
+    <Compile Include="DBPlant\NuovoEdificio.cs" />
+    <Compile Include="DBPlant\NuovoImpianto.cs" />
+    <Compile Include="DBPlant\ParametriPopUp\ParametriApparato.cs" />
+    <Compile Include="DBPlant\ParametriPopUp\ParametriCoefficientiK.cs" />
+    <Compile Include="DBPlant\Polo.cs" />
+    <Compile Include="DBPlant\Presidio.cs" />
+    <Compile Include="DBPlant\Provincia.cs" />
+    <Compile Include="DBPlant\ReferenteContratto.cs" />
+    <Compile Include="DBPlant\Regione.cs" />
+    <Compile Include="DBPlant\RegistroImpLibrary.cs" />
+    <Compile Include="DBPlant\RegistroImpLibraryDett.cs" />
+    <Compile Include="DBPlant\RegoleAutossegnazioneApparato.cs" />
+    <Compile Include="DBPlant\Scenario.cs" />
+    <Compile Include="DBPlant\StatisticheApparato.cs" />
+    <Compile Include="DBPlant\Strade.cs" />
+    <Compile Include="DBPlant\TreeObject.cs" />
+    <Compile Include="DBPlant\Vista\ApparatoListView.cs" />
+    <Compile Include="DBPlant\Vista\ApparatoListViewQrCode.cs" />
+    <Compile Include="DBPlant\Vista\AssetoMap.cs" />
+    <Compile Include="DBPlant\Vista\Category.cs" />
+    <Compile Include="DBPlant\Vista\ClusterEdificiMansioneCarico.cs" />
+    <Compile Include="DBPlant\Vista\CommesseTree.cs" />
+    <Compile Include="DBPlant\Vista\CORisorseTree.cs" />
+    <Compile Include="DBPlant\Vista\EdificioMansioneCarico.cs" />
+    <Compile Include="DBPlant\Vista\EdificioTree.cs" />
+    <Compile Include="DBPlant\Vista\PlantTreeObject.cs" />
+    <Compile Include="DBPlant\Vista\Project.cs" />
+    <Compile Include="DBPlant\Vista\ProjectArea.cs" />
+    <Compile Include="DBPlant\Vista\ProjectGroup.cs" />
+    <Compile Include="DBPlant\Vista\RisorseDistanzeRdL.cs" />
+    <Compile Include="DBPlant\Vista\ScenarioMansioneCarico.cs" />
+    <Compile Include="DBRuoloUtente\ClonaRuoloUser.cs" />
+    <Compile Include="DBRuoloUtente\RuoliPersonalizzati.cs" />
+    <Compile Include="DBRuoloUtente\UtentiRuoliCommesse.cs" />
+    <Compile Include="DBScheduler\AgendaLavori.cs" />
+    <Compile Include="DBScheduler\CircuitiOrari.cs" />
+    <Compile Include="DBScheduler\OrariAccensioni.cs" />
+    <Compile Include="DBScheduler\TicketOrarioAccensione.cs" />
+    <Compile Include="DBScheduler\TicketOrarioAccensioneDett.cs" />
+    <Compile Include="DBSpazi\CategoriaPiano.cs" />
+    <Compile Include="DBSpazi\Locali.cs" />
+    <Compile Include="DBSpazi\LocaliCategoria.cs" />
+    <Compile Include="DBSpazi\LocaliFiniture.cs" />
+    <Compile Include="DBSpazi\LocaliUso.cs" />
+    <Compile Include="DBSpazi\Piani.cs" />
+    <Compile Include="DBSpazi\TipoFinituraLocali.cs" />
+    <Compile Include="DBTask\AggRegrdL.cs" />
+    <Compile Include="DBTask\AppsCAMS\NotificheEmergenze.cs" />
+    <Compile Include="DBTask\AppsCAMS\RegNotificheEmergenze.cs" />
+    <Compile Include="DBTask\AppsCAMS\TRisorseEmergenza.cs" />
+    <Compile Include="DBTask\AssRisorseTeam.cs" />
+    <Compile Include="DBTask\CalendarioCadenze.cs" />
+    <Compile Include="DBTask\CalendarioCadenzeDettaglio.cs" />
+    <Compile Include="DBTask\CCTriage.cs" />
+    <Compile Include="DBTask\ContrattiUrgenza.cs" />
+    <Compile Include="DBTask\CommesseTipoIntervento.cs" />
+    <Compile Include="DBTask\DC\DCRdL.cs" />
+    <Compile Include="DBTask\DC\DCRdLListReport.cs" />
+    <Compile Include="DBTask\DC\DCRisorseTeamRdL.cs" />
+    <Compile Include="DBTask\DichiarazioneArrivo.cs" />
+    <Compile Include="DBTask\FaseOperativa.cs" />
+    <Compile Include="DBTask\Guasti\ApparatoProblema.cs" />
+    <Compile Include="DBTask\Guasti\CausaRimedio.cs" />
+    <Compile Include="DBTask\Guasti\Cause.cs" />
+    <Compile Include="DBTask\Guasti\ProblemaCausa.cs" />
+    <Compile Include="DBTask\Guasti\Problemi.cs" />
+    <Compile Include="DBTask\Guasti\Rimedi.cs" />
+    <Compile Include="DBTask\Guasti\Viste\ApparatoProblemaVista.cs" />
+    <Compile Include="DBTask\Guasti\Viste\CausaRimedioVista.cs" />
+    <Compile Include="DBTask\Guasti\Viste\PCRProblemiCauseRimediTree.cs" />
+    <Compile Include="DBTask\Guasti\Viste\ProblemaCausaVista.cs" />
+    <Compile Include="DBTask\Guasti\Viste\StdApparatoVista.cs" />
+    <Compile Include="DBTask\Guasti\Viste\TaskTreeObject.cs" />
+    <Compile Include="DBTask\MP\RegistroReportMP.cs" />
+    <Compile Include="DBTask\MP\RegistroReportMPDett.cs" />
+    <Compile Include="DBTask\OdL.cs" />
+    <Compile Include="DBTask\OggettoIntervento.cs" />
+    <Compile Include="DBTask\ParametriPopUp\ChangeRdL.cs" />
+    <Compile Include="DBTask\ParametriPopUp\DomainObject1.cs" />
+    <Compile Include="DBTask\ParametriPopUp\ModificaRdL.cs" />
+    <Compile Include="DBTask\ParametriPopUp\ParametriPivot.cs" />
+    <Compile Include="DBTask\ParametriPopUp\RdLParametriAzioniMassive.cs" />
+    <Compile Include="DBTask\POI\DCListPOI.cs" />
+    <Compile Include="DBTask\POI\ListPOI.cs" />
+    <Compile Include="DBTask\POI\RegistroPOI.cs" />
+    <Compile Include="DBTask\Urgenza.cs" />
+    <Compile Include="DBTask\RdL.cs" />
+    <Compile Include="DBTask\RdLApparatoSchedeMP.cs" />
+    <Compile Include="DBTask\RdLListViewAzioniMassiveMaster.cs" />
+    <Compile Include="DBTask\RdLMultiRisorseTeam.cs" />
+    <Compile Include="DBTask\RdLNotaTipo.cs" />
+    <Compile Include="DBTask\RdLNote.cs" />
+    <Compile Include="DBTask\RegistroAttivitaAccessorie.cs" />
+    <Compile Include="DBTask\RegistroCambioRisorsaDettVista.cs" />
+    <Compile Include="DBTask\RegistroPosizioniDettVista.cs" />
+    <Compile Include="DBTask\RegistroRdL.cs" />
+    <Compile Include="DBTask\RegistroSpedizioniDett.cs" />
+    <Compile Include="DBTask\RegistroSpedizioniSMSDett.cs" />
+    <Compile Include="DBTask\RegoleAutoAssegnazioneRisorseTeam.cs" />
+    <Compile Include="DBTask\Richiedente.cs" />
+    <Compile Include="DBTask\Risorse.cs" />
+    <Compile Include="DBTask\RisorseTeam.cs" />
+    <Compile Include="DBTask\StatoAutorizzativo.cs" />
+    <Compile Include="DBTask\StatoConnessione.cs" />
+    <Compile Include="DBTask\StatoImpiantoInArrivo.cs" />
+    <Compile Include="DBTask\StatoOdl.cs" />
+    <Compile Include="DBTask\StatoOperativo.cs" />
+    <Compile Include="DBTask\StatoSmistamento.cs" />
+    <Compile Include="DBTask\StatoSmistamentoCombo.cs" />
+    <Compile Include="DBTask\StatoSmistamento_SOperativo.cs" />
+    <Compile Include="DBTask\StatoSmistamento_SOperativoSO.cs" />
+    <Compile Include="DBTask\TipoIntervento.cs" />
+    <Compile Include="DBTask\TipoManutenzione.cs" />
+    <Compile Include="DBTask\TipoOdL.cs" />
+    <Compile Include="DBTask\TipoRichiedente.cs" />
+    <Compile Include="DBTask\Vista\EdificioRisorseTeam.cs" />
+    <Compile Include="DBTask\Vista\RdLListSimiliView.cs" />
+    <Compile Include="DBTask\Vista\RdLListView.cs" />
+    <Compile Include="DBTask\Vista\RdLListViewAzioniMassive.cs" />
+    <Compile Include="DBTask\Vista\RdLListViewCliente.cs" />
+    <Compile Include="DBTask\Vista\RdLListViewGuasto.cs" />
+    <Compile Include="DBTask\Vista\RdLListViewGuastoAREA.cs" />
+    <Compile Include="DBTask\Vista\RdLListViewGuastoSinottico.cs" />
+    <Compile Include="DBTask\Vista\RdLListViewMP.cs" />
+    <Compile Include="DBTask\Vista\RdLListViewReport.cs" />
+    <Compile Include="DBTask\Vista\RdLListViewSG.cs" />
+    <Compile Include="DBTask\Vista\RdLListViewSinottico.cs" />
+    <Compile Include="DBTask\Vista\RdLListViewSinotticoArea.cs" />
+    <Compile Include="DBTask\Vista\RdLListViewSinotticoPCR.cs" />
+    <Compile Include="DBTask\Vista\RdLSinotticoGroup.cs" />
+    <Compile Include="DBTask\Vista\RegOperativoRisorsa.cs" />
+    <Compile Include="DBTask\Vista\RegRdLListSGReport.cs" />
+    <Compile Include="DBTask\Vista\RegRdLListView.cs" />
+    <Compile Include="DBTask\Vista\RegRdLListViewAzioniMassive.cs" />
+    <Compile Include="DBTask\Vista\RegRdLListViewMP.cs" />
+    <Compile Include="DBTask\Vista\RegRdLListViewMPCompleta.cs" />
+    <Compile Include="DBTask\Vista\RegRdLListViewReport.cs" />
+    <Compile Include="DBTask\Vista\RegRdLPianifica.cs" />
+    <Compile Include="DBTask\Vista\RichiedenteEdificioImpAppTree.cs" />
+    <Compile Include="DBTLC\IEPlantList.cs" />
+    <Compile Include="DBTLC\IEValueList.cs" />
+    <Compile Include="DBTransazioni\AppTransazioni.cs" />
+    <Compile Include="DBTransazioni\AppTransazioniInstallazioni.cs" />
+    <Compile Include="DBTransazioni\RegistroReportBatch.cs" />
+    <Compile Include="DBTransazioni\RegistroTransazioni.cs" />
+    <Compile Include="DBTransazioni\RegistroTransazioniDettaglio.cs" />
+    <Compile Include="DBTransazioni\Ricorrenza.cs" />
+    <Compile Include="DBVerifiche\PMPdaCorreggere.cs" />
+    <Compile Include="Extensions\Linq.cs" />
+    <Compile Include="LongOperationController.cs" />
+    <Compile Include="Model\NavigationHide.cs" />
+    <Compile Include="Pop3\ClientPopMail.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Pop3\Pop3Client.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Pop3\Pop3Component.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Pop3\Pop3ConnectException.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Pop3\Pop3Credential.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Pop3\Pop3LoginException.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Pop3\Pop3Message.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Pop3\Pop3MessageComponents.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Pop3\Pop3MessageException.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Pop3\Pop3MissingBoundaryException.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Pop3\Pop3Parse.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Pop3\Pop3ReceiveException.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Pop3\Pop3SendException.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Pop3\Pop3StateObject.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Pop3\Pop3Statics.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="PredefinedReadonlyReports\subReportRdL.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="PredefinedReadonlyReports\subReportRdL.Designer.cs">
+      <DependentUpon>subReportRdL.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PredefinedReadonlyReports\XtraReportRegistroRdL.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="PredefinedReadonlyReports\XtraReportRegistroRdL.Designer.cs">
+      <DependentUpon>XtraReportRegistroRdL.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="BusinessObjects\Resume.cs" />
+    <Compile Include="BusinessObjects\Task.cs" />
+    <Compile Include="DatabaseUpdate\Updater.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="PropertyEditors\CAMSEditorAliases.cs" />
+    <Compile Include="PropertyEditors\CAMSEditorCostantFormat.cs" />
+    <Compile Include="PropertyEditors\ColorPropertiesObject.cs" />
+    <Compile Include="Reports\ContactsReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\ContactsReport.Designer.cs">
+      <DependentUpon>ContactsReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Validation\CustomRuleObject.cs" />
+    <Compile Include="Validation\ValidationDemoBaseObject.cs" />
+    <Compile Include="xReport\DCRdLListReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="xReport\DCRdLListReport.Designer.cs">
+      <DependentUpon>DCRdLListReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="xReport\SubReport\xrRegRdLSubreport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="xReport\SubReport\xrRegRdLSubreport.Designer.cs">
+      <DependentUpon>xrRegRdLSubreport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="xReport\xrFoglioPrestazioni.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="xReport\xrFoglioPrestazioni.Designer.cs">
+      <DependentUpon>xrFoglioPrestazioni.cs</DependentUpon>
+    </Compile>
+    <Compile Include="xReport\xrGhost.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="xReport\xrGhost.Designer.cs">
+      <DependentUpon>xrGhost.cs</DependentUpon>
+    </Compile>
+    <Compile Include="xReport\xrPermessoLavoro.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="xReport\xrPermessoLavoro.Designer.cs">
+      <DependentUpon>xrPermessoLavoro.cs</DependentUpon>
+    </Compile>
+    <Compile Include="xReport\xrRegRdL.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="xReport\xrRegRdL.Designer.cs">
+      <DependentUpon>xrRegRdL.cs</DependentUpon>
+    </Compile>
+    <Compile Include="xReport\xrRegRdLMP.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="xReport\xrRegRdLMP.Designer.cs">
+      <DependentUpon>xrRegRdLMP.cs</DependentUpon>
+    </Compile>
+    <Compile Include="xReport\xrReportApparatoMap.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="xReport\xrReportManSG.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="xReport\xrReportManSG.Designer.cs">
+      <DependentUpon>xrReportManSG.cs</DependentUpon>
+    </Compile>
+    <Compile Include="xReport\xrReportManSGMP.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="xReport\xrReportManSGMP.Designer.cs">
+      <DependentUpon>xrReportManSGMP.cs</DependentUpon>
+    </Compile>
+    <Compile Include="xReport\xrSchedeMP.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="xReport\xrSchedeMP.Designer.cs">
+      <DependentUpon>xrSchedeMP.cs</DependentUpon>
+    </Compile>
+    <Compile Include="xReport\xrSchedeMPBase.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="xReport\xrSchedeMPBase.Designer.cs">
+      <DependentUpon>xrSchedeMPBase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="xReport\xrSchedeMPOpt.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="xReport\xrSchedeMPOpt.Designer.cs">
+      <DependentUpon>xrSchedeMPOpt.cs</DependentUpon>
+    </Compile>
+    <Compile Include="xReport\xrSGMan.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="xReport\xrSGMan.Designer.cs">
+      <DependentUpon>xrSGMan.cs</DependentUpon>
+    </Compile>
+    <Compile Include="xReport\XtraReport1.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="xReport\XtraReport1.Designer.cs">
+      <DependentUpon>XtraReport1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="xReport\XtraReport2.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="xReport\XtraReport3.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <EmbeddedResource Include="Controllers\Costi\RegistroCostiController.resx">
+      <DependentUpon>RegistroCostiController.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controllers\Costi\RegistroLavoriConsuntiviController.resx">
+      <DependentUpon>RegistroLavoriConsuntiviController.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controllers\Costi\RegistroLavoriPreventiviController.resx">
+      <DependentUpon>RegistroLavoriPreventiviController.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controllers\CreateRdLController.resx">
+      <DependentUpon>CreateRdLController.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controllers\CreaUserRuoloController.resx">
+      <DependentUpon>CreaUserRuoloController.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controllers\DBAgenda\AppuntamentiRisorseController.resx">
+      <DependentUpon>AppuntamentiRisorseController.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controllers\DBAgenda\NotificaRdLController.resx">
+      <DependentUpon>NotificaRdLController.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controllers\DBAgenda\NotificaRdLObjSpaceController.resx">
+      <DependentUpon>NotificaRdLObjSpaceController.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controllers\DBAgenda\NotificationItemController.resx">
+      <DependentUpon>NotificationItemController.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controllers\DBALibrary\StdApparatoController.resx">
+      <DependentUpon>StdApparatoController.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controllers\DBAngrafica\DestinatariController.resx">
+      <DependentUpon>DestinatariController.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controllers\DBAngrafica\DestinatariControlliNormativiController.resx">
+      <DependentUpon>DestinatariControlliNormativiController.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controllers\DBAngrafica\ReportExcelController.resx">
+      <DependentUpon>ReportExcelController.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controllers\DBAngrafica\ReportExcelDettagliController.resx">
+      <DependentUpon>ReportExcelDettagliController.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controllers\DBAux\CriteriaController.resx">
+      <DependentUpon>CriteriaController.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controllers\DBCallCenter\SegnalazioneCCController.resx">
+      <DependentUpon>SegnalazioneCCController.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controllers\DBClienti\ContrattiConsipDettagliController.resx">
+      <DependentUpon>ContrattiConsipDettagliController.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controllers\DBControlliNormativi\ControlliNormativiController.resx">
+      <DependentUpon>ControlliNormativiController.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controllers\DBControlliNormativi\ControlliNormativiRifLogController.resx">
+      <DependentUpon>ControlliNormativiRifLogController.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controllers\DBControlliNormativi\LogEmailCtrlNormController.resx">
+      <DependentUpon>LogEmailCtrlNormController.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controllers\DBDataImport\RegistroDataImportTentativiController.resx">
+      <DependentUpon>RegistroDataImportTentativiController.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controllers\DBDocument\PlanimetrieController.resx">
+      <DependentUpon>PlanimetrieController.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controllers\DBGestOrari\GestioneNuoviOrariObjSpaceController.resx">
+      <DependentUpon>GestioneNuoviOrariObjSpaceController.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controllers\DBGestOrari\GestioneOrariCircuitiController.resx">
+      <DependentUpon>GestioneOrariCircuitiController.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controllers\DBGestOrari\GestioneOrariObjSpaceController.resx">
+      <DependentUpon>GestioneOrariObjSpaceController.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controllers\DBMail\SegnalazioneMailController.resx">
+      <DependentUpon>SegnalazioneMailController.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controllers\DBPlanner\ClusterEdificiController.resx">
+      <DependentUpon>ClusterEdificiController.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controllers\DBPlanner\ClusterEdificiInseribiliController.resx">
+      <DependentUpon>ClusterEdificiInseribiliController.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controllers\DBPlanner\MPAttivitaPluriAnnualiController.resx">
+      <DependentUpon>MPAttivitaPluriAnnualiController.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controllers\DBPlanner\MPDataFissaController.resx">
+      <DependentUpon>MPDataFissaController.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controllers\DBPlanner\MPDataFissaDettaglioController.resx">
+      <DependentUpon>MPDataFissaDettaglioController.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controllers\DBPlanner\MPDataInizialeController.resx">
+      <DependentUpon>MPDataInizialeController.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controllers\DBPlanner\RegMPSchedaMPController.resx">
+      <DependentUpon>RegMPSchedaMPController.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controllers\DBPlanner\ScenarioController.resx">
+      <DependentUpon>ScenarioController.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controllers\DBPlant\ApparatoCaratteristicheTecnicheController.resx">
+      <DependentUpon>ApparatoCaratteristicheTecnicheController.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controllers\DBPlant\ApparatoController.resx">
+      <DependentUpon>ApparatoController.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controllers\DBPlant\ApparatoListViewController.resx">
+      <DependentUpon>ApparatoListViewController.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controllers\DBPlant\ApparatoMapController.resx">
+      <DependentUpon>ApparatoMapController.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controllers\DBPlant\ApparatoSchedaMPController.resx">
+      <DependentUpon>ApparatoSchedaMPController.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controllers\DBPlant\CentroOperativoController.resx">
+      <DependentUpon>CentroOperativoController.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controllers\DBPlant\EdificioController.resx">
+      <DependentUpon>EdificioController.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controllers\DBPlant\ImpiantoController.resx">
+      <DependentUpon>ImpiantoController.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controllers\DBPlant\ImpiantoLibraryAppInseribiliController.resx">
+      <DependentUpon>ImpiantoLibraryAppInseribiliController.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controllers\DBPlant\ImpiantoLibraryController.resx">
+      <DependentUpon>ImpiantoLibraryController.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controllers\DBPlant\ImpiantoLibraryDettaglioController.resx">
+      <DependentUpon>ImpiantoLibraryDettaglioController.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controllers\DBPlant\ProvinciaController.resx">
+      <DependentUpon>ProvinciaController.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controllers\DBRuoloUtente\RuoloUserController.resx">
+      <DependentUpon>RuoloUserController.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controllers\DBTask\AppsCAMS\NotificheEmergenzeController.resx">
+      <DependentUpon>NotificheEmergenzeController.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controllers\DBTask\AppsCAMS\RegNotificheEmergenzeController.resx">
+      <DependentUpon>RegNotificheEmergenzeController.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controllers\DBTask\DC\FindSostegniCTRStaticaController.resx">
+      <DependentUpon>FindSostegniCTRStaticaController.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controllers\DBTask\Guasti\ApparatoProblemaController.resx">
+      <DependentUpon>ApparatoProblemaController.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controllers\DBTask\Guasti\ProblemaCausaController.resx">
+      <DependentUpon>ProblemaCausaController.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controllers\DBTask\ListPOIController.resx">
+      <DependentUpon>ListPOIController.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controllers\DBTask\ModificaRdLController.resx">
+      <DependentUpon>ModificaRdLController.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controllers\DBTask\ParametriPopUp\ParametriPivotController.resx">
+      <DependentUpon>ParametriPivotController.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controllers\DBTask\ParametriPopUp\RdLParametriAzioniMassiveController.resx">
+      <DependentUpon>RdLParametriAzioniMassiveController.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controllers\DBTask\RdLController.resx">
+      <DependentUpon>RdLController.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controllers\DBTask\RdLController1.resx">
+      <DependentUpon>RdLController1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controllers\DBTask\RdLListSimiliViewController.resx">
+      <DependentUpon>RdLListSimiliViewController.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controllers\DBTask\RdLListViewAzioniMassiveController.resx">
+      <DependentUpon>RdLListViewAzioniMassiveController.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controllers\DBTask\RdLListViewClienteController.resx">
+      <DependentUpon>RdLListViewClienteController.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controllers\DBTask\RdLListViewController.resx">
+      <DependentUpon>RdLListViewController.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controllers\DBTask\RdLListViewGuastoController.resx">
+      <DependentUpon>RdLListViewGuastoController.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controllers\DBTask\RdLListViewMPController.resx">
+      <DependentUpon>RdLListViewMPController.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controllers\DBTask\RdLListViewSGController.resx">
+      <DependentUpon>RdLListViewSGController.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controllers\DBTask\RdLListViewSinotticoController.resx">
+      <DependentUpon>RdLListViewSinotticoController.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controllers\DBTask\RdLMultiRisorseTeamController.resx">
+      <DependentUpon>RdLMultiRisorseTeamController.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controllers\DBTask\RdLNonPersistentController.resx">
+      <DependentUpon>RdLNonPersistentController.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controllers\DBTask\RdLNoteController.resx">
+      <DependentUpon>RdLNoteController.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controllers\DBTask\RdLObjSpaceController.resx">
+      <DependentUpon>RdLObjSpaceController.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controllers\DBTask\RdLSinotticoGroupController.resx">
+      <DependentUpon>RdLSinotticoGroupController.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controllers\DBTask\RegistroPOIController.resx">
+      <DependentUpon>RegistroPOIController.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controllers\DBTask\RegistroRdLController.resx">
+      <DependentUpon>RegistroRdLController.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controllers\DBTask\RegistroRdLObjSpaceController.resx">
+      <DependentUpon>RegistroRdLObjSpaceController.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controllers\DBTask\RegistroSpedizioniDettControlle1.resx">
+      <DependentUpon>RegistroSpedizioniDettControlle1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controllers\DBTask\RegRdLListViewAzioniMassiveController.resx">
+      <DependentUpon>RegRdLListViewAzioniMassiveController.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controllers\DBTask\RegRdLListViewController.resx">
+      <DependentUpon>RegRdLListViewController.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controllers\DBTask\RegRdLListViewMPController.resx">
+      <DependentUpon>RegRdLListViewMPController.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controllers\DBTask\RisorseController.resx">
+      <DependentUpon>RisorseController.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controllers\DBTask\RisorseObjSpaceController.resx">
+      <DependentUpon>RisorseObjSpaceController.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controllers\DBTask\RisorseTeamController.resx">
+      <DependentUpon>RisorseTeamController.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controllers\FindBySubjectController.resx">
+      <DependentUpon>FindBySubjectController.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controllers\Misure\RegMisureController.resx">
+      <DependentUpon>RegMisureController.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controllers\NavigationWindowController.resx">
+      <DependentUpon>NavigationWindowController.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controllers\Tree\TreeController.resx">
+      <DependentUpon>TreeController.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controllers\VisualizzaDettagliController.resx">
+      <DependentUpon>VisualizzaDettagliController.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Demo_ListEditors_TreeList_32x32.png" />
+    <EmbeddedResource Include="Images\GeolocLent.png" />
+    <EmbeddedResource Include="Images\TreeListEdifici_32x32.png" />
+    <EmbeddedResource Include="Model.DesignedDiffs.xafml">
+      <Subtype>Designer</Subtype>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PredefinedReadonlyReports\subReportRdL.resx">
+      <DependentUpon>subReportRdL.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PredefinedReadonlyReports\XtraReportRegistroRdL.resx">
+      <DependentUpon>XtraReportRegistroRdL.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\licenses.licx" />
+    <EmbeddedResource Include="Reports\ContactsReport.resx">
+      <DependentUpon>ContactsReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="xReport\DCRdLListReport.resx">
+      <DependentUpon>DCRdLListReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="xReport\SubReport\xrRegRdLSubreport.resx">
+      <DependentUpon>xrRegRdLSubreport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="xReport\xrFoglioPrestazioni.resx">
+      <DependentUpon>xrFoglioPrestazioni.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="xReport\xrGhost.resx">
+      <DependentUpon>xrGhost.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="xReport\xrPermessoLavoro.resx">
+      <DependentUpon>xrPermessoLavoro.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="xReport\xrRegRdL.resx">
+      <DependentUpon>xrRegRdL.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="xReport\xrRegRdLMP.resx">
+      <DependentUpon>xrRegRdLMP.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="xReport\xrReportApparatoMap.resx">
+      <DependentUpon>xrReportApparatoMap.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="xReport\xrReportManSG.resx">
+      <DependentUpon>xrReportManSG.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="xReport\xrReportManSGMP.resx">
+      <DependentUpon>xrReportManSGMP.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="xReport\xrSchedeMP.resx">
+      <DependentUpon>xrSchedeMP.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="xReport\xrSchedeMPBase.resx">
+      <DependentUpon>xrSchedeMPBase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="xReport\xrSchedeMPOpt.resx">
+      <DependentUpon>xrSchedeMPOpt.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="xReport\xrSGMan.resx">
+      <DependentUpon>xrSGMan.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="xReport\XtraReport1.resx">
+      <DependentUpon>XtraReport1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="xReport\XtraReport2.resx">
+      <DependentUpon>XtraReport2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="xReport\XtraReport3.resx">
+      <DependentUpon>XtraReport3.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Model.DesignedDiffs.Localization.de.xafml">
+      <DependentUpon>Model.DesignedDiffs.xafml</DependentUpon>
+      <Subtype>Designer</Subtype>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="CAMSModule.resx">
+      <DependentUpon>CAMSModule.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="BusinessObjects\ReadMe.txt" />
+    <Content Include="BusinessObjects\TextFile1.txt" />
+    <Content Include="CAMSInvioMailCN\SetMailold.txt" />
+    <Content Include="Classi\PezzidiCodiceUtile.txt" />
+    <Content Include="Classi\RSSDK\RSSDK.csproj" />
+    <Content Include="Controllers\CodiceUtile.txt" />
+    <Content Include="Controllers\DBAgenda\PezzidiCodice.txt" />
+    <Content Include="Controllers\DBPlanner\CodiceUtile.txt" />
+    <Content Include="Controllers\DBTask\Codice_registroSMISTAMENTOeOPERATIVOtxt.txt" />
+    <Content Include="Controllers\DBTask\esempiCodice.txt" />
+    <Content Include="Controllers\DBTask\getReport.txt" />
+    <Content Include="Controllers\DBTask\RdLControllerMSSQL.txt" />
+    <Content Include="Controllers\DBTask\RdLControllerORA.txt" />
+    <Content Include="Controllers\DBTask\RdLObjSpaceController.txt" />
+    <Content Include="Controllers\DBTask\RdLOBJSpaceControllerOLD.txt" />
+    <Content Include="Controllers\DBTask\RdLObjSpaceController_old_09072020.txt" />
+    <Content Include="Controllers\ReadMe.txt" />
+    <Content Include="DaFare.txt" />
+    <Content Include="DatabaseUpdate\ReadMe.txt" />
+    <Content Include="DBAgenda\CodiceEsempio.txt" />
+    <Content Include="DBAgenda\event.txt" />
+    <Content Include="DBALibrary\Vista\pezzidicodice.txt" />
+    <Content Include="DBPlant\CodiceDaEsempio.txt" />
+    <Content Include="DBTask\DC\codice_esempio.txt" />
+    <Content Include="DBTask\Guasti\codice-problema-causa-rimedio.txt" />
+    <Content Include="DBTask\RisorseTeam.txt" />
+    <Content Include="DBTask\TextFile1.txt" />
+    <Content Include="DBTask\Vista\TextFile1.txt" />
+    <Content Include="DBTask\Vista\txt\RdLListViewSinottico .txt" />
+    <Content Include="DLL\CAMSInvioMailCN.dll" />
+    <Content Include="DLL\CAMSInvioMailCN.pdb" />
+    <EmbeddedResource Include="Images\ActiveCustomersList_16x16.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\ActiveCustomersList_32x32.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\ActiveRents_16x16.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\ActiveRents_32x32.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\AddItem_16x16.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\AddItem_32x32.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Add_16x16.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Add_32x32.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\AggregFrequenze.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\AggregFrequenzeDett.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\AggregFrequenzeDett_16x16.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\AggregFrequenzeDett_32x32.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\AggregFrequenze_16x16.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\AggregFrequenze_32x32.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\apparato_16x16.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\apparato_32x32.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Appearance_16x16.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Appearance_32x32.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Background_16x16.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Background_32x32.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\batteria+.JPG">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\BO_Project.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\BO_Project_Large.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Build.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Build_16x16.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Build_32x32.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\CalendarioVincoli.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\CalendarioVincoliAggrFrequenze.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\CalendarioVincoliAggrFrequenze_16x16.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\CalendarioVincoliAggrFrequenze_32x32.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\CalendarioVincoli_16x16.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\CalendarioVincoli_32x32.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Car.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\carwash.JPG">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Categoria.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Categoria_16x16.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Categoria_32x32.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Categories.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Categories_16x16.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Categories_32x32.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\chiave inglese.JPG">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\cleaner.JPG">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\CloseDetails_16x16.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\CloseDetails_32x32.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Cluster.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Cluster_16x16.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Cluster_32x32.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Coeff.Correttivi_16x16_2.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Coeff.Correttivi_32x32_2.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Contact_16x16.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Contact_32x32.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\ConvertToParagraphs.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\ConvertToParagraphs_16x16.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\ConvertToParagraphs_32x32.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\CustomerFilmRentsList_16x16.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\CustomerFilmRentsList_32x32.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\CustomerInfoCards.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\CustomerInfoCards_16x16.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\CustomerInfoCards_32x32.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\CustomersByDate.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\CustomersByDate_16x16.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\CustomersByDate_32x32.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\CustomersKPI_16x16.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\CustomersKPI_32x32.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\CustomizeMergeField_16x16.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\CustomizeMergeField_32x32.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\del.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Delete_16x16.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Delete_32x32.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Demo_Boolean_Properties.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Demo_Boolean_Properties_32x32.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Demo_Collection_Properties.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Demo_Collection_Properties_32x32.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Demo_Criteria_Properties.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Demo_Criteria_Properties_32x32.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Demo_Custom_Property_Editors.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Demo_Custom_Property_Editors_32x32.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Demo_DateTime_Properties.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Demo_DateTime_Properties_32x32.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Demo_Enum_Properties.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Demo_Enum_Properties_32x32.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Demo_Image_Library_Standard.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Demo_Image_Library_Standard_32x32.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Demo_KeyProperty_Integer.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Demo_KeyProperty_Integer_32x32.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Demo_ListEditors_Grid_AutoFilterRow.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Demo_ListEditors_Grid_AutoFilterRow_32x32.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Demo_ListEditors_Grid_LargeData.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Demo_ListEditors_Grid_LargeData_32x32.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Demo_ListEditors_PivotGrid.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Demo_ListEditors_PivotGrid_32x32.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Demo_ListEditors_Scheduler.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Demo_ListEditors_Scheduler_32x32.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Demo_ListEditors_Scheduler_Filter.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Demo_ListEditors_Scheduler_Filter_32x32.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Demo_ListEditors_Scheduler_LargeData_32x32.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Demo_ListEditors_TreeList.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Demo_ListEditors_TreeList_Filter.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Demo_ListEditors_TreeList_Filter_32x32.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Demo_ListEditors_TreeList_LargeData.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Demo_ListEditors_TreeList_LargeData_32x32.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Demo_ListEditors_TreeList_NodeImages.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Demo_Numeric_Properties.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Demo_String_InSpecialFormat_Properties.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Demo_String_InSpecialFormat_Properties_32x32.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\DettaglioLibreriaImpianti.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\DettaglioLibreriaImpianti_16x16.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\DettaglioLibreriaImpianti_32x32.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\DettRegistroLibreriaImpianti.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\DettRegistroLibreriaImpianti_16x16.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\DettRegistroLibreriaImpianti_32x32.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Edit_16x16.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Edit_32x32.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\engine.JPG">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\ExpressAppLogo.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Feature.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Feature_16x16.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Feature_32x32.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\font-color-16x16.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\font-color-32x32.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\font-color.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\font-color_16x16.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\font-color_32x32.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\freddo.JPG">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Frequenze.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Frequenze_16x16-01.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Frequenze_16x16.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Frequenze_32x32-01.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Frequenze_32x32.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\GiornoLavoro_16x16.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\GiornoLavoro_32x32.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\GroupFieldCollection.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\GroupFieldCollectionDett.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\GroupFieldCollectionDett_16x16.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\GroupFieldCollectionDett_32x32.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\GroupFieldCollection_16x16.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\GroupFieldCollection_32x32.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Home.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Home_16x16.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Home_32x32.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\icon-crm-blue.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\IDE.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\IDE_16x16.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\IDE_32x32.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\IndentDecrease_32x32.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\IndentIncrease.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\IndentIncrease_16x16.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\insert.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\InsertFooter.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\InsertFooter_16x16.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\InsertFooter_32x32.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\InsertPageBreak_16x16.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\InsertPageBreak_32x32.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\InsertPicture-32x32.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Italic.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Italic_16x16.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Italic_32x32.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Kcondizione.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Kcondizione_16x16-01.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Kcondizione_16x16.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Kcondizione_32x32-01.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Kcondizione_32x32.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Kdimensione.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Kdimensione_16x16-01.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Kdimensione_16x16.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Kdimensione_32x32-01.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Kdimensione_32x32.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Kguasto_16x16-01.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Kguasto_32x32-01.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\KTrasferimento.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\KTrasferimento_16x16.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\KTrasferimento_32x32.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Kubicazione.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Kubicazione_16x16-01.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Kubicazione_16x16.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Kubicazione_32x32-01.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Kubicazione_32x32.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Kutenza.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Kutenza_16x16-01.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Kutenza_16x16.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Kutenza_32x32.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\LayoutRotate_16x16.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\LayoutRotate_32x32.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\ListBullets.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\ListBullets_16x16.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\ListBullets_32x32.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\ListNumbers_16x16.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\ListNumbers_32x32.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\LoadPageSetup.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\LoadPageSetup_16x16.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\LoadPageSetup_32x32.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\logo3_.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\m01.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\m03.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\ManageItems_16x16.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\ManageItems_32x32.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\mansioni.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\mansioni_16x16-01.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\mansioni_16x16.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\mansioni_32x32-01.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\mansioni_32x32.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\MediaPerformance_16x16.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\MediaPerformance_32x32.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\ModelEditor_Categorized.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\ModelEditor_Categorized_16x16.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\ModelEditor_Categorized_32x32.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\MoviesKPI_16x16.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\MoviesKPI_32x32.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Movie_16x16.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Movie_32x32.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Navigation_16x16.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Navigation_32x32.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\NewContact_16x16.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\NewContact_32x32.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\NewMail_16x16.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\NewMail_32x32.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\NewTask.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\NewTask_16x16.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\NewTask_32x32.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\New_16x16.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\New_32x32.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\NoImage.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\note-16x16.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\note-32x32.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\olio.JPG">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Open_16x16.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Open_32x32.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\operaio.JPG">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Order_16x16.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Order_32x32.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\PackageProduct.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\PackageProduct_16x16.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\PackageProduct_32x32.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\PageSetup.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\PageSetup_16x16.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\PageSetup_32x32.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Palette_16x16.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Palette_32x32.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\parabrezza.JPG">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Period.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Period_16x16.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Period_32x32.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Person.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Person_16x16.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Person_32x32.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\PMPDaCorreggere.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\PMPDaCorreggere_16x16.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\PMPDaCorreggere_32x32.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Point.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Point_16x16.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Point_32x32.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\posto auto.JPG">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\pressione.JPG">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Preview_16x16.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Preview_32x32.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\product1.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\product2.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\product3.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\ProjectFile.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\ProjectFile_16x16.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\ProjectFile_32x32.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Refresh_16x16.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Refresh_32x32.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\RegistroLibreriaImpianti.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\RegistroLibreriaImpianti_16x16.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\RegistroLibreriaImpianti_32x32.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\RegistroModificheSchedulazione.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\RegistroModificheSchedulazione_16x16.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\RegistroModificheSchedulazione_32x32.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Report.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Report_16x16.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Report_32x32.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Return_16x16.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Return_32x32.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\RevenueSplit_16x16.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\RevenueSplit_32x32.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Revenue_16x16.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Revenue_32x32.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Risorse.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\RisorseDisponibilita.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\RisorseDisponibilita_16x16.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\RisorseDisponibilita_32x32.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Risorse_16x16.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Risorse_32x32.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Sale_16x16.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Sale_32x32.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Save_16x16.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Save_32x32.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Scaling_16x16.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Scenario.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Scenario_16x16.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Scenario_32x32.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Scheduler_16x16.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Scheduler_32x32.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\ShowTestReport.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\ShowTestReport_16x16.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\ShowTestReport_32x32.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\ShowWorkTimeOnly.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\ShowWorkTimeOnly_16x16.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\ShowWorkTimeOnly_32x32.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Sistema_16x16_1.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Sistema_32x32_1.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Skill level.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Skill level_16x16.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Skill level_32x32.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Skill.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Skill_16x16.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Skill_32x32.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\SnapToCells.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\SnapToCells_16x16.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\SnapToCells_32x32.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\StackedLine_16x16.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\StackedLine_32x32.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Suggestion.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Suggestion_16x16.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Suggestion_32x32.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\SwitchTimeScalesTo.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\SwitchTimeScalesTo_16x16.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\SwitchTimeScalesTo_32x32.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\TeamMisto_16x16.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\TeamMisto_32x32.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\TeamMonoSkill_16x16.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\TeamMonoSkill_32x32.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\TeamOmogeno_16x16.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\TeamOmogeno_32x32.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\TeamRisorse.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\TeamRisorse_16x16.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\TeamRisorse_32x32.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Thickness_16x16.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Time.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Time_16x16.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Time_32x32.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Today.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Today_16x16.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Today_32x32.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\TopCustomers.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\TopCustomers_16x16.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\TopCustomers_32x32.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\TopFilmList_16x16.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\TopFilmList_32x32.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Underline_16x16.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Underline_32x32.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\UserKey_16x16.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\UserKey_32x32.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\View_16x16.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\View_32x32.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\WeekEnd.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\WeekEnd_16x16.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\WeekEnd_32x32.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\WeekView.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\WeekView_16x16.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\WeekView_32x32.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Wizard_16x16.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Wizard_32x32.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <None Include="ClassDiagram1.cd" />
+    <None Include="ClassDiagram2.cd" />
+    <EmbeddedResource Include="Images\LogoCofelyEngie1.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\LogoCofelyEngie2.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\LogoCofelyEngie3.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\LogoCofelyEngie4.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\LogoCofelyEngie5.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Demo_Image_Library_Custom.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Demo_Image_Library_Custom_32x32.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\line.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\CS.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\AC.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <Content Include="Images\Cannocch.png" />
+    <EmbeddedResource Include="Images\Geoloc.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\GeolocCann.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Griglia.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\GrigliaCann.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\GrigliaLente.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Geo.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\GeoCann.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\GeoLente.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\GeolocLent_x16.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\GeolocLent_x24.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\GeoLente_x24.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\GrigliaLente_x24.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\GeoLente_x16.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\GrigliaLente_x16.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <Content Include="Images\GeoLenteN.png" />
+    <Content Include="Images\GeolocLenteN.png" />
+    <Content Include="Images\GrigliaLenteN.png" />
+    <EmbeddedResource Include="Images\GrigliaLente_x20.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <Content Include="Images\Lente.png" />
+    <Content Include="Images\logoeams.bmp" />
+    <EmbeddedResource Include="Images\LOGO_EAMS_versione2.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\TreeListEdifici.png" />
+    <EmbeddedResource Include="Images\Mail16x16.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Mail32x32.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <None Include="ClassDiagram3.cd" />
+    <EmbeddedResource Include="Model.DesignedDiffs.Localization.it.xafml">
+      <DependentUpon>Model.DesignedDiffs.xafml</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <None Include="packages.config" />
+    <None Include="SPDB\PK_AGGIORNA_KPI.pck" />
+    <EmbeddedResource Include="Images\PrintPreview_16x16.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\PrintPreview_32x32.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <None Include="SPDB\PK_AuditData.pck" />
+    <None Include="SPDB\PK_DC_SALAOPERATIVA.pck" />
+    <None Include="SPDB\PK_DC_SALAOPERATIVA_080518_1.pck" />
+    <None Include="SPDB\PK_DC_SALAOPERATIVA_080518_1.rar" />
+    <None Include="SPDB\PK_DC_SALAOPERATIVA_NUOVAREPORTUNICO.pck" />
+    <None Include="SPDB\PK_DC_SALAOPERATIVA_OLD.pck" />
+    <None Include="SPDB\PK_kpi_rendicontazione_chek.pck" />
+    <None Include="SPDB\PK_Mobile_accont.pck" />
+    <None Include="SPDB\PK_MPASSCARICOCAPACITA.pck" />
+    <None Include="SPDB\RDL_TT_MP.trg" />
+    <None Include="SPDB\RDL_UNIVOCO.trg" />
+    <EmbeddedResource Include="Images\SO.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\SS.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\STD.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\QE.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\polygon.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\PL.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\MT.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\LS.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <Content Include="SPDB\pubblica_marzo_2019.sql" />
+    <Content Include="SPDB\Publica_Novembre2018.sql" />
+    <Content Include="SPDB\Publica_10012018.sql" />
+    <Content Include="SPDB\Publica_10_04_2018.sql" />
+    <Content Include="SPDB\Publica_luglio2018.sql" />
+    <Content Include="SPDB\TextFile1.txt" />
+    <Content Include="SPDB\v_rdl_list_report.sql" />
+    <None Include="UnusableNodes.xml">
+      <DependentUpon>Model.DesignedDiffs.xafml</DependentUpon>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="UnusableNodes1.xml">
+      <DependentUpon>Model.DesignedDiffs.xafml</DependentUpon>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="UnusableNodes_de.xml">
+      <DependentUpon>Model.DesignedDiffs.xafml</DependentUpon>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="UnusableNodes10.xml">
+      <DependentUpon>Model.DesignedDiffs.xafml</DependentUpon>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="UnusableNodes94.xml">
+      <DependentUpon>Model.DesignedDiffs.xafml</DependentUpon>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="UnusableNodes95.xml">
+      <DependentUpon>Model.DesignedDiffs.xafml</DependentUpon>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="UnusableNodes96.xml">
+      <DependentUpon>Model.DesignedDiffs.xafml</DependentUpon>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="UnusableNodes97.xml">
+      <DependentUpon>Model.DesignedDiffs.xafml</DependentUpon>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="UnusableNodes98.xml">
+      <DependentUpon>Model.DesignedDiffs.xafml</DependentUpon>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="UnusableNodes99.xml">
+      <DependentUpon>Model.DesignedDiffs.xafml</DependentUpon>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="UnusableNodes100.xml">
+      <DependentUpon>Model.DesignedDiffs.xafml</DependentUpon>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="UnusableNodes101.xml">
+      <DependentUpon>Model.DesignedDiffs.xafml</DependentUpon>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="UnusableNodes2.xml">
+      <DependentUpon>Model.DesignedDiffs.xafml</DependentUpon>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="UnusableNodes3.xml">
+      <DependentUpon>Model.DesignedDiffs.xafml</DependentUpon>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="UnusableNodes4.xml">
+      <DependentUpon>Model.DesignedDiffs.xafml</DependentUpon>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="UnusableNodes6.xml">
+      <DependentUpon>Model.DesignedDiffs.xafml</DependentUpon>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="UnusableNodes7.xml">
+      <DependentUpon>Model.DesignedDiffs.xafml</DependentUpon>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="UnusableNodes8.xml">
+      <DependentUpon>Model.DesignedDiffs.xafml</DependentUpon>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="UnusableNodes9.xml">
+      <DependentUpon>Model.DesignedDiffs.xafml</DependentUpon>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="UnusableNodes11.xml">
+      <DependentUpon>Model.DesignedDiffs.xafml</DependentUpon>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="UnusableNodes13.xml">
+      <DependentUpon>Model.DesignedDiffs.xafml</DependentUpon>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="UnusableNodes16.xml">
+      <DependentUpon>Model.DesignedDiffs.xafml</DependentUpon>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="UnusableNodes17.xml">
+      <DependentUpon>Model.DesignedDiffs.xafml</DependentUpon>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="UnusableNodes18.xml">
+      <DependentUpon>Model.DesignedDiffs.xafml</DependentUpon>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="UnusableNodes19.xml">
+      <DependentUpon>Model.DesignedDiffs.xafml</DependentUpon>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="UnusableNodes20.xml">
+      <DependentUpon>Model.DesignedDiffs.xafml</DependentUpon>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="UnusableNodes22.xml">
+      <DependentUpon>Model.DesignedDiffs.xafml</DependentUpon>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="UnusableNodes23.xml">
+      <DependentUpon>Model.DesignedDiffs.xafml</DependentUpon>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="UnusableNodes25.xml">
+      <DependentUpon>Model.DesignedDiffs.xafml</DependentUpon>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="UnusableNodes26.xml">
+      <DependentUpon>Model.DesignedDiffs.xafml</DependentUpon>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="UnusableNodes27.xml">
+      <DependentUpon>Model.DesignedDiffs.xafml</DependentUpon>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="UnusableNodes28.xml">
+      <DependentUpon>Model.DesignedDiffs.xafml</DependentUpon>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="UnusableNodes29.xml">
+      <DependentUpon>Model.DesignedDiffs.xafml</DependentUpon>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="UnusableNodes30.xml">
+      <DependentUpon>Model.DesignedDiffs.xafml</DependentUpon>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="UnusableNodes33.xml">
+      <DependentUpon>Model.DesignedDiffs.xafml</DependentUpon>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="UnusableNodes35.xml">
+      <DependentUpon>Model.DesignedDiffs.xafml</DependentUpon>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="UnusableNodes36.xml">
+      <DependentUpon>Model.DesignedDiffs.xafml</DependentUpon>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="UnusableNodes37.xml">
+      <DependentUpon>Model.DesignedDiffs.xafml</DependentUpon>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="UnusableNodes39.xml">
+      <DependentUpon>Model.DesignedDiffs.xafml</DependentUpon>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="UnusableNodes40.xml">
+      <DependentUpon>Model.DesignedDiffs.xafml</DependentUpon>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="UnusableNodes41.xml">
+      <DependentUpon>Model.DesignedDiffs.xafml</DependentUpon>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="UnusableNodes42.xml">
+      <DependentUpon>Model.DesignedDiffs.xafml</DependentUpon>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="UnusableNodes44.xml">
+      <DependentUpon>Model.DesignedDiffs.xafml</DependentUpon>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="UnusableNodes45.xml">
+      <DependentUpon>Model.DesignedDiffs.xafml</DependentUpon>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="UnusableNodes46.xml">
+      <DependentUpon>Model.DesignedDiffs.xafml</DependentUpon>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="UnusableNodes48.xml">
+      <DependentUpon>Model.DesignedDiffs.xafml</DependentUpon>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="UnusableNodes49.xml">
+      <DependentUpon>Model.DesignedDiffs.xafml</DependentUpon>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="UnusableNodes50.xml">
+      <DependentUpon>Model.DesignedDiffs.xafml</DependentUpon>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="UnusableNodes51.xml">
+      <DependentUpon>Model.DesignedDiffs.xafml</DependentUpon>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="UnusableNodes52.xml">
+      <DependentUpon>Model.DesignedDiffs.xafml</DependentUpon>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="UnusableNodes53.xml">
+      <DependentUpon>Model.DesignedDiffs.xafml</DependentUpon>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="UnusableNodes55.xml">
+      <DependentUpon>Model.DesignedDiffs.xafml</DependentUpon>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="UnusableNodes56.xml">
+      <DependentUpon>Model.DesignedDiffs.xafml</DependentUpon>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="UnusableNodes63.xml">
+      <DependentUpon>Model.DesignedDiffs.xafml</DependentUpon>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="UnusableNodes64.xml">
+      <DependentUpon>Model.DesignedDiffs.xafml</DependentUpon>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="UnusableNodes65.xml">
+      <DependentUpon>Model.DesignedDiffs.xafml</DependentUpon>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="UnusableNodes66.xml">
+      <DependentUpon>Model.DesignedDiffs.xafml</DependentUpon>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="UnusableNodes67.xml">
+      <DependentUpon>Model.DesignedDiffs.xafml</DependentUpon>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="UnusableNodes69.xml">
+      <DependentUpon>Model.DesignedDiffs.xafml</DependentUpon>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="UnusableNodes70.xml">
+      <DependentUpon>Model.DesignedDiffs.xafml</DependentUpon>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="UnusableNodes71.xml">
+      <DependentUpon>Model.DesignedDiffs.xafml</DependentUpon>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="UnusableNodes72.xml">
+      <DependentUpon>Model.DesignedDiffs.xafml</DependentUpon>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="UnusableNodes85.xml">
+      <DependentUpon>Model.DesignedDiffs.xafml</DependentUpon>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="UnusableNodes86.xml">
+      <DependentUpon>Model.DesignedDiffs.xafml</DependentUpon>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="UnusableNodes87.xml">
+      <DependentUpon>Model.DesignedDiffs.xafml</DependentUpon>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="UnusableNodes88.xml">
+      <DependentUpon>Model.DesignedDiffs.xafml</DependentUpon>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="UnusableNodes89.xml">
+      <DependentUpon>Model.DesignedDiffs.xafml</DependentUpon>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="UnusableNodes90.xml">
+      <DependentUpon>Model.DesignedDiffs.xafml</DependentUpon>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="UnusableNodes91.xml">
+      <DependentUpon>Model.DesignedDiffs.xafml</DependentUpon>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="UnusableNodes92.xml">
+      <DependentUpon>Model.DesignedDiffs.xafml</DependentUpon>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="UnusableNodes93.xml">
+      <DependentUpon>Model.DesignedDiffs.xafml</DependentUpon>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="UnusableNodes103.xml">
+      <DependentUpon>Model.DesignedDiffs.xafml</DependentUpon>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="UnusableNodes107.xml">
+      <DependentUpon>Model.DesignedDiffs.xafml</DependentUpon>
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="VisteDB\V_APPARATO.txt" />
+    <Content Include="VisteDB\V_APPARATOSTD.txt" />
+    <Content Include="VisteDB\V_APPARATOSTDCLASSI.txt" />
+    <Content Include="VisteDB\V_APPARATO_PADRE_FIGLIO.txt" />
+    <Content Include="VisteDB\v_apparato_padre_figlio_tree.txt" />
+    <Content Include="VisteDB\V_APPARATO_PROBLEMA.txt" />
+    <Content Include="VisteDB\V_CAUSA_RIMEDIO.txt" />
+    <Content Include="VisteDB\V_CLUSTEREDIFICI.txt" />
+    <Content Include="VisteDB\V_CLUSTEREDIFICIO_MANSIONE.txt" />
+    <Content Include="VisteDB\V_DIST_RIS_EDIFICIO_RDL.txt" />
+    <Content Include="VisteDB\V_EDIFICIO.txt" />
+    <Content Include="VisteDB\V_EDIFICIO_MANSIONE.txt" />
+    <Content Include="VisteDB\V_IMPIANTO.txt" />
+    <Content Include="VisteDB\v_impianto_apparato.txt" />
+    <Content Include="VisteDB\V_NAVIGAZIONEDOCUMENTI.txt" />
+    <Content Include="VisteDB\V_PROBLEMA_CAUSA.txt" />
+    <Content Include="VisteDB\v_rdl_list.sql" />
+    <Content Include="VisteDB\v_rdl_list_report.sql" />
+    <Content Include="VisteDB\v_rdl_list_sinottico.sql" />
+    <Content Include="VisteDB\v_rdl_list_stat.sql" />
+    <Content Include="VisteDB\V_RDL_POI.txt" />
+    <Content Include="VisteDB\v_regrdl_list.sql" />
+    <Content Include="VisteDB\v_regrdl_report.sql" />
+    <Content Include="VisteDB\V_SCENARIO.txt" />
+    <Content Include="VisteDB\V_SCENARIO_MANSIONE.txt" />
+    <Content Include="VisteDB\V_SCHEDEMP.txt" />
+    <Content Include="VisteDB\V_SISCLASSI.txt" />
+    <Content Include="VisteDB\V_SISTECNOLOGICO.txt" />
+    <Content Include="VisteDB\V_SISTEMA.txt" />
+    <Content Include="VisteDB\V_STDAPPARATO.txt" />
+    <None Include="EmbeddedReports\ContactsGroupedByPosition.repx" />
+    <None Include="EmbeddedReports\TasksStateReport.repx" />
+    <None Include="SPDB\PK_AGGIORNA_TEMPI.pck" />
+    <None Include="SPDB\PK_APPARATO.pck" />
+    <None Include="SPDB\PK_CONTROLLI_NORMATIVI.pck" />
+    <None Include="SPDB\PK_EDIFICIO.pck" />
+    <None Include="SPDB\PK_IMPIANTO.pck" />
+    <None Include="SPDB\PK_MISURE.pck" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="BaseObjects\" />
+    <Folder Include="bin\Debug\" />
+    <Folder Include="bin\Release\" />
+    <Folder Include="ClassiEsempio\" />
+    <Folder Include="Controllers\DBALibrary\Vista\" />
+    <Folder Include="Controllers\DBControlli\" />
+    <Folder Include="Controllers\DBKPI\" />
+    <Folder Include="Controllers\DBPlant\Vista\" />
+    <Folder Include="Controllers\DBSpazi\" />
+    <Folder Include="Controllers\DBTransazioni\" />
+    <Folder Include="Controllers\Map\" />
+    <Folder Include="DataMatConsip\" />
+    <Folder Include="DBMSSQL\" />
+    <Folder Include="DBSpazi\Vista\" />
+    <Folder Include="DBTask\Pivot\" />
+    <Folder Include="Effemeridi\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\FileSystemData\FileSystemData.csproj">
+      <Project>{ca5f7c78-d46d-4dab-af51-61e0481c4aea}</Project>
+      <Name>FileSystemData</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+  </PropertyGroup>
+</Project>

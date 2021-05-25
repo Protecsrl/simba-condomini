@@ -1,0 +1,170 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Application ProtectedContentText="Valore Protetto">
+  <Localization>
+    <LocalizationGroup Name="Exceptions">
+      <LocalizationGroup Name="SystemExceptions">
+        <LocalizationItem Name="PassedObjectBelongsToAnotherObjectSpace" Value="L'oggetto che è stato passato appartiene a un altro ObjectSpace. Questo errore può verificarsi quando si modificano gli oggetti tramite un ObjectSpace che non appartengono a questi oggetti. Per esempio, potresti ricevere questo errore quando si utilizza il metodo XafApplication.CreateDetailView nel caso in cui è stato passato un oggetto che è stato ottenuto da un diverso ObjectSpace rispetto ObjectSpace utilizzato come parametro di questo metodo. Per correggere questo errore, è necessario assicurarsi che tutti gli oggetti che è manipolare appartengono a un ObjectSpace.\r\nIn maggior parte dei casi, per evitare questo errore è sufficiente chiamare i metodi di ObjectSpace.GetObject/GetObjectByKey per ottenere un oggetto passato nella destinazione ObjectSpace . \r\nIf il problema persiste, si prega di contattare il nostro Team di supporto a http://www.devexpress.com/Support/Center/" />
+      </LocalizationGroup>
+    </LocalizationGroup>
+  </Localization>
+  <Views>
+    <DetailView Id="NotificaRdL_DetailView">
+      <Items>
+        <ActionContainerViewItem Id="acatcpnAccettaDataoraSO" Caption="Accetta DataOra SO" />
+      </Items>
+      <Layout>
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutGroup Id="NotificaRdL_Avviso" Caption="Notifica Avviso RdL" />
+            <LayoutGroup Id="NotificaRdL" Caption="Pianificazione RdL" />
+            <LayoutGroup Id="PannelloPianificazione" Caption="Pannello Pianificazione">
+              <LayoutGroup Id="NotificaRdL_RdL_4" Caption="Pannello notifica" />
+            </LayoutGroup>
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <ListView Id="NotificaRdL_ListView_SK" Caption="Agenda Notifiche RdL" />
+    <ListView Id="NotificaRdL_ListView_Variant">
+      <Variants>
+        <Variant Id="@9f9b8210-17f7-4961-be03-d7849df340ff" Caption="Agenda Notifiche RdL" />
+      </Variants>
+    </ListView>
+    <DetailView Id="RdL_DetailView">
+      <Layout>
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutGroup Id="RdL">
+              <LayoutGroup Id="panLocalizzazione">
+                <LayoutGroup Id="panPianoLocale">
+                  <LayoutGroup Id="Pianoereparto" Caption="Piano e Reparto" />
+                </LayoutGroup>
+              </LayoutGroup>
+              <LayoutGroup Id="panSmistamentoOperativo" Caption="Stati Avanzamento Lavori" />
+              <LayoutGroup Id="panRisorsa" Caption="Gestione Risorsa" />
+            </LayoutGroup>
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="RdL_DetailView_Cliente">
+      <Layout>
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutGroup Id="RdL">
+              <LayoutGroup Id="panLocalizzazione">
+                <LayoutGroup Id="panPianoLocale">
+                  <LayoutGroup Id="Pianoereparto" Caption="Piano e Reparto" />
+                </LayoutGroup>
+              </LayoutGroup>
+              <LayoutGroup Id="panSmistamentoOperativo" Caption="Stati Avanzamento Lavori" />
+              <LayoutGroup Id="panRisorsa" Caption="Gestione Risorsa" />
+            </LayoutGroup>
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="RdL_DetailView_Cliente_Intercenter">
+      <Layout>
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutGroup Id="RdL">
+              <LayoutGroup Id="panLocalizzazione">
+                <LayoutGroup Id="panPianoLocale">
+                  <LayoutGroup Id="Pianoereparto" Caption="Piano e Reparto" />
+                </LayoutGroup>
+              </LayoutGroup>
+              <LayoutGroup Id="panSmistamentoOperativo" Caption="Stati Avanzamento Lavori" />
+              <LayoutGroup Id="panRisorsa" Caption="Gestione Risorsa" />
+            </LayoutGroup>
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="RdL_DetailView_Gestione">
+      <Layout>
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutGroup Id="RdL">
+              <LayoutGroup Id="panLocalizzazione">
+                <LayoutGroup Id="panPianoLocale">
+                  <LayoutGroup Id="Pianoereparto" Caption="Piano e Reparto" />
+                </LayoutGroup>
+              </LayoutGroup>
+              <LayoutGroup Id="panSmistamentoOperativo" Caption="Stati Avanzamento Lavori" />
+              <LayoutGroup Id="panRisorsa" Caption="Gestione Risorsa" />
+            </LayoutGroup>
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="RdL_DetailView_Gestione_MP">
+      <Layout>
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutGroup Id="RdL">
+              <LayoutGroup Id="smistamentooperativo" Caption="Stati Avanzamento Lavori" />
+              <LayoutGroup Id="Rdl_col4" Caption="Gestione Risorsa" />
+            </LayoutGroup>
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="RdL_DetailView_Gestione_old">
+      <Layout>
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutGroup Id="RdL">
+              <LayoutGroup Id="smistamentooperativo" Caption="Stati Avanzamento Lavori" />
+              <LayoutGroup Id="Rdl_col4" Caption="Gestione Risorsa" />
+            </LayoutGroup>
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="RdL_DetailView_NuovoTT">
+      <Layout>
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutGroup Id="RdL">
+              <LayoutGroup Id="panLocalizzazione">
+                <LayoutGroup Id="panPianoLocale">
+                  <LayoutGroup Id="Pianoereparto" Caption="Piano e Reparto" />
+                </LayoutGroup>
+              </LayoutGroup>
+              <LayoutGroup Id="panSmistamentoOperativo" Caption="Stati Avanzamento Lavori" />
+              <LayoutGroup Id="panRisorsa" Caption="Gestione Risorsa" />
+            </LayoutGroup>
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="RdL_DetailView_NuovoTT_INTERCENTERMO">
+      <Layout>
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutGroup Id="RdL">
+              <LayoutGroup Id="panLocalizzazione">
+                <LayoutGroup Id="panPianoLocale">
+                  <LayoutGroup Id="Pianoereparto" Caption="Piano e Reparto" />
+                </LayoutGroup>
+              </LayoutGroup>
+              <LayoutGroup Id="panSmistamentoOperativo" Caption="Stati Avanzamento Lavori" />
+              <LayoutGroup Id="panRisorsa" Caption="Gestione Risorsa" />
+            </LayoutGroup>
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <ListView Id="RdLListView_ListView_StampaMP" Caption="RdL Stampa MP" />
+    <DetailView Id="RegistroRdL_DetailView">
+      <Layout>
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutGroup Id="RegistroRdL_col4" Caption="Date Operative" />
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+  </Views>
+</Application>

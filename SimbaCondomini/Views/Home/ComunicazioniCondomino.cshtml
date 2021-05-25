@@ -1,0 +1,30 @@
+﻿@{
+    ViewData["Title"] = "Comunicazioni Condomino";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Comunicazioni Condomino</h2>
+
+@(Html.DevExtreme().TreeList<SimbaCondomini.Models.Comunicazioni>()
+    .DataSource(ds => ds.WebApi()
+        .Controller("ComunicazioniDati")
+        .LoadAction("Get")
+    )
+    //.RootValue(0)
+    //.ParentIdExpr("TODO")
+    //.RemoteOperations(o => o.Filtering(true).Grouping(true).Sorting(true))
+    .Columns(columns => {
+
+        columns.AddFor(m => m.Oid);
+
+        columns.AddFor(m => m.Testo);
+
+        columns.AddFor(m => m.ParentCommunication);
+
+        columns.AddFor(m => m.User);
+
+        columns.AddFor(m => m.Condominium);
+
+        columns.AddFor(m => m.DateInsert);
+    })
+)

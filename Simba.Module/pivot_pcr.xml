@@ -1,0 +1,505 @@
+﻿<XtraSerializer version="1.0" application="PivotGrid">
+  <property name="#LayoutVersion" />
+  <property name="#LayoutScaleFactor">@1,Width=1@1,Height=1</property>
+  <property name="Fields" iskey="true" value="34">
+    <property name="Item1" isnull="true" iskey="true">
+      <property name="ImageIndex">-1</property>
+      <property name="ToolTips" isnull="true" iskey="true">
+        <property name="HeaderText" />
+        <property name="ValueText" />
+      </property>
+      <property name="FieldEditName" />
+      <property name="Name">fieldAnno</property>
+      <property name="Area">ColumnArea</property>
+      <property name="FieldName">Anno</property>
+      <property name="Index">0</property>
+      <property name="AreaIndex">0</property>
+      <property name="MinWidth">20</property>
+      <property name="Width">100</property>
+    </property>
+    <property name="Item2" isnull="true" iskey="true">
+      <property name="ImageIndex">-1</property>
+      <property name="ToolTips" isnull="true" iskey="true">
+        <property name="HeaderText" />
+        <property name="ValueText" />
+      </property>
+      <property name="FieldEditName" />
+      <property name="Name">fieldMese</property>
+      <property name="Area">ColumnArea</property>
+      <property name="FieldName">Mese</property>
+      <property name="Index">1</property>
+      <property name="AreaIndex">1</property>
+      <property name="MinWidth">20</property>
+      <property name="Width">100</property>
+    </property>
+    <property name="Item3" isnull="true" iskey="true">
+      <property name="ImageIndex">-1</property>
+      <property name="ToolTips" isnull="true" iskey="true">
+        <property name="HeaderText" />
+        <property name="ValueText" />
+      </property>
+      <property name="FieldEditName" />
+      <property name="Name">fieldCategoria</property>
+      <property name="FieldName">Categoria</property>
+      <property name="Index">2</property>
+      <property name="AreaIndex">0</property>
+      <property name="MinWidth">20</property>
+      <property name="Width">100</property>
+    </property>
+    <property name="Item4" isnull="true" iskey="true">
+      <property name="ImageIndex">-1</property>
+      <property name="ToolTips" isnull="true" iskey="true">
+        <property name="HeaderText" />
+        <property name="ValueText" />
+      </property>
+      <property name="FieldEditName" />
+      <property name="Name">fieldAreadiPolo</property>
+      <property name="Area">RowArea</property>
+      <property name="FieldName">AreadiPolo</property>
+      <property name="Index">3</property>
+      <property name="AreaIndex">0</property>
+      <property name="MinWidth">20</property>
+      <property name="Width">100</property>
+    </property>
+    <property name="Item5" isnull="true" iskey="true">
+      <property name="ImageIndex">-1</property>
+      <property name="ToolTips" isnull="true" iskey="true">
+        <property name="HeaderText" />
+        <property name="ValueText" />
+      </property>
+      <property name="FieldEditName" />
+      <property name="Name">fieldCommessa</property>
+      <property name="Area">RowArea</property>
+      <property name="FieldName">Commessa</property>
+      <property name="Index">4</property>
+      <property name="AreaIndex">2</property>
+      <property name="MinWidth">20</property>
+      <property name="Width">100</property>
+    </property>
+    <property name="Item6" isnull="true" iskey="true">
+      <property name="ImageIndex">-1</property>
+      <property name="ToolTips" isnull="true" iskey="true">
+        <property name="HeaderText" />
+        <property name="ValueText" />
+      </property>
+      <property name="FieldEditName" />
+      <property name="Name">fieldEdificio</property>
+      <property name="FieldName">Edificio</property>
+      <property name="Index">5</property>
+      <property name="AreaIndex">1</property>
+      <property name="MinWidth">20</property>
+      <property name="Width">100</property>
+    </property>
+    <property name="Item7" isnull="true" iskey="true">
+      <property name="ImageIndex">-1</property>
+      <property name="ToolTips" isnull="true" iskey="true">
+        <property name="HeaderText" />
+        <property name="ValueText" />
+      </property>
+      <property name="FieldEditName" />
+      <property name="Name">fieldPiano</property>
+      <property name="FieldName">Piano</property>
+      <property name="Index">6</property>
+      <property name="AreaIndex">2</property>
+      <property name="MinWidth">20</property>
+      <property name="Width">100</property>
+    </property>
+    <property name="Item8" isnull="true" iskey="true">
+      <property name="ImageIndex">-1</property>
+      <property name="ToolTips" isnull="true" iskey="true">
+        <property name="HeaderText" />
+        <property name="ValueText" />
+      </property>
+      <property name="FieldEditName" />
+      <property name="Name">fieldStanza</property>
+      <property name="FieldName">Stanza</property>
+      <property name="Index">7</property>
+      <property name="AreaIndex">3</property>
+      <property name="MinWidth">20</property>
+      <property name="Width">100</property>
+    </property>
+    <property name="Item9" isnull="true" iskey="true">
+      <property name="ImageIndex">-1</property>
+      <property name="ToolTips" isnull="true" iskey="true">
+        <property name="HeaderText" />
+        <property name="ValueText" />
+      </property>
+      <property name="FieldEditName" />
+      <property name="Name">fieldReparto</property>
+      <property name="FieldName">Reparto</property>
+      <property name="Index">8</property>
+      <property name="AreaIndex">4</property>
+      <property name="MinWidth">20</property>
+      <property name="Width">100</property>
+    </property>
+    <property name="Item10" isnull="true" iskey="true">
+      <property name="ImageIndex">-1</property>
+      <property name="ToolTips" isnull="true" iskey="true">
+        <property name="HeaderText" />
+        <property name="ValueText" />
+      </property>
+      <property name="FieldEditName" />
+      <property name="Name">fieldImpianto</property>
+      <property name="FieldName">Impianto</property>
+      <property name="Index">9</property>
+      <property name="AreaIndex">5</property>
+      <property name="MinWidth">20</property>
+      <property name="Width">100</property>
+    </property>
+    <property name="Item11" isnull="true" iskey="true">
+      <property name="ImageIndex">-1</property>
+      <property name="ToolTips" isnull="true" iskey="true">
+        <property name="HeaderText" />
+        <property name="ValueText" />
+      </property>
+      <property name="FieldEditName" />
+      <property name="Name">fieldApparato</property>
+      <property name="FieldName">Apparato</property>
+      <property name="Index">10</property>
+      <property name="AreaIndex">6</property>
+      <property name="MinWidth">20</property>
+      <property name="Width">100</property>
+    </property>
+    <property name="Item12" isnull="true" iskey="true">
+      <property name="ImageIndex">-1</property>
+      <property name="ToolTips" isnull="true" iskey="true">
+        <property name="HeaderText" />
+        <property name="ValueText" />
+      </property>
+      <property name="FieldEditName" />
+      <property name="Name">fieldTipoApparato</property>
+      <property name="FieldName">TipoApparato</property>
+      <property name="Index">11</property>
+      <property name="AreaIndex">7</property>
+      <property name="MinWidth">20</property>
+      <property name="Width">100</property>
+    </property>
+    <property name="Item13" isnull="true" iskey="true">
+      <property name="ImageIndex">-1</property>
+      <property name="ToolTips" isnull="true" iskey="true">
+        <property name="HeaderText" />
+        <property name="ValueText" />
+      </property>
+      <property name="FieldEditName" />
+      <property name="Name">fieldTeam</property>
+      <property name="FieldName">Team</property>
+      <property name="Index">12</property>
+      <property name="AreaIndex">8</property>
+      <property name="MinWidth">20</property>
+      <property name="Width">100</property>
+    </property>
+    <property name="Item14" isnull="true" iskey="true">
+      <property name="ImageIndex">-1</property>
+      <property name="ToolTips" isnull="true" iskey="true">
+        <property name="HeaderText" />
+        <property name="ValueText" />
+      </property>
+      <property name="FieldEditName" />
+      <property name="Name">fieldStatoSmistamento</property>
+      <property name="FieldName">StatoSmistamento</property>
+      <property name="Index">13</property>
+      <property name="AreaIndex">9</property>
+      <property name="MinWidth">20</property>
+      <property name="Width">100</property>
+    </property>
+    <property name="Item15" isnull="true" iskey="true">
+      <property name="ImageIndex">-1</property>
+      <property name="ToolTips" isnull="true" iskey="true">
+        <property name="HeaderText" />
+        <property name="ValueText" />
+      </property>
+      <property name="FieldEditName" />
+      <property name="Name">fieldStatoOperativo</property>
+      <property name="FieldName">StatoOperativo</property>
+      <property name="Index">14</property>
+      <property name="AreaIndex">10</property>
+      <property name="MinWidth">20</property>
+      <property name="Width">100</property>
+    </property>
+    <property name="Item16" isnull="true" iskey="true">
+      <property name="ImageIndex">-1</property>
+      <property name="ToolTips" isnull="true" iskey="true">
+        <property name="HeaderText" />
+        <property name="ValueText" />
+      </property>
+      <property name="FieldEditName" />
+      <property name="Name">fieldProblema</property>
+      <property name="Area">RowArea</property>
+      <property name="FieldName">Problema</property>
+      <property name="Index">15</property>
+      <property name="AreaIndex">3</property>
+      <property name="MinWidth">20</property>
+      <property name="Width">100</property>
+    </property>
+    <property name="Item17" isnull="true" iskey="true">
+      <property name="ImageIndex">-1</property>
+      <property name="ToolTips" isnull="true" iskey="true">
+        <property name="HeaderText" />
+        <property name="ValueText" />
+      </property>
+      <property name="FieldEditName" />
+      <property name="Name">fieldCausa</property>
+      <property name="Area">RowArea</property>
+      <property name="FieldName">Causa</property>
+      <property name="Index">16</property>
+      <property name="AreaIndex">4</property>
+      <property name="MinWidth">20</property>
+      <property name="Width">100</property>
+    </property>
+    <property name="Item18" isnull="true" iskey="true">
+      <property name="ImageIndex">-1</property>
+      <property name="ToolTips" isnull="true" iskey="true">
+        <property name="HeaderText" />
+        <property name="ValueText" />
+      </property>
+      <property name="FieldEditName" />
+      <property name="Name">fieldRimedio</property>
+      <property name="Area">RowArea</property>
+      <property name="FieldName">Rimedio</property>
+      <property name="Index">17</property>
+      <property name="AreaIndex">5</property>
+      <property name="MinWidth">20</property>
+      <property name="Width">100</property>
+    </property>
+    <property name="Item19" isnull="true" iskey="true">
+      <property name="ImageIndex">-1</property>
+      <property name="ToolTips" isnull="true" iskey="true">
+        <property name="HeaderText" />
+        <property name="ValueText" />
+      </property>
+      <property name="FieldEditName" />
+      <property name="Name">fieldDataCreazione</property>
+      <property name="FieldName">DataCreazione</property>
+      <property name="Index">18</property>
+      <property name="AreaIndex">11</property>
+      <property name="MinWidth">20</property>
+      <property name="Width">100</property>
+    </property>
+    <property name="Item20" isnull="true" iskey="true">
+      <property name="ImageIndex">-1</property>
+      <property name="ToolTips" isnull="true" iskey="true">
+        <property name="HeaderText" />
+        <property name="ValueText" />
+      </property>
+      <property name="FieldEditName" />
+      <property name="Name">fieldDataRichiesta</property>
+      <property name="FieldName">DataRichiesta</property>
+      <property name="Index">19</property>
+      <property name="AreaIndex">12</property>
+      <property name="MinWidth">20</property>
+      <property name="Width">100</property>
+    </property>
+    <property name="Item21" isnull="true" iskey="true">
+      <property name="ImageIndex">-1</property>
+      <property name="ToolTips" isnull="true" iskey="true">
+        <property name="HeaderText" />
+        <property name="ValueText" />
+      </property>
+      <property name="FieldEditName" />
+      <property name="Name">fieldDataPianificata</property>
+      <property name="FieldName">DataPianificata</property>
+      <property name="Index">20</property>
+      <property name="AreaIndex">13</property>
+      <property name="MinWidth">20</property>
+      <property name="Width">100</property>
+    </property>
+    <property name="Item22" isnull="true" iskey="true">
+      <property name="ImageIndex">-1</property>
+      <property name="ToolTips" isnull="true" iskey="true">
+        <property name="HeaderText" />
+        <property name="ValueText" />
+      </property>
+      <property name="FieldEditName" />
+      <property name="Name">fieldDataCompletamento</property>
+      <property name="FieldName">DataCompletamento</property>
+      <property name="Index">21</property>
+      <property name="AreaIndex">14</property>
+      <property name="MinWidth">20</property>
+      <property name="Width">100</property>
+    </property>
+    <property name="Item23" isnull="true" iskey="true">
+      <property name="ImageIndex">-1</property>
+      <property name="ToolTips" isnull="true" iskey="true">
+        <property name="HeaderText" />
+        <property name="ValueText" />
+      </property>
+      <property name="FieldEditName" />
+      <property name="Name">fieldRichiedente</property>
+      <property name="FieldName">Richiedente</property>
+      <property name="Index">22</property>
+      <property name="AreaIndex">15</property>
+      <property name="MinWidth">20</property>
+      <property name="Width">100</property>
+    </property>
+    <property name="Item24" isnull="true" iskey="true">
+      <property name="ImageIndex">-1</property>
+      <property name="ToolTips" isnull="true" iskey="true">
+        <property name="HeaderText" />
+        <property name="ValueText" />
+      </property>
+      <property name="FieldEditName" />
+      <property name="Name">fieldPriorita</property>
+      <property name="FieldName">Priorita</property>
+      <property name="Index">23</property>
+      <property name="AreaIndex">16</property>
+      <property name="MinWidth">20</property>
+      <property name="Width">100</property>
+    </property>
+    <property name="Item25" isnull="true" iskey="true">
+      <property name="ImageIndex">-1</property>
+      <property name="ToolTips" isnull="true" iskey="true">
+        <property name="HeaderText" />
+        <property name="ValueText" />
+      </property>
+      <property name="FieldEditName" />
+      <property name="Name">fieldPrioritaTIntervento</property>
+      <property name="FieldName">PrioritaTIntervento</property>
+      <property name="Index">24</property>
+      <property name="AreaIndex">17</property>
+      <property name="MinWidth">20</property>
+      <property name="Width">100</property>
+    </property>
+    <property name="Item26" isnull="true" iskey="true">
+      <property name="ImageIndex">-1</property>
+      <property name="ToolTips" isnull="true" iskey="true">
+        <property name="HeaderText" />
+        <property name="ValueText" />
+      </property>
+      <property name="FieldEditName" />
+      <property name="Name">fieldCentrodiCosto</property>
+      <property name="Area">RowArea</property>
+      <property name="FieldName">CentrodiCosto</property>
+      <property name="Index">25</property>
+      <property name="AreaIndex">1</property>
+      <property name="MinWidth">20</property>
+      <property name="Width">100</property>
+    </property>
+    <property name="Item27" isnull="true" iskey="true">
+      <property name="ImageIndex">-1</property>
+      <property name="ToolTips" isnull="true" iskey="true">
+        <property name="HeaderText" />
+        <property name="ValueText" />
+      </property>
+      <property name="FieldEditName" />
+      <property name="Name">fieldSettimana</property>
+      <property name="FieldName">Settimana</property>
+      <property name="Index">26</property>
+      <property name="AreaIndex">20</property>
+      <property name="MinWidth">20</property>
+      <property name="Width">100</property>
+    </property>
+    <property name="Item28" isnull="true" iskey="true">
+      <property name="ImageIndex">-1</property>
+      <property name="ToolTips" isnull="true" iskey="true">
+        <property name="HeaderText" />
+        <property name="ValueText" />
+      </property>
+      <property name="FieldEditName" />
+      <property name="Name">fieldUtente</property>
+      <property name="FieldName">Utente</property>
+      <property name="Index">27</property>
+      <property name="AreaIndex">18</property>
+      <property name="MinWidth">20</property>
+      <property name="Width">100</property>
+    </property>
+    <property name="Item29" isnull="true" iskey="true">
+      <property name="ImageIndex">-1</property>
+      <property name="ToolTips" isnull="true" iskey="true">
+        <property name="HeaderText" />
+        <property name="ValueText" />
+      </property>
+      <property name="FieldEditName" />
+      <property name="Name">fieldSolleciti</property>
+      <property name="FieldName">Solleciti</property>
+      <property name="Index">28</property>
+      <property name="AreaIndex">19</property>
+      <property name="MinWidth">20</property>
+      <property name="Width">100</property>
+    </property>
+    <property name="Item30" isnull="true" iskey="true">
+      <property name="ImageIndex">-1</property>
+      <property name="ToolTips" isnull="true" iskey="true">
+        <property name="HeaderText" />
+        <property name="ValueText" />
+      </property>
+      <property name="FieldEditName" />
+      <property name="Name">fieldRefAmministrativoCliente</property>
+      <property name="FieldName">RefAmministrativoCliente</property>
+      <property name="Index">29</property>
+      <property name="AreaIndex">18</property>
+      <property name="MinWidth">20</property>
+      <property name="Width">100</property>
+      <property name="Visible">false</property>
+    </property>
+    <property name="Item31" isnull="true" iskey="true">
+      <property name="ImageIndex">-1</property>
+      <property name="ToolTips" isnull="true" iskey="true">
+        <property name="HeaderText" />
+        <property name="ValueText" />
+      </property>
+      <property name="FieldEditName" />
+      <property name="Name">fieldOidReferenteCofely</property>
+      <property name="FieldName">OidReferenteCofely</property>
+      <property name="Index">30</property>
+      <property name="AreaIndex">22</property>
+      <property name="MinWidth">20</property>
+      <property name="Width">100</property>
+      <property name="Visible">false</property>
+    </property>
+    <property name="Item32" isnull="true" iskey="true">
+      <property name="ImageIndex">-1</property>
+      <property name="ToolTips" isnull="true" iskey="true">
+        <property name="HeaderText" />
+        <property name="ValueText" />
+      </property>
+      <property name="FieldEditName" />
+      <property name="Name">fieldOidCommessa</property>
+      <property name="FieldName">OidCommessa</property>
+      <property name="Index">31</property>
+      <property name="AreaIndex">23</property>
+      <property name="MinWidth">20</property>
+      <property name="Width">100</property>
+      <property name="Visible">false</property>
+    </property>
+    <property name="Item33" isnull="true" iskey="true">
+      <property name="ImageIndex">-1</property>
+      <property name="ToolTips" isnull="true" iskey="true">
+        <property name="HeaderText" />
+        <property name="ValueText" />
+      </property>
+      <property name="FieldEditName" />
+      <property name="Name">fieldOidCategoria</property>
+      <property name="FieldName">OidCategoria</property>
+      <property name="Index">32</property>
+      <property name="AreaIndex">24</property>
+      <property name="MinWidth">20</property>
+      <property name="Width">100</property>
+      <property name="Visible">false</property>
+    </property>
+    <property name="Item34" isnull="true" iskey="true">
+      <property name="ImageIndex">-1</property>
+      <property name="ToolTips" isnull="true" iskey="true">
+        <property name="HeaderText" />
+        <property name="ValueText" />
+      </property>
+      <property name="FieldEditName" />
+      <property name="Name">fieldOid</property>
+      <property name="Area">DataArea</property>
+      <property name="FieldName">Oid</property>
+      <property name="Index">33</property>
+      <property name="SummaryType">Count</property>
+      <property name="AreaIndex">0</property>
+      <property name="MinWidth">20</property>
+      <property name="Width">100</property>
+    </property>
+  </property>
+  <property name="Prefilter" isnull="true" iskey="true">
+    <property name="Criteria" isnull="true" />
+    <property name="ShowOperandTypeIcon">false</property>
+    <property name="Enabled">false</property>
+  </property>
+  <property name="OptionsChartDataSource" isnull="true" iskey="true">
+    <property name="DataProvideMode">UseCustomSettings</property>
+  </property>
+  <property name="Groups" iskey="true" value="0" />
+</XtraSerializer>

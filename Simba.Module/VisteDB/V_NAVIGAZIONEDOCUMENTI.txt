@@ -1,0 +1,104 @@
+﻿create or replace view v_navigazionedocumenti as
+select a.oid||'-'||a.datasheet as codice
+, 0 as tipofile
+, a.descrizione as descrizione
+, a.datasheet as filedata
+, a.descrizione as apparato
+, imp.descrizione as impianto
+, ed.descrizione as edificio
+from "FileData" t , apparato a, impianto imp, edificio ed
+where a.datasheet = t."Oid" AND imp.oid=a.impianto AND imp.edificio=ed.oid
+union
+select imp.oid||'-'||imp.datasheet as codice
+, 1 as tipofile
+, imp.descrizione as descrizione
+, imp.datasheet as filedata
+, '' as apparato
+, imp.descrizione as impianto
+, ed.descrizione as edificio
+from "FileData" t , impianto imp, edificio ed
+where imp.datasheet = t."Oid" AND imp.edificio=ed.oid
+union
+select ed.oid||'-'||ed.datasheet as codice
+, 2 as tipofile
+, ed.descrizione as descrizione
+, ed.datasheet as filedata
+, '' as apparato
+, '' as impianto
+, ed.descrizione as edificio
+from "FileData" t , edificio ed
+where ed.datasheet = t."Oid"
+union
+select d.oid||'-'||d."FILE" as codice
+, 3 as tipofile
+, d.descrizione as descrizione
+, d."FILE" as filedata
+, '' as apparato
+, '' as impianto
+, ed.descrizione as edificio
+from "FileData" t , DOCUMENTI d, EDIFICIO ed
+where d."FILE" = t."Oid" AND d.edificio=ed.oid
+union
+select doc.oid||'-'||doc."FILE" as codice
+, 5 as tipofile
+, doc.descrizione as descrizione
+, doc."FILE" as filedata
+, '' as apparato
+, imp.descrizione as impianto
+, ed.descrizione as edificio
+from "FileData" t , DOCUMENTI doc, EDIFICIO ed, IMPIANTO imp
+where doc."FILE" = t."Oid" AND doc.impianto=imp.oid AND imp.edificio=ed.oid
+union
+select doc.oid||'-'||doc."FILE" as codice
+, 4 as tipofile
+, doc.descrizione as descrizione
+, doc."FILE" as filedata
+, ap.descrizione as apparato
+, imp.descrizione as impianto
+, ed.descrizione as edificio
+from "FileData" t , DOCUMENTI doc, EDIFICIO ed, IMPIANTO imp, APPARATO ap
+where doc."FILE" = t."Oid" AND doc.apparato=ap.oid AND ap.impianto=imp.oid
+      AND imp.edificio=ed.oid
+union
+select doc.oid||'-'||doc."FILE" as codice
+, 6 as tipofile
+, doc.descrizione as descrizione
+, doc."FILE" as filedata
+, ap.descrizione as apparato
+, imp.descrizione as impianto
+, ed.descrizione as edificio
+from "FileData" t , DOCUMENTI doc, EDIFICIO ed, IMPIANTO imp, APPARATO ap, RDL rdl
+where doc."FILE" = t."Oid" AND doc.rdl=rdl.oid AND rdl.apparato=ap.oid AND ap.impianto=imp.oid
+      AND imp.edificio=ed.oid
+union
+select regcos.oid||'-'||regcos.inserimento_documento as codice
+, 7 as tipofile
+, 'Registro costi allegato' as descrizione
+, regcos.inserimento_documento as filedata
+, '' as apparato
+, imp.descrizione as impianto
+, ed.descrizione as edificio
+from "FileData" t , REG_COSTI_DETTAGLIO regcos, REG_COSTI rc, EDIFICIO ed, IMPIANTO imp
+where regcos.inserimento_documento = t."Oid" AND regcos.reg_costi=rc.oid
+      AND rc.edificio=ed.oid AND rc.impianto=imp.oid
+union
+select cn.oid||'-'||cn.file_upload as codice
+, 8 as tipofile
+, cn.descrizione as descrizione
+, cn.file_upload as filedata
+, app.descrizione as apparato
+, imp.descrizione as impianto
+, ed.descrizione as edificio
+from "FileData" t , CONTROLLI_NORMATIVI cn, IMPIANTO imp, EDIFICIO ed, APPARATO app
+where cn.file_upload = t."Oid" AND cn.edificio=ed.oid AND cn.impianto=imp.oid
+      AND cn.apparato=app.oid
+union
+select sk.oid||'-'||sk.mansionario as codice
+, 9 as tipofile
+, sk.descrizione as descrizione
+, sk.mansionario as filedata
+, '' as apparato
+, '' as impianto
+, '' as edificio
+from "FileData" t , SKILL sk
+where sk.mansionario = t."Oid";

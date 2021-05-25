@@ -1,0 +1,2112 @@
+﻿using CAMS.Module.Classi;
+using CAMS.Module.DBAgenda;
+using CAMS.Module.DBALibrary;
+using CAMS.Module.DBAngrafica;
+using CAMS.Module.DBAux;
+using CAMS.Module.DBPlant;
+using CAMS.Module.DBSpazi;
+using CAMS.Module.DBTask;
+using CAMS.Module.DBTask.AppsCAMS;
+using CAMS.Module.DBTask.Guasti;
+using DevExpress.Data.Filtering;
+using DevExpress.ExpressApp;
+using DevExpress.ExpressApp.Xpo;
+using DevExpress.Xpo;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Diagnostics;
+using System.Linq;
+
+namespace CAMS.Module.Controllers.DBTask
+{
+    // For more typical usage scenarios, be sure to check out https://documentation.devexpress.com/eXpressAppFramework/clsDevExpressExpressAppViewControllertopic.aspx.
+    public partial class RdLObjSpaceController : ViewController
+    {
+        //IObjectSpace os = null;
+        //List<StatoSmistamento> SmistamentoObjectsCache = new List<StatoSmistamento>();
+        List<int> SmistamentoOid_ObjectsCache = new List<int>();
+        List<StatoOperativo> OperativoObjectsCache = new List<StatoOperativo>();
+        List<RisorseTeam> RisorsaTeamObjectsCache = new List<RisorseTeam>();
+        List<string> PropertyObjectsCache = new List<string>();
+        StatoOperativo old_StatoOperativo = null;
+        RisorseTeam old_RisorseTeam = null;
+        StatoSmistamento old_StatoSmistamento = null;
+
+
+        /// <summary>
+        ///    nuove dichirazioni   
+        /// </summary>
+        int old_OidStatoSmistamento = 0;
+
+        bool SpedisciAvvisoPrimaAzione = false;
+        bool SpedisciAvvisoAssegnazione = false;
+
+        private DateTime Adesso = DateTime.Now;
+
+        bool suppressOnChanged = false;
+        bool suppressOnCommitting = false;
+        bool suppressOnCommitted = false;
+
+        bool IsNuovaRdL = false;
+        bool CambiataRisorsa = false;
+
+        public RdLObjSpaceController()
+        {
+            InitializeComponent();
+            // Target required Views (via the TargetXXX properties) and create their Actions.
+            Adesso = SetVarSessione.dataAdessoDebug;
+        }
+        protected override void OnActivated()
+        {
+            base.OnActivated();
+            View.ObjectSpace.ObjectChanged += ObjectSpace_ObjectChanged;
+            View.ObjectSpace.Committing += ObjectSpace_Committing;
+            View.ObjectSpace.Committed += ObjectSpace_Committed;
+
+            //ObjectSpace.ObjectDeleted += ObjectSpace_ObjectDeleted;
+            //ObjectSpace.Committing += ObjectSpace_Committing;
+            //ObjectSpace.Committed += ObjectSpace_Committed;
+            //ObjectSpace.Reloaded += ObjectSpace_Reloaded;
+        }
+
+        protected override void OnDeactivated()
+        {
+            try { View.ObjectSpace.Committing -= ObjectSpace_Committing; }
+            catch { }
+            try { View.ObjectSpace.Committed -= ObjectSpace_Committed; }
+            catch { }
+            try { View.ObjectSpace.ObjectChanged -= ObjectSpace_ObjectChanged; }
+            catch { }
+            base.OnDeactivated();
+        }
+
+
+        void ObjectSpace_Committing(object sender, CancelEventArgs e)
+        {
+            if (!suppressOnCommitting)
+            {
+                IsNuovaRdL = false;
+                suppressOnCommitting = true;
+                suppressOnChanged = true;
+                System.Diagnostics.Debug.WriteLine("inizio try ObjectSpace_Committing v:" + View.Id.ToString() + " tempo " + (DateTime.Now - Adesso).TotalSeconds.ToString());
+                System.Diagnostics.Debug.WriteLine("inizio ObjectSpace_Committing v:" + View.Id.ToString() + " tempo " + (DateTime.Now - Adesso).TotalSeconds.ToString());
+                string View_id = View.Id;
+                List<string> sbMessaggio = new List<string>();
+                IObjectSpace os = (IObjectSpace)sender;
+                for (int i = os.ModifiedObjects.Count - 1; i >= 0; i--)
+                {
+                    object item = os.ModifiedObjects[i];
+                    if (typeof(RdL).IsAssignableFrom(item.GetType()))
+                    {
+                        #region tutta la procedura di aggiornamento
+                        this.SmistamentoOid_ObjectsCache.Clear();
+                        this.OperativoObjectsCache.Clear();
+                        this.RisorsaTeamObjectsCache.Clear();
+
+
+                        RdL rdl = (RdL)item;
+                        if (rdl.Oid == -1)
+                            IsNuovaRdL = true;
+
+                        old_OidStatoSmistamento = rdl.old_SSmistamento_Oid;
+
+                        if (rdl.RegistroRdL == null)
+                        {
+                            #region CREO REGISTRO RDL SE NULLO   ( DA AGGIORNARE POI IL NUMERO OID IN DESCRIZIONE)
+                            System.Diagnostics.Debug.WriteLine("inizio ObjectSpace_Committing prima os.GetObject<RegistroRdL>(CreateRegistroRdL(rdl, ref os)); v:" + View.Id.ToString() + " tempo " + (DateTime.Now - Adesso).TotalSeconds.ToString());
+                            rdl.RegistroRdL = os.GetObject<RegistroRdL>(CreateRegistroRdL(rdl, ref os));
+                            System.Diagnostics.Debug.WriteLine("inizio ObjectSpace_Committing dopo os.GetObject<RegistroRdL>(CreateRegistroRdL(rdl, ref os)); v:" + View.Id.ToString() + " tempo " + (DateTime.Now - Adesso).TotalSeconds.ToString());
+                            //NuovaModificaSuRDLCorrente = true;
+                            rdl.UtenteCreatoRichiesta = SecuritySystem.CurrentUserName;
+                            #endregion
+                        }
+                        System.Diagnostics.Debug.WriteLine("inizio ObjectSpace_Committing creato registro v:" + View.Id.ToString() + " tempo " + (DateTime.Now - Adesso).TotalSeconds.ToString());
+                        if (rdl.OdL == null)
+                        {
+                            #region CREA ORDINE DI LAVORO SE NULLO SU RDL
+                            OdL odl = os.CreateObject<OdL>();
+                            string odlDescrizione = rdl.Descrizione;
+                            if (odlDescrizione.Length > 240)
+                                odlDescrizione = odlDescrizione.Substring(1, 239) + "...";
+                            odl.Descrizione = odlDescrizione;
+                            odl.RegistroRdL = rdl.RegistroRdL;
+                            odl.TipoOdL = os.GetObjectByKey<TipoOdL>(1);// misto
+                            //odl.UltimoStatoOperativo = xpObjSpaceOdL.GetObject<StatoOperativo>(rdl.UltimoStatoOperativo);
+                            odl.DataEmissione = rdl.DataAssegnazioneOdl;
+
+                            odl.Save();
+                            rdl.OdL = odl;
+
+
+                            #endregion
+                        }
+                        System.Diagnostics.Debug.WriteLine("inizio ObjectSpace_Committing creato odl v:" + View.Id.ToString() + " tempo " + (DateTime.Now - Adesso).TotalSeconds.ToString());
+                        //************************************************************************************************************************
+                        //    CASO IN CUI LA RDL è GIA STATA CREATA E QUINDI DI MODIFICA      
+                        if (rdl.Oid > 0) //   non e nuova è una modifica ( compreso assegazione e quindi notifica )
+                        {
+                            IObjectSpace xpo = Application.CreateObjectSpace();
+                            //DevExpress.Xpo.Session Sess = ((DevExpress.ExpressApp.Xpo.XPObjectSpace)xpo).Session;
+                            DevExpress.Xpo.Session Sess = ((DevExpress.ExpressApp.Xpo.XPObjectSpace)os).Session;       //    ISTANZIO SESSIONE  sql = string.Format("select RDL.RisorseTeam from RDL where RDL.Oid = {0}", rdl.Oid);                      
+
+                            RdL oldDB_RdL = xpo.GetObject<RdL>(rdl);//  recupero da DB prima di salvare
+                            old_RisorseTeam = oldDB_RdL.RisorseTeam; //   recupero da DB prima di salvare
+                            int old_RisorseTeamlav = oldDB_RdL.old_RisorseTeam_Oid;
+                            old_StatoOperativo = oldDB_RdL.UltimoStatoOperativo;  //  ------------------
+
+                            #region crea notifica  se i nuovi smistamento/operativo sono quelli necessari
+                            int addTempo = 5;
+                            if (!rdl.Apparato.Impianto.Edificio.Commesse.AttivaGestioneNotificheRdL) /*!= null &&
+                                rdl.Apparato.Impianto.Edificio.Commesse.AttivaGestioneNotificheRdL)*/
+                                if (rdl.Categoria.Oid == 4 &&
+                                    rdl.Apparato.Impianto.Edificio.Commesse.LivelloAutorizzazioneGuasto != null &&
+                                    rdl.Apparato.Impianto.Edificio.Commesse.LivelloAutorizzazioneGuasto > 0)
+                                {
+                                    if (rdl.UltimoStatoSmistamento.Oid == 2 && rdl.UltimoStatoOperativo.Oid == 19)
+                                    {
+                                        //  statoAutorizzativo = 0 [quando si crea la RdL] 
+                                        //  statoAutorizzativo = 1 [quando si crea la notifica]
+                                        //  statoAutorizzativo = 2 [quando dichiara il tecnico]
+                                        //  statoAutorizzativo = 3 [quando Accetta la Sala Operativa]
+                                        //  se la commessa è configurata con livello autorizzativo maggiore di 0 allora crea la notifica                                
+                                        //int conta = View.ObjectSpace.GetObjects<NotificaRdL>().Where(w => w.RdL == rdl && rdl.StatoAutorizzativo.Oid >= 1).Count();
+                                        int conta = View.ObjectSpace.GetObjects<NotificaRdL>().Where(w => w.RdL == rdl).Count();
+                                        if (conta == 0)//  ALLORA è DA CREARE LA NOTIFICA
+                                        {
+                                            string location = rdl.Apparato.Impianto.Edificio.Indirizzo.FullName;
+                                            NotificaRdL nrdl = View.ObjectSpace.CreateObject<NotificaRdL>();
+                                            nrdl.RdL = rdl;
+                                            using (Util u = new Util())
+                                            { //AppuntamentiRisorse resource = View.ObjectSpace.GetObjectByKey<AppuntamentiRisorse>(rdl.RisorseTeam.Oid);
+                                                int OidRisorsaTeam = rdl.RisorseTeam.Oid;
+                                                AppuntamentiRisorse AppRisorse = View.ObjectSpace.FindObject<AppuntamentiRisorse>
+                                                                                (CriteriaOperator.Parse("RisorseTeam.Oid = ?", OidRisorsaTeam));
+
+                                                addTempo = u.SetaddTempo(0, rdl);         // tempo di ritardo  
+                                                nrdl = u.SetNotificaRdL(nrdl, rdl, location, 10, AppRisorse, ref sbMessaggio);  // dati notifica                                      
+                                            }
+                                            //----------------                                //  crea notifica
+                                            nrdl.Save();
+                                            // ora aggiorna  stato autorizzativo
+                                            rdl.StatoAutorizzativo = View.ObjectSpace.GetObjectByKey<StatoAutorizzativo>(1);
+                                        }
+                                        else if (conta > 0) // maggiore di zero quando esiste già la rdl notifiche - 
+                                        {// PRENDERE LA MAGGIORE   -  è UN CAMBIO RISORSA O DATA
+                                            int oidnrdl = View.ObjectSpace.GetObjects<NotificaRdL>().Where(w => w.RdL == rdl).Max(s => s.Oid);
+                                            NotificaRdL nrdl = View.ObjectSpace.GetObjectByKey<NotificaRdL>(oidnrdl);
+                                            nrdl.RdL = rdl;
+                                            using (Util u = new Util())
+                                            {
+                                                //AppuntamentiRisorse resource = View.ObjectSpace.GetObjectByKey<AppuntamentiRisorse>(rdl.RisorseTeam.Oid);
+                                                AppuntamentiRisorse resource = View.ObjectSpace.FindObject<AppuntamentiRisorse>
+                                                       (DevExpress.Data.Filtering.CriteriaOperator.Parse("RisorseTeam.Oid = ?", rdl.RisorseTeam.Oid));
+                                                addTempo = u.SetaddTempo(0, rdl);         // tempo di ritardo  
+                                                nrdl = u.SetNotificaRdL(nrdl, rdl, string.Empty, 10, resource, ref sbMessaggio);  // dati notifica                                      
+                                            }
+                                            //----------------                                //  crea notifica
+                                            nrdl.Save();
+                                            // ora aggiorna  stato autorizzativo
+                                            rdl.StatoAutorizzativo = View.ObjectSpace.GetObjectByKey<StatoAutorizzativo>(1);
+                                            rdl.UltimoStatoOperativo = View.ObjectSpace.GetObjectByKey<StatoOperativo>(19);
+                                        }
+                                    }
+
+                                    if (rdl.UltimoStatoSmistamento.Oid == 3) // in lavorazione --   && rdl.UltimoStatoOperativo.Oid == 19
+                                    {
+                                        if (old_RisorseTeam != rdl.RisorseTeam) // è cambiata la risorsa
+                                        {
+                                            //  tolto intervento ad una risosrsa e assegnato ad altra risosrsa
+                                            int conta = View.ObjectSpace.GetObjects<NotificaRdL>()
+                                                       .Where(w => w.RdL == rdl && rdl.StatoAutorizzativo.Oid == 4).Count();
+                                            if (conta > 0)
+                                            {
+                                                int oid = View.ObjectSpace.GetObjects<NotificaRdL>()
+                                                     .Where(w => w.RdL == rdl && rdl.StatoAutorizzativo.Oid == 4)
+                                                     .Max(m => m.Oid);
+
+                                                NotificaRdL nrdl = View.ObjectSpace.GetObjectByKey<NotificaRdL>(oid);
+                                                nrdl.RdL = rdl;
+                                                using (Util u = new Util())
+                                                {
+
+                                                    AppuntamentiRisorse resource = View.ObjectSpace.FindObject<AppuntamentiRisorse>
+                                                        (DevExpress.Data.Filtering.CriteriaOperator.Parse("RisorseTeam.Oid = ?", rdl.RisorseTeam.Oid));
+                                                    addTempo = u.SetaddTempo(0, rdl);         // tempo di ritardo  
+                                                    nrdl = u.SetNotificaRdL(nrdl, rdl, string.Empty, 10, resource, ref sbMessaggio);  // dati notifica                                      
+                                                }
+                                                //----------------                                //  crea notifica
+                                                // aggiorno lo stato autorizzativo su RdL
+                                                rdl.StatoAutorizzativo = View.ObjectSpace.GetObjectByKey<StatoAutorizzativo>(1);
+                                            }
+                                        }
+                                    }
+                                }
+                            #endregion
+
+                            if (rdl.RegistroRdL != null)
+                            {
+                                if (rdl.RegistroRdL.DataPianificata != rdl.DataPianificata)
+                                {
+                                    rdl.RegistroRdL.DataPianificata = rdl.DataPianificata;
+                                }
+
+                                if (rdl.RegistroRdL.DataSopralluogo != rdl.DataSopralluogo)
+                                {
+                                    rdl.RegistroRdL.DataSopralluogo = rdl.DataSopralluogo;
+                                }
+
+                                if (rdl.DataSopralluogo > rdl.DataAzioniTampone)
+                                {
+                                    rdl.DataAzioniTampone = rdl.DataSopralluogo;
+                                    rdl.RegistroRdL.DataAzioniTampone = rdl.DataSopralluogo;
+                                }
+
+                                if (rdl.DataSopralluogo > rdl.DataInizioLavori)
+                                {
+                                    rdl.DataInizioLavori = rdl.DataSopralluogo;
+                                    rdl.RegistroRdL.DataInizioLavori = rdl.DataSopralluogo;
+                                }
+                                // in smistamento 3 non si puo cambiare la risorsa senza cambiare lo smistamento                                                       
+
+                                //  NON E' CAMBIATO LO SMISTAMENTO
+                                #region NON E' CAMBIATO LO STATO SMISTAMENTO
+                                if (old_OidStatoSmistamento != rdl.UltimoStatoSmistamento.Oid) //    if (rdl.RegistroRdL.UltimoStatoSmistamento != rdl.UltimoStatoSmistamento)
+                                {
+                                    int nrRdL = rdl.RegistroRdL.RdLes.Count;
+                                    int tutte_chiuse = nrRdL;
+                                    if (nrRdL > 1)
+                                        tutte_chiuse = rdl.RegistroRdL.RdLes.Where(w => w.UltimoStatoSmistamento == rdl.UltimoStatoSmistamento).Count();
+                                    //    if (nrRdL == tutte_chiuse)
+                                   // if (old_OidStatoSmistamento == 3 && rdl.UltimoStatoSmistamento.Oid != 3 && tutte_chiuse == nrRdL)
+                                    if (old_OidStatoSmistamento == 3 && rdl.UltimoStatoSmistamento.Oid != 3)
+                                        {
+                                        rdl.RegistroRdL.UltimoStatoSmistamento = rdl.UltimoStatoSmistamento;
+
+                                        if (rdl.RegistroRdL.UltimoStatoOperativo != rdl.UltimoStatoOperativo)
+                                            rdl.RegistroRdL.UltimoStatoOperativo = rdl.UltimoStatoOperativo;
+
+
+                                        if (rdl.RisorseTeam != null)
+                                        {
+                                            //RisorseTeam rteam = Sess.GetObjectByKey<RisorseTeam>(rdl.RegistroRdL.RisorseTeam.Oid);
+                                            //int OidRegRdlLavorazione = rteam.RegistroRdL.Oid;
+
+                                            // questo scoppia !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! --- 
+
+
+                                            if (rdl.RegistroRdL.RisorseTeam.RegistroRdL != null)
+                                                if (rdl.RegistroRdL.RisorseTeam.RegistroRdL.Oid == rdl.RegistroRdL.Oid)
+                                                {
+                                                    rdl.RegistroRdL.RisorseTeam.RegistroRdL = null;
+                                                    rdl.RegistroRdL.RisorseTeam.TipoStatoConnessione = TipoStatoConnessione.Connesso;
+                                                    if (rdl.RegistroRdL.RisorseTeam.RisorsaCapo != null)
+                                                        rdl.RegistroRdL.RisorseTeam.RisorsaCapo.Disponibilita = false;     //Risorse r = xpObjectSpaceRdL.GetObject<Risorse>(RisorseTeam.RisorsaCapo);          //r.Disponibilita = false;
+                                                }
+                                            rdl.RegistroRdL.RisorseTeam.Save();
+                                            rdl.Save();
+                                        }
+
+
+                                        //if (rdl.RegistroRdL.RisorseTeam != null)
+                                        //{
+                                        //    //RisorseTeam rteam = Sess.GetObjectByKey<RisorseTeam>(rdl.RegistroRdL.RisorseTeam.Oid);
+                                        //    //int OidRegRdlLavorazione = rteam.RegistroRdL.Oid;
+
+                                        //    // questo scoppia !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! --- 
+                                        //    if (rdl.RegistroRdL.RisorseTeam.RegistroRdL != null)
+                                        //        if (rdl.RegistroRdL.RisorseTeam.RegistroRdL.Oid == rdl.RegistroRdL.Oid)
+                                        //        {
+                                        //            rdl.RegistroRdL.RisorseTeam.RegistroRdL = null;
+                                        //            rdl.RegistroRdL.RisorseTeam.TipoStatoConnessione = TipoStatoConnessione.Connesso;
+                                        //            if (rdl.RegistroRdL.RisorseTeam.RisorsaCapo != null)
+                                        //                rdl.RegistroRdL.RisorseTeam.RisorsaCapo.Disponibilita = false;     //Risorse r = xpObjectSpaceRdL.GetObject<Risorse>(RisorseTeam.RisorsaCapo);          //r.Disponibilita = false;
+                                        //        }
+                                        //    rdl.RegistroRdL.RisorseTeam.Save();
+                                        //    rdl.Save();
+                                        //}
+                                    }
+                                    else if (tutte_chiuse == nrRdL)
+                                    {
+                                        rdl.RegistroRdL.UltimoStatoSmistamento = rdl.UltimoStatoSmistamento;
+
+                                        if (rdl.RegistroRdL.UltimoStatoOperativo != rdl.UltimoStatoOperativo)
+                                            rdl.RegistroRdL.UltimoStatoOperativo = rdl.UltimoStatoOperativo;
+                                    }
+                                    //  se la risorsa è diversa   -  E' STATA CAMBIATA LA RISORSA
+
+                                    ////caso Gestione da Sala Operativa
+                                    //if (old_OidStatoSmistamento == 3 && rdl.UltimoStatoSmistamento.Oid == 11)
+                                    //    rdl.RegistroRdL.UltimoStatoSmistamento = rdl.UltimoStatoSmistamento;
+
+                                    //if (rdl.RegistroRdL.UltimoStatoOperativo != rdl.UltimoStatoOperativo)
+                                    //    rdl.RegistroRdL.UltimoStatoOperativo = rdl.UltimoStatoOperativo;
+
+
+                                    //if (rdl.RisorseTeam != null)
+                                    //{
+                                    //    //RisorseTeam rteam = Sess.GetObjectByKey<RisorseTeam>(rdl.RegistroRdL.RisorseTeam.Oid);
+                                    //    //int OidRegRdlLavorazione = rteam.RegistroRdL.Oid;
+
+                                    //    // questo scoppia !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! --- 
+
+
+                                    //    if (rdl.RegistroRdL.RisorseTeam.RegistroRdL != null)
+                                    //        if (rdl.RegistroRdL.RisorseTeam.RegistroRdL.Oid == rdl.RegistroRdL.Oid)
+                                    //        {
+                                    //            rdl.RegistroRdL.RisorseTeam.RegistroRdL = null;
+                                    //            rdl.RegistroRdL.RisorseTeam.TipoStatoConnessione = TipoStatoConnessione.Connesso;
+                                    //            if (rdl.RegistroRdL.RisorseTeam.RisorsaCapo != null)
+                                    //                rdl.RegistroRdL.RisorseTeam.RisorsaCapo.Disponibilita = false;     //Risorse r = xpObjectSpaceRdL.GetObject<Risorse>(RisorseTeam.RisorsaCapo);          //r.Disponibilita = false;
+                                    //        }
+                                    //    rdl.RegistroRdL.RisorseTeam.Save();
+                                    //    rdl.Save();
+                                    //}
+                                    //// fine caso Gestione Sala Operativa
+
+                                    if (rdl.RegistroRdL.RisorseTeam != rdl.RisorseTeam) // se la risorsa vecchia è diversa dalla risorsa nuova 
+                                    {  //   1) aggiorno comunque e sempre la RISORSA DEL REGISTRO CON LA RISORSA DELLA RDL
+                                        RisorseTeam old_RRdL_RisorseTeam = rdl.RegistroRdL.RisorseTeam;
+                                        rdl.RegistroRdL.RisorseTeam = rdl.RisorseTeam;  //  aggiorno con la nuova risorsa la risorsa di registro
+                                        CambiataRisorsa = true;
+                                    }
+                                }
+                                #endregion  fine caso di stato smistamento non cambiato
+
+                                if (rdl.RegistroRdL.DataPrevistoArrivo != rdl.DataPrevistoArrivo)
+                                    rdl.RegistroRdL.DataPrevistoArrivo = rdl.DataPrevistoArrivo;
+
+                                if (rdl.RegistroRdL.DataSopralluogo != rdl.DataSopralluogo)
+                                    rdl.RegistroRdL.DataSopralluogo = rdl.DataSopralluogo;
+
+                                rdl.RegistroRdL.DataAggiornamento = rdl.DataAggiornamento;
+                            }
+
+                        }
+                        else
+                        {
+                            old_RisorseTeam = null;
+                            old_StatoOperativo = null;
+                        }
+                        System.Diagnostics.Debug.WriteLine("inizio ObjectSpace_Committing modifica registro v:" + View.Id.ToString() + " tempo " + (DateTime.Now - Adesso).TotalSeconds.ToString());
+                        ///  fine rdl.Oid>0 ----------------------------------------------------
+                        if (((CAMS.Module.DBTask.RdL)(item)).old_SSmistamento_Oid != ((CAMS.Module.DBTask.RdL)(item)).UltimoStatoSmistamento.Oid)
+                        {
+                            this.SmistamentoOid_ObjectsCache.Add(rdl.old_SSmistamento_Oid);
+                            this.SmistamentoOid_ObjectsCache.Add(rdl.UltimoStatoSmistamento.Oid);
+                        }
+
+                        if (old_StatoOperativo != ((CAMS.Module.DBTask.RdL)(item)).UltimoStatoOperativo)
+                        {
+                            this.OperativoObjectsCache.Add(old_StatoOperativo);
+                            this.OperativoObjectsCache.Add(rdl.UltimoStatoOperativo);
+                        }
+
+                        if (old_RisorseTeam != ((CAMS.Module.DBTask.RdL)(item)).RisorseTeam)
+                        {
+                            this.RisorsaTeamObjectsCache.Add(old_RisorseTeam);
+                            this.RisorsaTeamObjectsCache.Add(rdl.RisorseTeam);
+                            //aggiunte da 05062019 e 14062019
+                            rdl.RegistroRdL.RisorseTeam = rdl.RisorseTeam;
+                            //commentata l'if 
+                            //if (rdl.RegistroRdL.Oid== old_RisorseTeam.RegistroRdL.Oid)
+                            // old_RisorseTeam.RegistroRdL = null;  // se il registro corrente della vecchia risorsateam è uguale a quello attualmente in lettura
+                            //allora sbianco il registro della risorsateam 
+                            //rdl.RisorseTeam.RegistroRdL = null;
+                        }
+                        //xpo.Dispose();
+                        //Debug.Write(rtdb.RisorseTeam.ToString());
+                        if (PropertyObjectsCache.Count > 0)
+                        {
+                            rdl.UtenteUltimo = SecuritySystem.CurrentUserName;
+                            rdl.DataAggiornamento = DateTime.Now;
+                        }
+                        System.Diagnostics.Debug.WriteLine("inizio ObjectSpace_Committing prima salva rdl v:" + View.Id.ToString() + " tempo " + (DateTime.Now - Adesso).TotalSeconds.ToString());
+
+                        if (rdl.UltimoStatoSmistamento != null)
+                        {
+                          rdl.old_SSmistamento_Oid = rdl.UltimoStatoSmistamento.Oid;
+
+                            if (rdl.RisorseTeam != null)
+                            { rdl.old_RisorseTeam_Oid = rdl.RisorseTeam.Oid; }
+                        }
+
+                        
+                        rdl.RegistroRdL.UltimoStatoOperativo = rdl.UltimoStatoOperativo;
+                        //rdl.RegistroRdL.DataAggiornamento = DateTime.Now;
+                        //rdl.RegistroRdL.UtenteUltimo = rdl.UtenteUltimo;
+                        rdl.Save();
+                        System.Diagnostics.Debug.WriteLine("inizio ObjectSpace_Committing dopo salva rdl v:" + View.Id.ToString() + " tempo " + (DateTime.Now - Adesso).TotalSeconds.ToString());
+                        #endregion
+                    }
+                }
+
+                suppressOnChanged = false;
+                suppressOnCommitted = false;
+                suppressOnCommitting = false;
+            }
+        }
+
+        void ObjectSpace_Committed(object sender, EventArgs e)
+        {
+            if (!suppressOnCommitted)
+            {
+                suppressOnChanged = true;
+                suppressOnCommitted = true;
+                suppressOnCommitting = true;
+
+                System.Diagnostics.Debug.WriteLine("inizio ObjectSpace_Committed v:" + View.Id.ToString() + " tempo " + (DateTime.Now - Adesso).TotalSeconds.ToString());
+                DateTime ultimadata = DateTime.MinValue;                    //int idmin = 0;    //int oidRegSmistamento = 0;
+                IObjectSpace xpObjectSpaceRdL = (IObjectSpace)sender;      //RdL rdl = xpObjectSpaceRdL.GetObject<RdL>((RdL)View.CurrentObject);       //RegistroRdL rrdl = xpObjectSpaceRdL.GetObject<RegistroRdL>(rdl.RegistroRdL);
+                RdL rdl = (RdL)View.CurrentObject;
+                RegistroRdL rrdl = rdl.RegistroRdL;
+                List<string> MessaggiCreazioneList = new List<string>();
+                List<string> MessaggiAssegnazioneList = new List<string>();
+                string View_id = View.Id;
+                if (rdl != null)
+                {
+                    #region tutta la proedura post commit
+                    if (SmistamentoOid_ObjectsCache.Count == 2)
+                    {
+                        if (this.SmistamentoOid_ObjectsCache.Contains(0) && this.SmistamentoOid_ObjectsCache.Contains(1))  // aggiorna descrizione Registro RdL quando è appena creato
+                        {
+                            string Descrizione = string.Empty;
+                            if (rdl.Categoria.Oid == 1 || rdl.Categoria.Oid == 5)
+                            {
+                                Descrizione = string.Format("Reg.MP({0}) {1}", rdl.RegistroRdL.Oid, rdl.Descrizione);
+                                if (Descrizione.Length > 3999)
+                                    Descrizione = Descrizione.Substring(1, 3996) + "...";
+                            }
+                            else
+                            {
+                                Descrizione = string.Format("Reg.TT({0}) {1}", rdl.RegistroRdL.Oid, rdl.Descrizione);
+                                if (Descrizione.Length > 3999)
+                                    Descrizione = Descrizione.Substring(1, 3996) + "...";
+                            }
+                            rrdl.Descrizione = Descrizione;
+                            rrdl.Save();
+                        }
+
+                        if (this.SmistamentoOid_ObjectsCache.Contains(10))
+                        {    //   se trasformo una emergenza smartphone (molti team) su assegnata o sala operativa questo è dopo che è stato committato il caMBIAMNETO ALLA RDL
+                            if (rdl.UltimoStatoSmistamento.Oid != 10)  //in emergenza da assegnare
+                            {
+                                #region SE è STATO TOLTO LO STATO SMISTAMENTO IN EMERGENZA PER SMARTPHONE
+                                RegNotificheEmergenze notEmerRdL = xpObjectSpaceRdL.FindObject<RegNotificheEmergenze>(CriteriaOperator.Parse("RdL.Oid = ?", rdl.Oid));
+                                if (notEmerRdL != null)
+                                {
+                                    notEmerRdL.RegStatoNotifica = RegStatiNotificaEmergenza.Annullato;
+                                    notEmerRdL.Team = null;
+                                    notEmerRdL.DataAggiornamento = DateTime.Now;
+                                    notEmerRdL.DataChiusura = DateTime.Now;
+                                    notEmerRdL.Save();
+                                }
+                                #endregion
+                            }
+                        }
+                    }
+                    //                    4 2 Assegnata <BLOB>    7   0 //5 3 Emessa In lavorazione <BLOB>    9   0//10	11	Gestione da Sala Operativa	<BLOB>		9		0
+                    //if (new[] { 2, 3, 11 }.Contains(this.SmistamentoOid_ObjectsCache[1]))// nuovo smistamento
+                    //{
+                    if (rdl.OdL == null)  /// controlla che 
+                    {
+                        #region gestione odl
+                        // qui aggiorna solo ODL
+                        OdL odl = null;
+                        //RegistroRdL rrdl = xpObjectSpaceRdL.GetObject<RegistroRdL>(rdl.RegistroRdL);
+                        int conta = rrdl.OdLes.Count;
+                        if (conta == 0 && rdl.OdL == null)
+                        {
+                            odl = xpObjectSpaceRdL.CreateObject<OdL>();
+                        }
+                        else if (conta > 0)
+                        {
+                            odl = xpObjectSpaceRdL.GetObject<OdL>(rrdl.OdLes[0]);
+                            odl.RegistroRdL = rrdl;
+                        }
+
+                        string odlDescrizione = rdl.Descrizione;
+                        if (odlDescrizione.Length > 240)
+                            odlDescrizione = odlDescrizione.Substring(1, 239) + "...";
+                        odl.Descrizione = odlDescrizione;
+
+                        odl.TipoOdL = xpObjectSpaceRdL.GetObjectByKey<TipoOdL>(1);// misto
+                        odl.DataEmissione = rdl.DataAssegnazioneOdl;
+
+                        if (rdl.DataCompletamento != null)
+                            odl.DataCompletamento = rdl.DataCompletamento;
+
+                        odl.Save();
+                        #endregion
+                        System.Diagnostics.Debug.WriteLine("inizio ObjectSpace_Committed CREATO ODL v:" + View_id + " tempo " + (DateTime.Now - Adesso).TotalSeconds.ToString());
+                    }
+                    //}
+                    // cambiare il registroRdL in Risorsa Team
+                    System.Diagnostics.Debug.WriteLine("inizio ObjectSpace_Committed PRIMA DI AGG RISORSA v:" + View_id + " tempo " + (DateTime.Now - Adesso).TotalSeconds.ToString());
+
+                    System.Diagnostics.Debug.WriteLine("inizio ObjectSpace_Committed DOPO DI AGG RISORSA v:" + View_id + " tempo " + (DateTime.Now - Adesso).TotalSeconds.ToString());
+                    //--------------------
+                    if (SmistamentoOid_ObjectsCache != null)
+                        SmistamentoOid_ObjectsCache.Clear();
+                    if (RisorsaTeamObjectsCache != null)
+                        RisorsaTeamObjectsCache.Clear();// annullo le variazione di risorsa perche le registro gia qui  
+                    if (OperativoObjectsCache != null)
+                        OperativoObjectsCache.Clear();
+                    #region invia messaggio
+                    // cambio qualunque proprieta
+                    string Messaggio = string.Empty;
+
+                    //nuovo codice 
+
+                    if ((View.Id.Contains("RdL_DetailView_Gestione") || View.Id.Contains("RdL_DetailView_NuovoTT") || View.Id.Contains("RdL_DetailView")) && View.ObjectTypeInfo.Type == typeof(RdL))
+                    {
+                        string Titolo = string.Empty;
+                        string AlertMessaggio = string.Empty;
+                        try
+                        {
+                            System.Diagnostics.Debug.WriteLine("inizio ObjectSpace_Committed PRIMA SPEDISCI MAIL SMS v:" + View.Id.ToString() + " tempo " + (DateTime.Now - Adesso).TotalSeconds.ToString());
+                            using (CAMSInvioMailCN.SetMail im = new CAMSInvioMailCN.SetMail())
+                            {
+                                im.InviaMessaggiRdL(SetVarSessione.OracleConnString, Application.Security.UserName, rdl.RegistroRdL.Oid, ref Messaggio);
+                            }
+                            if (!string.IsNullOrEmpty(Messaggio))
+                            {
+                                Titolo = "Trasmissione Avviso Eseguita!!";
+                                AlertMessaggio = string.Format("Messaggio di Spedizione - {0}", Messaggio);
+                                //SetMessaggioWeb(AlertMessaggio, Titolo, InformationType.Success);
+                            }
+                            System.Diagnostics.Debug.WriteLine("inizio ObjectSpace_Committed DOPO SPEDISCI MAIL SMS v:" + View_id + " tempo " + (DateTime.Now - Adesso).TotalSeconds.ToString());
+                        }
+                        catch (Exception ex)
+                        {
+                            Titolo = "Trasmissione Avviso non Eseguita!!";
+                            AlertMessaggio = string.Format("Messaggio di Errore - {0}", ex.Message);
+                            //SetMessaggioWeb(AlertMessaggio, Titolo, InformationType.Warning);
+                            //throw new Exception(string.Format("Errore: Spedizione Mail non eseguita: " + ex.Message));
+                        }
+                        MessaggiCreazioneList.Add(Titolo);
+                        MessaggiCreazioneList.Add(AlertMessaggio);
+                        //MessaggiCreazioneList.Add("  -  ");
+                    }
+
+                    PropertyObjectsCache.Clear();
+
+                    //codice fino al 19022019
+                    //if (PropertyObjectsCache.Count > 0)
+                    //{
+                    //    if ((View.Id.Contains("RdL_DetailView_Gestione") || View.Id.Contains("RdL_DetailView_NuovoTT") || View.Id.Contains("RdL_DetailView")) && View.ObjectTypeInfo.Type == typeof(RdL))
+                    //    {
+                    //        string Titolo = string.Empty;
+                    //        string AlertMessaggio = string.Empty;
+                    //        try
+                    //        {
+                    //            System.Diagnostics.Debug.WriteLine("inizio ObjectSpace_Committed PRIMA SPEDISCI MAIL SMS v:" + View.Id.ToString() + " tempo " + (DateTime.Now - Adesso).TotalSeconds.ToString());
+                    //            using (CAMSInvioMailCN.SetMail im = new CAMSInvioMailCN.SetMail())
+                    //            {
+                    //                im.InviaMessaggiRdL(SetVarSessione.OracleConnString, Application.Security.UserName, rdl.RegistroRdL.Oid, ref  Messaggio);
+                    //            }
+                    //            if (!string.IsNullOrEmpty(Messaggio))
+                    //            {
+                    //                Titolo = "Trasmissione Avviso Eseguita!!";
+                    //                AlertMessaggio = string.Format("Messaggio di Spedizione - {0}", Messaggio);
+                    //                //SetMessaggioWeb(AlertMessaggio, Titolo, InformationType.Success);
+                    //            }
+                    //            System.Diagnostics.Debug.WriteLine("inizio ObjectSpace_Committed DOPO SPEDISCI MAIL SMS v:" + View.Id.ToString() + " tempo " + (DateTime.Now - Adesso).TotalSeconds.ToString());
+                    //        }
+                    //        catch (Exception ex)
+                    //        {
+                    //            Titolo = "Trasmissione Avviso non Eseguita!!";
+                    //            AlertMessaggio = string.Format("Messaggio di Errore - {0}", ex.Message);
+                    //            //SetMessaggioWeb(AlertMessaggio, Titolo, InformationType.Warning);
+                    //            //throw new Exception(string.Format("Errore: Spedizione Mail non eseguita: " + ex.Message));
+                    //        }
+                    //        MessaggiCreazioneList.Add(Titolo);
+                    //        MessaggiCreazioneList.Add(AlertMessaggio);
+                    //        //MessaggiCreazioneList.Add("                   -                     ");
+                    //    }
+                    //    PropertyObjectsCache.Clear();
+                    //}
+                    //nuovoRegistroRdL = false;
+                    #endregion
+                    //------------------------------------------------------------------
+                    //RegoleAutoAssegnazioneRdL
+                    System.Diagnostics.Debug.WriteLine("inizio ObjectSpace_Committed PRIMA RegoleAutoAssegnazioneRdL v:" + View_id + " tempo " + (DateTime.Now - Adesso).TotalSeconds.ToString());
+
+                    bool isGranted = SecuritySystem.IsGranted(new
+                         DevExpress.ExpressApp.Security.PermissionRequest(xpObjectSpaceRdL, typeof(RegoleAutoAssegnazioneRdL),
+                       DevExpress.ExpressApp.Security.SecurityOperations.Read));
+
+                    #region REGOLA DI AUTOMAZIONE DI ASSEGNAZIONE ---- [solo su stato smistamento == 1 ]-----@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+                    if (IsNuovaRdL && isGranted && rdl.Edificio.Commesse.AttivaAutoAssegnazioneTeam && rdl.UltimoStatoSmistamento.Oid == 1 && rdl.Impianto != null)//  solo se è appena creata
+                    {
+                        int OidEdificio = 0; int OidImpianto = 0; int OidCategoria = 0;
+
+                        if (rdl.Edificio != null)
+                            OidEdificio = rdl.Edificio.Oid;
+                        if (rdl.Impianto != null)
+                            OidImpianto = rdl.Impianto.Oid;
+                        if (rdl.Categoria != null)
+                            OidCategoria = rdl.Categoria.Oid;
+
+
+                        //  ASSEGNA AUTOMATICAMENTE
+                        //IObjectSpace xpObjectSpace = Application.CreateObjectSpace();//  -------------------------   
+                        //int OidEdificio = rdl.Edificio.Oid;
+                        //int OidImpianto = rdl.Edificio.Impianti.Oid;
+                        Session Sess = ((XPObjectSpace)ObjectSpace).Session;
+                        XPQuery<RegoleAutoAssegnazioneRdL> RegoleQuery = new XPQuery<RegoleAutoAssegnazioneRdL>(Sess);
+                        var query = RegoleQuery.Where(w => w.Edificio.Oid == OidEdificio && w.Impianto.Oid == OidImpianto)
+                                               .Where(w => w.Categoria.Oid == OidCategoria)
+                                               .Where(w => w.CalendarioCadenze != null)
+                                               .Where(w => w.StatoTLCImpianto == rdl.Impianto.StatoTLCImpianto)  //  aggiunto a seguito dello stato tlc impianto @@@@@@@@@@@@@@
+                                               .Where(w => w.TipoRegola == TipoRegola.RegolaAutomatismiAssegnazione) // aggiunto per regola di automazione
+                                               .Where(w => w.TipoAssegnazione == TipoAssegnazione.SO || w.TipoAssegnazione == TipoAssegnazione.SM || w.TipoAssegnazione == TipoAssegnazione.SME)
+                                               .Select(s => new { OidRegoleAutoAssegnazioneRdL = s.Oid, s.TipoAssegnazione, s.CalendarioCadenze, s.RisorseTeam, s.FesteNazionali, s.RegoleAutoAssegnazioneRisorseTeams, s.AggiungiRisorsaVicina }).ToList();
+
+
+                        DateTime data = DateTime.Now;
+                        bool mesetrovato = false;
+                        bool giornotrovato = false;
+                        bool OrarioCompreso = false;
+                        bool createAotoregolaassegnazione = false;
+                        bool SpedisciMessaggioAssegnazione = false;
+                        TipoAssegnazione vTipoAssegnazione = Classi.TipoAssegnazione.ND;
+                        AggiungiRisorsaVicina vTipoStrategiaAssegnazione = Classi.AggiungiRisorsaVicina.ND;
+                        RisorseTeam vRisorseTeam = null;
+                        bool vFesteNazionali = false;
+                        int OidRegoleAutoAssegnazione = 0;
+                        List<RisorseTeam> listRisorseTeams = new List<RisorseTeam>();
+                        string MessaggioRegola = string.Empty;
+                        foreach (var dr in query)
+                        {
+                            listRisorseTeams = dr.RegoleAutoAssegnazioneRisorseTeams.Select(s => s.RisorseTeam).ToList();
+                            OidRegoleAutoAssegnazione = dr.OidRegoleAutoAssegnazioneRdL;
+                            listRisorseTeams.Add(dr.RisorseTeam); // aggiunge quella di default
+                            vRisorseTeam = dr.RisorseTeam;      // assegna  quella di default per caso di so e sm
+                            mesetrovato = false;
+                            giornotrovato = false;
+                            OrarioCompreso = false;
+                            createAotoregolaassegnazione = false;
+                            vTipoAssegnazione = dr.TipoAssegnazione;
+                            vTipoStrategiaAssegnazione = dr.AggiungiRisorsaVicina;
+                            //vAggiungiRisorsaVicina = dr.AggiungiRisorsaVicina;                    
+                            vFesteNazionali = dr.FesteNazionali;
+
+                            foreach (var cc in dr.CalendarioCadenze.CalendarioCadenzeDettaglioS)
+                            {
+                                if (vFesteNazionali) /// anche se è festa nazionale
+                                {
+                                    createAotoregolaassegnazione = FestivitaNazionale();
+                                    if (createAotoregolaassegnazione)
+                                        break;
+                                }
+                                foreach (var mm in cc.GruppoMesi.Mesi)
+                                {
+                                    if (mm.Mesi.Mese == data.Month)
+                                    {
+                                        mesetrovato = true;
+                                        if (mesetrovato)
+                                            break;
+                                    }
+                                }
+                                if (mesetrovato)
+                                {
+                                    int nowDayOfWeek = (int)DateTime.Now.DayOfWeek;	//5	= ven
+                                    int tipoGGSett = (int)cc.TipoGiornoSettimana;
+                                    if (nowDayOfWeek == tipoGGSett) //data
+                                    {
+                                        giornotrovato = true;
+                                        OrarioCompreso = VerificaOrario(cc.TimeDalle, cc.TimeAlle);
+                                        if (OrarioCompreso)
+                                        {
+                                            createAotoregolaassegnazione = true;
+                                            if (createAotoregolaassegnazione)
+                                                break;
+                                        }
+                                    }
+                                }
+                            }
+                            if (createAotoregolaassegnazione)//allora assegno al tecnico
+                                break;
+                        }
+                        if (createAotoregolaassegnazione)//allora assegno al tecnico    xpObjectSpaceRdL
+                        {
+                            string messaggioassegnazione = "";
+                            string listaRisorse = string.Empty;
+                            //RdL myRdL = xpObjectSpace.GetObject<RdL>(rdl);
+                            RdL myRdL = rdl;
+                            ///  carico il vettore risorese in funzione della strategia
+                            ///           //Strategia di assegnazione:
+                            //    a una risorsa
+                            //    alla Risorsa e alle Risorse in Elenco
+                            //    a una delle Risorse in elenco: la piu vicina altrimenti alla piu scarica
+                            //    a una delle Risorse in elenco: la piu scarica altrimenti alla piu vicina
+                            List<RisorseTeam> ListaRTeam_ok = new List<RisorseTeam>();
+                            List<RisorseTeam> ListaRTeam_toAdd = new List<RisorseTeam>();
+                            bool trovata = false;
+                            string criteriodiAssegnazioneUtilizzato = string.Empty;
+                            int nr = 1;
+                            switch (vTipoStrategiaAssegnazione)
+                            {
+                                case Classi.AggiungiRisorsaVicina.unaRisorsa:
+                                case Classi.AggiungiRisorsaVicina.RisorsaeElencoRisorse:
+                                    ListaRTeam_ok = listRisorseTeams; // quelle in elenco (al quale ho aggiunto quella singola)
+                                    break;
+
+                                case Classi.AggiungiRisorsaVicina.UnaRisorsa_piuVicino_o_piuScarica:
+                                case Classi.AggiungiRisorsaVicina.dueRisorse_DuePiuVicine_o_DuePiuScariche:
+                                case Classi.AggiungiRisorsaVicina.treRisorse_TrePiuVicine_o_TrePiuScariche:
+                                    if (vTipoStrategiaAssegnazione == Classi.AggiungiRisorsaVicina.dueRisorse_DuePiuVicine_o_DuePiuScariche) nr = 2;
+                                    if (vTipoStrategiaAssegnazione == Classi.AggiungiRisorsaVicina.treRisorse_TrePiuVicine_o_TrePiuScariche) nr = 3;
+                                    double Pa_lat1 = rdl.Edificio.Indirizzo.Latitude;
+                                    double Pa_lon1 = rdl.Edificio.Indirizzo.Longitude;
+                                    ListaRTeam_toAdd = GetRTeamVicina(listRisorseTeams, rdl.Edificio.Indirizzo.Latitude,
+                                                                                        rdl.Edificio.Indirizzo.Latitude, nr);
+                                    if (ListaRTeam_toAdd != null && ListaRTeam_toAdd.Count() > 0)
+                                    {
+                                        trovata = true;
+                                        criteriodiAssegnazioneUtilizzato = "piu vicina";
+                                    }
+                                    else
+                                    {
+                                        ListaRTeam_toAdd = GetRTeamScarica(listRisorseTeams, nr);// è sempre piena!!!!! di uno  1)
+                                        if (ListaRTeam_toAdd != null && ListaRTeam_toAdd.Count() > 0)
+                                        {
+                                            trovata = true;
+                                            criteriodiAssegnazioneUtilizzato = "piu scarica";
+                                        }
+                                        else
+                                        {
+                                            Random randm = new Random();
+                                            int rand_id = randm.Next(1, listRisorseTeams.Count());
+                                            ListaRTeam_toAdd = listRisorseTeams.Skip(rand_id - 1).Take(1).ToList();// è sempre piena!!!!! di uno  1)
+                                            trovata = true;
+                                            criteriodiAssegnazioneUtilizzato = "casuale";
+                                        }
+
+                                    }
+                                    ListaRTeam_ok = ListaRTeam_toAdd; // per sme
+                                    vRisorseTeam = ListaRTeam_toAdd.First(); // per so e sm
+                                    break;
+
+                                case Classi.AggiungiRisorsaVicina.UnaRisorsa_piuScarica:
+                                    ListaRTeam_toAdd = GetRTeamScarica(listRisorseTeams, 1);// è sempre piena!!!!! di uno  1) =
+                                    if (ListaRTeam_toAdd != null && ListaRTeam_toAdd.Count() > 0)
+                                    {
+                                        trovata = true;
+                                        criteriodiAssegnazioneUtilizzato = "piu scarica";
+                                    }
+                                    else
+                                    {
+                                        Random randm = new Random();
+                                        int rand_id = randm.Next(1, listRisorseTeams.Count());
+                                        ListaRTeam_toAdd = listRisorseTeams.Skip(rand_id - 1).Take(1).ToList();// è sempre piena!!!!! di uno  1)
+                                        trovata = true;
+                                        criteriodiAssegnazioneUtilizzato = "casuale";
+                                    }
+                                    ListaRTeam_ok = ListaRTeam_toAdd;
+                                    vRisorseTeam = ListaRTeam_toAdd.First(); // per so e sm
+                                    break;
+                                case Classi.AggiungiRisorsaVicina.dueRisorse_UnaPiuVicino_e_UnaPiuScarica:
+                                    ListaRTeam_toAdd = GetRTeamVicina(listRisorseTeams, rdl.Edificio.Indirizzo.Latitude,
+                                                                                        rdl.Edificio.Indirizzo.Latitude, nr);
+                                    nr = 2;
+                                    if (ListaRTeam_toAdd != null && ListaRTeam_toAdd.Count() > 0)
+                                    {
+                                        ListaRTeam_ok = ListaRTeam_toAdd; // per sme
+                                        trovata = true;
+                                        criteriodiAssegnazioneUtilizzato = "piu vicina";
+                                        nr = 1;// ha trovato la vicina quindi prendo una sola scarica
+                                    }
+
+                                    ListaRTeam_toAdd = GetRTeamScarica(listRisorseTeams, nr).Where(w => !ListaRTeam_ok.Contains(w)).ToList();// è sempre piena!!!!! di uno  1)
+                                    if (ListaRTeam_toAdd != null && ListaRTeam_toAdd.Count() > 0)
+                                    {
+                                        ListaRTeam_ok.AddRange(ListaRTeam_toAdd);
+                                        trovata = true;
+                                        criteriodiAssegnazioneUtilizzato = "piu scarica";
+                                    }
+                                    else
+                                    {
+                                        Random randm = new Random();
+                                        List<RisorseTeam> LrtRandom = listRisorseTeams.Where(w => !ListaRTeam_ok.Contains(w)).ToList();
+                                        int rand_id = randm.Next(1, LrtRandom.Count());
+                                        ListaRTeam_ok.AddRange(LrtRandom.Skip(rand_id - 1).Take(1).ToList());// è sempre piena!!!!! di uno  1)
+                                        trovata = true;
+                                        criteriodiAssegnazioneUtilizzato = "casuale";
+                                    }
+                                    if (ListaRTeam_ok.Count > 0)
+                                        vRisorseTeam = ListaRTeam_ok.First(); // per so e sm
+                                    break;
+                                case Classi.AggiungiRisorsaVicina.unaRisorsa_scarica_piuvicina_ottimizzata:
+                                    int oidRisorsaTeam = 0;
+                                    //if (rdl.Edificio != null) // 11 secco come SmistamentoOid_ObjectsCache 
+                                    //{
+                                    //PK_DC_SALAOPERATIVA
+                                    //procedure GET_TRISORSA_OTTIMIZZATA(   //iregolaautossegnazione  in number,  //iOidEdificio            in number,   //iIsSmartphone           in number,
+                                    //iOidCentroOperativoBase in number,  //iusername               in varchar2, //oMessaggio              out varchar2,     //orisorsateam            out number)
+                                    using (DB db = new DB())
+                                    {
+                                        int OidCObase = rdl.Edificio.CentroOperativoBase == null ? 0 : rdl.Edificio.CentroOperativoBase.Oid;
+                                        oidRisorsaTeam = db.GetTeamRisorseOttimizata(rdl.Edificio.Oid, 11, OidCObase, CAMS.Module.Classi.SetVarSessione.CorrenteUser, OidRegoleAutoAssegnazione, ref MessaggioRegola);
+                                    }
+
+                                    if (oidRisorsaTeam > 0)
+                                    {
+                                        //RisorseTeam LrtRandom = xpObjectSpace.GetObjectByKey<RisorseTeam>(oidRisorsaTeam);
+                                        RisorseTeam rt = xpObjectSpaceRdL.FindObject<RisorseTeam>(new BinaryOperator("Oid", oidRisorsaTeam));
+                                        vRisorseTeam = rt;
+                                        trovata = true;
+                                        criteriodiAssegnazioneUtilizzato = "piu scarica";
+                                    }
+                                    else
+                                    {
+                                        Random randm = new Random();
+                                        List<RisorseTeam> LrtRandom = listRisorseTeams.Where(w => !ListaRTeam_ok.Contains(w)).ToList();
+                                        int rand_id = randm.Next(1, LrtRandom.Count());
+                                        ListaRTeam_ok.AddRange(LrtRandom.Skip(rand_id - 1).Take(1).ToList());// è sempre piena!!!!! di uno  1)
+                                        vRisorseTeam = LrtRandom.Skip(rand_id - 1).Take(1).First<RisorseTeam>();
+                                        trovata = true;
+                                        criteriodiAssegnazioneUtilizzato = "casuale";
+                                    }
+                                    //if (ListaRTeam_ok.Count > 0)
+                                    //    vRisorseTeam = ListaRTeam_ok.First(); // per so e sm
+                                    break;
+                                default:   ////   quandro non definito      unaRisorsa_scarica_piuvicina_ottimizzata
+                                    ListaRTeam_ok = listRisorseTeams;
+
+                                    break;
+
+                            }
+
+                            ////----------------------- tipo assegnazione  so , smartphone, emergenza------------------------------
+                            #region GESTIONE TIPO ASSEGNAZIONE
+                            switch (vTipoAssegnazione)
+                            {
+                                case Classi.TipoAssegnazione.SO:
+
+                                    if (rdl.Edificio != null)
+                                    {
+                                        Console.WriteLine("Current value is {0}", 1);
+                                        myRdL.UltimoStatoSmistamento = xpObjectSpaceRdL.GetObjectByKey<StatoSmistamento>(11); // ASSEGNATA
+                                        myRdL.UltimoStatoOperativo = xpObjectSpaceRdL.GetObjectByKey<StatoOperativo>(19);// IN ATTESA DI ESSERE PRESA IN CARICO
+                                        myRdL.RisorseTeam = xpObjectSpaceRdL.GetObject<RisorseTeam>(vRisorseTeam);
+                                        myRdL.DataAssegnazioneOdl = DateTime.Now;
+                                        myRdL.DataAggiornamento = DateTime.Now;
+                                        myRdL.RegistroRdL.RisorseTeam = myRdL.RisorseTeam;
+                                        myRdL.RegistroRdL.UltimoStatoSmistamento = myRdL.UltimoStatoSmistamento;
+                                        myRdL.RegistroRdL.UltimoStatoOperativo = myRdL.UltimoStatoOperativo;
+                                        myRdL.RegistroRdL.DataAggiornamento = DateTime.Now;
+                                        myRdL.RegistroRdL.DataAssegnazioneOdl = DateTime.Now;
+                                        SpedisciMessaggioAssegnazione = true;
+                                        messaggioassegnazione = string.Format("Assegnazione Automatica Intervento: RegRdL {0}, in stato Gestione Sala Operativa, alla RisorsaTeam {1}",
+                                            myRdL.RegistroRdL.Oid, myRdL.RisorseTeam.FullName);
+
+
+                                    }
+                                    break;
+
+
+
+                                //codice precedente al  071218
+
+                                //case Classi.TipoAssegnazione.SO:                                   
+                                //switch (vTipoStrategiaAssegnazione)
+                                //    {
+                                //        case Classi.AggiungiRisorsaVicina.unaRisorsa:
+                                //            if (rdl.Edificio != null)
+                                //            {
+                                //                Console.WriteLine("Current value is {0}", 1);
+                                //                myRdL.UltimoStatoSmistamento = xpObjectSpaceRdL.GetObjectByKey<StatoSmistamento>(11); // ASSEGNATA
+                                //                myRdL.UltimoStatoOperativo = xpObjectSpaceRdL.GetObjectByKey<StatoOperativo>(19);// IN ATTESA DI ESSERE PRESA IN CARICO
+                                //                myRdL.RisorseTeam = xpObjectSpaceRdL.GetObject<RisorseTeam>(vRisorseTeam);
+                                //                myRdL.DataAssegnazioneOdl = DateTime.Now;
+                                //                myRdL.DataAggiornamento = DateTime.Now;
+                                //                myRdL.RegistroRdL.RisorseTeam = myRdL.RisorseTeam;
+                                //                myRdL.RegistroRdL.UltimoStatoSmistamento = myRdL.UltimoStatoSmistamento;
+                                //                myRdL.RegistroRdL.UltimoStatoOperativo = myRdL.UltimoStatoOperativo;
+                                //                myRdL.RegistroRdL.DataAggiornamento = DateTime.Now;
+                                //                myRdL.RegistroRdL.DataAssegnazioneOdl = DateTime.Now;
+                                //                SpedisciMessaggioAssegnazione = true;
+                                //                messaggioassegnazione = string.Format("Assegnazione Automatica Intervento: RegRdL {0}, in stato Gestione Sala Operativa, alla RisorsaTeam {1}",
+                                //                    myRdL.RegistroRdL.Oid, myRdL.RisorseTeam.FullName);
+                                //            }
+
+                                //            break;
+                                //        default:// altro non pervenuto
+                                //            messaggioassegnazione = string.Format("Assegnazione Automatica Intervento: RegRdL {0}, non configurata correttemente", myRdL.RegistroRdL.Oid);
+                                //            break;
+                                //    }
+                                //    break;
+                                // fine codice precedente al  071218
+                                case Classi.TipoAssegnazione.SM:
+                                    Console.WriteLine("Current value is {0}", 2);
+                                    if (rdl.Edificio != null)
+                                    {
+                                        myRdL.UltimoStatoSmistamento = xpObjectSpaceRdL.GetObjectByKey<StatoSmistamento>(2); // ASSEGNATA
+                                        myRdL.UltimoStatoOperativo = xpObjectSpaceRdL.GetObjectByKey<StatoOperativo>(19);// IN ATTESA DI ESSERE PRESA IN CARICO
+                                        myRdL.RisorseTeam = xpObjectSpaceRdL.GetObject<RisorseTeam>(vRisorseTeam);
+                                        myRdL.DataAssegnazioneOdl = DateTime.Now;
+                                        myRdL.DataAggiornamento = DateTime.Now;
+                                        myRdL.RegistroRdL.RisorseTeam = myRdL.RisorseTeam;
+                                        myRdL.RegistroRdL.UltimoStatoSmistamento = myRdL.UltimoStatoSmistamento;
+                                        myRdL.RegistroRdL.UltimoStatoOperativo = myRdL.UltimoStatoOperativo;
+                                        myRdL.RegistroRdL.DataAssegnazioneOdl = DateTime.Now;
+                                        myRdL.RegistroRdL.DataAggiornamento = DateTime.Now;
+                                        SpedisciMessaggioAssegnazione = true;
+                                        messaggioassegnazione =
+                                            string.Format("Assegnazione Automatica Intervento: RegRdL {0}, in stato Assegnata a Smartphone della RisorsaTeam {1} {2}",
+                                             myRdL.RegistroRdL.Oid,
+                                             myRdL.RisorseTeam.FullName,
+                                             criteriodiAssegnazioneUtilizzato);
+
+                                    }
+
+                                    break;
+                                case Classi.TipoAssegnazione.SME:
+
+                                    Console.WriteLine("SME +  unaRisorsa e  RisorsaeElencoRisorse {0}", 3);
+                                    // carico tutti i team di assegnazione in  emergenza
+                                    myRdL.UltimoStatoSmistamento = xpObjectSpaceRdL.GetObjectByKey<StatoSmistamento>(10); // ASSEGNATA
+                                    myRdL.UltimoStatoOperativo = xpObjectSpaceRdL.GetObjectByKey<StatoOperativo>(19);// IN ATTESA DI ESSERE PRESA IN CARICO
+                                    //rdl.RisorseTeam = RisorseTeam;
+                                    myRdL.DataAggiornamento = DateTime.Now;
+                                    //rdl.RegistroRdL.RisorseTeam = RisorseTeam;
+                                    myRdL.RegistroRdL.UltimoStatoSmistamento = myRdL.UltimoStatoSmistamento;
+                                    myRdL.RegistroRdL.UltimoStatoOperativo = myRdL.UltimoStatoOperativo;
+                                    myRdL.RegistroRdL.DataAggiornamento = DateTime.Now;
+
+                                    RegNotificheEmergenze RegNotificaEmergenza = xpObjectSpaceRdL.CreateObject<RegNotificheEmergenze>();
+                                    RegNotificaEmergenza.RdL = myRdL;
+                                    RegNotificaEmergenza.RegistroRdL = myRdL.RegistroRdL;
+                                    RegNotificaEmergenza.RegStatoNotifica = RegStatiNotificaEmergenza.daAssegnare;
+                                    RegNotificaEmergenza.DataCreazione = DateTime.Now;
+                                    RegNotificaEmergenza.DataAggiornamento = DateTime.Now;
+                                    // inserisco le risorse team aggiuntive
+                                    //listaRisorse += vRisorseTeam.FullName;
+                                    foreach (RisorseTeam item in ListaRTeam_ok)// le comprende tutte
+                                    {
+                                        RisorseTeam altreRisorseTeam = item;
+                                        RegNotificaEmergenza.NotificheEmergenzes.Add(new NotificheEmergenze(RegNotificaEmergenza.Session)
+                                        {
+                                            DataCreazione = DateTime.Now,
+                                            Team = xpObjectSpaceRdL.GetObjectByKey<RisorseTeam>(altreRisorseTeam.Oid),
+                                            CodiceNotifica = Guid.NewGuid(),
+                                            StatoNotifica = StatiNotificaEmergenza.NonVisualizzato,
+                                            DataAggiornamento = DateTime.Now
+                                        });
+                                        listaRisorse += ", " + altreRisorseTeam.FullName;
+                                    }
+
+                                    RegNotificaEmergenza.Save();
+                                    SpedisciMessaggioAssegnazione = true;
+                                    messaggioassegnazione = string.Format("Assegnazione Automatica Intervento: RegRdL {0}, in stato Pronto Intervento (emergenza) a Smartphone alle RisorsaTeam {1} {2}",
+                                    myRdL.RegistroRdL.Oid,
+                                   listaRisorse,
+                                   criteriodiAssegnazioneUtilizzato);
+
+                                    break;
+                                default:
+                                    Console.WriteLine("Sorry, invalid selection.");
+                                    break;
+                            }
+                            #endregion   FINE GESTIONE TIPO ASSEGNAZIONE
+                            myRdL.Save();
+                            xpObjectSpaceRdL.CommitChanges();
+                            //rdl.Reload();
+                            System.Diagnostics.Debug.WriteLine("inizio ObjectSpace_Committed DOPO RegoleAutoAssegnazioneRdL v:" + View_id + " tempo " + (DateTime.Now - Adesso).TotalSeconds.ToString());
+
+                            #region invia messaggio
+                            if (SpedisciMessaggioAssegnazione)
+                            {
+                                //if ((View.Id.Contains("RdL_DetailView") || View.Id.Contains("RdL_DetailView_NuovoTT")) && View.ObjectTypeInfo.Type == typeof(RdL))
+                                //{
+                                // System.Diagnostics.Debug.WriteLine("inizio ObjectSpace_Committed SECONDA SPEDIZIONE ASSEGNAZIONE v:" + View.Id.ToString() + " tempo " + (DateTime.Now - Adesso).TotalSeconds.ToString());
+                                System.Diagnostics.Debug.WriteLine("INIZIO SECONDA SPEDIZIONE DOPO AUTOASSEGNAZIONE REGRDL " + " tempo " + (DateTime.Now - Adesso).TotalSeconds.ToString());
+                                string Titolo = string.Empty;
+                                string AlertMessaggio = string.Empty;
+                                try
+                                {
+                                    //RdL RdL = rdl;
+                                    using (CAMSInvioMailCN.SetMail im = new CAMSInvioMailCN.SetMail())
+                                    {
+                                        im.InviaMessaggiRdL(SetVarSessione.OracleConnString, Application.Security.UserName, rdl.RegistroRdL.Oid, ref Messaggio);
+                                    }
+                                    if (!string.IsNullOrEmpty(Messaggio))
+                                    {
+                                        Titolo = "Trasmissione Avviso Eseguita!!";
+                                        AlertMessaggio = string.Format("Messaggio diCreazione {0}, - Messaggio di Spedizione - {1}", messaggioassegnazione, Messaggio);
+                                        //SetMessaggioWebAutoAssegnazione(AlertMessaggio, Titolo, InformationType.Success);
+
+                                    }
+
+                                }
+                                catch (Exception ex)
+                                {
+                                    Titolo = "Trasmissione Avviso non Eseguita!!";
+                                    AlertMessaggio = string.Format("Messaggio di Errore - {0}", ex.Message);
+                                    //SetMessaggioWebAutoAssegnazione(AlertMessaggio, Titolo, InformationType.Warning);
+                                    //throw new Exception(string.Format("Errore: Spedizione Mail non eseguita: " + ex.Message));
+                                }
+                                MessaggiAssegnazioneList.Add(Titolo);
+                                MessaggiAssegnazioneList.Add(AlertMessaggio);
+                                //System.Diagnostics.Debug.WriteLine("inizio ObjectSpace_Committed DOPO SPEDIZIONE ASSEGNAZIONE v:" + View.Id.ToString() + " tempo " + (DateTime.Now - Adesso).TotalSeconds.ToString());
+                                System.Diagnostics.Debug.WriteLine("FINE SECONDA SPEDIZIONE DOPO AUTOASSEGNAZIONE REGRDL " + " tempo " + (DateTime.Now - Adesso).TotalSeconds.ToString());
+
+                                //}
+
+
+                            }
+
+                            #endregion   REGOLA DI AUTOASSEGNAZIONE
+                            //------------------------------------------------------------------
+
+                        }
+                    }
+                    #endregion
+                    //---------------------------------------------------------------------
+                    //---  RESET OLD SMISTAMENTO SU NIOVA VIEW
+                    //rdl.old_SSmistamento_Oid = 0;
+                    System.Diagnostics.Debug.WriteLine("fine procedura ObjectSpace_Committed  v:" + View_id + " tempo " + (DateTime.Now - Adesso).TotalSeconds.ToString());
+                    xpObjectSpaceRdL.CommitChanges();
+
+                    #endregion
+
+                    #region invia messaggio utente e popup
+                    if (MessaggiCreazioneList.Count > 0)
+                    {
+                        if (MessaggiAssegnazioneList.Count > 0)
+                        {
+                            InformationType info = InformationType.Success;
+                            if (MessaggiCreazioneList.Contains("Error") || MessaggiAssegnazioneList.Contains("Error"))
+                                info = InformationType.Warning;
+
+                            string msg = string.Format("Aggiornamento Eseguito! - {0} {1} - \r\n {2} {3}", MessaggiCreazioneList[0], MessaggiCreazioneList[1], MessaggiAssegnazioneList[0], MessaggiAssegnazioneList[1]);
+                            SetMessaggioWebAutoAssegnazione(msg, "Messaggio per Utente", InformationType.Info);
+                        }
+                        else
+                        {
+                            InformationType info = InformationType.Success;
+                            if (MessaggiCreazioneList.Contains("Error"))
+                                info = InformationType.Warning;
+
+                            string msg = string.Format("Aggiornamento Eseguito! - {0} {1}", MessaggiCreazioneList[0], MessaggiCreazioneList[1]);
+                            SetMessaggioWebAutoAssegnazione(msg, "Messaggio per Utente", InformationType.Info);
+                        }
+                    }
+
+                    #endregion
+
+                    if (rdl.UltimoStatoSmistamento.Oid != rdl.old_SSmistamento_Oid)
+                        rdl.old_SSmistamento_Oid = rdl.UltimoStatoSmistamento.Oid;
+
+                    xpObjectSpaceRdL.Refresh();  // serve per aggiornare la pagina e quindi i permessi dei ruoli
+                }
+                suppressOnChanged = false;
+                suppressOnCommitted = false;
+                suppressOnCommitting = false;
+            }
+        }
+
+
+        void ObjectSpace_ObjectChanged(object sender, ObjectChangedEventArgs e)
+        {
+            if (!suppressOnChanged)
+            {
+                suppressOnChanged = true;
+                System.Diagnostics.Debug.WriteLine("INIZIO procedura ObjectSpace_ObjectChanged  v:" + View.Id.ToString() + " tempo " + (DateTime.Now - Adesso).TotalSeconds.ToString());
+                if (e != null && !string.IsNullOrEmpty(e.PropertyName))
+                {
+                    //if (e.MemberInfo != null)
+                    //    if ((e.MemberInfo).Owner.Type == typeof(RdL)) 
+                    //	{Name = "RdL" FullName = "CAMS.Module.DBTask.RdL"}	System.Type {System.RuntimeType}
+                    foreach (var item in View.ObjectSpace.ModifiedObjects)
+                    {
+                        suppressOnCommitted = false;
+                        suppressOnCommitting = false;
+
+                        System.Diagnostics.Debug.WriteLine("procedura ObjectSpace_ObjectChanged  foreach (var  v:" + e.PropertyName + " tempo " + (DateTime.Now - Adesso).TotalSeconds.ToString());
+                        System.Diagnostics.Debug.WriteLine(View.Id.ToString());
+                        if (!PropertyObjectsCache.Contains(e.PropertyName))
+                        {
+                            PropertyObjectsCache.Add(e.PropertyName);
+                            //if ("Problema" == e.PropertyName) {        if (e.NewValue != null)   {  int minutidiintervento = 30;    }      }        
+                        }
+                        System.Diagnostics.Debug.WriteLine("procedura ObjectSpace_ObjectChanged dopo PropertyObjectsCache  v:" + e.PropertyName + " tempo " + (DateTime.Now - Adesso).TotalSeconds.ToString());
+                        System.Diagnostics.Debug.WriteLine("procedura ObjectSpace_ObjectChanged dopo PropertyObjectsCache  v:" + ((DevExpress.ExpressApp.ObjectManipulatingEventArgs)(e)).Object + " tempo " + (DateTime.Now - Adesso).TotalSeconds.ToString());
+
+                        string Sw_propertyName = e.PropertyName;
+                        switch (Sw_propertyName)
+                        {
+                            case "Impianto":
+
+                                try
+                                {
+                                    Impianto imp = e.NewValue as Impianto;
+                                    RdL rdl = e.Object as RdL;
+                                    if (View.Id == "RdL_DetailView")
+                                    {
+                                        if (e.NewValue != null)
+                                        {
+                                            Session Sess = ((XPObjectSpace)ObjectSpace).Session;
+                                            #region se è IMPIANTO CHE E' CAMBIATO
+                                            if (rdl != null && rdl.Categoria.Oid == 4 && rdl.Oid == -1)
+                                                if (imp.ApparatoDefault == null)
+                                                {
+
+                                                    XPQuery<Apparato> RegoleQuery = new XPQuery<Apparato>(Sess);
+                                                    var query = RegoleQuery.Where(w => w.Edificio.Oid == rdl.Edificio.Oid && w.Impianto.Oid == rdl.Impianto.Oid && w.Abilitato == FlgAbilitato.Si && w.AbilitazioneEreditata == FlgAbilitato.Si)
+                                                                           .Where(w => w.Descrizione.ToUpper().Contains("NON DEFINITO"))
+                                                                           .Select(s => s.Oid).ToList();
+                                                    if (query.Count() > 0)
+                                                    {
+                                                        IObjectSpace xpObjectSpaceImp = Application.CreateObjectSpace(typeof(Impianto));// View.ObjectSpace;
+                                                        Impianto _Impianto = xpObjectSpaceImp.GetObjectByKey<Impianto>(imp.Oid);
+                                                        _Impianto.ApparatoDefault = xpObjectSpaceImp.GetObjectByKey<Apparato>(query[0]);
+                                                        _Impianto.Save();
+                                                        xpObjectSpaceImp.CommitChanges();
+                                                        imp.Reload();
+                                                        //imp.ApparatoDefault = View.ObjectSpace.GetObjectByKey<Apparato>(_Impianto.ApparatoDefault);
+                                                        //imp.Save();
+                                                        rdl.Apparato = imp.ApparatoDefault;
+                                                        if (rdl.Apparato.Impianto.Edificio.Commesse.AbilitaProblemaDefault)
+                                                        {
+                                                            if (rdl.Apparato.StdApparato != null)
+                                                            {
+                                                                if (rdl.Apparato.StdApparato.ProblemaDefault != null)
+                                                                {
+                                                                    rdl.Prob = Sess.GetObjectByKey<Problemi>(rdl.Apparato.StdApparato.ProblemaDefault.Oid);
+                                                                    //rdl.Prob = rdl.Apparato.StdApparato.ProblemaDefault;
+                                                                }
+                                                                else
+                                                                {
+                                                                    rdl.Prob = Sess.GetObjectByKey<Problemi>(GetStdApparatoProblemaDefault(rdl.Apparato.StdApparato).Oid);
+                                                                }
+                                                            }
+                                                        }
+
+                                                    }
+                                                    else
+                                                    {
+                                                        int oidApparatoDefault = 0;  ///apparato di defaul non c'e' verifichiamo se c'e standard classi e standard
+                                                        GroupOperator criteriaAND = new GroupOperator(GroupOperatorType.And);
+
+                                                        IObjectSpace xpObjectSpace = Application.CreateObjectSpace(typeof(Apparato));// View.ObjectSpace;
+
+                                                        criteriaAND.Operands.Clear();
+                                                        criteriaAND.Operands.Add(CriteriaOperator.Parse("Sistema.Oid == ?", imp.Sistema.Oid));
+                                                        criteriaAND.Operands.Add(CriteriaOperator.Parse("Contains(Upper([Descrizione]),?)", "NON DEFINITO"));
+
+                                                        StdApparatoClassi stdApparatoCalassiDefault = xpObjectSpace.FindObject<StdApparatoClassi>(criteriaAND);
+
+                                                        if (stdApparatoCalassiDefault == null)
+                                                        {
+                                                            StdApparatoClassi _stdApparatoClassioDefault = xpObjectSpace.CreateObject<StdApparatoClassi>();
+                                                            _stdApparatoClassioDefault.CodUni = imp.Sistema.CodUni + ".100";
+                                                            _stdApparatoClassioDefault.Descrizione = "Non Definito";
+                                                            _stdApparatoClassioDefault.Sistema = xpObjectSpace.GetObjectByKey<Sistema>(imp.Sistema.Oid);
+                                                            _stdApparatoClassioDefault.Utente = "Admin";
+                                                            _stdApparatoClassioDefault.DataAggiornamento = DateTime.Now;
+                                                            _stdApparatoClassioDefault.Save();
+                                                            xpObjectSpace.CommitChanges();
+                                                            stdApparatoCalassiDefault = _stdApparatoClassioDefault;
+                                                        }
+
+                                                        criteriaAND.Operands.Clear();
+                                                        criteriaAND.Operands.Add(CriteriaOperator.Parse("StdApparatoClassi.Oid == ?", stdApparatoCalassiDefault.Oid));
+                                                        criteriaAND.Operands.Add(CriteriaOperator.Parse("Contains(Upper([Descrizione]),?)", "NON DEFINITO"));
+
+                                                        StdApparato stdApparatoDefault = xpObjectSpace.FindObject<StdApparato>(criteriaAND);
+
+                                                        if (stdApparatoDefault == null)
+                                                        {
+                                                            StdApparato _stdApparatoDefault = xpObjectSpace.CreateObject<StdApparato>();
+                                                            _stdApparatoDefault.CodUni = stdApparatoCalassiDefault.CodUni + ".1";
+
+                                                            _stdApparatoDefault.Descrizione = "Non Definito";
+                                                            _stdApparatoDefault.CodDescrizione = "ND" + imp.Sistema.CodDescrizione;
+                                                            _stdApparatoDefault.StdApparatoClassi = stdApparatoCalassiDefault;
+                                                            //_stdApparatoDefault.KDimensiones = xpObjectSpace.GetObjectByKey<Sistema>(imp.Sistema.Oid);
+                                                            _stdApparatoDefault.Utente = "Admin";
+                                                            _stdApparatoDefault.DataAggiornamento = DateTime.Now;
+                                                            _stdApparatoDefault.Save();
+                                                            xpObjectSpace.CommitChanges();
+                                                            stdApparatoDefault = _stdApparatoDefault;
+                                                        }
+                                                        Apparato ApparatoDefault = xpObjectSpace.CreateObject<Apparato>();
+                                                        //ApparatoDefault.Impianto = xpObjectSpace.GetObjectByKey<Impianto>(imp.Oid);
+                                                        //xpObjectSpace.GetObjectsQuery<StdApparato>().Where(w => w.Descrizione.ToUpper().Contains("_Non Definito")).First();
+
+                                                        ApparatoDefault.CodDescrizione = imp.Edificio.CodDescrizione + "_" + stdApparatoDefault.CodDescrizione + "_001";
+                                                        ApparatoDefault.Descrizione = "Non Definito(" + ApparatoDefault.CodDescrizione + ")";
+                                                        ApparatoDefault.StdApparato = stdApparatoDefault;
+                                                        ApparatoDefault.Impianto = xpObjectSpace.GetObjectByKey<Impianto>(imp.Oid);
+                                                        ApparatoDefault.Quantita = 1;
+                                                        ApparatoDefault.EntitaApparato = EntitaApparato.Virtuale;
+                                                        ApparatoDefault.DateInService = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 00, 00, 00);
+                                                        ApparatoDefault.DateUnService = new DateTime(DateTime.Now.Year + 10, DateTime.Now.Month, DateTime.Now.Day, 00, 00, 00);
+                                                        ApparatoDefault.Utente = "Admin";
+                                                        ApparatoDefault.DataAggiornamento = DateTime.Now;
+                                                        ApparatoDefault.Abilitato = FlgAbilitato.Si;
+                                                        ApparatoDefault.AbilitazioneEreditata = FlgAbilitato.Si;
+                                                        ApparatoDefault.Save();
+
+                                                        ApparatoDefault.Impianto.ApparatoDefault = ApparatoDefault;
+                                                        ApparatoDefault.Save();
+                                                        xpObjectSpace.CommitChanges();
+
+                                                        oidApparatoDefault = ApparatoDefault.Oid;
+                                                        rdl.Apparato = Sess.GetObjectByKey<Apparato>(oidApparatoDefault);
+
+                                                        if (rdl.Apparato.Impianto.Edificio.Commesse.AbilitaProblemaDefault)
+                                                        {
+                                                            if (rdl.Apparato.StdApparato.ProblemaDefault != null)
+                                                            {
+                                                                rdl.Prob = Sess.GetObjectByKey<Problemi>(rdl.Apparato.StdApparato.ProblemaDefault.Oid);
+                                                                //rdl.Prob = rdl.Apparato.StdApparato.ProblemaDefault;
+                                                            }
+                                                            else
+                                                            {
+                                                                rdl.Prob = Sess.GetObjectByKey<Problemi>(GetStdApparatoProblemaDefault(rdl.Apparato.StdApparato).Oid);
+                                                            }
+                                                        }
+                                                    }
+
+
+                                                }
+                                                else
+                                                {
+                                                    rdl.Apparato = imp.ApparatoDefault;
+
+                                                    if (rdl.Apparato.Impianto.Edificio.Commesse.AbilitaProblemaDefault)
+                                                    {
+                                                        if (rdl.Apparato.StdApparato.ProblemaDefault != null)
+                                                        {
+                                                            rdl.Prob = Sess.GetObjectByKey<Problemi>(rdl.Apparato.StdApparato.ProblemaDefault.Oid);
+                                                            //rdl.Prob = rdl.Apparato.StdApparato.ProblemaDefault;
+                                                        }
+                                                        else
+                                                        {
+                                                            rdl.Prob = Sess.GetObjectByKey<Problemi>(GetStdApparatoProblemaDefault(rdl.Apparato.StdApparato).Oid);
+                                                        }
+                                                    }
+                                                }
+                                            //    AbilitaProblemaDefault
+
+                                            #endregion s
+                                        }
+                                        else  // è nullo
+                                        {
+                                            rdl.Apparato = null;
+                                        }
+                                    }
+                                }
+                                catch
+                                {
+                                    suppressOnChanged = false;
+                                }
+                                finally
+                                {
+                                    suppressOnChanged = false;
+                                }
+
+                                break;
+                            case "Apparato":
+                                try
+                                {
+                                    Apparato newApparato = e.NewValue as Apparato;
+                                    RdL rdl = e.Object as RdL;
+                                    if (View.Id == "RdL_DetailView")
+                                    {
+                                        if (e.NewValue != null)
+                                        {
+                                            Session Sess = ((XPObjectSpace)ObjectSpace).Session;
+                                            #region se è apparato CHE E' CAMBIATO
+                                            int OidProblema = 0;
+                                            int OidCausa = 0;
+                                            int OidRimedio = 0;
+                                            if (rdl.Categoria != null && rdl.Categoria.Oid == 4 && rdl.Oid == -1)
+                                                if (newApparato.Impianto.Edificio.Commesse.AbilitaProblemaDefault)
+                                                {
+                                                    StdApparato stdApp = newApparato.StdApparato;
+                                                    if (newApparato.StdApparato == null)
+                                                    {
+                                                        break;
+                                                    }
+                                                    if (stdApp.ProblemaDefault == null)
+                                                    {
+                                                        if (rdl.Apparato.StdApparato.ProblemaDefault != null)
+                                                        {
+                                                            rdl.Prob = Sess.GetObjectByKey<Problemi>(rdl.Apparato.StdApparato.ProblemaDefault.Oid);
+                                                            //rdl.Prob = rdl.Apparato.StdApparato.ProblemaDefault;
+                                                        }
+                                                        else
+                                                        {
+                                                            rdl.Prob = Sess.GetObjectByKey<Problemi>(GetStdApparatoProblemaDefault(rdl.Apparato.StdApparato).Oid);
+                                                        }
+                                                    }
+                                                    else
+                                                    {
+                                                        rdl.Prob = Sess.GetObjectByKey<Problemi>(stdApp.ProblemaDefault.Oid);
+                                                        //rdl.Prob = stdApp.ProblemaDefault;
+                                                    }
+                                                }
+                                                else
+                                                {
+                                                    if (rdl.Prob != null)
+                                                        rdl.Prob = null;
+                                                    if (rdl.Causa != null)
+                                                        rdl.Causa = null;
+                                                }
+                                            #endregion
+                                        }
+                                    }
+                                    suppressOnChanged = false;
+                                }
+                                catch
+                                {
+                                    suppressOnChanged = false;
+                                }
+                                finally
+                                {
+                                    suppressOnChanged = false;
+                                }
+
+                                break;
+                            case "Piano":
+                                try
+                                {
+                                    Piani newPiano = e.NewValue as Piani;
+                                    RdL rdl = e.Object as RdL;
+                                    if (View.Id == "RdL_DetailView")
+                                    {
+                                        if (e.NewValue != null && e.NewValue != e.OldValue)
+                                        {
+                                            rdl.Locale = null;
+                                        }
+                                        else
+                                        {
+                                            rdl.Locale = null;
+                                        }
+                                    }
+                                }
+                                catch
+                                {
+                                    suppressOnChanged = false;
+                                }
+                                finally
+                                {
+                                    suppressOnChanged = false;
+                                }
+
+                                break;
+
+                            case "Locale":
+
+                                try
+                                {
+                                    Locali newLocale = e.NewValue as Locali;
+                                    RdL rdl = e.Object as RdL;
+                                    if (View.Id == "RdL_DetailView")
+                                    {
+                                        if (e.NewValue != null && e.NewValue != e.OldValue)
+                                        {
+                                            if (rdl.Piano != newLocale.Piano)
+                                            {
+                                                rdl.SetMemberValue("Piano", newLocale.Piano);
+                                            }
+                                        }
+
+                                    }
+                                }
+                                catch
+                                {
+                                }
+                                finally
+                                {
+                                    suppressOnChanged = false;
+                                }
+
+
+                                break;
+                        }
+
+                        System.Diagnostics.Debug.WriteLine("procedura ObjectSpace_ObjectChanged dopo PropertyObjectsCache  v:" + ((DevExpress.ExpressApp.ObjectManipulatingEventArgs)(e)).Object + " tempo " + (DateTime.Now - Adesso).TotalSeconds.ToString());
+
+
+                        System.Diagnostics.Debug.WriteLine("procedura ObjectSpace_ObjectChanged dopo query.Count()  v:" + e.PropertyName + " tempo " + (DateTime.Now - Adesso).TotalSeconds.ToString());
+                    }
+                }
+                System.Diagnostics.Debug.WriteLine("fine procedura ObjectSpace_ObjectChanged  v:" + View.Id.ToString() + " tempo " + (DateTime.Now - Adesso).TotalSeconds.ToString());
+                suppressOnChanged = false;
+            }
+
+        }
+
+        private RegistroRdL CreateRegistroRdL(RdL rdl, ref IObjectSpace xpObjectSpaceRRdl)
+        {
+            string Descrizione = string.Empty;
+            //IObjectSpace xpObjectSpaceRRdl = Application.CreateObjectSpace();
+
+            RegistroRdL rrdl = xpObjectSpaceRRdl.CreateObject<RegistroRdL>();
+            rrdl.Apparato = rdl.Apparato;// Apparato   xpObjectSpaceRRdl.GetObject<Apparato>(rdl.Apparato);
+            rrdl.Categoria = rdl.Categoria;//xpObjectSpaceRRdl.GetObject<Categoria>(rdl.Categoria);//
+
+            rrdl.DATA_CREAZIONE_RDL = rdl.DataRichiesta;
+
+            rrdl.DataPianificata = rdl.DataPianificata;//  data pianificata  data richieste da bonificare su db 15012018
+            rrdl.DataAssegnazioneOdl = rdl.DataAssegnazioneOdl;//  data pianificata  data richieste da bonificare  15012018
+
+            //rrdl.DataAssegnazioneOdl = rdl.DataPianificata;///   ************************************
+            rrdl.DataAzioniTampone = rdl.DataAzioniTampone;
+            rrdl.DataFermo = rdl.DataFermo;
+            rrdl.DataAzioniTampone = rdl.DataAzioniTampone;
+            rrdl.DataFermo = rdl.DataFermo;//
+            rrdl.DataInizioLavori = rdl.DataInizioLavori;//
+            rrdl.DataPrevistoArrivo = rdl.DataPrevistoArrivo;
+            //rrdl.DataRiavvio = rdl.DataRiavvio;//
+            //rrdl.DataSopralluogo = rdl.DataSopralluogo;//
+            rrdl.Priorita = rdl.Priorita;// xpObjectSpaceRRdl.GetObject<Priorita>(rdl.Priorita);//
+
+            //if (rdl.Prob != null)
+            //{
+            //    rrdl.Problema = rdl.Prob; 
+            //    if (rdl.ProblemaCausa != null)
+            //        rrdl.ProblemaCausa = rdl.ProblemaCausa; 
+            //}
+            if (rdl.Prob != null)
+            {
+                rrdl.Prob = rdl.Prob;// xpObjectSpaceRRdl.GetObject<ApparatoProblema>(rdl.Problema);//
+                if (rdl.Causa != null)
+                    rrdl.Causa = rdl.Causa;// xpObjectSpaceRRdl.GetObject<ProblemaCausa>(rdl.ProblemaCausa);//
+            }
+            //if (rdl.RisorseTeam != null)
+            //    rrdl.RisorseTeam = xpObjectSpaceRRdl.GetObject<RisorseTeam>(rdl.RisorseTeam);
+            //rrdl.UltimoStatoOperativo = xpObjectSpaceRRdl.GetObject<StatoOperativo>(rdl.UltimoStatoOperativo);
+            rrdl.UltimoStatoSmistamento = rdl.UltimoStatoSmistamento;//xpObjectSpaceRRdl.GetObject<StatoSmistamento>(rdl.UltimoStatoSmistamento);
+            rrdl.old_SSmistamento_Oid = rdl.UltimoStatoSmistamento.Oid;
+            rrdl.Utente = SecuritySystem.CurrentUserName;
+            rrdl.UtenteUltimo = rrdl.Utente;
+            //rrdl.AutorizzazioniRegistroRdLs
+            //rrdl.Save();
+            //xpObjectSpaceRRdl.CommitChanges();
+            //1	MANUTENZIONE PROGRAMMATA     //5	MANUTENZIONE PROGRAMMATA SPOT
+            //2	CONDUZIONE            //3	MANUTENZIONE A CONDIZIONE            //4	MANUTENZIONE GUASTO   
+            if (rrdl.Categoria.Oid == 1 || rrdl.Categoria.Oid == 5)
+            {
+                Descrizione = string.Format("Reg.MP({0}) {1}", rrdl.Oid, rdl.Descrizione);
+                if (Descrizione.Length > 3999)
+                    Descrizione = Descrizione.Substring(1, 3996) + "...";
+                rrdl.Descrizione = Descrizione;
+            }
+            else
+            {
+                Descrizione = string.Format("Reg.TT({0}) {1}", rrdl.Oid, rdl.Descrizione);
+                if (Descrizione.Length > 3999)
+                    Descrizione = Descrizione.Substring(1, 3996) + "...";
+                rrdl.Descrizione = Descrizione; // string.Format("Reg.TT({0}) {1}", rrdl.Oid, rdl.Descrizione);
+            }
+
+            //  crea autorizzazioni        
+            #region crea autorizzazioni su registro
+            Commesse cm = rdl.Edificio.Commesse;    //Commesse cm = xpObjectSpaceRRdl.GetObject<Commesse>(rdl.Edificio.Commesse);
+            if (cm.MostraDataOraFermo)
+            {
+                rrdl.MostraDataOraFermo = true;
+                rrdl.MostraDataOraRiavvio = true;
+            }
+            else
+            {
+                rrdl.MostraDataOraFermo = false;
+                rrdl.MostraDataOraRiavvio = false;
+            }
+            if (cm.MostraDataOraSopralluogo)
+            {
+                rrdl.MostraDataOraSopralluogo = true;
+            }
+            else
+            {
+                rrdl.MostraDataOraSopralluogo = false;
+            }
+
+            if (cm.MostraDataOraAzioniTampone)
+            {
+                rrdl.MostraDataOraAzioniTampone = true;
+            }
+            else
+            {
+                rrdl.MostraDataOraAzioniTampone = false;
+            }
+
+            if (cm.MostraDataOraInizioLavori)
+            {
+                rrdl.MostraDataOraInizioLavori = true;
+            }
+            else
+            {
+                rrdl.MostraDataOraInizioLavori = false;
+            }
+
+            if (cm.MostraDataOraCompletamento)
+            {
+                rrdl.MostraDataOraCompletamento = true;
+            }
+            else
+            {
+                rrdl.MostraDataOraCompletamento = false;
+            }
+
+            if (cm.MostraElencoCauseRimedi)
+            {
+                rrdl.MostraElencoCauseRimedi = true;
+            }
+            else
+            {
+                rrdl.MostraElencoCauseRimedi = false;
+            }
+            #endregion
+
+            rrdl.Save();
+
+            return rrdl;
+        }
+
+
+        void SetRisorsaTeam(RdL rdl)
+        {
+            if (rdl.RegistroRdL.RisorseTeam != null)
+            {
+                if (rdl.RegistroRdL.RisorseTeam.RegistroRdL.Oid == rdl.RegistroRdL.Oid)
+                {
+                    rdl.RegistroRdL.RisorseTeam.RegistroRdL = null;
+                    rdl.RegistroRdL.RisorseTeam.TipoStatoConnessione = TipoStatoConnessione.Connesso;
+                    if (rdl.RegistroRdL.RisorseTeam.RisorsaCapo != null)
+                        rdl.RegistroRdL.RisorseTeam.RisorsaCapo.Disponibilita = false;     //Risorse r = xpObjectSpaceRdL.GetObject<Risorse>(RisorseTeam.RisorsaCapo);          //r.Disponibilita = false;
+                }
+                rdl.RegistroRdL.RisorseTeam.Save();
+                rdl.Save();
+            }
+        }
+
+
+
+        private OdL CreateUpdateOrdinediLavoro(RdL rdl)
+        {
+            IObjectSpace xpObjSpaceOdL = Application.CreateObjectSpace();
+            //OdL odl = xpObjSpaceOdL.CreateObject<OdL>();
+
+            OdL odl = null;
+
+            if (rdl.RegistroRdL != null && rdl != null)
+            {
+                RegistroRdL rrdl = xpObjSpaceOdL.GetObject<RegistroRdL>(rdl.RegistroRdL);
+                int conta = rrdl.OdLes.Count;
+                if (conta == 0 && rdl.OdL == null)
+                {
+                    odl = xpObjSpaceOdL.CreateObject<OdL>();
+                }
+                else if (conta > 0)
+                {
+                    odl = xpObjSpaceOdL.GetObject<OdL>(rrdl.OdLes[0]);
+                }
+                else if (rdl.OdL != null)
+                {
+                    odl = xpObjSpaceOdL.GetObject<OdL>(rdl.OdL);
+                }
+                else
+                {
+                    return odl;
+                }
+
+                odl.RegistroRdL = rrdl;
+
+                string odlDescrizione = rdl.Descrizione;
+                if (odlDescrizione.Length > 240)
+                    odlDescrizione = odlDescrizione.Substring(1, 239) + "...";
+                odl.Descrizione = odlDescrizione;
+
+                odl.TipoOdL = xpObjSpaceOdL.GetObjectByKey<TipoOdL>(1);// misto
+                //odl.UltimoStatoOperativo = xpObjSpaceOdL.GetObject<StatoOperativo>(rdl.UltimoStatoOperativo);
+                odl.DataEmissione = rdl.DataAssegnazioneOdl;
+
+
+                if (rdl.DataCompletamento != null)
+                    odl.DataCompletamento = rdl.DataCompletamento;
+
+
+                odl.Save();
+                xpObjSpaceOdL.CommitChanges();
+            }
+            return odl;
+        }
+
+        void AggiornaRisorsaTeam(RdL rdl)
+        {
+            int oldstatosmistamentoiid = 0;
+            if (SmistamentoOid_ObjectsCache.Count > 0)
+                oldstatosmistamentoiid = SmistamentoOid_ObjectsCache[0];
+
+            if (oldstatosmistamentoiid == 3) //	3	Emessa In lavorazione // è stato tolto da emessa in lavorazione
+            {
+                // allora devo toglierlo dallo smartphone
+                // significa che ultimo smista è diverso da 3 e che la risorsa ha il registro impostato
+                // verifico ancora quindi
+                IObjectSpace xpObjSpaceRTeam = Application.CreateObjectSpace();
+                RisorseTeam RisorseTeam = xpObjSpaceRTeam.GetObject<RisorseTeam>(rdl.RisorseTeam);
+                if (rdl.UltimoStatoSmistamento.Oid != 3 && RisorseTeam.RegistroRdL.Oid == rdl.RegistroRdL.Oid) //	3	Emessa In lavorazione // è stato tolto da emessa in lavorazione
+                {
+                    // si è proprio da togliere   
+                    RisorseTeam.RegistroRdL = null;
+                    Risorse r = xpObjSpaceRTeam.GetObject<Risorse>(RisorseTeam.RisorsaCapo);
+                    r.Disponibilita = false;
+                    RisorseTeam.Save();
+                    xpObjSpaceRTeam.CommitChanges();
+                    // messaggio all'utente
+                }
+            }
+            else
+            {
+                if (rdl.RisorseTeam != null)
+                {
+                    if (rdl.RisorseTeam.RegistroRdL != null && rdl.RegistroRdL != null)
+                    {
+                        IObjectSpace xpObjSpaceRTeam = Application.CreateObjectSpace();
+                        RisorseTeam RisorseTeam = xpObjSpaceRTeam.GetObject<RisorseTeam>(rdl.RisorseTeam);
+                        if (rdl.UltimoStatoSmistamento.Oid != 3 && RisorseTeam.RegistroRdL.Oid == rdl.RegistroRdL.Oid) //	3	Emessa In lavorazione // è stato tolto da emessa in lavorazione
+                        {
+                            // si è proprio da togliere   
+                            RisorseTeam.RegistroRdL = null;
+                            Risorse r = xpObjSpaceRTeam.GetObject<Risorse>(RisorseTeam.RisorsaCapo);
+                            r.Disponibilita = false;
+                            RisorseTeam.Save();
+                            xpObjSpaceRTeam.CommitChanges();
+                            // messaggio all'utente
+                        }
+                    }
+                }
+            }
+        }
+
+        void AggiornaRegistroRdL(RdL rdl)
+        {
+            IObjectSpace xpObjectSpaceRRdl = Application.CreateObjectSpace();
+            RegistroRdL rrdl = xpObjectSpaceRRdl.GetObject<RegistroRdL>(rdl.RegistroRdL);
+
+            if (PropertyObjectsCache.Contains("Apparato"))
+                rrdl.Apparato = xpObjectSpaceRRdl.GetObject<Apparato>(rdl.Apparato);
+
+            if (PropertyObjectsCache.Contains("Categoria"))
+                rrdl.Categoria = xpObjectSpaceRRdl.GetObject<Categoria>(rdl.Categoria);
+
+            if (PropertyObjectsCache.Contains("DataRichiesta"))
+                rrdl.DATA_CREAZIONE_RDL = rdl.DataRichiesta;
+
+            if (PropertyObjectsCache.Contains("DataPianificata"))
+                rrdl.DataPianificata = rdl.DataPianificata;//  data pianificata  data richieste da bonificare
+
+            if (PropertyObjectsCache.Contains("DataAssegnazioneOdl"))
+                rrdl.DataAssegnazioneOdl = rdl.DataAssegnazioneOdl;//  data pianificata  data richieste da bonificare
+
+            if (PropertyObjectsCache.Contains("DataAzioniTampone"))
+                rrdl.DataAzioniTampone = rdl.DataAzioniTampone;
+
+            if (PropertyObjectsCache.Contains("DataFermo"))
+                rrdl.DataFermo = rdl.DataFermo;
+
+            if (PropertyObjectsCache.Contains("DataAzioniTampone"))//
+                rrdl.DataAzioniTampone = rdl.DataAzioniTampone;
+
+            if (PropertyObjectsCache.Contains("DataFermo"))//
+                rrdl.DataFermo = rdl.DataFermo;
+
+            if (PropertyObjectsCache.Contains("DataInizioLavori"))//
+                rrdl.DataInizioLavori = rdl.DataInizioLavori;
+
+            if (PropertyObjectsCache.Contains("DataPrevistoArrivo"))
+                rrdl.DataPrevistoArrivo = rdl.DataPrevistoArrivo;
+
+            if (PropertyObjectsCache.Contains("DataRiavvio"))//
+                rrdl.DataRiavvio = rdl.DataRiavvio;
+
+            if (PropertyObjectsCache.Contains("DataSopralluogo"))//
+                rrdl.DataSopralluogo = rdl.DataSopralluogo;
+
+            if (PropertyObjectsCache.Contains("DataCompletamento"))//
+                rrdl.DataCompletamento = rdl.DataCompletamento;
+
+            if (PropertyObjectsCache.Contains("NoteCompletamento"))//
+                rrdl.NoteCompletamento = rdl.NoteCompletamento;
+
+            if (PropertyObjectsCache.Contains("Priorita"))
+                rrdl.Priorita = xpObjectSpaceRRdl.GetObject<Priorita>(rdl.Priorita);
+
+            //if (PropertyObjectsCache.Contains("Problema"))
+            //    rrdl.Problema = xpObjectSpaceRRdl.GetObject<ApparatoProblema>(rdl.Problema);
+
+            //if (PropertyObjectsCache.Contains("ProblemaCausa"))
+            //    rrdl.ProblemaCausa = xpObjectSpaceRRdl.GetObject<ProblemaCausa>(rdl.ProblemaCausa);
+
+            if (PropertyObjectsCache.Contains("Prob"))
+                rrdl.Prob = xpObjectSpaceRRdl.GetObject<Problemi>(rdl.Prob);
+
+            if (PropertyObjectsCache.Contains("Causa"))
+                rrdl.Causa = xpObjectSpaceRRdl.GetObject<Cause>(rdl.Causa);
+
+
+            if (PropertyObjectsCache.Contains("RisorseTeam"))//
+                rrdl.RisorseTeam = xpObjectSpaceRRdl.GetObject<RisorseTeam>(rdl.RisorseTeam);
+            //***************
+            if (PropertyObjectsCache.Contains("UltimoStatoOperativo"))
+                rrdl.UltimoStatoOperativo = xpObjectSpaceRRdl.GetObject<StatoOperativo>(rdl.UltimoStatoOperativo);//
+
+            if (PropertyObjectsCache.Contains("UltimoStatoSmistamento"))
+                rrdl.UltimoStatoSmistamento = xpObjectSpaceRRdl.GetObject<StatoSmistamento>(rdl.UltimoStatoSmistamento);///
+
+            rrdl.DataAggiornamento = DateTime.Now;//
+
+            //rrdl.Utente = SecuritySystem.CurrentUserName;  questo è quello che ha creato la richiesta 
+            rrdl.UtenteUltimo = SecuritySystem.CurrentUserName; // questo va aggiornato ogni variazione (in RdL )
+
+            rrdl.Save();
+            xpObjectSpaceRRdl.CommitChanges();
+
+        }
+
+        private void SetMessaggioWeb(string Messaggio, string Titolo, InformationType InformationTypeMsg = InformationType.Info)
+        {
+            MessageOptions options = new MessageOptions();
+            options.Duration = 7000;
+            options.Message = Messaggio.ToString();
+            options.Web.Position = InformationPosition.Top;
+            options.Type = InformationTypeMsg;//            InformationType.Info;
+            options.Win.Caption = Titolo;             //options.CancelDelegate = CancelDelegate;              //options.OkDelegate = OkDelegate;
+            //options.OkDelegate = () =>
+            //{
+
+            //};
+            Application.ShowViewStrategy.ShowMessage(options);
+        }
+        private void SetMessaggioWebAutoAssegnazione(string Messaggio, string Titolo, InformationType InformationTypeMsg = InformationType.Info)
+        {
+            MessageOptions options = new MessageOptions();
+            options.Duration = 7000;
+            options.Message = Messaggio.ToString();
+            options.Web.Position = InformationPosition.Top;
+            options.Type = InformationTypeMsg;//            InformationType.Info;
+            options.Win.Caption = Titolo;             //options.CancelDelegate = CancelDelegate;              //options.OkDelegate = OkDelegate;
+            //options.OkDelegate = () =>
+            //{
+
+            //};
+            Application.ShowViewStrategy.ShowMessage(options);
+        }
+
+        private bool VerificaOrario(TimeSpan t_left, TimeSpan t_right) //(String strleft, String strright)
+        {
+            DateTime d = DateTime.Now;
+            TimeSpan t_center = d.TimeOfDay;
+            //TimeSpan t_left = TimeSpan.Parse(strleft);
+            //TimeSpan t_right = TimeSpan.Parse(strright);
+
+
+            bool l = t_center >= t_left;
+            bool r = t_center <= t_right;
+
+            bool v = l && r;
+
+            Debug.WriteLine(v);
+            return v;
+        }
+
+
+        public bool FestivitaNazionale()  // int anno, int mese, int giorno)
+        {
+            DateTime adesso = DateTime.Now;
+            int anno = adesso.Year;
+            int mese = adesso.Month;
+            int giorno = adesso.Day;
+            DateTime dt;
+            try
+            {
+                dt = new DateTime(anno, mese, giorno);
+                //if (DayOfWeek.Saturday.Equals(dt.DayOfWeek))
+                //    return true;
+
+                //if (DayOfWeek.Sunday.Equals(dt.DayOfWeek))
+                //    return true;
+
+                /*capodanno*/
+                if (giorno == 1 && mese == 1)
+                    return true;
+
+                /*6 gennaio epifania*/
+                if (giorno == 6 && mese == 1)
+                    return true;
+
+                /*25 aprile*/
+                if (giorno == 25 && mese == 4)
+                    return true;
+
+                /*1 maggio*/
+                if (giorno == 1 && mese == 5)
+                    return true;
+
+                /*29 giugno s.pietro e paolo*/
+                if (giorno == 29 && mese == 6)
+                    return true;
+
+                /*15 agosto*/
+                if (giorno == 15 && mese == 8)
+                    return true;
+
+                /*2 giugno*/
+                if (giorno == 2 && mese == 6)
+                    return true;
+
+                /*2 novembre*/
+                if (giorno == 2 && mese == 11)
+                    return true;
+
+                /*8 dicembre*/
+                if (giorno == 8 && mese == 12)
+                    return true;
+
+                /*natale*/
+                if (giorno == 25 && mese == 12)
+                    return true;
+
+                /*s stefano*/
+                if (giorno == 26 && mese == 12)
+                    return true;
+                // pasqua
+                DateTime pasquadey = DateTime.MinValue;
+                if (Module.Classi.EasterCalculation.GetEasterDate(anno) != null)
+                    pasquadey = (DateTime)Module.Classi.EasterCalculation.GetEasterDate(anno);
+
+                if (dt == pasquadey || dt == pasquadey.AddDays(1)) // pasqua
+                    return true;
+
+            }
+            catch (Exception ex)
+            {
+                //log.Error(ex);
+                return false;
+            }
+
+            return false;
+        }
+
+
+        private Problemi GetStdApparatoProblemaDefault(StdApparato stdApp)
+        {
+            if (stdApp.ProblemaDefault == null)
+            {
+                Session Sess = ((XPObjectSpace)ObjectSpace).Session;
+                XPQuery<ApparatoProblema> RegoleQuery = new XPQuery<ApparatoProblema>(Sess);
+                var query = RegoleQuery.Where(w => w.StdApparato == stdApp)
+                                       .Where(w => w.Problemi.Descrizione.ToUpper().Contains("Non Definito".ToUpper()))
+                                       .Select(s => s.Problemi.Oid).ToList();
+                if (query.Count() > 0)
+                {
+                    stdApp.ProblemaDefault = View.ObjectSpace.GetObjectByKey<Problemi>(query[0]);
+                    stdApp.Save();
+                    IObjectSpace xpObjectSpacestdApp = Application.CreateObjectSpace(typeof(StdApparato));
+                    StdApparato _stdApp = xpObjectSpacestdApp.GetObjectByKey<StdApparato>(stdApp.Oid);
+                    _stdApp.ProblemaDefault = xpObjectSpacestdApp.GetObjectByKey<Problemi>(query[0]);
+                    _stdApp.DataAggiornamento = DateTime.Now;
+                    _stdApp.Save();
+                    xpObjectSpacestdApp.CommitChanges();
+
+                    return _stdApp.ProblemaDefault;
+                    //rdl.Causa = stdApp.CausaDefault;
+                }
+                else
+                {
+                    IObjectSpace xpObjectSpaceProblemi = Application.CreateObjectSpace(typeof(Problemi));
+                    Problemi problema = xpObjectSpaceProblemi.FindObject<Problemi>(new BinaryOperator("Descrizione", "Non Definito"));
+                    if (problema == null)
+                    {
+                        problema = xpObjectSpaceProblemi.CreateObject<Problemi>();
+                        problema.Descrizione = "Non Definito";
+                        problema.Valore = 0;
+                        problema.Save();
+                    }
+                    //XPQuery<Cause> CauseQuery = new XPQuery<Cause>(Sess);
+                    //int contaCause = ProblemiQuery.Where(w => w.Descrizione == "Non Definito").Count();
+                    Cause causa = xpObjectSpaceProblemi.FindObject<Cause>(new BinaryOperator("Descrizione", "Non Definito"));
+                    if (causa == null)
+                    {
+                        causa = xpObjectSpaceProblemi.CreateObject<Cause>();
+                        causa.Descrizione = "Non Definito";
+                        causa.Valore = 0;
+                        causa.Save();
+                    }
+                    //XPQuery<Rimedi> RimediQuery = new XPQuery<Rimedi>(Sess);
+                    //int contaRimedi = ProblemiQuery.Where(w => w.Descrizione == "Non Definito").Count();
+                    Rimedi rimedio = xpObjectSpaceProblemi.FindObject<Rimedi>(new BinaryOperator("Descrizione", "Non Definito"));
+                    if (rimedio == null)
+                    {
+                        rimedio = xpObjectSpaceProblemi.CreateObject<Rimedi>();
+                        rimedio.Descrizione = "Non Definito";
+                        rimedio.Valore = 0;
+                        rimedio.Save();
+                    }
+
+                    ApparatoProblema ap = xpObjectSpaceProblemi.CreateObject<ApparatoProblema>();
+                    ap.Problemi = problema;
+                    ap.StdApparato = stdApp;
+                    ap.Save();
+
+                    ProblemaCausa pc = xpObjectSpaceProblemi.CreateObject<ProblemaCausa>();
+                    pc.ApparatoProblema = ap;
+                    pc.Cause = causa;
+                    pc.Save();
+
+                    CausaRimedio cr = xpObjectSpaceProblemi.CreateObject<CausaRimedio>();
+                    cr.ProblemaCausa = pc;
+                    cr.Rimedi = rimedio;
+                    cr.Save();
+                    //((XPObjectSpace)ObjectSpace)
+                    xpObjectSpaceProblemi.CommitChanges();
+
+                    int OidProblema = ap.Problemi.Oid;
+                    return ap.Problemi;
+                }
+
+            }
+            return stdApp.ProblemaDefault;
+        }
+
+
+
+        #region calcolo distanza e carico risorsa
+
+        public List<RisorseTeam> GetRTeamVicina(List<RisorseTeam> listRisorseTeams, double Pa_lat1, double Pa_lon1, int nrRisorseTeam)
+        {
+            if (listRisorseTeams.Count() == 0) return null;
+            if (Pa_lat1 == 0 && Pa_lon1 == 0 && nrRisorseTeam < 1) return null;
+            var Distanze_Rt_Edifici = listRisorseTeams.Where(w => w.RegistroRdL != null)
+                                                .Where(w => w.RisorsaCapo.Disponibilita)
+               .Where(w => !string.IsNullOrEmpty(w.UserName))
+                                                .Where(w => w.RisorsaCapo.GeoLatUltimaPosiz != null && w.RisorsaCapo.GeoLatUltimaPosiz > 0)
+                                                .Where(w => w.RisorsaCapo.GeoLngUltimaPosiz != null && w.RisorsaCapo.GeoLngUltimaPosiz > 0)
+                                                .GroupBy(g => g)
+                                                .Select(s => new
+                                                {
+                                                    RT = s.Key,
+                                                    Distanza = CAMS.Module.Classi.Util.CalcolaDistanzaInkiloMeteri(Pa_lat1, Pa_lon1,
+                                                    Convert.ToDouble(s.Key.RisorsaCapo.GeoLatUltimaPosiz),
+                                                    Convert.ToDouble(s.Key.RisorsaCapo.GeoLngUltimaPosiz))
+                                                })
+                                                .OrderBy(o => o.Distanza)
+                                                 .Take(nrRisorseTeam)
+                                                .ToList()
+                                                ;
+
+            foreach (var item in Distanze_Rt_Edifici)
+            {
+                Console.WriteLine(string.Format("{0}  {1}", item.Distanza, item.RT.FullName));
+            }
+            //41.9672938, 12.6798324
+            //41.89, 12.492
+            //17.7623 km
+            var dd = CAMS.Module.Classi.Util.CalcolaDistanzaInkiloMeteri(41.8824386, 12.5144895, 41.943898, 12.5603338);
+            Console.WriteLine(string.Format(" distanza {0}", dd.ToString()));
+
+            if (Distanze_Rt_Edifici.Count() == 0) return null;
+            return Distanze_Rt_Edifici.Select(s => s.RT).ToList<RisorseTeam>();
+        }
+
+        public List<RisorseTeam> GetRTeamScarica(List<RisorseTeam> listRisorseTeams, int nrRisorseTeam)
+        {
+            if (listRisorseTeams.Count() == 0) return null;
+            if (nrRisorseTeam < 1) return null;
+
+            var caricoRT = listRisorseTeams.Where(w => w.RegistroRdL != null)
+                   .Where(w => w.RisorsaCapo.Disponibilita)
+                .Where(w => !string.IsNullOrEmpty(w.UserName))
+                   .Where(w => w.RisorsaCapo.GeoLatUltimaPosiz != null && w.RisorsaCapo.GeoLatUltimaPosiz > 0)
+                   .Where(w => w.RisorsaCapo.GeoLngUltimaPosiz != null && w.RisorsaCapo.GeoLngUltimaPosiz > 0)
+                   .Where(w => w.RegistroRdLs.Any(a => a.Categoria.Oid == 4 && new int[] { 2, 3, 11 }.Contains(a.UltimoStatoSmistamento.Oid)))
+                   .GroupBy(g => g)
+                    .Select(i => new { RT = i.Key, Count = i.Key.NumeroAttivitaEmergenza + i.Key.NumeroAttivitaAgenda + i.Key.NumeroAttivitaSospese })
+                    .OrderBy(o => o.Count).Take(nrRisorseTeam).ToList();
+
+            foreach (var item in caricoRT)
+            {
+                Console.WriteLine(string.Format("{0}  {1}", item.Count, item.RT.FullName));
+
+            }
+            if (caricoRT.Count() == 0) return null;
+            return caricoRT.Select(s => s.RT).ToList<RisorseTeam>();
+        }
+
+
+        #endregion
+
+
+    }
+}
+
+
+//private RegistroRdL CreateAutorizzazioniRegRdL(RdL rdl, ref IObjectSpace xpObjectSpaceRRdl)
+//{
+//    RegistroRdL rrdl = rdl.RegistroRdL;
+//    Commesse cm = xpObjectSpaceRRdl.GetObject<Commesse>(rdl.Edificio.Commesse);
+//    if (cm.MostraDataOraFermo)
+//    {
+//        AutorizzazioniRegistroRdL autrrdl = xpObjectSpaceRRdl.CreateObject<AutorizzazioniRegistroRdL>();
+//        autrrdl.RegistroRdL = rrdl;
+//        autrrdl.TipoAutorizzazioniRegRdL = Classi.TipoAutorizzazioniRegRdL.MostraDataOraFermo;
+//        autrrdl.Save();
+//        //xpObjectSpaceRRdl.CommitChanges();
+//        autrrdl = xpObjectSpaceRRdl.CreateObject<AutorizzazioniRegistroRdL>();
+//        autrrdl.RegistroRdL = rrdl;
+//        autrrdl.TipoAutorizzazioniRegRdL = Classi.TipoAutorizzazioniRegRdL.MostraDataOraRiavvio;
+//        autrrdl.Save();
+//        //xpObjectSpaceRRdl.CommitChanges();
+//    }
+//    if (cm.MostraDataOraSopralluogo)
+//    {
+//        AutorizzazioniRegistroRdL autrrdl = xpObjectSpaceRRdl.CreateObject<AutorizzazioniRegistroRdL>();
+//        autrrdl.RegistroRdL = rrdl;
+//        autrrdl.TipoAutorizzazioniRegRdL = Classi.TipoAutorizzazioniRegRdL.MostraDataOraSopralluogo;
+//        autrrdl.Save();
+//        //xpObjectSpaceRRdl.CommitChanges();
+//    }
+
+//    if (cm.MostraDataOraAzioniTampone)
+//    {
+//        AutorizzazioniRegistroRdL autrrdl = xpObjectSpaceRRdl.CreateObject<AutorizzazioniRegistroRdL>();
+//        autrrdl.RegistroRdL = rrdl;
+//        autrrdl.TipoAutorizzazioniRegRdL = Classi.TipoAutorizzazioniRegRdL.MostraDataOraAzioniTampone;
+//        autrrdl.Save();
+//        //xpObjectSpaceRRdl.CommitChanges();
+//    }
+//    if (cm.MostraDataOraInizioLavori)
+//    {
+//        AutorizzazioniRegistroRdL autrrdl = xpObjectSpaceRRdl.CreateObject<AutorizzazioniRegistroRdL>();
+//        autrrdl.RegistroRdL = rrdl;
+//        autrrdl.TipoAutorizzazioniRegRdL = Classi.TipoAutorizzazioniRegRdL.MostraDataOraInizioLavori;
+//        autrrdl.Save();
+//        //xpObjectSpaceRRdl.CommitChanges();
+//    }
+
+//    if (cm.MostraDataOraCompletamento)
+//    {
+//        AutorizzazioniRegistroRdL autrrdl = xpObjectSpaceRRdl.CreateObject<AutorizzazioniRegistroRdL>();
+//        autrrdl.RegistroRdL = rrdl;
+//        autrrdl.TipoAutorizzazioniRegRdL = Classi.TipoAutorizzazioniRegRdL.MostraDataOraCompletamento;
+//        autrrdl.Save();
+//        //xpObjectSpaceRRdl.CommitChanges();
+//    }
+//    if (cm.MostraElencoCauseRimedi)
+//    {
+//        AutorizzazioniRegistroRdL autrrdl = xpObjectSpaceRRdl.CreateObject<AutorizzazioniRegistroRdL>();
+//        autrrdl.RegistroRdL = rrdl;
+//        autrrdl.TipoAutorizzazioniRegRdL = Classi.TipoAutorizzazioniRegRdL.MostraElencoCauseRimedi;
+//        autrrdl.Save();
+//        //xpObjectSpaceRRdl.CommitChanges();
+//    }
+//    return rrdl;
+//}

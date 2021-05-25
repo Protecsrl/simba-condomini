@@ -1,0 +1,169 @@
+﻿      private void SospendiRdL_Execute(object sender, SimpleActionExecuteEventArgs args)
+        {
+            var db = new Classi.DB();
+
+            var Messaggio = string.Empty;
+            foreach (RdL obj in View.SelectedObjects)
+            {
+                var IdRdl = obj.Oid;
+                Messaggio = db.RdlSospesa(IdRdl);
+            }
+            db.Dispose();
+            //using (DB db = new DB())
+            //{
+            //    string Azione = "SOSPESASO";         
+            //    //procedure sp_ins_regstatosmdettaglioRDLC
+            //    //     (
+            //    //     p_Azione in varchar2,
+            //    //     p_statosmistamento in number,
+            //    //     p_regrdl in number,
+            //    //     p_vsysdate in date,
+            //    //     p_msg_out out varchar2
+            //    //     )
+            //}
+
+            // -----------------------
+        }
+
+        private void AnnullaRdL_Execute(object sender, SimpleActionExecuteEventArgs e)
+        {
+            var db = new Classi.DB();
+
+            var Messaggio = string.Empty;
+            foreach (RdL obj in View.SelectedObjects)
+            {
+                var IdRdl = obj.Oid;
+                Messaggio = db.RdlAnnullata(IdRdl);
+            }
+            db.Dispose();
+            //using (DB db = new DB())
+            //{
+            //    string Azione = "ANNULLA";
+            //    //if (TipoDati == 2) // oggetti
+            //    //    dv = db.GetDatiPermessiOggetti(nomeClasse, OidEdificio);
+            //    //procedure sp_ins_regstatosmdettaglioRDLC
+            //    //     (
+            //    //     p_Azione in varchar2,
+            //    //     p_statosmistamento in number,
+            //    //     p_regrdl in number,
+            //    //     p_vsysdate in date,
+            //    //     p_msg_out out varchar2
+            //    //     )
+            //}
+
+            // -----------------------
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                 //this.acDettagliRdL.Items.Add(new DevExpress.ExpressApp.Actions.ChoiceActionItem("AggiungiNote", "Aggiungi Nota", "ADDNOTA"));
+            //this.acDettagliRdL.Items.Add(new DevExpress.ExpressApp.Actions.ChoiceActionItem("AggiungiSollecito", "Aggiungi Sollecito", "ADDSOLLECITO"));
+            ///  verifica permessi  per pulsante emergenze
+            bool verifica = false;
+          //  SecuritySystem.IsGranted()
+        //    var mioa = SecuritySystem.IsGranted(new ClientPermissionRequest(typeof(RegNotificheEmergenze), "", null,  SecurityOperations.Write));
+
+            //bool isPriorityGranted = SecuritySystem.IsGranted(new
+            //    ClientPermissionRequest(typeof(RegNotificheEmergenze),
+            //   "RegStatoNotifica", null, SecurityOperations.Write));
+
+
+            //bool isStatusGranted = SecuritySystem.IsGranted(new 
+            //    ClientPermissionRequest(typeof(RegNotificheEmergenze),
+            //    "RegStatoNotifica", null, SecurityOperations.Create));
+            
+            //try
+            //{
+            //    var mio = View.ObjectSpace.CreateObject<RegNotificheEmergenze>();
+            //    View.ObjectSpace.Rollback();
+            //    verifica = true;
+            //}
+            //catch
+            //{
+            //    verifica = false;
+            //}
+	 
+	 
+	 
+	 
+	 
+	    private void CompilaPianiAnnuali_Execute(object sender, SimpleActionExecuteEventArgs e)
+        {
+            Classi.DB db = new Classi.DB();          
+            List<string> ListSkIDstr = new List<string>();
+           
+            string Un = SIRMP.Module.Inpostazioni.SerVarSessione.CorrenteUser;
+            string IdSes = SIRMP.Module.Inpostazioni.SerVarSessione.CodSessioneWeb;
+            string Connectionstring = SIRMP.Module.Inpostazioni.SerVarSessione.OracleConnString;
+            string Messaggio = "";
+            foreach (XPLiteObject obj in View.SelectedObjects)
+            {
+                int Anno = (int)((SIRMP.Module.MPSKXls.PianiAnnualiXls)(obj)).ANNO;              
+                int IdPMP = (int)((SIRMP.Module.MPSKXls.PianiAnnualiXls)(obj)).ID;
+
+                if (!string.IsNullOrEmpty(((SIRMP.Module.MPSKXls.PianiAnnualiXls)(obj)).Edificio.BlId) &&
+                    !string.IsNullOrWhiteSpace(((SIRMP.Module.MPSKXls.PianiAnnualiXls)(obj)).Edificio.BlId))
+                    if (Anno > 2000 && Anno < 2500)
+                    {
+                        string Edificio = ((SIRMP.Module.MPSKXls.PianiAnnualiXls)(obj)).Edificio.BlId.ToString(); // id edificio
+
+                        if (!ListSkIDstr.Contains(String.Format("{0}|{1}|{2}|{3}", Anno, "PAM", Edificio, IdPMP))) // carica edificio
+                        {
+                            ListSkIDstr.Add(String.Format("{0}|{1}|{2}|{3}", Anno, "PAM", Edificio, IdPMP));
+                        }
+                    }
+            }               
+            //---------------------------------------------------------             
+                var sortedDictionary = ListSkIDstr.Cast<DictionaryEntry>().OrderBy(pair => pair.Value);
+                foreach (string AnnoSede in ListSkIDstr)
+                {
+                    string[] Sstr = AnnoSede.ToString().Split(new char[] { '|' });
+                    int Anno = int.Parse(Sstr[0].ToString());
+                    string ProgrammaDaFare = "PMP" + Sstr[1].ToString().ToUpper();
+                    string CodiceSede = Sstr[2].ToString().ToUpper();
+                    int IdPAM = int.Parse(Sstr[3].ToString());
+                    //  calcolo parametri percorsi master e out
+ 
+                    try
+                    {
+                        int Revisione = 0;
+                        string PathNomeFileCreato = "";
+                        SIRMP.Module.ReportXLS.DatiPAM dPAM = new ReportXLS.DatiPAM();
+                        PathNomeFileCreato = dPAM.WriteFilePAM2014(CodiceSede, System.Convert.ToInt16(Anno), ref Revisione);
+                        dPAM.Dispose();                       
+
+                        if (System.IO.File.Exists(PathNomeFileCreato))
+                        {
+                            string NomeFile = System.IO.Path.GetFileName(PathNomeFileCreato);
+                            Messaggio = String.Format("PAM Edificio:{0} Anno:{1} Elaborato.", CodiceSede, Anno);
+                            if (!string.IsNullOrWhiteSpace(PathNomeFileCreato))
+                                Messaggio = db.CompilaPAMXLS(Connectionstring, Un, IdSes, IdPAM, NomeFile, Messaggio, Revisione);
+                        }
+                        else
+                        {
+                            continue;
+                            //throw new Exception(PathNomeFileCreato);
+                        }                        
+                    }
+                    catch (Exception e1)
+                    {
+                        throw new Exception(e1.Message);
+                    }
+                   
+                }
+            //------------------------------------------------------- 
+            db.Dispose();   
+            ConferaRefresh();
+        }
