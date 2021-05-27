@@ -1,0 +1,66 @@
+﻿@using SimbaCondomini.Models
+@model AddCominucazione
+
+@{
+    ViewBag.Title = "NuovaComunicazioneTicket";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>NuovaComunicazioneTicket</h2>
+
+
+
+<div id="form">
+    @(Html.DevExtreme().Form<AddCominucazione>()
+        .ID("form")
+        .Items(items => {
+            items.AddGroup()
+                .CssClass("first-group")
+                .ColCount(4)
+                .Items(groupItems => {
+                    groupItems.AddSimple().Template("<div class='form-avatar'></div>");
+                    groupItems.AddGroup().ColSpan(3).Items(secondGroupItems => {
+                        secondGroupItems.AddSimpleFor(m => m.Number);
+                        secondGroupItems.AddSimpleFor(m => m.Owner);
+                        secondGroupItems.AddSimpleFor(m => m.ClasseTicket.Id)
+                            .Editor(e => e
+                                .SelectBox()
+                                .Width("100%")
+                                .DisplayExpr("Text")
+                                .ValueExpr("Id")
+                                .DataSource(ds => ds.WebApi()
+                                .Controller("ClassificazioneTicketDati")
+                                .LoadAction("Get").Key("Id"))
+                            )
+                            .IsRequired(false);
+                    });
+                });
+
+
+            items.AddGroup()
+                .CssClass("first-group")
+                .ColCount(4)
+                .Items(groupItems =>
+                {
+                    groupItems.AddSimple().Template("<div class='form-avatar'></div>");
+                    groupItems.AddGroup().ColSpan(3).Items(secondGroupItems =>
+                    {
+                        secondGroupItems.AddSimpleFor(m => m.Titolo);
+                        secondGroupItems.AddSimpleFor(m => m.Descrizione);
+                        secondGroupItems.AddSimpleFor(m => m.Locale.Id)
+                            .Editor(e => e
+                                .SelectBox()
+                                .Width("100%")
+                                .DisplayExpr("Text")
+                                .ValueExpr("Id")
+                                .DataSource(ds => ds.WebApi()
+                                .Controller("ClassificazioneTicketDati")
+                                .LoadAction("Get").Key("Id"))
+                            )
+                            .IsRequired(false);
+                    });
+                });
+        })
+        .FormData(Model)
+    )
+</div>

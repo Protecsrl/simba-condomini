@@ -50,6 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BusinnessBase.cs" />
+    <Compile Include="ClassificazioneTicket.cs" />
     <Compile Include="Comunicazioni.cs" />
     <Compile Include="Condomini.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

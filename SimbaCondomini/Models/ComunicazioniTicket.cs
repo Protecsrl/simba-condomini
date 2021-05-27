@@ -5,9 +5,9 @@ using System.Web;
 
 namespace SimbaCondomini.Models
 {
-    public class Comunicazioni: IComparable<Comunicazioni>
+    public class ComunicazioniTicket: IComparable<ComunicazioniTicket>
     {
-        public Comunicazioni(int oid, string testo, int parentCommunication, string user, string condominium, DateTime dateInsert)
+        public ComunicazioniTicket(int oid, string testo, int parentCommunication, string user, string condominium, DateTime dateInsert)
         {
             this.Oid = oid;
             this.Testo = testo;
@@ -48,7 +48,7 @@ namespace SimbaCondomini.Models
             private set;
         }
 
-        public int CompareTo(Comunicazioni other)
+        public int CompareTo(ComunicazioniTicket other)
         {
             if (other == null)
                 return 1;
