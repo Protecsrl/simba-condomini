@@ -285,8 +285,8 @@
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Views\Home\ComunicazioniCondomino.cshtml" />
     <Content Include="Views\Home\Index2.cshtml" />
+    <Content Include="Views\Comunicazioni\NuovoTicket.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -300,14 +300,24 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\AmbienteDatiController.cs" />
+    <Compile Include="Controllers\ClassificazioneTicketDatiController.cs" />
+    <Compile Include="Controllers\ComunicazioniController.cs" />
     <Compile Include="Controllers\ComunicazioniDatiController.cs" />
+    <Compile Include="Controllers\EdificiController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\SampleDataController.cs" />
+    <Compile Include="Controllers\TicketDatiController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\Comunicazioni.cs" />
+    <Compile Include="Models\AddTicket.cs" />
+    <Compile Include="Models\Ambiente.cs" />
+    <Compile Include="Models\ComunicazioniTicket.cs" />
     <Compile Include="Models\Condominio.cs" />
+    <Compile Include="Models\Edificio.cs" />
+    <Compile Include="Models\LookupItem.cs" />
+    <Compile Include="Models\TicketCommunicationClassification.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -321,7 +331,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Views\Comunicazioni\" />
+    <Folder Include="Views\TicketDati\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

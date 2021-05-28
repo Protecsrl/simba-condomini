@@ -78,13 +78,6 @@ namespace Simba.DataLayer.simba_condomini
             get { return fAzienda; }
             set { SetPropertyValue<int>(nameof(Azienda), ref fAzienda, value); }
         }
-        Condominium fCondominio;
-        [Association(@"UserReferencesCondominium")]
-        public Condominium Condominio
-        {
-            get { return fCondominio; }
-            set { SetPropertyValue<Condominium>(nameof(Condominio), ref fCondominio, value); }
-        }
         double fLatitudine;
         public double Latitudine
         {
@@ -108,6 +101,13 @@ namespace Simba.DataLayer.simba_condomini
         {
             get { return fDateUpdate; }
             set { SetPropertyValue<DateTime>(nameof(DateUpdate), ref fDateUpdate, value); }
+        }
+        Building fBuilding;
+        [Association(@"UserReferencesBuilding")]
+        public Building Building
+        {
+            get { return fBuilding; }
+            set { SetPropertyValue<Building>(nameof(Building), ref fBuilding, value); }
         }
         [Association(@"TicketReferencesUser")]
         public XPCollection<Ticket> Tickets { get { return GetCollection<Ticket>(nameof(Tickets)); } }

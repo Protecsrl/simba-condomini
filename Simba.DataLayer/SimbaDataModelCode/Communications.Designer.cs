@@ -58,6 +58,13 @@ namespace Simba.DataLayer.simba_condomini
             get { return fDateInsert; }
             set { SetPropertyValue<DateTime>(nameof(DateInsert), ref fDateInsert, value); }
         }
+        CommunicationType fType;
+        [Association(@"CommunicationsReferencesCommunicationType")]
+        public CommunicationType Type
+        {
+            get { return fType; }
+            set { SetPropertyValue<CommunicationType>(nameof(Type), ref fType, value); }
+        }
     }
 
 }

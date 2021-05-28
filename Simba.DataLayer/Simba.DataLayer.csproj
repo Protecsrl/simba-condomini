@@ -47,9 +47,17 @@
   <ItemGroup>
     <Compile Include="Class1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SimbaDataModelCode\Building.cs" />
+    <Compile Include="SimbaDataModelCode\Building.Designer.cs">
+      <DependentUpon>Building.cs</DependentUpon>
+    </Compile>
     <Compile Include="SimbaDataModelCode\Communications.cs" />
     <Compile Include="SimbaDataModelCode\Communications.Designer.cs">
       <DependentUpon>Communications.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SimbaDataModelCode\CommunicationType.cs" />
+    <Compile Include="SimbaDataModelCode\CommunicationType.Designer.cs">
+      <DependentUpon>CommunicationType.cs</DependentUpon>
     </Compile>
     <Compile Include="SimbaDataModelCode\Condominium.cs" />
     <Compile Include="SimbaDataModelCode\Condominium.Designer.cs">
@@ -63,6 +71,10 @@
     <Compile Include="SimbaDataModelCode\Documents.cs" />
     <Compile Include="SimbaDataModelCode\Documents.Designer.cs">
       <DependentUpon>Documents.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SimbaDataModelCode\Environment.cs" />
+    <Compile Include="SimbaDataModelCode\Environment.Designer.cs">
+      <DependentUpon>Environment.cs</DependentUpon>
     </Compile>
     <Compile Include="SimbaDataModelCode\Stair.cs" />
     <Compile Include="SimbaDataModelCode\Stair.Designer.cs">
