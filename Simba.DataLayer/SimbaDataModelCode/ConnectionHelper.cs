@@ -21,7 +21,6 @@ namespace Simba.DataLayer.simba_condomini
             typeof(Condominium),
             typeof(Contracts),
             typeof(Documents),
-            typeof(Stair),
             typeof(sysdiagrams),
             typeof(Ticket),
             typeof(TicketClassification),
@@ -31,7 +30,9 @@ namespace Simba.DataLayer.simba_condomini
             typeof(User),
             typeof(UserType),
             typeof(TicketStatuses),
-            typeof(Communications)
+            typeof(Communications),
+            typeof(CommunicationType),
+            typeof(Building)
         };
         public static Type[] GetPersistentTypes()
         {

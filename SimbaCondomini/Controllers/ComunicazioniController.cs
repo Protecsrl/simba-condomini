@@ -14,7 +14,7 @@ namespace SimbaCondomini.Controllers
             return View();
         }
 
-        public ActionResult NuovaComunicazioneTicket()
+        public ActionResult NuovoTicket()
         {
             return View();
         }

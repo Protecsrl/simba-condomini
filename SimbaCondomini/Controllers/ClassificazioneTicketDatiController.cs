@@ -16,7 +16,13 @@ namespace SimbaCondomini.Controllers
         public HttpResponseMessage Get(DataSourceLoadOptions loadOptions)
         {
             ClassificazioneTicket cc = new ClassificazioneTicket();
-            return Request.CreateResponse(DataSourceLoader.Load(cc.GetAll(), loadOptions));
+            var ccc = cc.GetAll();
+            List<Models.TicketCommunicationClassification> list = new List<Models.TicketCommunicationClassification>();
+            foreach (var c in ccc)
+            {
+                list.Add(new Models.TicketCommunicationClassification(c.Oid, c.Nome, c.Descrizione));
+            }
+            return Request.CreateResponse(DataSourceLoader.Load(list, loadOptions));
         }
 
         // GET api/<controller>/5

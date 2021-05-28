@@ -1,5 +1,5 @@
 ﻿@using SimbaCondomini.Models
-@model AddCominucazione
+@model AddTicket
 
 @{
     ViewBag.Title = "NuovaComunicazioneTicket";
@@ -11,7 +11,7 @@
 
 
 <div id="form">
-    @(Html.DevExtreme().Form<AddCominucazione>()
+    @(Html.DevExtreme().Form<AddTicket>()
         .ID("form")
         .Items(items => {
             items.AddGroup()
@@ -22,15 +22,15 @@
                     groupItems.AddGroup().ColSpan(3).Items(secondGroupItems => {
                         secondGroupItems.AddSimpleFor(m => m.Number);
                         secondGroupItems.AddSimpleFor(m => m.Owner);
-                        secondGroupItems.AddSimpleFor(m => m.ClasseTicket.Id)
+                        secondGroupItems.AddSimpleFor(m => m.ClasseTicket)
                             .Editor(e => e
                                 .SelectBox()
                                 .Width("100%")
-                                .DisplayExpr("Text")
-                                .ValueExpr("Id")
+                                .DisplayExpr("Nome")
+                                .ValueExpr("Oid")
                                 .DataSource(ds => ds.WebApi()
                                 .Controller("ClassificazioneTicketDati")
-                                .LoadAction("Get").Key("Id"))
+                                .LoadAction("Get"))
                             )
                             .IsRequired(false);
                     });
@@ -51,11 +51,11 @@
                             .Editor(e => e
                                 .SelectBox()
                                 .Width("100%")
-                                .DisplayExpr("Text")
-                                .ValueExpr("Id")
+                                .DisplayExpr("Nome")
+                                .ValueExpr("Oid")
                                 .DataSource(ds => ds.WebApi()
                                 .Controller("ClassificazioneTicketDati")
-                                .LoadAction("Get").Key("Id"))
+                                .LoadAction("Get"))
                             )
                             .IsRequired(false);
                     });

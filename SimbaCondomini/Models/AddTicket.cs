@@ -5,7 +5,7 @@ using System.Web;
 
 namespace SimbaCondomini.Models
 {
-    public class AddCominucazione
+    public class AddTicket
     {
         public int Number { get; set; }
         public string Owner { get; set; }
