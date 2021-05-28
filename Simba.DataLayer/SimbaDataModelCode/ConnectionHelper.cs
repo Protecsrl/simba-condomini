@@ -32,7 +32,8 @@ namespace Simba.DataLayer.simba_condomini
             typeof(TicketStatuses),
             typeof(Communications),
             typeof(CommunicationType),
-            typeof(Building)
+            typeof(Building),
+            typeof(Environment)
         };
         public static Type[] GetPersistentTypes()
         {

@@ -72,6 +72,10 @@
     <Compile Include="SimbaDataModelCode\Documents.Designer.cs">
       <DependentUpon>Documents.cs</DependentUpon>
     </Compile>
+    <Compile Include="SimbaDataModelCode\Environment.cs" />
+    <Compile Include="SimbaDataModelCode\Environment.Designer.cs">
+      <DependentUpon>Environment.cs</DependentUpon>
+    </Compile>
     <Compile Include="SimbaDataModelCode\Stair.cs" />
     <Compile Include="SimbaDataModelCode\Stair.Designer.cs">
       <DependentUpon>Stair.cs</DependentUpon>

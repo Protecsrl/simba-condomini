@@ -19,7 +19,7 @@ namespace Simba.DataLayer.simba_condomini
     public partial class CommunicationType : XPLiteObject
     {
         int fOid;
-        [Key]
+        [Key(true)]
         public int Oid
         {
             get { return fOid; }

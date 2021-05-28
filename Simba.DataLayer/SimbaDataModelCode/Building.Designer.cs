@@ -41,6 +41,8 @@ namespace Simba.DataLayer.simba_condomini
         }
         [Association(@"UserReferencesBuilding")]
         public XPCollection<User> Users { get { return GetCollection<User>(nameof(Users)); } }
+        [Association(@"EnvironmentReferencesBuilding")]
+        public XPCollection<Environment> Environments { get { return GetCollection<Environment>(nameof(Environments)); } }
     }
 
 }
