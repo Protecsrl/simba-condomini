@@ -65,6 +65,12 @@ namespace Simba.DataLayer.simba_condomini
             get { return fType; }
             set { SetPropertyValue<CommunicationType>(nameof(Type), ref fType, value); }
         }
+        int fNumber;
+        public int Number
+        {
+            get { return fNumber; }
+            set { SetPropertyValue<int>(nameof(Number), ref fNumber, value); }
+        }
     }
 
 }

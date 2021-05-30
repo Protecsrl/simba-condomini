@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SimbaCondomini.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -16,7 +17,9 @@ namespace SimbaCondomini.Controllers
 
         public ActionResult NuovoTicket()
         {
-            return View();
+            AddTicket model = new AddTicket();
+            model.Number = new Simba.Businness.ComunicazioniTicket().getNewId();
+            return View(model);
         }
     }
 }

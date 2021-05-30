@@ -52,6 +52,7 @@
     <Compile Include="BusinnessBase.cs" />
     <Compile Include="ClassificazioneTicket.cs" />
     <Compile Include="Comunicazioni.cs" />
+    <Compile Include="ComunicazioniTicket.cs" />
     <Compile Include="Condomini.cs" />
     <Compile Include="Edifici.cs" />
     <Compile Include="Locali.cs" />

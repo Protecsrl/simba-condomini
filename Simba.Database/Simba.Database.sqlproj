@@ -77,5 +77,6 @@
     <Build Include="dbo\Tables\Condominium.sql" />
     <Build Include="dbo\Tables\User.sql" />
     <Build Include="dbo\Tables\Contracts.sql" />
+    <Build Include="dbo\Tables\UserCondominium.sql" />
   </ItemGroup>
 </Project>

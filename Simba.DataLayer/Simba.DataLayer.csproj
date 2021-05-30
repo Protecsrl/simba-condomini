@@ -112,6 +112,10 @@
     <Compile Include="SimbaDataModelCode\User.Designer.cs">
       <DependentUpon>User.cs</DependentUpon>
     </Compile>
+    <Compile Include="SimbaDataModelCode\UserCondominium.cs" />
+    <Compile Include="SimbaDataModelCode\UserCondominium.Designer.cs">
+      <DependentUpon>UserCondominium.cs</DependentUpon>
+    </Compile>
     <Compile Include="SimbaDataModelCode\UserType.cs" />
     <Compile Include="SimbaDataModelCode\UserType.Designer.cs">
       <DependentUpon>UserType.cs</DependentUpon>

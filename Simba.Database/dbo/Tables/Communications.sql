@@ -1,5 +1,6 @@
 ﻿CREATE TABLE [dbo].[Communications] (
     [Oid]                 INT           IDENTITY (1, 1) NOT NULL,
+    [Number]              INT           NULL,
     [Testo]               NVARCHAR (50) NOT NULL,
     [ParentCommunication] INT           NULL,
     [User]                INT           NOT NULL,
@@ -11,4 +12,6 @@
     CONSTRAINT [FK_Communications_Condominium] FOREIGN KEY ([Condominium]) REFERENCES [dbo].[Condominium] ([Oid]),
     CONSTRAINT [FK_Communications_User] FOREIGN KEY ([User]) REFERENCES [dbo].[User] ([Oid])
 );
+
+
 
