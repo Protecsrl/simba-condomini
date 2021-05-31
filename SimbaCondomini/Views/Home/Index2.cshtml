@@ -10,15 +10,21 @@
     @(Html.DevExtreme().List()
                         .Height("100%")
                         .DataSource(ds => ds.WebApi()
-                    .Controller("ComunicazioniDati")
-                    .LoadAction("Get"))
+                        .Controller("ComunicazioniDati")
+                        .LoadAction("Get"))
                         .ItemTemplate(@<text>
                             <div class="product">
+                                <div class="price"><%- Oid %></div>
                                 <div><%- Testo %></div>
                                 <div class="price"><%- DateInsert %></div>
+
+                                <%if (Type==1){ %>
+                                    <a href="/Comunicazioni/NuovoTicket/<%- Oid %>">Dettagli</a>
+                                <% } else { %>
+                                    <b>To do</b>
+                                <% } %>
                             </div>
                         </text>)
     )
-</div>
 
 

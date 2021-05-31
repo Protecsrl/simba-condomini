@@ -1,5 +1,6 @@
 ﻿using DevExpress.Xpo;
 using Simba.Businness;
+using Simba.DataLayer.simba_condomini;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,6 +31,7 @@ namespace Simba.Businness.Models
 
         public Simba.DataLayer.simba_condomini.Ticket ToXpoModel(AddTicket obj)
         {
+            ConnectionHelper.Connect(DevExpress.Xpo.DB.AutoCreateOption.None, true);
             return new Simba.DataLayer.simba_condomini.Ticket(XpoDefault.Session)
             {
                 Data = DateTime.Now,

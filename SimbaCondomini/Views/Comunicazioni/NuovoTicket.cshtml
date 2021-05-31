@@ -52,7 +52,7 @@
                 </div>
                 <div>
                     <div>Documenti e immagini</div><div>
-                        @(Html.DevExtreme().FileUploader().Multiple(true).UploadMode(FileUploadMode.UseForm).AllowCanceling(true).Name("Files").Value(Model.Files))
+                        @(Html.DevExtreme().FileUploader().Multiple(true).AllowCanceling(true).Name("Files").Value(Model.Files))
                     </div>
                 </div>
                 <div>

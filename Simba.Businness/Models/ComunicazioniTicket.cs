@@ -5,9 +5,13 @@ using System.Web;
 
 namespace Simba.Businness.Models
 {
+    public enum ItemType {
+        Comunicazione=0,
+        Ticket=1
+    }
     public class ComunicazioniTicket: IComparable<ComunicazioniTicket>
     {
-        public ComunicazioniTicket(int oid, string testo, int parentCommunication, string user, string condominium, DateTime dateInsert)
+        public ComunicazioniTicket(ItemType type, int oid, string testo, int parentCommunication, string user, string condominium, DateTime dateInsert)
         {
             this.Oid = oid;
             this.Testo = testo;
@@ -15,6 +19,13 @@ namespace Simba.Businness.Models
             this.User = user;
             this.Condominium = condominium;
             this.DateInsert = dateInsert;
+            this.Type = type;
+        }
+
+        public ItemType Type
+        {
+            get;
+            private set;
         }
 
         public int Oid
