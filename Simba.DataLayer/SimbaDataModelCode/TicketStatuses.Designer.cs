@@ -52,6 +52,12 @@ namespace Simba.DataLayer.simba_condomini
             get { return fOid; }
             set { SetPropertyValue<int>(nameof(Oid), ref fOid, value); }
         }
+        string fDescrizione;
+        public string Descrizione
+        {
+            get { return fDescrizione; }
+            set { SetPropertyValue<string>(nameof(Descrizione), ref fDescrizione, value); }
+        }
     }
 
 }

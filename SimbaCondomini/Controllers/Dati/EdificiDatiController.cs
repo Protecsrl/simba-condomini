@@ -8,19 +8,20 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 
+
 namespace SimbaCondomini.Controllers
 {
-    public class ClassificazioneTicketDatiController : ApiController
+    public class EdificiController : ApiController
     {
         // GET api/<controller>
         public HttpResponseMessage Get(DataSourceLoadOptions loadOptions)
         {
-            ClassificazioneTicket cc = new ClassificazioneTicket();
-            var ccc = cc.GetAll();
-            List<Models.TicketCommunicationClassification> list = new List<Models.TicketCommunicationClassification>();
+            Edifici cc = new Edifici();
+            var ccc = cc.GetByCondominium(1);
+            List<Simba.Businness.Models.Edificio> list = new List<Simba.Businness.Models.Edificio>();
             foreach (var c in ccc)
             {
-                list.Add(new Models.TicketCommunicationClassification(c.Oid, c.Nome, c.Descrizione));
+                list.Add(new Simba.Businness.Models.Edificio(c.Id, c.Nome, c.Condominium.Oid));
             }
             return Request.CreateResponse(DataSourceLoader.Load(list, loadOptions));
         }

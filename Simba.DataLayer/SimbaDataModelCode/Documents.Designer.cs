@@ -39,6 +39,8 @@ namespace Simba.DataLayer.simba_condomini
             get { return ftype; }
             set { SetPropertyValue<string>(nameof(type), ref ftype, value); }
         }
+        [Association(@"TicketDocumentReferencesDocuments")]
+        public XPCollection<TicketDocument> TicketDocuments { get { return GetCollection<TicketDocument>(nameof(TicketDocuments)); } }
     }
 
 }

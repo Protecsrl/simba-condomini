@@ -15,10 +15,10 @@ namespace SimbaCondomini.Controllers
         {
             Locali a = new Locali();
             var data = a.GetAll(1);
-            var datac = new List<SimbaCondomini.Models.Ambiente>();
+            var datac = new List<Simba.Businness.Models.Ambiente>();
             foreach (var cc in data)
             {
-                datac.Add(new SimbaCondomini.Models.Ambiente(cc.Oid, cc.Name, cc.Description, cc.Building.Id, cc.Valid));
+                datac.Add(new Simba.Businness.Models.Ambiente(cc.Oid, cc.Name, cc.Description, cc.Building.Id, cc.Valid));
             }
 
             return Request.CreateResponse(DataSourceLoader.Load(datac, loadOptions));

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace SimbaCondomini.Models
+namespace Simba.Businness.Models
 {
     public class Condominio
     {

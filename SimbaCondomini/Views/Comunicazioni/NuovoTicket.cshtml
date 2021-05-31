@@ -1,4 +1,4 @@
-﻿@using SimbaCondomini.Models
+﻿@using Simba.Businness.Models
 @model AddTicket
 
 @{
@@ -7,61 +7,68 @@
 }
 
 <h2>Nuovo Ticket</h2>
-<div id="form">
-    @(Html.DevExtreme().Form<AddTicket>()
-        .ID("form")
-        .Items(items => {
-            items.AddGroup()
-                .CssClass("first-group")
-                .Items(groupItems => {
-                    groupItems.AddSimple().Template("<div class='form-avatar'></div>");
-                    groupItems.AddGroup().ColSpan(3).Items(secondGroupItems => {
-                        secondGroupItems.AddSimpleFor(m => m.Number);
-                        secondGroupItems.AddSimpleFor(m => m.Owner);
-                        secondGroupItems.AddSimpleFor(m => m.ClasseTicket)
-                            .Editor(e => e
-                                .SelectBox()
-                                .Width("100%")
-                                .DisplayExpr("Nome")
-                                .ValueExpr("Oid")
-                                .DataSource(ds => ds.WebApi()
-                                .Controller("ClassificazioneTicketDati")
-                                .LoadAction("Get"))
-                            )
-                            .IsRequired(false);
-                    });
-                });
+@using (Html.BeginForm("NuovoTicket", "Comunicazioni", FormMethod.Post))
+{
+    @(Html.DevExtreme().TextBoxFor(m=>m.Oid).ReadOnly(true))
+    <div id="form-demo">
+        <div class="widget-container">
+            <div>Nuovo ticket:</div>
+            <div>
+                <div>
+                    <div>Numero</div><div>@(Html.DevExtreme().TextBoxFor(m=>m.Number))</div>
+                </div>
+                <div>
+                    <div>Owner</div><div>@(Html.DevExtreme().TextBoxFor(m=>m.Owner))</div>
+                </div>
+                <div>
+                    <div>Classe</div><div>
+                        @(Html.DevExtreme().SelectBoxFor(m=>m.ClasseTicket)
+                            .DisplayExpr("Nome")
+                            .ValueExpr("Oid")
+                            .DataSource(ds => ds.WebApi()
+                            .Controller("ClassificazioneTicketDati")
+                            .LoadAction("Get"))
+                    )
+                    </div>
+                </div>
+                <div>
+                    <div>Titolo</div><div>@(Html.DevExtreme().TextBoxFor(m=>m.Titolo))</div>
+
+                </div>
+                <div>
+                    <div>Descrizione</div><div>@(Html.DevExtreme().TextAreaFor(m => m.Descrizione))</div>
+
+                </div>
+                <div>
+                    <div>Locale</div><div>
+                        @(Html.DevExtreme().SelectBoxFor(m=>m.Locale)
+                        .DisplayExpr("Name")
+                        .ValueExpr("Oid")
+                        .DataSource(ds => ds.WebApi()
+                        .Controller("AmbienteDati")
+                        .LoadAction("Get"))
+                    )
+                    </div>
+                </div>
+                <div>
+                    <div>Documenti e immagini</div><div>
+                        @(Html.DevExtreme().FileUploader().Multiple(true).UploadMode(FileUploadMode.UseForm).AllowCanceling(true).Name("Files").Value(Model.Files))
+                    </div>
+                </div>
+                <div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div>Stati</div>
+    foreach (var item in Model.StoricoStati)
+    {
+        <div>@item.DescrizioneStato</div>
+    }
+
+    <div><input type="submit" value="Submit" /></div>
+}
 
 
-            items.AddGroup()
-                .CssClass("first-group")
-                .Items(groupItems =>
-                {
-                    groupItems.AddSimple().Template("<div class='form-avatar'></div>");
-                    groupItems.AddGroup().ColSpan(3).Items(secondGroupItems =>
-                    {
-                        secondGroupItems.AddSimpleFor(m => m.Titolo);
-                        secondGroupItems.AddSimpleFor(m => m.Descrizione)
-                        .Editor(e => e
-                            .TextArea()
-                            .Height(140)
-                        ); 
-                        secondGroupItems.AddSimpleFor(m => m.Locale.Id)
-                            .Editor(e => e
-                                .SelectBox()
-                                .Width("100%")
-                                .DisplayExpr("Name")
-                                .ValueExpr("Oid")
-                                .DataSource(ds => ds.WebApi()
-                                .Controller("AmbienteDati")
-                                .LoadAction("Get"))
-                            )
-                            .IsRequired(false);
-                    });
-                });
-        })
-        .FormData(Model)
-
-
-    )
-</div>

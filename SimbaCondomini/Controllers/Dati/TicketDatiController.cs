@@ -17,10 +17,10 @@ namespace SimbaCondomini.Controllers
         {
             ClassificazioneTicket cc = new ClassificazioneTicket();
             var ccc = cc.GetAll();
-            List<Models.TicketCommunicationClassification> list = new List<Models.TicketCommunicationClassification>();
+            List<Simba.Businness.Models.TicketCommunicationClassification> list = new List<Simba.Businness.Models.TicketCommunicationClassification>();
             foreach (var c in ccc)
             {
-                list.Add(new Models.TicketCommunicationClassification(c.Oid, c.Nome, c.Descrizione));
+                list.Add(new Simba.Businness.Models.TicketCommunicationClassification(c.Oid, c.Nome, c.Descrizione));
             }
             return Request.CreateResponse(DataSourceLoader.Load(list, loadOptions));
         }

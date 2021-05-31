@@ -3,17 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace SimbaCondomini.Models
+namespace Simba.Businness.Models
 {
-    public class Edificio
+    public class TicketCommunicationClassification
     {
-        public Edificio(int id, string nome, int condominium)
+        public TicketCommunicationClassification(int oid, string nome, string descrizione)
         {
-            this.Id = id;
+            this.Oid = oid;
             this.Nome = nome;
-            this.Condominium = condominium;
+            this.Descrizione = descrizione;
         }
-        public int Id
+        public int Oid
         {
             get;
             private set;
@@ -23,7 +23,7 @@ namespace SimbaCondomini.Models
             get;
             private set;
         }
-        public int Condominium
+        public string Descrizione
         {
             get;
             private set;

@@ -91,6 +91,8 @@ namespace Simba.DataLayer.simba_condomini
         }
         [Association(@"TicketStatusesReferencesTicket")]
         public XPCollection<TicketStatuses> TicketStatusesCollection { get { return GetCollection<TicketStatuses>(nameof(TicketStatusesCollection)); } }
+        [Association(@"TicketDocumentReferencesTicket")]
+        public XPCollection<TicketDocument> TicketDocuments { get { return GetCollection<TicketDocument>(nameof(TicketDocuments)); } }
     }
 
 }
