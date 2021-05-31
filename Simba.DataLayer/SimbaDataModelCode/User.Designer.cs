@@ -66,11 +66,12 @@ namespace Simba.DataLayer.simba_condomini
             get { return fScala; }
             set { SetPropertyValue<int>(nameof(Scala), ref fScala, value); }
         }
-        int fInterno;
-        public int Interno
+        Environment fEnvironment;
+        [Association(@"UserReferencesEnvironment")]
+        public Environment Environment
         {
-            get { return fInterno; }
-            set { SetPropertyValue<int>(nameof(Interno), ref fInterno, value); }
+            get { return fEnvironment; }
+            set { SetPropertyValue<Environment>(nameof(Environment), ref fEnvironment, value); }
         }
         int fAzienda;
         public int Azienda
@@ -113,6 +114,8 @@ namespace Simba.DataLayer.simba_condomini
         public XPCollection<Communications> CommunicationsCollection { get { return GetCollection<Communications>(nameof(CommunicationsCollection)); } }
         [Association(@"TicketReferencesUser")]
         public XPCollection<Ticket> Tickets { get { return GetCollection<Ticket>(nameof(Tickets)); } }
+        [Association(@"UserCondominiumReferencesUser")]
+        public XPCollection<UserCondominium> UserCondominiums { get { return GetCollection<UserCondominium>(nameof(UserCondominiums)); } }
     }
 
 }

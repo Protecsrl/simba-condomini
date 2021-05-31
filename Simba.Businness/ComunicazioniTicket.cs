@@ -11,7 +11,8 @@ namespace Simba.Businness
 {
     public class ComunicazioniTicket : BusinnessBase
     {
-        public int getNewId(){
+        public int getNewId()
+        {
             using (UnitOfWork uw = new UnitOfWork())
             {
                 var mc = uw.Query<Communications>().
@@ -21,6 +22,15 @@ namespace Simba.Businness
                 var max = mc > mt ? mc : mt;
                 return max + 1;
             }
+        }
+
+        public LookupItem getEnvironmenti(int userId)
+        {
+            return new LookupItem()
+            {
+                Id = 1,
+                Text = "app2 cond 3"
+            };
         }
     }
 }

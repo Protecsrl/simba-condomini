@@ -76,6 +76,10 @@
     <Compile Include="SimbaDataModelCode\Environment.Designer.cs">
       <DependentUpon>Environment.cs</DependentUpon>
     </Compile>
+    <Compile Include="SimbaDataModelCode\P__RefactorLog.cs" />
+    <Compile Include="SimbaDataModelCode\P__RefactorLog.Designer.cs">
+      <DependentUpon>P__RefactorLog.cs</DependentUpon>
+    </Compile>
     <Compile Include="SimbaDataModelCode\Stair.cs" />
     <Compile Include="SimbaDataModelCode\Stair.Designer.cs">
       <DependentUpon>Stair.cs</DependentUpon>

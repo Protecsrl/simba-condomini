@@ -18,15 +18,27 @@ namespace Simba.DataLayer.simba_condomini
 
     public partial class UserCondominium : XPLiteObject
     {
-        public struct CompoundKey1Struct
+        User fIdUser;
+        [Association(@"UserCondominiumReferencesUser")]
+        public User IdUser
         {
-            [Persistent("IdUser")]
-            public int IdUser { get; set; }
-            [Persistent("IdCondominium")]
-            public int IdCondominium { get; set; }
+            get { return fIdUser; }
+            set { SetPropertyValue<User>(nameof(IdUser), ref fIdUser, value); }
         }
-        [Key, Persistent]
-        public CompoundKey1Struct CompoundKey1;
+        Condominium fIdCondominium;
+        [Association(@"UserCondominiumReferencesCondominium")]
+        public Condominium IdCondominium
+        {
+            get { return fIdCondominium; }
+            set { SetPropertyValue<Condominium>(nameof(IdCondominium), ref fIdCondominium, value); }
+        }
+        int fOid;
+        [Key(true)]
+        public int Oid
+        {
+            get { return fOid; }
+            set { SetPropertyValue<int>(nameof(Oid), ref fOid, value); }
+        }
     }
 
 }

@@ -52,6 +52,8 @@ namespace Simba.DataLayer.simba_condomini
             get { return fValid; }
             set { SetPropertyValue<bool>(nameof(Valid), ref fValid, value); }
         }
+        [Association(@"UserReferencesEnvironment")]
+        public XPCollection<User> Users { get { return GetCollection<User>(nameof(Users)); } }
     }
 
 }
