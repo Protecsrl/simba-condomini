@@ -19,7 +19,7 @@ namespace SimbaCondomini.Controllers
         private ActionResult NuovoTicket()
         {
             AddTicket model = new AddTicket();
-
+            model.StoricoStati = new List<TicketStatus>();
             model.Number = new Simba.Businness.ComunicazioniTicket().getNewId();
             model.Owner = new Simba.Businness.ComunicazioniTicket().getEnvironmenti(1).Text;
 
