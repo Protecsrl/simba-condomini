@@ -1,9 +1,7 @@
 ﻿using DevExpress.Xpo;
-using Simba.Businness;
 using Simba.DataLayer.simba_condomini;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Web;
 
 namespace Simba.Businness.Models
@@ -19,6 +17,8 @@ namespace Simba.Businness.Models
         public int Number { get; set; }
         public string Owner { get; set; }
         public int ClasseTicket { get; set; }
+
+        public int Stato { get; set; }
         public List<LookupItem> ClasseTicketList { get; set; }
         public string Titolo { get; set; }
         public string Descrizione { get; set; }
@@ -27,7 +27,7 @@ namespace Simba.Businness.Models
         public LookupItem Scala { get; set; }
         public LookupItem Piano { get; set; }
         public List<TicketStatus> StoricoStati { get; set; }
-        public List<Document> Files { get; set; }
+        public HttpPostedFileBase Files { get; set; }
 
         public Simba.DataLayer.simba_condomini.Ticket ToXpoModel(AddTicket obj)
         {

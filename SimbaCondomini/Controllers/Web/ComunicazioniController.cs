@@ -1,6 +1,7 @@
 ﻿using Simba.Businness.Models;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -28,7 +29,7 @@ namespace SimbaCondomini.Controllers
 
         public ActionResult NuovoTicket(int? id)
         {
-            if (id <= 0 || id==null)
+            if (id <= 0 || id == null)
             {
                 return NuovoTicket();
             }
@@ -37,18 +38,20 @@ namespace SimbaCondomini.Controllers
             model.Oid = id.HasValue ? id.Value : 0;
             model.Number = new Simba.Businness.ComunicazioniTicket().getNewId();
             model.Owner = new Simba.Businness.ComunicazioniTicket().getEnvironmenti(1).Text;
-            var ticketStatuse = new Simba.Businness.Ticket().GetTicketStatuses(model.Oid);
+            var ticketStatuses = new Simba.Businness.Ticket().GetTicketStatuses(model.Oid).OrderByDescending(s => s.Oid);
             model.StoricoStati = new List<TicketStatus>();
-            foreach (var ts in ticketStatuse)
+            foreach (var ts in ticketStatuses)
             {
                 model.StoricoStati.Add(new TicketStatus(ts.Data, ts.IdStatus.Name, ts.Descrizione));
             }
+            if (ticketStatuses.Any()) { model.Stato = ticketStatuses.First().Oid; }
+
 
             return View(model);
         }
 
         [HttpPost]
-        public ActionResult NuovoTicket(AddTicket model)
+        public ActionResult NuovoTicket(AddTicket model, HttpPostedFileBase files)
         {
             var ticketStatuse = new Simba.Businness.Ticket().GetTicketStatuses(faketicket);
             model.StoricoStati = new List<TicketStatus>();
@@ -65,6 +68,31 @@ namespace SimbaCondomini.Controllers
                 new Simba.Businness.Ticket().SaveTicket(model);
             }
             return View(model);
+        }
+
+
+        [HttpPost]
+        public ActionResult Upload()
+        {
+            // Learn to use the entire functionality of the dxFileUploader widget.
+            // http://js.devexpress.com/Documentation/Guide/UI_Widgets/UI_Widgets_-_Deep_Dive/dxFileUploader/
+
+            var myFile = Request.Files["Files"];
+            var targetLocation = Server.MapPath("~/Content/Files/");
+
+            try
+            {
+                var path = Path.Combine(targetLocation, myFile.FileName);
+
+                //Uncomment to save the file
+                //myFile.SaveAs(path);
+            }
+            catch
+            {
+                Response.StatusCode = 400;
+            }
+
+            return new EmptyResult();
         }
     }
 }

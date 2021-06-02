@@ -12,6 +12,8 @@ namespace Simba.DataLayer.simba_condomini
     {
         public Ticket(Session session) : base(session) { }
         public override void AfterConstruction() { base.AfterConstruction(); }
+        [NonPersistent]
+        public int classification { get; set;  }
     }
 
 }
