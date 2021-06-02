@@ -14,10 +14,10 @@ namespace SimbaCondomini.Controllers
         {
             Comunicazioni c = new Comunicazioni();
             var data = c.GetUserCommunication(5);
-            var datac = new List<SimbaCondomini.Models.Comunicazioni>();
+            var datac = new List<Simba.Businness.Models.ComunicazioniTicket>();
             foreach (var cc in data)
             {
-                datac.Add(new SimbaCondomini.Models.Comunicazioni(cc.Oid, cc.Testo, cc.ParentCommunication, cc.User.Nome, cc.Condominium.NomeCondominio, cc.DateInsert));
+                datac.Add(new Simba.Businness.Models.ComunicazioniTicket(Simba.Businness.Models.ItemType.Comunicazione, cc.Oid, cc.Testo, cc.ParentCommunication, cc.User.Nome, cc.Condominium.NomeCondominio, cc.DateInsert));
             }
 
 
@@ -28,7 +28,7 @@ namespace SimbaCondomini.Controllers
             foreach (var cc in dataT)
             {
                 var cond = cc.Condominium != null ? cc.Condominium.NomeCondominio : string.Empty;
-                datac.Add(new SimbaCondomini.Models.Comunicazioni(cc.Oid, cc.Note, 0, cc.User.Nome, cond, cc.DateCreation));
+                datac.Add(new Simba.Businness.Models.ComunicazioniTicket(Simba.Businness.Models.ItemType.Ticket, cc.Oid, cc.Note, 0, cc.User.Nome, cond, cc.DateCreation));
             }
 
             datac.Sort();

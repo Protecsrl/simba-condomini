@@ -3,11 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace SimbaCondomini.Models
+namespace Simba.Businness.Models
 {
-    public class Comunicazioni: IComparable<Comunicazioni>
+    public enum ItemType {
+        Comunicazione=0,
+        Ticket=1
+    }
+    public class ComunicazioniTicket: IComparable<ComunicazioniTicket>
     {
-        public Comunicazioni(int oid, string testo, int parentCommunication, string user, string condominium, DateTime dateInsert)
+        public ComunicazioniTicket(ItemType type, int oid, string testo, int parentCommunication, string user, string condominium, DateTime dateInsert)
         {
             this.Oid = oid;
             this.Testo = testo;
@@ -15,6 +19,13 @@ namespace SimbaCondomini.Models
             this.User = user;
             this.Condominium = condominium;
             this.DateInsert = dateInsert;
+            this.Type = type;
+        }
+
+        public ItemType Type
+        {
+            get;
+            private set;
         }
 
         public int Oid
@@ -48,7 +59,7 @@ namespace SimbaCondomini.Models
             private set;
         }
 
-        public int CompareTo(Comunicazioni other)
+        public int CompareTo(ComunicazioniTicket other)
         {
             if (other == null)
                 return 1;

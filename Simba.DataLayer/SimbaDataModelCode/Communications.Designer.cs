@@ -25,6 +25,12 @@ namespace Simba.DataLayer.simba_condomini
             get { return fOid; }
             set { SetPropertyValue<int>(nameof(Oid), ref fOid, value); }
         }
+        int fNumber;
+        public int Number
+        {
+            get { return fNumber; }
+            set { SetPropertyValue<int>(nameof(Number), ref fNumber, value); }
+        }
         string fTesto;
         [Size(50)]
         public string Testo
@@ -57,6 +63,13 @@ namespace Simba.DataLayer.simba_condomini
         {
             get { return fDateInsert; }
             set { SetPropertyValue<DateTime>(nameof(DateInsert), ref fDateInsert, value); }
+        }
+        CommunicationType fType;
+        [Association(@"CommunicationsReferencesCommunicationType")]
+        public CommunicationType Type
+        {
+            get { return fType; }
+            set { SetPropertyValue<CommunicationType>(nameof(Type), ref fType, value); }
         }
     }
 

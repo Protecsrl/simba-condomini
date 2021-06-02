@@ -18,27 +18,40 @@ namespace Simba.DataLayer.simba_condomini
 
     public partial class TicketDocument : XPLiteObject
     {
+        Ticket fIdTicket;
+        [Association(@"TicketDocumentReferencesTicket")]
+        public Ticket IdTicket
+        {
+            get { return fIdTicket; }
+            set { SetPropertyValue<Ticket>(nameof(IdTicket), ref fIdTicket, value); }
+        }
+        Documents fIdDocument;
+        [Association(@"TicketDocumentReferencesDocuments")]
+        public Documents IdDocument
+        {
+            get { return fIdDocument; }
+            set { SetPropertyValue<Documents>(nameof(IdDocument), ref fIdDocument, value); }
+        }
         DateTime fDate;
         public DateTime Date
         {
             get { return fDate; }
             set { SetPropertyValue<DateTime>(nameof(Date), ref fDate, value); }
         }
-        int fUserId;
-        public int UserId
+        User fUserId;
+        [Association(@"TicketDocumentReferencesUser")]
+        public User UserId
         {
             get { return fUserId; }
-            set { SetPropertyValue<int>(nameof(UserId), ref fUserId, value); }
+            set { SetPropertyValue<User>(nameof(UserId), ref fUserId, value); }
         }
-        public struct CompoundKey1Struct
+        int fOid;
+        [Key(true)]
+        public int Oid
         {
-            [Persistent("IdTicket")]
-            public int IdTicket { get; set; }
-            [Persistent("IdDocument")]
-            public int IdDocument { get; set; }
+            get { return fOid; }
+            set { SetPropertyValue<int>(nameof(Oid), ref fOid, value); }
         }
-        [Key, Persistent]
-        public CompoundKey1Struct CompoundKey1;
     }
 
 }

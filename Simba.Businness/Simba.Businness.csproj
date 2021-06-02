@@ -50,8 +50,22 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BusinnessBase.cs" />
+    <Compile Include="ClassificazioneTicket.cs" />
     <Compile Include="Comunicazioni.cs" />
+    <Compile Include="ComunicazioniTicket.cs" />
     <Compile Include="Condomini.cs" />
+    <Compile Include="Edifici.cs" />
+    <Compile Include="Locali.cs" />
+    <Compile Include="LookupItem.cs" />
+    <Compile Include="Models\AddTicket.cs" />
+    <Compile Include="Models\Ambiente.cs" />
+    <Compile Include="Models\ComunicazioniTicket.cs" />
+    <Compile Include="Models\Condominio.cs" />
+    <Compile Include="Models\Document.cs" />
+    <Compile Include="Models\Edificio.cs" />
+    <Compile Include="Models\ModelBase.cs" />
+    <Compile Include="Models\TicketCommunicationClassification.cs" />
+    <Compile Include="Models\TicketStatus.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Ticket.cs" />
   </ItemGroup>

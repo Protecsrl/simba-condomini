@@ -82,6 +82,26 @@ namespace Simba.DataLayer.simba_condomini
             get { return fCondominium; }
             set { SetPropertyValue<Condominium>(nameof(Condominium), ref fCondominium, value); }
         }
+        string fDescrizione;
+        [Size(SizeAttribute.Unlimited)]
+        public string Descrizione
+        {
+            get { return fDescrizione; }
+            set { SetPropertyValue<string>(nameof(Descrizione), ref fDescrizione, value); }
+        }
+        string fTitolo;
+        [Size(50)]
+        public string Titolo
+        {
+            get { return fTitolo; }
+            set { SetPropertyValue<string>(nameof(Titolo), ref fTitolo, value); }
+        }
+        [Association(@"TicketStatusesReferencesTicket")]
+        public XPCollection<TicketStatuses> TicketStatusesCollection { get { return GetCollection<TicketStatuses>(nameof(TicketStatusesCollection)); } }
+        [Association(@"TicketDocumentReferencesTicket")]
+        public XPCollection<TicketDocument> TicketDocuments { get { return GetCollection<TicketDocument>(nameof(TicketDocuments)); } }
+        [Association(@"TicketClassificationsReferencesTicket")]
+        public XPCollection<TicketClassifications> TicketClassificationsCollection { get { return GetCollection<TicketClassifications>(nameof(TicketClassificationsCollection)); } }
     }
 
 }

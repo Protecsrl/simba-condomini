@@ -39,6 +39,8 @@ namespace Simba.DataLayer.simba_condomini
             get { return fDescrizione; }
             set { SetPropertyValue<string>(nameof(Descrizione), ref fDescrizione, value); }
         }
+        [Association(@"TicketClassificationsReferencesTicketClassification")]
+        public XPCollection<TicketClassifications> TicketClassificationsCollection { get { return GetCollection<TicketClassifications>(nameof(TicketClassificationsCollection)); } }
     }
 
 }

@@ -1,0 +1,74 @@
+﻿@using Simba.Businness.Models
+@model AddTicket
+
+@{
+    ViewBag.Title = "NuovaComunicazioneTicket";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Nuovo Ticket</h2>
+@using (Html.BeginForm("NuovoTicket", "Comunicazioni", FormMethod.Post))
+{
+    @(Html.DevExtreme().TextBoxFor(m=>m.Oid).ReadOnly(true))
+    <div id="form-demo">
+        <div class="widget-container">
+            <div>Nuovo ticket:</div>
+            <div>
+                <div>
+                    <div>Numero</div><div>@(Html.DevExtreme().TextBoxFor(m=>m.Number))</div>
+                </div>
+                <div>
+                    <div>Owner</div><div>@(Html.DevExtreme().TextBoxFor(m=>m.Owner))</div>
+                </div>
+                <div>
+                    <div>Classe</div><div>
+                        @(Html.DevExtreme().SelectBoxFor(m=>m.ClasseTicket)
+                            .DisplayExpr("Nome")
+                            .ValueExpr("Oid")
+                            .DataSource(ds => ds.WebApi()
+                            .Controller("ClassificazioneTicketDati")
+                            .LoadAction("Get"))
+                    )
+                    </div>
+                </div>
+                <div>
+                    <div>Titolo</div><div>@(Html.DevExtreme().TextBoxFor(m=>m.Titolo))</div>
+
+                </div>
+                <div>
+                    <div>Descrizione</div><div>@(Html.DevExtreme().TextAreaFor(m => m.Descrizione))</div>
+
+                </div>
+                <div>
+                    <div>Locale</div><div>
+                        @(Html.DevExtreme().SelectBoxFor(m=>m.Locale)
+                        .DisplayExpr("Name")
+                        .ValueExpr("Oid")
+                        .DataSource(ds => ds.WebApi()
+                        .Controller("AmbienteDati")
+                        .LoadAction("Get"))
+                    )
+                    </div>
+                </div>
+                <div>
+                    <div>Documenti e immagini</div><div>
+                        @(Html.DevExtreme().FileUploader().Multiple(true).UploadMode(FileUploadMode.UseForm).AllowCanceling(true).Name("Files"))
+                    </div>
+                </div>
+                <div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div>Stati</div>
+    foreach (var item in Model.StoricoStati)
+    {
+        <div>@item.DescrizioneStato</div>
+    }
+
+    <div><input type="submit" value="Submit" /></div>
+}
+
+
