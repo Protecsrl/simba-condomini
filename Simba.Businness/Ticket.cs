@@ -9,6 +9,15 @@ namespace Simba.Businness
 {
     public class Ticket : BusinnessBase
     {
+        public Simba.DataLayer.simba_condomini.Ticket getTicketById(int idTicket)
+        {
+            using (UnitOfWork uw = new UnitOfWork())
+            {
+                var data = uw.Query<Simba.DataLayer.simba_condomini.Ticket>().
+                Where(c => c.Oid == idTicket).First();
+                return data;
+            }
+        }
         public List<Simba.DataLayer.simba_condomini.Ticket> GetUserTicket(int? userId)
         {
             using (UnitOfWork uw = new UnitOfWork())
