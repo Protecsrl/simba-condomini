@@ -64,8 +64,6 @@ namespace Simba.DataLayer.simba_condomini
             get { return fLongitudine; }
             set { SetPropertyValue<double>(nameof(Longitudine), ref fLongitudine, value); }
         }
-        [Association(@"UserCondominiumReferencesCondominium")]
-        public XPCollection<UserCondominium> UserCondominiums { get { return GetCollection<UserCondominium>(nameof(UserCondominiums)); } }
         [Association(@"BuildingReferencesCondominium")]
         public XPCollection<Building> Buildings { get { return GetCollection<Building>(nameof(Buildings)); } }
         [Association(@"CommunicationsReferencesCondominium")]
@@ -74,6 +72,8 @@ namespace Simba.DataLayer.simba_condomini
         public XPCollection<Ticket> Tickets { get { return GetCollection<Ticket>(nameof(Tickets)); } }
         [Association(@"ContractsReferencesCondominium")]
         public XPCollection<Contracts> ContractsCollection { get { return GetCollection<Contracts>(nameof(ContractsCollection)); } }
+        [Association(@"UserCondominiumReferencesCondominium")]
+        public XPCollection<UserCondominium> UserCondominiums { get { return GetCollection<UserCondominium>(nameof(UserCondominiums)); } }
     }
 
 }

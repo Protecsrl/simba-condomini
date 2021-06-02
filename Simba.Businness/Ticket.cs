@@ -35,16 +35,30 @@ namespace Simba.Businness
         {
             using (UnitOfWork uw = new UnitOfWork())
             {
+                var user = uw.GetObjectByKey<DataLayer.simba_condomini.User>(5);
+
                 DataLayer.simba_condomini.Ticket ticket = new DataLayer.simba_condomini.Ticket(uw)
                 {
                     Descrizione = obj.Descrizione,
+                    Titolo = obj.Titolo,
+                    TicketStatus = 1,
                     Data = DateTime.Now,
                     Note = obj.Note,
                     Number = obj.Number,
-                    DateCreation = DateTime.Now
+                    DateCreation = DateTime.Now,
+                    User = user
                 };
 
+
+                var classification = uw.GetObjectByKey<DataLayer.simba_condomini.TicketClassification>(1);
+
+                DataLayer.simba_condomini.TicketClassifications classeTicket = new DataLayer.simba_condomini.TicketClassifications(uw)
+                {
+                    IdTicket = ticket,
+                    IdClassification = classification
+                };
                 ticket.Save();
+                classeTicket.Save();
                 uw.CommitChanges();
             }
         }

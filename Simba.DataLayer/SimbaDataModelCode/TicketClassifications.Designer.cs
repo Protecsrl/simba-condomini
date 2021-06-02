@@ -18,27 +18,40 @@ namespace Simba.DataLayer.simba_condomini
 
     public partial class TicketClassifications : XPLiteObject
     {
+        Ticket fIdTicket;
+        [Association(@"TicketClassificationsReferencesTicket")]
+        public Ticket IdTicket
+        {
+            get { return fIdTicket; }
+            set { SetPropertyValue<Ticket>(nameof(IdTicket), ref fIdTicket, value); }
+        }
+        TicketClassification fIdClassification;
+        [Association(@"TicketClassificationsReferencesTicketClassification")]
+        public TicketClassification IdClassification
+        {
+            get { return fIdClassification; }
+            set { SetPropertyValue<TicketClassification>(nameof(IdClassification), ref fIdClassification, value); }
+        }
         DateTime fDateInser;
         public DateTime DateInser
         {
             get { return fDateInser; }
             set { SetPropertyValue<DateTime>(nameof(DateInser), ref fDateInser, value); }
         }
-        int fUserId;
-        public int UserId
+        User fUserId;
+        [Association(@"TicketClassificationsReferencesUser")]
+        public User UserId
         {
             get { return fUserId; }
-            set { SetPropertyValue<int>(nameof(UserId), ref fUserId, value); }
+            set { SetPropertyValue<User>(nameof(UserId), ref fUserId, value); }
         }
-        public struct CompoundKey1Struct
+        int fOid;
+        [Key]
+        public int Oid
         {
-            [Persistent("IdTicket")]
-            public int IdTicket { get; set; }
-            [Persistent("IdClassification")]
-            public int IdClassification { get; set; }
+            get { return fOid; }
+            set { SetPropertyValue<int>(nameof(Oid), ref fOid, value); }
         }
-        [Key, Persistent]
-        public CompoundKey1Struct CompoundKey1;
     }
 
 }
