@@ -82,4 +82,7 @@
   <ItemGroup>
     <RefactorLog Include="Simba.Database.refactorlog" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Simba.Database.publish.xml" />
+  </ItemGroup>
 </Project>

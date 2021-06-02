@@ -38,6 +38,9 @@ namespace SimbaCondomini.Controllers
             model.Number = new Simba.Businness.ComunicazioniTicket().getNewId();
             model.Owner = new Simba.Businness.ComunicazioniTicket().getEnvironmenti(1).Text;
             var ticketStatuse = new Simba.Businness.Ticket().GetTicketStatuses(model.Oid);
+            var ticket = new Simba.Businness.Ticket().getTicketById(model.Oid);
+            model.Titolo = ticket.Titolo;
+            model.Descrizione = ticket.Descrizione;
             model.StoricoStati = new List<TicketStatus>();
             foreach (var ts in ticketStatuse)
             {
