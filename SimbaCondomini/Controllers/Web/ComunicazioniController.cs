@@ -1,4 +1,5 @@
-﻿using Simba.Businness.Models;
+﻿using Simba.Businness;
+using Simba.Businness.Models;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -11,19 +12,15 @@ namespace SimbaCondomini.Controllers
     public class ComunicazioniController : Controller
     {
         int faketicket = 5;
-        // GET: Comunicazioni
-        public ActionResult Index()
-        {
-            return View();
-        }
 
         private ActionResult NuovoTicket()
         {
-            AddTicket model = new AddTicket();
-            model.StoricoStati = new List<TicketStatus>();
-            model.Number = new Simba.Businness.ComunicazioniTicket().getNewId();
-            model.Owner = new Simba.Businness.ComunicazioniTicket().getEnvironmenti(1).Text;
-
+            int number = new Simba.Businness.ComunicazioniTicket().getNewId();
+            string owner = new Simba.Businness.ComunicazioniTicket().getEnvironmenti(1).Text;
+            var user = new Simba.Businness.User().GetUser();
+            LookupItem locale = new LookupItem() { Id = user.Environment.Oid };
+            AddTicket model = new AddTicket(0, number, owner, 0, 1, null, null, null, null, locale, null, null, new List<TicketStatus>(), null);
+            
             return View(model);
         }
 
@@ -33,23 +30,27 @@ namespace SimbaCondomini.Controllers
             {
                 return NuovoTicket();
             }
-            AddTicket model = new AddTicket();
 
-            model.Oid = id.HasValue ? id.Value : 0;
-            model.Number = new Simba.Businness.ComunicazioniTicket().getNewId();
-            model.Owner = new Simba.Businness.ComunicazioniTicket().getEnvironmenti(1).Text;
-            var ticketStatuses = new Simba.Businness.Ticket().GetTicketStatuses(model.Oid).OrderByDescending(s => s.Oid);
-            var ticket = new Simba.Businness.Ticket().getTicketById(model.Oid);
-            model.Titolo = ticket.Titolo;
-            model.Descrizione = ticket.Descrizione;
-            model.StoricoStati = new List<TicketStatus>();
+            int oid = id.HasValue ? id.Value : 0;
+            int number = new Simba.Businness.ComunicazioniTicket().getNewId();
+            string owner = new Simba.Businness.ComunicazioniTicket().getEnvironmenti(1).Text;
+            var ticketStatuses = new Simba.Businness.Ticket().GetTicketStatuses(oid).OrderByDescending(s => s.Oid);
+            var ticket = new Simba.Businness.Ticket().getTicketById(oid);
+            string titolo = ticket.Titolo;
+            string descrizione = ticket.Descrizione;
+            var storicoStati = new List<TicketStatus>();
             foreach (var ts in ticketStatuses)
             {
-                model.StoricoStati.Add(new TicketStatus(ts.Data, ts.IdStatus.Name, ts.Descrizione));
+                storicoStati.Add(new TicketStatus(ts.Data, ts.IdStatus.Name, ts.Descrizione));
             }
-            if (ticketStatuses.Any()) { model.Stato = ticketStatuses.First().Oid; }
+            int stato = 0;
+            if (ticketStatuses.Any()) { stato = ticketStatuses.First().Oid; }
 
+            var user = new Simba.Businness.User().GetUser();
 
+            LookupItem locale = new LookupItem() { Id = user.Environment.Oid };
+
+            AddTicket model = new AddTicket(oid, number, owner, 0, 1, null , titolo, descrizione, ticket.Note, locale, null, null, storicoStati, null);
             return View(model);
         }
 

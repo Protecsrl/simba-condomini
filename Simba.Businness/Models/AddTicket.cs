@@ -8,9 +8,25 @@ namespace Simba.Businness.Models
 {
     public class AddTicket
     {
-        public AddTicket()
+        public AddTicket(int oid, int number, string owner, int classeTicket, int stato,
+        List<LookupItem> classeTicketList, string titolo, string descrizione, string note,
+        LookupItem locale, LookupItem scala, LookupItem piano,  List<TicketStatus> storicoStati,
+        HttpPostedFileBase files)
         {
             ClasseTicketList = new List<LookupItem>();
+            this.Oid = oid;
+            this.Number = number;
+            this.Owner = owner;
+            this.ClasseTicket = classeTicket;
+            this.Titolo = titolo;
+            this.Descrizione = descrizione;
+            this.Locale = locale;
+            this.Note = note;
+            this.Scala = scala;
+            this.Piano = piano;
+            this.StoricoStati = storicoStati;
+            this.Files = files;
+
         }
 
         public int Oid { get; set; }
