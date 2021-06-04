@@ -44,7 +44,7 @@
                         @(Html.DevExtreme().SelectBoxFor(m=>m.Locale)
                         .DisplayExpr("Name")
                         .ValueExpr("Oid")
-                        .Value(new JS(Model.Locale.Id.ToString()))
+                        .Value(Model.Locale.Id)
                         .DataSource(ds => ds.WebApi()
                         .Controller("AmbienteDati")
                         .LoadAction("Get"))

@@ -96,12 +96,12 @@ namespace Simba.DataLayer.simba_condomini
             get { return fTitolo; }
             set { SetPropertyValue<string>(nameof(Titolo), ref fTitolo, value); }
         }
-        [Association(@"TicketStatusesReferencesTicket")]
-        public XPCollection<TicketStatuses> TicketStatusesCollection { get { return GetCollection<TicketStatuses>(nameof(TicketStatusesCollection)); } }
-        [Association(@"TicketDocumentReferencesTicket")]
-        public XPCollection<TicketDocument> TicketDocuments { get { return GetCollection<TicketDocument>(nameof(TicketDocuments)); } }
         [Association(@"TicketClassificationsReferencesTicket")]
         public XPCollection<TicketClassifications> TicketClassificationsCollection { get { return GetCollection<TicketClassifications>(nameof(TicketClassificationsCollection)); } }
+        [Association(@"TicketDocumentReferencesTicket")]
+        public XPCollection<TicketDocument> TicketDocuments { get { return GetCollection<TicketDocument>(nameof(TicketDocuments)); } }
+        [Association(@"TicketStatusesReferencesTicket")]
+        public XPCollection<TicketStatuses> TicketStatusesCollection { get { return GetCollection<TicketStatuses>(nameof(TicketStatusesCollection)); } }
     }
 
 }
