@@ -4,7 +4,7 @@
     [Password]    NVARCHAR (50) NOT NULL,
     [UserType]    INT           NOT NULL,
     [Nome]        NVARCHAR (50) NOT NULL,
-    [Congnome]    NVARCHAR (50) NOT NULL,
+    [Cognome]    NVARCHAR (50) NOT NULL,
     [Scala]       INT           NULL,
     [Environment]     INT           NULL,
     [Azienda]     INT           NULL,

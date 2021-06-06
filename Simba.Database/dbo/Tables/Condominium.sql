@@ -6,6 +6,7 @@
     [PartitaIva]     NVARCHAR (11)  NOT NULL,
     [Latitudine]     FLOAT (53)     NULL,
     [Longitudine]    FLOAT (53)     NULL,
+    [Code] NVARCHAR(6) NULL, 
     CONSTRAINT [PK_Condominium] PRIMARY KEY CLUSTERED ([Oid] ASC)
 );
 
