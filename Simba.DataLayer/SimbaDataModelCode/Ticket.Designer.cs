@@ -96,12 +96,33 @@ namespace Simba.DataLayer.simba_condomini
             get { return fTitolo; }
             set { SetPropertyValue<string>(nameof(Titolo), ref fTitolo, value); }
         }
-        [Association(@"TicketClassificationsReferencesTicket")]
-        public XPCollection<TicketClassifications> TicketClassificationsCollection { get { return GetCollection<TicketClassifications>(nameof(TicketClassificationsCollection)); } }
-        [Association(@"TicketDocumentReferencesTicket")]
-        public XPCollection<TicketDocument> TicketDocuments { get { return GetCollection<TicketDocument>(nameof(TicketDocuments)); } }
+        Building fBuilding;
+        [Association(@"TicketReferencesBuilding")]
+        public Building Building
+        {
+            get { return fBuilding; }
+            set { SetPropertyValue<Building>(nameof(Building), ref fBuilding, value); }
+        }
+        Environment fEnviroment;
+        [Association(@"TicketReferencesEnvironment")]
+        public Environment Enviroment
+        {
+            get { return fEnviroment; }
+            set { SetPropertyValue<Environment>(nameof(Enviroment), ref fEnviroment, value); }
+        }
+        string fCode;
+        [Size(12)]
+        public string Code
+        {
+            get { return fCode; }
+            set { SetPropertyValue<string>(nameof(Code), ref fCode, value); }
+        }
         [Association(@"TicketStatusesReferencesTicket")]
         public XPCollection<TicketStatuses> TicketStatusesCollection { get { return GetCollection<TicketStatuses>(nameof(TicketStatusesCollection)); } }
+        [Association(@"TicketDocumentReferencesTicket")]
+        public XPCollection<TicketDocument> TicketDocuments { get { return GetCollection<TicketDocument>(nameof(TicketDocuments)); } }
+        [Association(@"TicketClassificationsReferencesTicket")]
+        public XPCollection<TicketClassifications> TicketClassificationsCollection { get { return GetCollection<TicketClassifications>(nameof(TicketClassificationsCollection)); } }
     }
 
 }
