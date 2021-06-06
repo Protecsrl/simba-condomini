@@ -28,7 +28,7 @@ namespace SimbaCondomini.Controllers
 
             return View(model);
         }
-
+        [Authorize]
         public ActionResult NuovoTicket(int? id)
         {
             if (id <= 0 || id == null)
