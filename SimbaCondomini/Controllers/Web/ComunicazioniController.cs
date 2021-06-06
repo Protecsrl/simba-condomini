@@ -1,5 +1,6 @@
 ﻿using Simba.Businness;
 using Simba.Businness.Models;
+using Simba.Businness.Security;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -11,7 +12,11 @@ namespace SimbaCondomini.Controllers
 {
     public class ComunicazioniController : Controller
     {
-        int faketicket = 5;
+        int faketicket;
+
+        public ComunicazioniController(){
+            faketicket = 5;
+        }
 
         private ActionResult NuovoTicket()
         {
@@ -20,7 +25,7 @@ namespace SimbaCondomini.Controllers
             var user = new Simba.Businness.User().GetUser();
             LookupItem locale = new LookupItem() { Id = user.Environment.Oid };
             AddTicket model = new AddTicket(0, number, owner, 0, 1, null, null, null, null, locale, null, null, new List<TicketStatus>(), null);
-            
+
             return View(model);
         }
 
@@ -48,9 +53,9 @@ namespace SimbaCondomini.Controllers
 
             var user = new Simba.Businness.User().GetUser();
 
-            LookupItem locale = new LookupItem() { Id = user.Environment.Oid };
+            LookupItem locale = new LookupItem() { Id = ticket.Enviroment.Oid, Text= ticket.Enviroment.Name };
 
-            AddTicket model = new AddTicket(oid, number, owner, 0, 1, null , titolo, descrizione, ticket.Note, locale, null, null, storicoStati, null);
+            AddTicket model = new AddTicket(oid, number, owner, 0, 1, null, titolo, descrizione, ticket.Note, locale, null, null, storicoStati, null);
             return View(model);
         }
 
@@ -82,14 +87,18 @@ namespace SimbaCondomini.Controllers
             // http://js.devexpress.com/Documentation/Guide/UI_Widgets/UI_Widgets_-_Deep_Dive/dxFileUploader/
 
             var myFile = Request.Files["Files"];
-            var targetLocation = Server.MapPath("~/Content/Files/");
-
+            var targetLocation = Server.MapPath("~/Documents/");
+            DirectoryInfo di = new DirectoryInfo(targetLocation);
+            if (!di.GetDirectories().ToList().Contains(new DirectoryInfo("1")))
+            {
+                di.CreateSubdirectory("1");
+            }
             try
             {
-                var path = Path.Combine(targetLocation, myFile.FileName);
+                var path = Path.Combine(targetLocation, "1", myFile.FileName);
 
                 //Uncomment to save the file
-                //myFile.SaveAs(path);
+                myFile.SaveAs(path);
             }
             catch
             {

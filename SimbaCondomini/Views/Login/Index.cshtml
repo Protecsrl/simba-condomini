@@ -1,0 +1,25 @@
+﻿@model Simba.Businness.Models.Login
+
+@using (Html.BeginForm("Index", "Login", FormMethod.Post, new { id = "login" }))
+{
+
+    using (Html.DevExtreme().ValidationGroup())
+    {
+
+        // Creates a TextBox for the "Login" model property
+        @(Html.DevExtreme().TextBoxFor(model => model.User))
+
+        // Creates a TextBox for the "Password" model property
+        @(Html.DevExtreme().TextBoxFor(model => model.Password)
+                                    .Mode(TextBoxMode.Password))
+
+        @(Html.DevExtreme().Button()
+                                    .ID("logIn")
+                                    .Text("Log In")
+                                    .Type(ButtonType.Success)
+                                    // Instructs the Button to validate the TextBoxes and submit the form
+                                    .UseSubmitBehavior(true)
+                                )
+    }
+}
+

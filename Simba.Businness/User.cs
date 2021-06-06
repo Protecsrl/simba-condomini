@@ -1,4 +1,5 @@
 ﻿using DevExpress.Xpo;
+using Simba.Businness.Security;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +14,9 @@ namespace Simba.Businness
         {
             using (UnitOfWork uw = new UnitOfWork())
             {
-                var user = uw.GetObjectByKey<DataLayer.simba_condomini.User>(5);
+
+                FakeVariebiles d = new FakeVariebiles();
+                var user = uw.GetObjectByKey<DataLayer.simba_condomini.User>(d.UserId);
                 return user;
             }
         }

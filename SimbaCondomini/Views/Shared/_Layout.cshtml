@@ -31,9 +31,10 @@
 
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="navbar-nav mr-auto">
-                <li class="active nav-item"><a href="#" class="nav-link">Home</a></li>
-                <li class="nav-item"><a href="./Home/Index2" class="nav-link">Comunicazioni</a></li>
-                <li class="nav-item"><a href="./Comunicazioni/NuovoTicket" class="nav-link">Nuovo ticket</a></li>
+                <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "nav-item" })</li>
+                <li>@Html.ActionLink("Backeca", "Index2", "Home", new { area = "" }, new { @class = "nav-item" })</li>
+                <li>@Html.ActionLink("Nuovo ticket", "NuovoTicket", "Comunicazioni", new { area = "" }, new { @class = "nav-item" })</li>
+                <li>@Html.ActionLink("Login", "Index", "Login", new { area = "" }, new { @class = "nav-item" })</li>
             </ul>
         </div>
     </nav>
