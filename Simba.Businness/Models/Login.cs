@@ -8,6 +8,12 @@ namespace Simba.Businness.Models
 {
     public class Login
     {
+        public Login(string user, string password, string pessage)
+        {
+            this.User = user;
+            this.Password = password;
+            this.Message = Message;
+        }
 
         public string User
         {
@@ -16,6 +22,12 @@ namespace Simba.Businness.Models
         }
 
         public string Password
+        {
+            get;
+            private set;
+        }
+
+        public string Message
         {
             get;
             private set;

@@ -347,6 +347,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\Dati\AmbienteDatiController.cs" />
     <Compile Include="Controllers\Dati\ClassificazioneTicketDatiController.cs" />
+    <Compile Include="Controllers\Dati\CondominiumDatiController.cs" />
     <Compile Include="Controllers\Web\LoginController.cs" />
     <Compile Include="Controllers\Web\ComunicazioniController.cs" />
     <Compile Include="Controllers\Dati\ComunicazioniDatiController.cs" />

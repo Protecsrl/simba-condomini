@@ -11,13 +11,20 @@ using System.Web.Http;
 
 namespace SimbaCondomini.Controllers
 {
-    public class EdificiController : ApiController
+    public class EdificiDatiController : ApiController
     {
         // GET api/<controller>
         public HttpResponseMessage Get(DataSourceLoadOptions loadOptions)
         {
+            var idCondominio = 1;
+            var queryParams = Request.GetQueryNameValuePairs().ToDictionary(x => x.Key, x => x.Value);
+            if (queryParams.ContainsKey("idConominio"))
+            {
+                idCondominio = Convert.ToInt32(queryParams["idConominio"]);
+                //custom code  
+            }
             Edifici cc = new Edifici();
-            var ccc = cc.GetByCondominium(1);
+            var ccc = cc.GetByCondominium(idCondominio);
             List<Simba.Businness.Models.Edificio> list = new List<Simba.Businness.Models.Edificio>();
             foreach (var c in ccc)
             {
@@ -27,9 +34,23 @@ namespace SimbaCondomini.Controllers
         }
 
         // GET api/<controller>/5
-        public string Get(int id)
+        public HttpResponseMessage Get(int id, DataSourceLoadOptions loadOptions)
         {
-            return "value";
+            var idCondominio = 1;
+            var queryParams = Request.GetQueryNameValuePairs().ToDictionary(x => x.Key, x => x.Value);
+            if (queryParams.ContainsKey("idConominio"))
+            {
+                idCondominio = id;
+                //custom code  
+            }
+            Edifici cc = new Edifici();
+            var ccc = cc.GetByCondominium(idCondominio);
+            List<Simba.Businness.Models.Edificio> list = new List<Simba.Businness.Models.Edificio>();
+            foreach (var c in ccc)
+            {
+                list.Add(new Simba.Businness.Models.Edificio(c.Id, c.Nome, c.Condominium.Oid));
+            }
+            return Request.CreateResponse(DataSourceLoader.Load(list, loadOptions));
         }
 
         // POST api/<controller>

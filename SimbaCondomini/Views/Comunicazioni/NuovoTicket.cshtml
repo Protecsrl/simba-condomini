@@ -40,6 +40,31 @@
 
                 </div>
                 <div>
+                    <div>Condominio</div><div>
+                        @(Html.DevExtreme().SelectBoxFor(m=>m.Condominio)
+                        .DisplayExpr("NomeCondominio")
+                        .ValueExpr("Oid")
+                        .Value(Model.Locale.Id)
+                        .DataSource(ds => ds.WebApi()
+                        .Controller("CondominiumDati")
+                        .LoadAction("Get"))
+                    )
+                    </div>
+                </div>
+                <div>
+                    <div>Edificio</div><div>
+                        @(Html.DevExtreme().SelectBoxFor(m=>m.Edificio)
+                        .DisplayExpr("Nome")
+                        .ValueExpr("Oid")
+                        .Value(Model.Locale.Id)
+                        .DataSource(ds => ds.WebApi()
+                        .Controller("EdificiDati")
+                        .LoadParams(new { Id = 1 })
+                        .LoadAction("Get"))
+                    )
+                    </div>
+                </div>
+                <div>
                     <div>Locale</div><div>
                         @(Html.DevExtreme().SelectBoxFor(m=>m.Locale)
                         .DisplayExpr("Name")
