@@ -7,10 +7,10 @@
     {
 
         // Creates a TextBox for the "Login" model property
-        @(Html.DevExtreme().TextBoxFor(model => model.User))
+        @(Html.DevExtreme().TextBoxFor(model => model.User).Placeholder("Nome utente"))
 
         // Creates a TextBox for the "Password" model property
-        @(Html.DevExtreme().TextBoxFor(model => model.Password)
+        @(Html.DevExtreme().TextBoxFor(model => model.Password).Placeholder("Password")
                                     .Mode(TextBoxMode.Password))
 
         @(Html.DevExtreme().Button()

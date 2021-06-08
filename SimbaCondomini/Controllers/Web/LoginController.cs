@@ -44,9 +44,15 @@ namespace SimbaCondomini.Controllers
             //}
 
             var claims = new List<Claim>();
-
+            var userDb = new Simba.Businness.User().GetUser(user, password);
+            if(userDb==null){
+                return;
+            }
             // create required claims
             claims.Add(new Claim(ClaimTypes.NameIdentifier, user));
+            claims.Add(new Claim(ClaimTypes.Surname, userDb.Cognome));
+            claims.Add(new Claim(ClaimTypes.Name, userDb.Nome));
+            // claims.Add(new Claim(ClaimTypes.NameIdentifier, userDb.Oid.ToString()));
 
 
             var identity = new ClaimsIdentity(claims, DefaultAuthenticationTypes.ApplicationCookie);
