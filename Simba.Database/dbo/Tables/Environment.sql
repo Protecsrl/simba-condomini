@@ -5,6 +5,8 @@
     [Building]    INT            NOT NULL,
     [Valid]       BIT            NOT NULL,
     CONSTRAINT [PK_Environment] PRIMARY KEY CLUSTERED ([Oid] ASC),
-    CONSTRAINT [FK_Environment_Building] FOREIGN KEY ([Building]) REFERENCES [dbo].[Building] ([Id])
+    CONSTRAINT [FK_Environment_Building] FOREIGN KEY ([Building]) REFERENCES [dbo].[Building] ([Oid])
 );
+
+
 

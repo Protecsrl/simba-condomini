@@ -25,9 +25,10 @@
                         @(Html.DevExtreme().SelectBoxFor(m=>m.ClasseTicket)
                             .DisplayExpr("Nome")
                             .ValueExpr("Oid")
+                            .Value(Model.ClasseTicket.Id)
                             .DataSource(ds => ds.WebApi()
                             .Controller("ClassificazioneTicketDati")
-                            .LoadAction("Get"))
+                            .LoadAction("Get").Key("Oid"))
                     )
                     </div>
                 </div>
@@ -42,37 +43,41 @@
                 <div>
                     <div>Condominio</div><div>
                         @(Html.DevExtreme().SelectBoxFor(m=>m.Condominio)
+                        .ID("comboCondomini")
                         .DisplayExpr("NomeCondominio")
                         .ValueExpr("Oid")
-                        .Value(Model.Locale.Id)
+                        .Value(Model.Condominio.Id)
                         .DataSource(ds => ds.WebApi()
                         .Controller("CondominiumDati")
-                        .LoadAction("Get"))
+                        .LoadAction("Get").Key("Oid"))
+                        .OnValueChanged("onValueCondominioChanged")
                     )
                     </div>
                 </div>
                 <div>
                     <div>Edificio</div><div>
                         @(Html.DevExtreme().SelectBoxFor(m=>m.Edificio)
+                        .ID("comboEdifici")
                         .DisplayExpr("Nome")
                         .ValueExpr("Oid")
-                        .Value(Model.Locale.Id)
+                        .Value(Model.Edificio.Id)
                         .DataSource(ds => ds.WebApi()
                         .Controller("EdificiDati")
-                        .LoadParams(new { Id = 1 })
-                        .LoadAction("Get"))
+                        .LoadParams(new { Id = Model.Condominio.Id })
+                        .LoadAction("Get").Key("Id"))
                     )
                     </div>
                 </div>
                 <div>
                     <div>Locale</div><div>
                         @(Html.DevExtreme().SelectBoxFor(m=>m.Locale)
+                        .ID("comboLocali")
                         .DisplayExpr("Name")
                         .ValueExpr("Oid")
                         .Value(Model.Locale.Id)
                         .DataSource(ds => ds.WebApi()
                         .Controller("AmbienteDati")
-                        .LoadAction("Get"))
+                        .LoadAction("Get").Key("Oid"))
                     )
                     </div>
                 </div>
@@ -101,6 +106,17 @@
     }
 
     <div><input type="submit" value="Submit" /></div>
+
+    <script type="text/javascript">
+
+        function onValueCondominioChanged(e) {
+            let comboEdifici = $("#comboEdifici").dxSelectBox("instance");
+            let dataSource = comboEdifici.getDataSource();
+            dataSource.filter("id", "=", e.value);
+            dataSource.load();
+            comboEdifici.option("value", null);
+        }
+    </script>
 }
 
 

@@ -18,16 +18,24 @@ namespace SimbaCondomini.Controllers
             var datac = new List<Simba.Businness.Models.Ambiente>();
             foreach (var cc in data)
             {
-                datac.Add(new Simba.Businness.Models.Ambiente(cc.Oid, cc.Name, cc.Description, cc.Building.Id, cc.Valid));
+                datac.Add(new Simba.Businness.Models.Ambiente(cc.Oid, cc.Name, cc.Description, cc.Building.Oid, cc.Valid));
             }
 
             return Request.CreateResponse(DataSourceLoader.Load(datac, loadOptions));
         }
 
         // GET api/<controller>/5
-        public string Get(int id)
+        public HttpResponseMessage Get(int id, DataSourceLoadOptions loadOptions)
         {
-            return "value";
+            Locali a = new Locali();
+            var data = a.GetAll(id);
+            var datac = new List<Simba.Businness.Models.Ambiente>();
+            foreach (var cc in data)
+            {
+                datac.Add(new Simba.Businness.Models.Ambiente(cc.Oid, cc.Name, cc.Description, cc.Building.Oid, cc.Valid));
+            }
+
+            return Request.CreateResponse(DataSourceLoader.Load(datac, loadOptions));
         }
 
         // POST api/<controller>

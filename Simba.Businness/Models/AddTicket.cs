@@ -8,12 +8,11 @@ namespace Simba.Businness.Models
 {
     public class AddTicket
     {
-        public AddTicket(int oid, int number, string owner, int classeTicket, int stato,
-        List<LookupItem> classeTicketList, string titolo, string descrizione, string note,
-        LookupItem locale, LookupItem edificio, LookupItem scala,  List<TicketStatus> storicoStati,
+        public AddTicket(int oid, int number, string owner, int stato,
+        LookupItem classeTicket, string titolo, string descrizione, string note,
+        LookupItem locale, LookupItem edificio, LookupItem condominio, List<TicketStatus> storicoStati,
         HttpPostedFileBase files)
         {
-            ClasseTicketList = new List<LookupItem>();
             this.Oid = oid;
             this.Number = number;
             this.Owner = owner;
@@ -24,6 +23,7 @@ namespace Simba.Businness.Models
             this.Edificio = edificio;
             this.Locale = locale;
             this.StoricoStati = storicoStati;
+            this.Condominio = condominio;
             this.Files = files;
 
         }
@@ -31,10 +31,9 @@ namespace Simba.Businness.Models
         public int Oid { get; set; }
         public int Number { get; set; }
         public string Owner { get; set; }
-        public int ClasseTicket { get; set; }
+        public LookupItem ClasseTicket { get; set; }
 
         public int Stato { get; set; }
-        public List<LookupItem> ClasseTicketList { get; set; }
         public string Titolo { get; set; }
         public string Descrizione { get; set; }
         public string Note { get; set; }

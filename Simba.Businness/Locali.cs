@@ -15,7 +15,7 @@ namespace Simba.Businness
             using (UnitOfWork uw = new UnitOfWork())
             {
                 var data = uw.Query<DataLayer.simba_condomini.Environment>()
-                .Where(e => e.Building.Id == edificio).ToList();
+                .Where(e => e.Building.Oid == edificio).ToList();
                 return data;
             }
         }

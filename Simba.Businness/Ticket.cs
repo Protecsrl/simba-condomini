@@ -40,6 +40,18 @@ namespace Simba.Businness
             }
         }
 
+        public List<Simba.DataLayer.simba_condomini.TicketClassification> GetLastTicketClassification(int idTicket)
+        {
+            using (UnitOfWork uw = new UnitOfWork())
+            {
+                var data = uw.Query<Simba.DataLayer.simba_condomini.TicketClassifications>().
+                Where(c => c.IdTicket.Oid == idTicket).
+                Select(c=>c.IdClassification).
+                ToList();
+                return data;
+            }
+        }
+
         public void SaveTicket(AddTicket obj)
         {
             using (UnitOfWork uw = new UnitOfWork())
@@ -83,9 +95,9 @@ namespace Simba.Businness
                 ticket.Descrizione = obj.Descrizione;
                 ticket.Note = obj.Note;
                 ticket.Number = obj.Number;
-                if (obj.ClasseTicket != ticket.classification)
+                if (obj.ClasseTicket.Id != ticket.classification)
                 {
-                    ticket.classification = obj.ClasseTicket;
+                    ticket.classification = obj.ClasseTicket.Id;
                     var classification = uw.GetObjectByKey<DataLayer.simba_condomini.TicketClassification>(obj.ClasseTicket);
 
                     DataLayer.simba_condomini.TicketClassifications classeTicket = new DataLayer.simba_condomini.TicketClassifications(uw)
