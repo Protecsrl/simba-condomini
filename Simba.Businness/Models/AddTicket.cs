@@ -13,8 +13,8 @@ namespace Simba.Businness.Models
         }
 
         public AddTicket(int oid, int number, string owner, int stato,
-        LookupItem classeTicket, string titolo, string descrizione, string note,
-        LookupItem locale, LookupItem edificio, LookupItem condominio, List<TicketStatus> storicoStati,
+        int classeTicket, string titolo, string descrizione, string note,
+        int locale, int edificio, int condominio, List<TicketStatus> storicoStati,
         HttpPostedFileBase files)
         {
             this.Oid = oid;
@@ -35,15 +35,15 @@ namespace Simba.Businness.Models
         public int Oid { get; set; }
         public int Number { get; set; }
         public string Owner { get; set; }
-        public LookupItem ClasseTicket { get; set; }
+        public int ClasseTicket { get; set; }
 
         public int Stato { get; set; }
         public string Titolo { get; set; }
         public string Descrizione { get; set; }
         public string Note { get; set; }
-        public LookupItem Condominio { get; set; }
-        public LookupItem Edificio { get; set; }
-        public LookupItem Locale { get; set; }
+        public int Condominio { get; set; }
+        public int Edificio { get; set; }
+        public int Locale { get; set; }
         public List<TicketStatus> StoricoStati { get; set; }
         public HttpPostedFileBase Files { get; set; }
 

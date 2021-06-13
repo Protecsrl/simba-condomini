@@ -69,17 +69,16 @@ namespace Simba.Businness
                     DateCreation = DateTime.Now,
                     User = user
                 };
-
-
                 var classification = uw.GetObjectByKey<DataLayer.simba_condomini.TicketClassification>(obj.ClasseTicket);
+                ticket.classification = classification.Oid;
+                ticket.Save();
+                uw.CommitChanges();
 
                 DataLayer.simba_condomini.TicketClassifications classeTicket = new DataLayer.simba_condomini.TicketClassifications(uw)
                 {
                     IdTicket = ticket,
                     IdClassification = classification
                 };
-                ticket.classification = classification.Oid;
-                ticket.Save();
                 classeTicket.Save();
                 uw.CommitChanges();
             }
@@ -96,9 +95,9 @@ namespace Simba.Businness
                 ticket.Descrizione = obj.Descrizione;
                 ticket.Note = obj.Note;
                 ticket.Number = obj.Number;
-                if (obj.ClasseTicket.Id != ticket.classification)
+                if (obj.ClasseTicket != ticket.classification)
                 {
-                    ticket.classification = obj.ClasseTicket.Id;
+                    ticket.classification = obj.ClasseTicket;
                     var classification = uw.GetObjectByKey<DataLayer.simba_condomini.TicketClassification>(obj.ClasseTicket);
 
                     DataLayer.simba_condomini.TicketClassifications classeTicket = new DataLayer.simba_condomini.TicketClassifications(uw)
