@@ -14,7 +14,8 @@ namespace SimbaCondomini.Controllers
     {
         int faketicket;
 
-        public ComunicazioniController(){
+        public ComunicazioniController()
+        {
             faketicket = 5;
         }
 
@@ -24,7 +25,24 @@ namespace SimbaCondomini.Controllers
             string owner = new Simba.Businness.ComunicazioniTicket().getEnvironmenti(1).Text;
             var user = new Simba.Businness.User().GetUser();
             LookupItem locale = new LookupItem() { Id = user.Environment.Oid };
-            AddTicket model = new AddTicket(0, number, owner, 0, 1, null, null, null, null, locale, null, null, new List<TicketStatus>(), null);
+            LookupItem classeItem = new LookupItem()
+            {
+                Id = 0,
+                Text = null
+            };
+
+            LookupItem condominio = new LookupItem()
+            {
+                Id = 0,
+                Text = null
+            };
+
+            LookupItem edificio = new LookupItem()
+            {
+                Id = 0,
+                Text = null
+            };
+            AddTicket model = new AddTicket(0, number, owner, 0, classeItem, null, null, null, locale, edificio, condominio, new List<TicketStatus>(), null);
 
             return View(model);
         }
@@ -40,6 +58,7 @@ namespace SimbaCondomini.Controllers
             int number = new Simba.Businness.ComunicazioniTicket().getNewId();
             string owner = new Simba.Businness.ComunicazioniTicket().getEnvironmenti(1).Text;
             var ticketStatuses = new Simba.Businness.Ticket().GetTicketStatuses(oid).OrderByDescending(s => s.Oid);
+            var classe = new Simba.Businness.Ticket().GetLastTicketClassification(oid).FirstOrDefault();
             var ticket = new Simba.Businness.Ticket().getTicketById(oid);
             string titolo = ticket.Titolo;
             string descrizione = ticket.Descrizione;
@@ -51,11 +70,29 @@ namespace SimbaCondomini.Controllers
             int stato = 0;
             if (ticketStatuses.Any()) { stato = ticketStatuses.First().Oid; }
 
+            LookupItem classeItem = new LookupItem()
+            {
+                Id = classe.Oid,
+                Text = classe.Nome
+            };
+
+            LookupItem edificio = new LookupItem()
+            {
+                Id = ticket.Building.Oid,
+                Text = ticket.Building.Nome
+            };
+
+            LookupItem condominio = new LookupItem()
+            {
+                Id = ticket.Condominium.Oid,
+                Text = ticket.Condominium.NomeCondominio
+            };
+
             var user = new Simba.Businness.User().GetUser();
 
-            LookupItem locale = new LookupItem() { Id = ticket.Enviroment.Oid, Text= ticket.Enviroment.Name };
+            LookupItem locale = new LookupItem() { Id = ticket.Enviroment.Oid, Text = ticket.Enviroment.Name };
 
-            AddTicket model = new AddTicket(oid, number, owner, 0, 1, null, titolo, descrizione, ticket.Note, locale, null, null, storicoStati, null);
+            AddTicket model = new AddTicket(oid, number, owner, 0, classeItem, titolo, descrizione, ticket.Note, locale, edificio, condominio, storicoStati, null);
             return View(model);
         }
 

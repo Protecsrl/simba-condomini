@@ -18,12 +18,12 @@ namespace Simba.DataLayer.simba_condomini
 
     public partial class Building : XPLiteObject
     {
-        int fId;
+        int fOid;
         [Key(true)]
-        public int Id
+        public int Oid
         {
-            get { return fId; }
-            set { SetPropertyValue<int>(nameof(Id), ref fId, value); }
+            get { return fOid; }
+            set { SetPropertyValue<int>(nameof(Oid), ref fOid, value); }
         }
         string fNome;
         [Size(50)]
@@ -39,10 +39,10 @@ namespace Simba.DataLayer.simba_condomini
             get { return fCondominium; }
             set { SetPropertyValue<Condominium>(nameof(Condominium), ref fCondominium, value); }
         }
-        [Association(@"UserReferencesBuilding")]
-        public XPCollection<User> Users { get { return GetCollection<User>(nameof(Users)); } }
         [Association(@"EnvironmentReferencesBuilding")]
         public XPCollection<Environment> Environments { get { return GetCollection<Environment>(nameof(Environments)); } }
+        [Association(@"UserReferencesBuilding")]
+        public XPCollection<User> Users { get { return GetCollection<User>(nameof(Users)); } }
         [Association(@"TicketReferencesBuilding")]
         public XPCollection<Ticket> Tickets { get { return GetCollection<Ticket>(nameof(Tickets)); } }
     }
