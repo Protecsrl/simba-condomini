@@ -8,6 +8,10 @@ namespace Simba.Businness.Models
 {
     public class AddTicket
     {
+        public AddTicket(){
+
+        }
+
         public AddTicket(int oid, int number, string owner, int stato,
         LookupItem classeTicket, string titolo, string descrizione, string note,
         LookupItem locale, LookupItem edificio, LookupItem condominio, List<TicketStatus> storicoStati,

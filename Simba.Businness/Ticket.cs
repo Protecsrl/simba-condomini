@@ -78,6 +78,7 @@ namespace Simba.Businness
                     IdTicket = ticket,
                     IdClassification = classification
                 };
+                ticket.classification = classification.Oid;
                 ticket.Save();
                 classeTicket.Save();
                 uw.CommitChanges();

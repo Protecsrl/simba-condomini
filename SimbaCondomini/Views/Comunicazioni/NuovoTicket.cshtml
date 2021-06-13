@@ -63,8 +63,8 @@
                         .Value(Model.Edificio.Id)
                         .DataSource(ds => ds.WebApi()
                         .Controller("EdificiDati")
-                        .LoadParams(new { Id = Model.Condominio.Id })
-                        .LoadAction("Get").Key("Id"))
+                        .LoadAction("Get").Key("Oid"))
+                        .OnValueChanged("onValueEdificiChanged")
                     )
                     </div>
                 </div>
@@ -112,9 +112,18 @@
         function onValueCondominioChanged(e) {
             let comboEdifici = $("#comboEdifici").dxSelectBox("instance");
             let dataSource = comboEdifici.getDataSource();
-            dataSource.filter("id", "=", e.value);
+            dataSource.filter("Oid", "=", e.value);
             dataSource.load();
             comboEdifici.option("value", null);
+        }
+
+
+        function onValueEdificiChanged(e) {
+            let comboLocali = $("#comboLocali").dxSelectBox("instance");
+            let dataSource = comboLocali.getDataSource();
+            dataSource.filter("Oid", "=", e.value);
+            dataSource.load();
+            comboLocali.option("value", null);
         }
     </script>
 }
