@@ -22,6 +22,7 @@ namespace SimbaCondomini.Controllers
         // GET api/<controller>/5
         public HttpResponseMessage Get(int id, DataSourceLoadOptions loadOptions)
         {
+            loadOptions.Take = 10;
             var idCondominio = id;
             if(loadOptions.Filter!=null && loadOptions.Filter.Count>=3){
                 idCondominio = Convert.ToInt32(loadOptions.Filter[2]);

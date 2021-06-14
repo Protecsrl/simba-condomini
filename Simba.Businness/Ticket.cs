@@ -58,9 +58,16 @@ namespace Simba.Businness
             {
                 var user = uw.GetObjectByKey<DataLayer.simba_condomini.User>(5);
 
+                var condominio = uw.GetObjectByKey<DataLayer.simba_condomini.Condominium>(obj.Condominio);
+                var edificio = uw.GetObjectByKey<DataLayer.simba_condomini.Building>(obj.Edificio);
+                var locale = uw.GetObjectByKey<DataLayer.simba_condomini.Environment>(obj.Locale);
+
                 DataLayer.simba_condomini.Ticket ticket = new DataLayer.simba_condomini.Ticket(uw)
                 {
                     Descrizione = obj.Descrizione,
+                    Building = edificio,
+                    Condominium = condominio,
+                    Enviroment = locale,
                     Titolo = obj.Titolo,
                     TicketStatus = 1,
                     Data = DateTime.Now,
