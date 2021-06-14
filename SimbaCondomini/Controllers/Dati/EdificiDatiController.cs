@@ -24,8 +24,8 @@ namespace SimbaCondomini.Controllers
         {
             loadOptions.Take = 10;
             var idCondominio = id;
-            if(loadOptions.Filter!=null && loadOptions.Filter.Count>=3){
-                idCondominio = Convert.ToInt32(loadOptions.Filter[2]);
+            if(loadOptions.Filter!=null && loadOptions.Filter.Count>=2){
+                idCondominio = Convert.ToInt32(loadOptions.Filter[1]);
             }
             Edifici cc = new Edifici();
             var ccc = cc.GetByCondominium(idCondominio);

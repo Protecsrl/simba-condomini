@@ -96,12 +96,19 @@ namespace Simba.Businness
             using (UnitOfWork uw = new UnitOfWork())
             {
                 var ticket = uw.GetObjectByKey<DataLayer.simba_condomini.Ticket>(obj.Oid);
+                var condominio = uw.GetObjectByKey<DataLayer.simba_condomini.Condominium>(obj.Condominio);
+                var edificio = uw.GetObjectByKey<DataLayer.simba_condomini.Building>(obj.Edificio);
+                var locale = uw.GetObjectByKey<DataLayer.simba_condomini.Environment>(obj.Locale);
 
                 ticket.Data = DateTime.Now;
                 ticket.DateUpdate = DateTime.Now;
                 ticket.Descrizione = obj.Descrizione;
                 ticket.Note = obj.Note;
                 ticket.Number = obj.Number;
+                ticket.Condominium = condominio;
+                ticket.Building = edificio;
+                ticket.Enviroment = locale;
+
                 if (obj.ClasseTicket != ticket.classification)
                 {
                     ticket.classification = obj.ClasseTicket;

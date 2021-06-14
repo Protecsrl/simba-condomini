@@ -22,9 +22,9 @@ namespace SimbaCondomini.Controllers
         {
             loadOptions.Take = 10;
             Locali a = new Locali();
-            if (loadOptions.Filter != null && loadOptions.Filter.Count >= 3)
+            if (loadOptions.Filter != null && loadOptions.Filter.Count >= 2)
             {
-                id = Convert.ToInt32(loadOptions.Filter[2]);
+                id = Convert.ToInt32(loadOptions.Filter[1]);
             }
             var data = a.GetAll(id);
             var datac = new List<Simba.Businness.Models.Ambiente>();
