@@ -24,24 +24,11 @@ namespace SimbaCondomini.Controllers
             int number = new Simba.Businness.ComunicazioniTicket().getNewId();
             string owner = new Simba.Businness.ComunicazioniTicket().getEnvironmenti(1).Text;
             var user = new Simba.Businness.User().GetUser();
-            LookupItem locale = new LookupItem() { Id = user.Environment.Oid };
-            LookupItem classeItem = new LookupItem()
-            {
-                Id = 0,
-                Text = null
-            };
+            int locale = 0;
+            int classeItem = 0;
+            int condominio = 0;
+            int edificio = 0;
 
-            LookupItem condominio = new LookupItem()
-            {
-                Id = 0,
-                Text = null
-            };
-
-            LookupItem edificio = new LookupItem()
-            {
-                Id = 0,
-                Text = null
-            };
             AddTicket model = new AddTicket(0, number, owner, 0, classeItem, null, null, null, locale, edificio, condominio, new List<TicketStatus>(), null);
 
             return View(model);
@@ -70,27 +57,15 @@ namespace SimbaCondomini.Controllers
             int stato = 0;
             if (ticketStatuses.Any()) { stato = ticketStatuses.First().Oid; }
 
-            LookupItem classeItem = new LookupItem()
-            {
-                Id = classe.Oid,
-                Text = classe.Nome
-            };
+            int classeItem = classe.Oid;
 
-            LookupItem edificio = new LookupItem()
-            {
-                Id = ticket.Building.Oid,
-                Text = ticket.Building.Nome
-            };
+            int edificio = ticket.Building.Oid;
 
-            LookupItem condominio = new LookupItem()
-            {
-                Id = ticket.Condominium.Oid,
-                Text = ticket.Condominium.NomeCondominio
-            };
+            int condominio = ticket.Condominium.Oid;
 
             var user = new Simba.Businness.User().GetUser();
 
-            LookupItem locale = new LookupItem() { Id = ticket.Enviroment.Oid, Text = ticket.Enviroment.Name };
+            int locale = ticket.Enviroment.Oid;
 
             AddTicket model = new AddTicket(oid, number, owner, 0, classeItem, titolo, descrizione, ticket.Note, locale, edificio, condominio, storicoStati, null);
             return View(model);

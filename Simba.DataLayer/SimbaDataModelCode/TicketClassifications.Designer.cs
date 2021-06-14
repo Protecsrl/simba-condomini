@@ -46,7 +46,7 @@ namespace Simba.DataLayer.simba_condomini
             set { SetPropertyValue<User>(nameof(UserId), ref fUserId, value); }
         }
         int fOid;
-        [Key]
+        [Key(true)]
         public int Oid
         {
             get { return fOid; }

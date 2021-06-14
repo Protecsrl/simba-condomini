@@ -9,11 +9,11 @@ namespace Simba.Businness.Models
     {
         public Edificio(int id, string nome, int condominium)
         {
-            this.Id = id;
+            this.Oid = id;
             this.Nome = nome;
             this.Condominium = condominium;
         }
-        public int Id
+        public int Oid
         {
             get;
             private set;

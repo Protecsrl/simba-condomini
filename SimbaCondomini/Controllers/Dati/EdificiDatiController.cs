@@ -16,28 +16,16 @@ namespace SimbaCondomini.Controllers
         // GET api/<controller>
         public HttpResponseMessage Get(DataSourceLoadOptions loadOptions)
         {
-            var idCondominio = 1;
-            var queryParams = Request.GetQueryNameValuePairs().ToDictionary(x => x.Key, x => x.Value);
-            if (queryParams.ContainsKey("idConominio"))
-            {
-                idCondominio = Convert.ToInt32(queryParams["idConominio"]);
-                //custom code  
-            }
-            Edifici cc = new Edifici();
-            var ccc = cc.GetByCondominium(idCondominio);
-            List<Simba.Businness.Models.Edificio> list = new List<Simba.Businness.Models.Edificio>();
-            foreach (var c in ccc)
-            {
-                list.Add(new Simba.Businness.Models.Edificio(c.Oid, c.Nome, c.Condominium.Oid));
-            }
-            return Request.CreateResponse(DataSourceLoader.Load(list, loadOptions));
+            return Get(0, loadOptions);
         }
 
         // GET api/<controller>/5
         public HttpResponseMessage Get(int id, DataSourceLoadOptions loadOptions)
         {
             var idCondominio = id;
-            
+            if(loadOptions.Filter!=null && loadOptions.Filter.Count>=3){
+                idCondominio = Convert.ToInt32(loadOptions.Filter[2]);
+            }
             Edifici cc = new Edifici();
             var ccc = cc.GetByCondominium(idCondominio);
             List<Simba.Businness.Models.Edificio> list = new List<Simba.Businness.Models.Edificio>();

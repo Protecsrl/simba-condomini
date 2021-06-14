@@ -10,12 +10,12 @@ namespace Simba.Businness
 {
     public class Locali
     {
-        public List<DataLayer.simba_condomini.Environment> GetAll(int edificio)
+        public List<DataLayer.simba_condomini.Environment> GetAll(int? edificio)
         {
             using (UnitOfWork uw = new UnitOfWork())
             {
                 var data = uw.Query<DataLayer.simba_condomini.Environment>()
-                .Where(e => e.Building.Oid == edificio).ToList();
+                .Where(e => e.Building.Oid == edificio || !edificio.HasValue).ToList();
                 return data;
             }
         }
