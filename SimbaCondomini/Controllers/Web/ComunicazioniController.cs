@@ -119,5 +119,15 @@ namespace SimbaCondomini.Controllers
 
             return new EmptyResult();
         }
+
+        public ActionResult InsertComunicationTicket(){
+            return View();
+        }
+
+
+        public ActionResult NuovaComunicazione()
+        {
+            return View();
+        }
     }
 }

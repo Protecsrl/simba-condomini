@@ -24,8 +24,12 @@ namespace SimbaCondomini.Controllers
         {
             loadOptions.Take = 10;
             var idCondominio = id;
-            if(loadOptions.Filter!=null && loadOptions.Filter.Count>=2){
-                idCondominio = Convert.ToInt32(loadOptions.Filter[1]);
+            if (loadOptions.Filter != null && loadOptions.Filter.Count >= 2)
+            {
+                if (loadOptions.Filter[1].ToString() == "=")
+                    idCondominio = Convert.ToInt32(loadOptions.Filter[2]);
+                else
+                    idCondominio = Convert.ToInt32(loadOptions.Filter[1]);
             }
             Edifici cc = new Edifici();
             var ccc = cc.GetByCondominium(idCondominio);
@@ -34,7 +38,9 @@ namespace SimbaCondomini.Controllers
             {
                 list.Add(new Simba.Businness.Models.Edificio(c.Oid, c.Nome, c.Condominium.Oid));
             }
-            return Request.CreateResponse(DataSourceLoader.Load(list, loadOptions));
+
+            // return Request.CreateResponse(DataSourceLoader.Load(list, loadOptions));
+            return Request.CreateResponse(list);
         }
 
         // POST api/<controller>

@@ -1,0 +1,28 @@
+﻿
+@{
+    ViewBag.Title = "InsertComunicationTicket";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Inserisci</h2>
+<div>
+    @Html.DevExtreme().Button().Text("Ticket").Type(ButtonType.Normal).OnClick("GoToAddTicket")
+</div>
+<div>
+    @Html.DevExtreme().Button().Text("Comunicazione").Type(ButtonType.Normal).OnClick("GoToAddCommunication")
+</div>
+
+
+<script>
+    function GoToAddTicket(e) {
+        var buttonText = e.component.option("text");
+        DevExpress.ui.notify("The " + buttonText + " button was clicked");
+        window.location.href = "NuovoTicket";
+    }
+
+    function GoToAddCommunication(e) {
+        var buttonText = e.component.option("text");
+        DevExpress.ui.notify("The " + buttonText + " button was clicked");
+        window.location.href = "NuovaComunicazione";
+    }
+</script>

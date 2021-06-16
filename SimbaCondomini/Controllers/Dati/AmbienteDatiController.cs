@@ -24,7 +24,10 @@ namespace SimbaCondomini.Controllers
             Locali a = new Locali();
             if (loadOptions.Filter != null && loadOptions.Filter.Count >= 2)
             {
-                id = Convert.ToInt32(loadOptions.Filter[1]);
+                if (loadOptions.Filter[1].ToString() == "=")
+                    id = Convert.ToInt32(loadOptions.Filter[2]);
+                else
+                    id = Convert.ToInt32(loadOptions.Filter[1]);
             }
             var data = a.GetAll(id);
             var datac = new List<Simba.Businness.Models.Ambiente>();
@@ -32,8 +35,8 @@ namespace SimbaCondomini.Controllers
             {
                 datac.Add(new Simba.Businness.Models.Ambiente(cc.Oid, cc.Name, cc.Description, cc.Building.Oid, cc.Valid));
             }
-
-            return Request.CreateResponse(DataSourceLoader.Load(datac, loadOptions));
+            // return Request.CreateResponse(DataSourceLoader.Load(datac, loadOptions));
+            return Request.CreateResponse(datac);
         }
 
         // POST api/<controller>

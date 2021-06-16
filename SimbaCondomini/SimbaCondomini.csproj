@@ -331,6 +331,8 @@
     <Content Include="Views\Home\Index2.cshtml" />
     <Content Include="Views\Comunicazioni\NuovoTicket.cshtml" />
     <Content Include="Views\Login\Index.cshtml" />
+    <Content Include="Views\Comunicazioni\InsertComunicationTicket.cshtml" />
+    <Content Include="Views\Comunicazioni\NuovaComunicazione.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
