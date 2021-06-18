@@ -123,11 +123,27 @@ namespace SimbaCondomini.Controllers
         public ActionResult InsertComunicationTicket(){
             return View();
         }
-
-
-        public ActionResult NuovaComunicazione()
+        private ActionResult NuovaComunicazione()
         {
             return View();
+        }
+
+
+        public ActionResult NuovaComunicazione(int? id)
+        {
+            if (id <= 0 || id == null)
+            {
+                return NuovaComunicazione();
+            }
+
+            int oid = id.HasValue ? id.Value : 0;
+            var comunicazione = new Simba.Businness.Comunicazioni().getComunicazioneById(oid);
+            int number = new Simba.Businness.ComunicazioniTicket().getNewId();
+            string owner = new Simba.Businness.ComunicazioniTicket().getEnvironmenti(1).Text;
+            string titolo = comunicazione.Testo;
+            string descrizione = comunicazione.Testo;
+            AddComunicazione model = new AddComunicazione(oid, number, owner, 0, titolo, descrizione, string.Empty, 0, 0, 0, null);
+            return View(model);
         }
     }
 }

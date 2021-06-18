@@ -21,10 +21,22 @@
                                 <%if (Type==1){ %>
                                     <a href="/Comunicazioni/NuovoTicket/<%- Oid %>">Dettagli</a>
                                 <% } else { %>
-                                    <b>To do</b>
+                                    <a href="/Comunicazioni/NuovaComunicazione/<%- Oid %>">Dettagli</a>
                                 <% } %>
                             </div>
                         </text>)
     )
+</div>
+<div>
+    @Html.DevExtreme().Button().Text("Nuovo").Type(ButtonType.Normal).OnClick("GoToAddTicketCoomunication")
+</div>
 
+<script>
+    function GoToAddTicketCoomunication(e) {
+        var buttonText = e.component.option("text");
+        // DevExpress.ui.notify("The " + buttonText + " button was clicked");
+        window.location.href = "../Comunicazioni/InsertComunicationTicket";
+    }
+
+</script>
 

@@ -83,6 +83,7 @@
     <Compile Include="Edifici.cs" />
     <Compile Include="Locali.cs" />
     <Compile Include="LookupItem.cs" />
+    <Compile Include="Models\AddComunicazione.cs" />
     <Compile Include="Models\AddTicket.cs" />
     <Compile Include="Models\Ambiente.cs" />
     <Compile Include="Models\ComunicazioniTicket.cs" />

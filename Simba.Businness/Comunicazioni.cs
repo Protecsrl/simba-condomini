@@ -17,5 +17,15 @@ namespace Simba.Businness
                 return data;
             }
         }
+
+        public Simba.DataLayer.simba_condomini.Communications getComunicazioneById(int idCom)
+        {
+            using (UnitOfWork uw = new UnitOfWork())
+            {
+                var data = uw.Query<Simba.DataLayer.simba_condomini.Communications>().
+                Where(c => c.Oid == idCom).First();
+                return data;
+            }
+        }
     }
 }
