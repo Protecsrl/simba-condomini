@@ -31,12 +31,12 @@ namespace Simba.DataLayer.simba_condomini
             get { return fNumber; }
             set { SetPropertyValue<int>(nameof(Number), ref fNumber, value); }
         }
-        string fTesto;
+        string fTitolo;
         [Size(50)]
-        public string Testo
+        public string Titolo
         {
-            get { return fTesto; }
-            set { SetPropertyValue<string>(nameof(Testo), ref fTesto, value); }
+            get { return fTitolo; }
+            set { SetPropertyValue<string>(nameof(Titolo), ref fTitolo, value); }
         }
         int fParentCommunication;
         public int ParentCommunication
@@ -70,6 +70,20 @@ namespace Simba.DataLayer.simba_condomini
         {
             get { return fType; }
             set { SetPropertyValue<CommunicationType>(nameof(Type), ref fType, value); }
+        }
+        string fDescrizione;
+        [Size(500)]
+        public string Descrizione
+        {
+            get { return fDescrizione; }
+            set { SetPropertyValue<string>(nameof(Descrizione), ref fDescrizione, value); }
+        }
+        string fNote;
+        [Size(500)]
+        public string Note
+        {
+            get { return fNote; }
+            set { SetPropertyValue<string>(nameof(Note), ref fNote, value); }
         }
     }
 

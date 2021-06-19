@@ -33,6 +33,7 @@ namespace SimbaCondomini.Controllers
 
             return View(model);
         }
+
         [Authorize]
         public ActionResult NuovoTicket(int? id)
         {
@@ -72,6 +73,7 @@ namespace SimbaCondomini.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public ActionResult NuovoTicket(AddTicket model, HttpPostedFileBase files)
         {
             var ticketStatuse = new Simba.Businness.Ticket().GetTicketStatuses(faketicket);
@@ -93,6 +95,7 @@ namespace SimbaCondomini.Controllers
 
 
         [HttpPost]
+        [Authorize]
         public ActionResult Upload()
         {
             // Learn to use the entire functionality of the dxFileUploader widget.
@@ -120,15 +123,22 @@ namespace SimbaCondomini.Controllers
             return new EmptyResult();
         }
 
+        [Authorize]
         public ActionResult InsertComunicationTicket(){
             return View();
         }
+
+        [Authorize]
         private ActionResult NuovaComunicazione()
         {
-            return View();
+            int number = new Simba.Businness.ComunicazioniTicket().getNewId();
+            string owner = new Simba.Businness.ComunicazioniTicket().getEnvironmenti(1).Text;
+            AddComunicazione model = new AddComunicazione(0, number, owner, 0, null, null, string.Empty, 0, 0, 0, null);
+            return View(model);
         }
 
 
+        [Authorize]
         public ActionResult NuovaComunicazione(int? id)
         {
             if (id <= 0 || id == null)
@@ -140,9 +150,24 @@ namespace SimbaCondomini.Controllers
             var comunicazione = new Simba.Businness.Comunicazioni().getComunicazioneById(oid);
             int number = new Simba.Businness.ComunicazioniTicket().getNewId();
             string owner = new Simba.Businness.ComunicazioniTicket().getEnvironmenti(1).Text;
-            string titolo = comunicazione.Testo;
-            string descrizione = comunicazione.Testo;
+            string titolo = comunicazione.Titolo;
+            string descrizione = comunicazione.Descrizione;
             AddComunicazione model = new AddComunicazione(oid, number, owner, 0, titolo, descrizione, string.Empty, 0, 0, 0, null);
+            return View(model);
+        }
+
+        [Authorize]
+        [HttpPost]
+        public ActionResult NuovaComunicazione(AddComunicazione model)
+        {
+            if (model.Oid > 0)
+            {
+                new Simba.Businness.Comunicazioni().UpdateComunicazione(model);
+            }
+            else
+            {
+                new Simba.Businness.Comunicazioni().SaveComunicazione(model);
+            }
             return View(model);
         }
     }

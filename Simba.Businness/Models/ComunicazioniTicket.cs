@@ -5,11 +5,12 @@ using System.Web;
 
 namespace Simba.Businness.Models
 {
-    public enum ItemType {
-        Comunicazione=0,
-        Ticket=1
+    public enum ItemType
+    {
+        Comunicazione = 0,
+        Ticket = 1
     }
-    public class ComunicazioniTicket: IComparable<ComunicazioniTicket>
+    public class ComunicazioniTicket : IComparable<ComunicazioniTicket>
     {
         public ComunicazioniTicket(ItemType type, int oid, string testo, int parentCommunication, string user, string condominium, DateTime dateInsert)
         {
@@ -66,6 +67,11 @@ namespace Simba.Businness.Models
 
             else
                 return this.Oid.CompareTo(other.Oid);
+        }
+
+        public string FormattedDateInsert
+        {
+            get { return this.DateInsert.ToString("dd/MM/yyyy hh:mm"); }
         }
     }
 }

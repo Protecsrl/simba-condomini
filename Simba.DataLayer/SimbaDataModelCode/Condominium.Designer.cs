@@ -71,16 +71,16 @@ namespace Simba.DataLayer.simba_condomini
             get { return fCode; }
             set { SetPropertyValue<string>(nameof(Code), ref fCode, value); }
         }
-        [Association(@"BuildingReferencesCondominium")]
-        public XPCollection<Building> Buildings { get { return GetCollection<Building>(nameof(Buildings)); } }
         [Association(@"ContractsReferencesCondominium")]
         public XPCollection<Contracts> ContractsCollection { get { return GetCollection<Contracts>(nameof(ContractsCollection)); } }
-        [Association(@"CommunicationsReferencesCondominium")]
-        public XPCollection<Communications> CommunicationsCollection { get { return GetCollection<Communications>(nameof(CommunicationsCollection)); } }
-        [Association(@"UserCondominiumReferencesCondominium")]
-        public XPCollection<UserCondominium> UserCondominiums { get { return GetCollection<UserCondominium>(nameof(UserCondominiums)); } }
         [Association(@"TicketReferencesCondominium")]
         public XPCollection<Ticket> Tickets { get { return GetCollection<Ticket>(nameof(Tickets)); } }
+        [Association(@"CommunicationsReferencesCondominium")]
+        public XPCollection<Communications> CommunicationsCollection { get { return GetCollection<Communications>(nameof(CommunicationsCollection)); } }
+        [Association(@"BuildingReferencesCondominium")]
+        public XPCollection<Building> Buildings { get { return GetCollection<Building>(nameof(Buildings)); } }
+        [Association(@"UserCondominiumReferencesCondominium")]
+        public XPCollection<UserCondominium> UserCondominiums { get { return GetCollection<UserCondominium>(nameof(UserCondominiums)); } }
     }
 
 }

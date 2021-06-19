@@ -6,9 +6,9 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>NuovaComunicazione</h2>
+<h2>Nuova Comunicazione</h2>
 
-@using (Html.BeginForm("NuovoTicket", "Comunicazioni", FormMethod.Post))
+@using (Html.BeginForm("NuovaComunicazione", "Comunicazioni", FormMethod.Post))
 {
 
     using (Html.DevExtreme().ValidationGroup())
@@ -33,49 +33,7 @@
                         <div>Descrizione</div><div>@(Html.DevExtreme().TextAreaFor(m => m.Descrizione))</div>
 
                     </div>
-                    <div>
-                        <div>Condominio</div><div>
-                            @(Html.DevExtreme().SelectBoxFor(m=>m.Condominio)
-                            .ID("comboCondomini")
-                            .DisplayExpr("NomeCondominio")
-                            .ValueExpr("Oid")
-                            .Value(Model.Condominio)
-                            .DataSource(ds => ds.WebApi()
-                            .Controller("CondominiumDati")
-                            .LoadAction("Get").Key("Oid"))
-                            .OnValueChanged("onValueCondominioChanged")
-                        )
-                        </div>
-                    </div>
-                    <div>
-                        <div>Edificio</div><div>
-                            @(Html.DevExtreme().SelectBoxFor(m=>m.Edificio)
-                            .ID("comboEdifici")
-                            .DisplayExpr("Nome")
-                            .ValueExpr("Oid")
-                            .Value(Model.Edificio)
-                            .DataSource(ds => ds.WebApi()
-                            .Controller("EdificiDati")
-                            .LoadAction("Get")
-                            .Key("Oid"))
-                            .OnValueChanged("onValueEdificiChanged")
-
-                        )
-                        </div>
-                    </div>
-                    <div>
-                        <div>Locale</div><div>
-                            @(Html.DevExtreme().SelectBoxFor(m=>m.Locale)
-                            .ID("comboLocali")
-                            .DisplayExpr("Name")
-                            .ValueExpr("Oid")
-                            .Value(Model.Locale)
-                            .DataSource(ds => ds.WebApi()
-                            .Controller("AmbienteDati")
-                            .LoadAction("Get").Key("Oid"))
-                        )
-                        </div>
-                    </div>
+                    
                     <div>
                         <div>Documenti e immagini</div><div>
                             @(Html.DevExtreme()
