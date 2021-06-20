@@ -102,9 +102,10 @@ namespace Simba.Businness
 
                 ticket.Data = DateTime.Now;
                 ticket.DateUpdate = DateTime.Now;
-                ticket.Descrizione = obj.Descrizione;
                 ticket.Note = obj.Note;
                 ticket.Number = obj.Number;
+                ticket.Descrizione = obj.Descrizione;
+                ticket.Titolo = obj.Titolo;
                 ticket.Condominium = condominio;
                 ticket.Building = edificio;
                 ticket.Enviroment = locale;

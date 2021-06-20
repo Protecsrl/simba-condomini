@@ -70,6 +70,9 @@ namespace Simba.Businness
                 commun.DateInsert = DateTime.Now;
                 commun.Note = obj.Note;
                 commun.Number = obj.Number;
+
+                commun.Save();
+                uw.CommitChanges();
             }
         }
     }
