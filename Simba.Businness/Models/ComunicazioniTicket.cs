@@ -23,6 +23,10 @@ namespace Simba.Businness.Models
             this.Type = type;
         }
 
+        public string Tipo
+        {
+            get { return Type.ToString(); }
+        }
         public ItemType Type
         {
             get;
@@ -66,7 +70,7 @@ namespace Simba.Businness.Models
                 return 1;
 
             else
-                return this.Oid.CompareTo(other.Oid);
+                return this.DateInsert.CompareTo(other.DateInsert);
         }
 
         public string FormattedDateInsert
