@@ -94,8 +94,10 @@
     <Compile Include="Models\ModelBase.cs" />
     <Compile Include="Models\TicketCommunicationClassification.cs" />
     <Compile Include="Models\TicketStatus.cs" />
+    <Compile Include="Models\TicketStatusAssociated.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Security\FakeVariebiles.cs" />
+    <Compile Include="StatiTicket.cs" />
     <Compile Include="Ticket.cs" />
     <Compile Include="User.cs" />
   </ItemGroup>

@@ -12,13 +12,14 @@ namespace Simba.Businness.Models
 {
     public class AddTicket
     {
-        public AddTicket(){
+        public AddTicket()
+        {
 
         }
 
         public AddTicket(int oid, int number, string owner, int stato,
         int classeTicket, string titolo, string descrizione, string note,
-        int locale, int edificio, int condominio, List<TicketStatus> storicoStati,
+        int locale, int edificio, int condominio, List<TicketStatusAssociated> storicoStati,
         HttpPostedFileBase files)
         {
             this.Oid = oid;
@@ -33,6 +34,11 @@ namespace Simba.Businness.Models
             this.StoricoStati = storicoStati;
             this.Condominio = condominio;
             this.Files = files;
+
+            if (storicoStati.Any())
+            {
+                this.Stato = storicoStati.OrderBy(s => s.Date).First().Oid;
+            }
 
         }
 
@@ -51,9 +57,9 @@ namespace Simba.Businness.Models
         public int Condominio { get; set; }
         public int Edificio { get; set; }
         public int Locale { get; set; }
-        public List<TicketStatus> StoricoStati { get; set; }
+        public List<TicketStatusAssociated> StoricoStati { get; set; }
         public HttpPostedFileBase Files { get; set; }
 
-       
+
     }
 }

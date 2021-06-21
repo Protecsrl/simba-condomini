@@ -97,6 +97,19 @@
                             )
                         </div>
                     </div>
+
+                    <div>
+                        <div>Stato ticket</div><div>
+                            @(Html.DevExtreme().SelectBoxFor(m=>m.Stato)
+                                .DisplayExpr("Name")
+                                .ValueExpr("Oid")
+                                .Value(Model.Stato)
+                                .DataSource(ds => ds.WebApi()
+                                .Controller("StatiTicketDati")
+                                .LoadAction("Get").Key("Oid"))
+                        )
+                        </div>
+                    </div>
                     <div>
                         <div>Note</div><div>@(Html.DevExtreme().TextAreaFor(m => m.Note))</div>
 

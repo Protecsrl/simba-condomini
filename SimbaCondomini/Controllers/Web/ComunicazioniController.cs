@@ -29,7 +29,7 @@ namespace SimbaCondomini.Controllers
             int condominio = 0;
             int edificio = 0;
 
-            AddTicket model = new AddTicket(0, number, owner, 0, classeItem, null, null, null, locale, edificio, condominio, new List<TicketStatus>(), null);
+            AddTicket model = new AddTicket(0, number, owner, 0, classeItem, null, null, null, locale, edificio, condominio, new List<TicketStatusAssociated>(), null);
 
             return View(model);
         }
@@ -50,23 +50,23 @@ namespace SimbaCondomini.Controllers
             var ticket = new Simba.Businness.Ticket().getTicketById(oid);
             string titolo = ticket.Titolo;
             string descrizione = ticket.Descrizione;
-            var storicoStati = new List<TicketStatus>();
+            var storicoStati = new List<TicketStatusAssociated>();
             foreach (var ts in ticketStatuses)
             {
-                storicoStati.Add(new TicketStatus(ts.Data, ts.IdStatus.Name, ts.Descrizione));
+                storicoStati.Add(new TicketStatusAssociated(ts.Oid, ts.Data, ts.IdStatus.Name, ts.Descrizione));
             }
             int stato = 0;
             if (ticketStatuses.Any()) { stato = ticketStatuses.First().Oid; }
 
-            int classeItem = classe.Oid;
+            int classeItem = classe !=null ? classe.Oid : 0;
 
-            int edificio = ticket.Building.Oid;
+            int edificio = ticket.Building != null ? ticket.Building.Oid : 0;
 
-            int condominio = ticket.Condominium.Oid;
+            int condominio = ticket.Condominium != null ? ticket.Condominium.Oid : 0;
 
             var user = new Simba.Businness.User().GetUser();
 
-            int locale = ticket.Enviroment.Oid;
+            int locale = ticket.Enviroment != null ? ticket.Enviroment.Oid : 0;
 
             AddTicket model = new AddTicket(oid, number, owner, 0, classeItem, titolo, descrizione, ticket.Note, locale, edificio, condominio, storicoStati, null);
             return View(model);
@@ -77,10 +77,10 @@ namespace SimbaCondomini.Controllers
         public ActionResult NuovoTicket(AddTicket model, HttpPostedFileBase files)
         {
             var ticketStatuse = new Simba.Businness.Ticket().GetTicketStatuses(faketicket);
-            model.StoricoStati = new List<TicketStatus>();
+            model.StoricoStati = new List<TicketStatusAssociated>();
             foreach (var ts in ticketStatuse)
             {
-                model.StoricoStati.Add(new TicketStatus(ts.Data, ts.IdStatus.Name, ts.Descrizione));
+                model.StoricoStati.Add(new TicketStatusAssociated(ts.Oid, ts.Data, ts.IdStatus.Name, ts.Descrizione));
             }
             if (model.Oid > 0)
             {
