@@ -46,7 +46,7 @@ namespace Simba.Businness
             {
                 var data = uw.Query<Simba.DataLayer.simba_condomini.TicketClassifications>().
                 Where(c => c.IdTicket.Oid == idTicket).
-                Select(c=>c.IdClassification).
+                Select(c => c.IdClassification).
                 ToList();
                 return data;
             }
@@ -95,11 +95,12 @@ namespace Simba.Businness
         {
             using (UnitOfWork uw = new UnitOfWork())
             {
+                var user = uw.GetObjectByKey<DataLayer.simba_condomini.User>(5);
                 var ticket = uw.GetObjectByKey<DataLayer.simba_condomini.Ticket>(obj.Oid);
                 var condominio = uw.GetObjectByKey<DataLayer.simba_condomini.Condominium>(obj.Condominio);
                 var edificio = uw.GetObjectByKey<DataLayer.simba_condomini.Building>(obj.Edificio);
                 var locale = uw.GetObjectByKey<DataLayer.simba_condomini.Environment>(obj.Locale);
-
+                var stato = uw.GetObjectByKey<DataLayer.simba_condomini.TicketStatus>(obj.Stato);
                 ticket.Data = DateTime.Now;
                 ticket.DateUpdate = DateTime.Now;
                 ticket.Note = obj.Note;
@@ -121,6 +122,19 @@ namespace Simba.Businness
                         IdClassification = classification
                     };
                     classeTicket.Save();
+
+                }
+                if (obj.Stato != ticket.TicketStatus)
+                {
+
+                    DataLayer.simba_condomini.TicketStatuses statoTicket = new DataLayer.simba_condomini.TicketStatuses(uw)
+                    {
+                        IdTicket = ticket,
+                        IdStatus = stato,
+                        Data = DateTime.Now,
+                        IdUser = user
+                    };
+                    statoTicket.Save();
                 }
                 ticket.Save();
                 uw.CommitChanges();
