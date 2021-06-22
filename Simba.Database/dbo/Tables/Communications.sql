@@ -9,6 +9,7 @@
     [Type]                INT           NULL,
     [Descrizione] NVARCHAR(500) NOT NULL, 
     [Note] NVARCHAR(500) NULL, 
+    [Code] NVARCHAR (12) NULL,
     CONSTRAINT [PK_Communications] PRIMARY KEY CLUSTERED ([Oid] ASC),
     CONSTRAINT [FK_Communications_CommunicationType] FOREIGN KEY ([Type]) REFERENCES [dbo].[CommunicationType] ([Oid]),
     CONSTRAINT [FK_Communications_Condominium] FOREIGN KEY ([Condominium]) REFERENCES [dbo].[Condominium] ([Oid]),

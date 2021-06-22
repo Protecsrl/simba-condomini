@@ -16,7 +16,7 @@ namespace Simba.Businness.Models
 
         }
 
-        public AddComunicazione(int oid, int number, string owner, int stato,
+        public AddComunicazione(int oid, int number, string owner, string codice, int stato,
         string titolo, string descrizione, string note,
         int locale, int edificio, int condominio,
         HttpPostedFileBase files)
@@ -24,6 +24,7 @@ namespace Simba.Businness.Models
             this.Oid = oid;
             this.Number = number;
             this.Owner = owner;
+            this.Codice = codice;
             this.Titolo = titolo;
             this.Descrizione = descrizione;
             this.Note = note;
@@ -35,6 +36,7 @@ namespace Simba.Businness.Models
         }
         public int Oid { get; set; }
         public int Number { get; set; }
+        public string Codice { get; set; }
         public string Owner { get; set; }
 
         [Required(ErrorMessage = "È richiesto il titolo")]

@@ -17,13 +17,14 @@ namespace Simba.Businness.Models
 
         }
 
-        public AddTicket(int oid, int number, string owner, int stato,
+        public AddTicket(int oid, int number, string codice, string owner, int stato,
         int classeTicket, string titolo, string descrizione, string note,
         int locale, int edificio, int condominio, List<TicketStatusAssociated> storicoStati,
         HttpPostedFileBase files)
         {
             this.Oid = oid;
             this.Number = number;
+            this.Codice = codice;
             this.Owner = owner;
             this.ClasseTicket = classeTicket;
             this.Titolo = titolo;
@@ -44,6 +45,7 @@ namespace Simba.Businness.Models
 
         public int Oid { get; set; }
         public int Number { get; set; }
+        public string Codice { get; set; }
         public string Owner { get; set; }
         public int ClasseTicket { get; set; }
 

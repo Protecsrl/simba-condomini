@@ -85,6 +85,13 @@ namespace Simba.DataLayer.simba_condomini
             get { return fNote; }
             set { SetPropertyValue<string>(nameof(Note), ref fNote, value); }
         }
+        string fCode;
+        [Size(12)]
+        public string Code
+        {
+            get { return fCode; }
+            set { SetPropertyValue<string>(nameof(Code), ref fCode, value); }
+        }
     }
 
 }

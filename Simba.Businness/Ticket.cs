@@ -74,7 +74,8 @@ namespace Simba.Businness
                     Note = obj.Note,
                     Number = obj.Number,
                     DateCreation = DateTime.Now,
-                    User = user
+                    User = user,
+                    Code = obj.Codice
                 };
                 var classification = uw.GetObjectByKey<DataLayer.simba_condomini.TicketClassification>(obj.ClasseTicket);
                 ticket.classification = classification.Oid;
@@ -110,6 +111,7 @@ namespace Simba.Businness
                 ticket.Condominium = condominio;
                 ticket.Building = edificio;
                 ticket.Enviroment = locale;
+                ticket.Code = obj.Codice;
 
                 if (obj.ClasseTicket != ticket.classification)
                 {

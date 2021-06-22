@@ -22,6 +22,7 @@ namespace SimbaCondomini.Controllers
         private ActionResult NuovoTicket()
         {
             int number = new Simba.Businness.ComunicazioniTicket().getNewId();
+            string  codice = new Simba.Businness.ComunicazioniTicket().GetNewCodice();
             string owner = new Simba.Businness.ComunicazioniTicket().getEnvironmenti(1).Text;
             var user = new Simba.Businness.User().GetUser();
             int locale = 0;
@@ -29,7 +30,7 @@ namespace SimbaCondomini.Controllers
             int condominio = 0;
             int edificio = 0;
 
-            AddTicket model = new AddTicket(0, number, owner, 0, classeItem, null, null, null, locale, edificio, condominio, new List<TicketStatusAssociated>(), null);
+            AddTicket model = new AddTicket(0, number, codice, owner, 0, classeItem, null, null, null, locale, edificio, condominio, new List<TicketStatusAssociated>(), null);
 
             return View(model);
         }
@@ -43,7 +44,7 @@ namespace SimbaCondomini.Controllers
             }
 
             int oid = id.HasValue ? id.Value : 0;
-            int number = new Simba.Businness.ComunicazioniTicket().getNewId();
+
             string owner = new Simba.Businness.ComunicazioniTicket().getEnvironmenti(1).Text;
             var ticketStatuses = new Simba.Businness.Ticket().GetTicketStatuses(oid).OrderByDescending(s => s.Oid);
             var classe = new Simba.Businness.Ticket().GetLastTicketClassification(oid).FirstOrDefault();
@@ -68,7 +69,7 @@ namespace SimbaCondomini.Controllers
 
             int locale = ticket.Enviroment != null ? ticket.Enviroment.Oid : 0;
 
-            AddTicket model = new AddTicket(oid, number, owner, 0, classeItem, titolo, descrizione, ticket.Note, locale, edificio, condominio, storicoStati, null);
+            AddTicket model = new AddTicket(oid, ticket.Number, ticket.Code, owner, 0, classeItem, titolo, descrizione, ticket.Note, locale, edificio, condominio, storicoStati, null);
             return View(model);
         }
 
@@ -132,8 +133,9 @@ namespace SimbaCondomini.Controllers
         private ActionResult NuovaComunicazione()
         {
             int number = new Simba.Businness.ComunicazioniTicket().getNewId();
+            string codice = new Simba.Businness.ComunicazioniTicket().GetNewCodice();
             string owner = new Simba.Businness.ComunicazioniTicket().getEnvironmenti(1).Text;
-            AddComunicazione model = new AddComunicazione(0, number, owner, 0, null, null, string.Empty, 0, 0, 0, null);
+            AddComunicazione model = new AddComunicazione(0, number, owner, codice, 0, null, null, string.Empty, 0, 0, 0, null);
             return View(model);
         }
 
@@ -148,11 +150,11 @@ namespace SimbaCondomini.Controllers
 
             int oid = id.HasValue ? id.Value : 0;
             var comunicazione = new Simba.Businness.Comunicazioni().getComunicazioneById(oid);
-            int number = new Simba.Businness.ComunicazioniTicket().getNewId();
+            string codice = comunicazione.Code;
             string owner = new Simba.Businness.ComunicazioniTicket().getEnvironmenti(1).Text;
             string titolo = comunicazione.Titolo;
             string descrizione = comunicazione.Descrizione;
-            AddComunicazione model = new AddComunicazione(oid, number, owner, 0, titolo, descrizione, string.Empty, 0, 0, 0, null);
+            AddComunicazione model = new AddComunicazione(oid, comunicazione.Number, owner, codice, 0, titolo, descrizione, string.Empty, 0, 0, 0, null);
             return View(model);
         }
 

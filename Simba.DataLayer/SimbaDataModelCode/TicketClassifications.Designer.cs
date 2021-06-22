@@ -18,6 +18,13 @@ namespace Simba.DataLayer.simba_condomini
 
     public partial class TicketClassifications : XPLiteObject
     {
+        int fOid;
+        [Key(true)]
+        public int Oid
+        {
+            get { return fOid; }
+            set { SetPropertyValue<int>(nameof(Oid), ref fOid, value); }
+        }
         Ticket fIdTicket;
         [Association(@"TicketClassificationsReferencesTicket")]
         public Ticket IdTicket
@@ -44,13 +51,6 @@ namespace Simba.DataLayer.simba_condomini
         {
             get { return fUserId; }
             set { SetPropertyValue<User>(nameof(UserId), ref fUserId, value); }
-        }
-        int fOid;
-        [Key(true)]
-        public int Oid
-        {
-            get { return fOid; }
-            set { SetPropertyValue<int>(nameof(Oid), ref fOid, value); }
         }
     }
 

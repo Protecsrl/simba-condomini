@@ -24,6 +24,12 @@ namespace Simba.Businness
             }
         }
 
+        public string GetNewCodice(){
+            int n = getNewId();
+            string codice = n.ToString().PadLeft(12, '0');
+            return codice;
+        }
+
         public LookupItem getEnvironmenti(int userId)
         {
             return new LookupItem()

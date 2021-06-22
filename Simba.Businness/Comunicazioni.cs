@@ -47,7 +47,8 @@ namespace Simba.Businness
                     Note = obj.Note,
                     Number = obj.Number,                    
                     User = user,
-                    ParentCommunication = 0
+                    ParentCommunication = 0,
+                    Code = obj.Codice
                 };
 
                 communuic.Save();
@@ -70,6 +71,7 @@ namespace Simba.Businness
                 commun.DateInsert = DateTime.Now;
                 commun.Note = obj.Note;
                 commun.Number = obj.Number;
+                commun.Code = obj.Codice;
 
                 commun.Save();
                 uw.CommitChanges();

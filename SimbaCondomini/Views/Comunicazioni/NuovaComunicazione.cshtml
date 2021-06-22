@@ -19,12 +19,14 @@
                 <div>Nuovo ticket:</div>
                 <div>
                     <div>
-                        <div>Numero</div><div>@(Html.DevExtreme().TextBoxFor(m=>m.Number))</div>
+                        <div>Numero</div><div>@(Html.DevExtreme().TextBoxFor(m=>m.Number).ReadOnly(true))</div>
                     </div>
                     <div>
-                        <div>Owner</div><div>@(Html.DevExtreme().TextBoxFor(m=>m.Owner))</div>
+                        <div>Owner</div><div>@(Html.DevExtreme().TextBoxFor(m=>m.Owner).ReadOnly(true))</div>
                     </div>
-                   
+                    <div>
+                        <div>Codice</div><div>@(Html.DevExtreme().TextBoxFor(m=>m.Codice).ReadOnly(true))</div>
+                    </div>
                     <div>
                         <div>Titolo</div><div>@(Html.DevExtreme().TextBoxFor(m=>m.Titolo))</div>
 
@@ -33,7 +35,7 @@
                         <div>Descrizione</div><div>@(Html.DevExtreme().TextAreaFor(m => m.Descrizione))</div>
 
                     </div>
-                    
+
                     <div>
                         <div>Documenti e immagini</div><div>
                             @(Html.DevExtreme()
