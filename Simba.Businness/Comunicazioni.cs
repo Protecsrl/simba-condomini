@@ -4,6 +4,9 @@ using Simba.DataLayer.simba_condomini;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Security.Claims;
+using System.Threading;
 
 namespace Simba.Businness
 {
@@ -34,8 +37,8 @@ namespace Simba.Businness
         {
             using (UnitOfWork uw = new UnitOfWork())
             {
-
-                var user = uw.GetObjectByKey<DataLayer.simba_condomini.User>(5);
+                
+                var user = uw.GetObjectByKey<DataLayer.simba_condomini.User>(User.GetUserId());
                 var condominio = user.Building.Condominium;
 
                 DataLayer.simba_condomini.Communications communuic = new DataLayer.simba_condomini.Communications(uw)
@@ -62,7 +65,7 @@ namespace Simba.Businness
             using (UnitOfWork uw = new UnitOfWork())
             {
                 var commun = uw.GetObjectByKey<DataLayer.simba_condomini.Communications>(obj.Oid);
-                var user = uw.GetObjectByKey<DataLayer.simba_condomini.User>(5);
+                var user = uw.GetObjectByKey<DataLayer.simba_condomini.User>(User.GetUserId());
                 var condominio = user.Building.Condominium; 
 
                 commun.Descrizione = obj.Descrizione;

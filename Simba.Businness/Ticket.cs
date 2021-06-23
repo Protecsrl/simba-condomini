@@ -56,7 +56,7 @@ namespace Simba.Businness
         {
             using (UnitOfWork uw = new UnitOfWork())
             {
-                var user = uw.GetObjectByKey<DataLayer.simba_condomini.User>(5);
+                var user = uw.GetObjectByKey<DataLayer.simba_condomini.User>(User.GetUserId());
 
                 var condominio = uw.GetObjectByKey<DataLayer.simba_condomini.Condominium>(obj.Condominio);
                 var edificio = uw.GetObjectByKey<DataLayer.simba_condomini.Building>(obj.Edificio);
@@ -96,7 +96,7 @@ namespace Simba.Businness
         {
             using (UnitOfWork uw = new UnitOfWork())
             {
-                var user = uw.GetObjectByKey<DataLayer.simba_condomini.User>(5);
+                var user = uw.GetObjectByKey<DataLayer.simba_condomini.User>(User.GetUserId());
                 var ticket = uw.GetObjectByKey<DataLayer.simba_condomini.Ticket>(obj.Oid);
                 var condominio = uw.GetObjectByKey<DataLayer.simba_condomini.Condominium>(obj.Condominio);
                 var edificio = uw.GetObjectByKey<DataLayer.simba_condomini.Building>(obj.Edificio);

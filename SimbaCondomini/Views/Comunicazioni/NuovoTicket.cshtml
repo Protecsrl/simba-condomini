@@ -97,6 +97,7 @@
                             .UploadMode(FileUploadMode.Instantly)
                             .AllowCanceling(true).Name("Files")
                             .UploadUrl(Url.Action("Upload", "Comunicazioni"))
+                            .OnUploaded("fileUploaded")
                             )
                         </div>
                     </div>
@@ -105,7 +106,7 @@
                     {
                         <div>
                             <div>Stato ticket</div><div>
-                                @(Html.DevExtreme().SelectBoxFor(m => m.Stato)
+                            @(Html.DevExtreme().SelectBoxFor(m => m.Stato)
                             .DisplayExpr("Name")
                             .ValueExpr("Oid")
                             .Value(Model.Stato)
@@ -159,6 +160,10 @@
                 dataSource.filter("Oid", "=", e.value);
                 dataSource.load();
                 comboLocali.option("value", 0);
+            }
+
+            function fileUploaded(e) {
+                console.log(e);
             }
         </script>
     }

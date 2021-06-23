@@ -13,7 +13,7 @@ namespace SimbaCondomini.Controllers
         public HttpResponseMessage Get(DataSourceLoadOptions loadOptions)
         {
             Comunicazioni c = new Comunicazioni();
-            var data = c.GetUserCommunication(5);
+            var data = c.GetUserCommunication(Simba.Businness.User.GetUserId());
             var datac = new List<Simba.Businness.Models.ComunicazioniTicket>();
             foreach (var cc in data)
             {
@@ -23,7 +23,7 @@ namespace SimbaCondomini.Controllers
 
 
             Ticket t = new Ticket();
-            var dataT = t.GetUserTicket(5);
+            var dataT = t.GetUserTicket(Simba.Businness.User.GetUserId());
 
             foreach (var cc in dataT)
             {

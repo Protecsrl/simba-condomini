@@ -53,6 +53,7 @@ namespace SimbaCondomini.Controllers
             claims.Add(new Claim(ClaimTypes.NameIdentifier, user));
             claims.Add(new Claim(ClaimTypes.Surname, userDb.Cognome));
             claims.Add(new Claim(ClaimTypes.Name, userDb.Nome));
+            claims.Add(new Claim("Oid", userDb.Oid.ToString()));
             // claims.Add(new Claim(ClaimTypes.NameIdentifier, userDb.Oid.ToString()));
 
 
