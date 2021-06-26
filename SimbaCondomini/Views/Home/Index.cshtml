@@ -15,6 +15,7 @@
             columns.AddFor(m => m.NomeCondominio);
             columns.AddFor(m => m.Indirizzo);
             columns.AddFor(m => m.PartitaIva);
+            columns.AddFor(m => m.Code);
         })
         .Paging(p => p.PageSize(10))
         .FilterRow(f => f.Visible(true))

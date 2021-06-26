@@ -33,7 +33,11 @@ namespace Simba.DataLayer.simba_condomini
             typeof(CommunicationType),
             typeof(Building),
             typeof(Environment),
-            typeof(UserCondominium)
+            typeof(UserCondominium),
+            typeof(P__RefactorLog),
+            typeof(Comuni),
+            typeof(Provincia),
+            typeof(Regione)
         };
         public static Type[] GetPersistentTypes()
         {
