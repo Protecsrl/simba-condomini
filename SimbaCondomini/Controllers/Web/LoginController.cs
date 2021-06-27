@@ -25,9 +25,6 @@ namespace SimbaCondomini.Controllers
         [HttpPost]
         public ActionResult Index(string user, string password)
         {
-            FakeVariebiles d = new FakeVariebiles();
-            d.UserId = 5;
-            d.UserRole = Roles.Cond;
             SignIn(user, password);
             return View();
         }

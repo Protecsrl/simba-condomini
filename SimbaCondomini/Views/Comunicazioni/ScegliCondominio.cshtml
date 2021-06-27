@@ -12,7 +12,6 @@
                         .DataSource(ds => ds.WebApi()
                         .Controller("CondominiumDati")
                         .LoadAction("Get")
-                        .LoadParams(new { filter = "[3]" })
                         .Key("Oid"))
                         .ItemTemplate(@<text>
                             <div class="product">

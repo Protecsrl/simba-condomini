@@ -1,4 +1,6 @@
-﻿
+﻿@using Simba.Businness.Models
+@model Bacheca
+
 @{
     ViewBag.Title = "Index2";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -11,7 +13,8 @@
                         .Height("100%")
                         .DataSource(ds => ds.WebApi()
                         .Controller("ComunicazioniDati")
-                        .LoadAction("Get"))
+                        .LoadAction("Get")
+                        .LoadParams(new { filter = Model.IdCondominio }).Key("Oid"))
                         .ItemTemplate(@<text>
                             <div class="product">
                                 <div class="tipo"><%- Tipo %></div>

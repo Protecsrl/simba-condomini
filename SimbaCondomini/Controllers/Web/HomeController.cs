@@ -5,22 +5,31 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace SimbaCondomini.Controllers {
-    public class HomeController : Controller {
-        public ActionResult Index() {
+namespace SimbaCondomini.Controllers
+{
+    public class HomeController : Controller
+    {
+        public ActionResult Index()
+        {
             return View();
         }
 
 
         public ActionResult Index2(int? id)
         {
-            if(id.HasValue){
+            if (Simba.Businness.User.GetUserType() == Simba.Businness.Roles.CondAdmin && !id.HasValue)
+            {
+                return RedirectToAction("ScegliCondominio", "Comunicazioni", new { id = Simba.Businness.User.GetUserId() });
+            }
+            if(id.HasValue)
+            {
                 Bacheca b = new Bacheca(id.Value);
-                return RedirectToAction("ScegliCondominio", "Comunicazioni", new { id = 1 });
+                return View(b);
             }
             return View();
         }
-        public ActionResult ComunicazioniController(){
+        public ActionResult ComunicazioniController()
+        {
             return View();
         }
     }
