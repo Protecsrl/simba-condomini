@@ -8,7 +8,7 @@
 
 @(Html.DevExtreme().DataGrid<Condominium>()
         .ShowBorders(true)
-        .DataSource(d => d.WebApi().Controller("SampleData").Key("Oid"))
+        .DataSource(d => d.WebApi().Controller("CondominiumDati").Key("Oid"))
         .Columns(columns =>
         {
             columns.AddFor(m => m.Oid);

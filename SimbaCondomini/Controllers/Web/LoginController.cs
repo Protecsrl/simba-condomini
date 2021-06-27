@@ -2,6 +2,7 @@
 using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.OpenIdConnect;
+using Simba.Businness;
 using Simba.Businness.Security;
 using System;
 using System.Collections.Generic;
@@ -54,7 +55,7 @@ namespace SimbaCondomini.Controllers
             claims.Add(new Claim(ClaimTypes.Surname, userDb.Cognome));
             claims.Add(new Claim(ClaimTypes.Name, userDb.Nome));
             claims.Add(new Claim("Oid", userDb.Oid.ToString()));
-            // claims.Add(new Claim(ClaimTypes.NameIdentifier, userDb.Oid.ToString()));
+            claims.Add(new Claim("Type", userDb.UserType.Oid.ToString()));
 
 
             var identity = new ClaimsIdentity(claims, DefaultAuthenticationTypes.ApplicationCookie);

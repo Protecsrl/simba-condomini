@@ -14,7 +14,7 @@ namespace SimbaCondomini.Controllers
         public HttpResponseMessage Get(DataSourceLoadOptions loadOptions)
         {
             Condomini c = new Condomini();
-            var data = c.GetAll();
+            var data = c.GetAllByUser();
             var datac = new List<Simba.Businness.Models.Condominio>();
             foreach (var cc in data)
             {

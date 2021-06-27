@@ -333,6 +333,7 @@
     <Content Include="Views\Login\Index.cshtml" />
     <Content Include="Views\Comunicazioni\InsertComunicationTicket.cshtml" />
     <Content Include="Views\Comunicazioni\NuovaComunicazione.cshtml" />
+    <Content Include="Views\Comunicazioni\ScegliCondominio.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -356,7 +357,6 @@
     <Compile Include="Controllers\Dati\ComunicazioniDatiController.cs" />
     <Compile Include="Controllers\Dati\EdificiDatiController.cs" />
     <Compile Include="Controllers\Web\HomeController.cs" />
-    <Compile Include="Controllers\Dati\SampleDataController.cs" />
     <Compile Include="Controllers\Dati\TicketDatiController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

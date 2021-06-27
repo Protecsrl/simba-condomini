@@ -1,3 +1,4 @@
+using Simba.Businness.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,8 +12,12 @@ namespace SimbaCondomini.Controllers {
         }
 
 
-        public ActionResult Index2()
+        public ActionResult Index2(int? id)
         {
+            if(id.HasValue){
+                Bacheca b = new Bacheca(id.Value);
+                return RedirectToAction("ScegliCondominio", "Comunicazioni", new { id = 1 });
+            }
             return View();
         }
         public ActionResult ComunicazioniController(){

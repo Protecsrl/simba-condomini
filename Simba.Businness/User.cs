@@ -11,6 +11,14 @@ using System.Web;
 
 namespace Simba.Businness
 {
+    public enum Roles
+    {
+        SysAdmin = 1,
+        CondAdmin = 2,
+        Cond = 3,
+        Supplier = 4
+
+    }
     public class User : BusinnessBase
     {
         public static int GetUserId()
@@ -21,6 +29,16 @@ namespace Simba.Businness
                                .Select(c => c.Value).SingleOrDefault());
             return id;
         }
+
+        public static Roles GetUserType()
+        {
+            var identity = (ClaimsPrincipal)Thread.CurrentPrincipal;
+
+            var type = Convert.ToInt32(identity.Claims.Where(c => c.Type == "Type")
+                               .Select(c => c.Value).SingleOrDefault());
+            return (Roles)type;
+        }
+
         public Simba.DataLayer.simba_condomini.User GetUser()
         {
             using (UnitOfWork uw = new UnitOfWork())

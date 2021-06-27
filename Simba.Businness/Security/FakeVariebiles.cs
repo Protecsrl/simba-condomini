@@ -7,14 +7,7 @@ using System.Threading.Tasks;
 
 namespace Simba.Businness.Security
 {
-    public enum Roles
-    {
-        SysAdmin,
-        CondAdmin,
-        Cond,
-        Supplier
 
-    }
     public class FakeVariebiles
     {
         public int UserId

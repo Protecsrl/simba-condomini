@@ -1,0 +1,25 @@
+﻿
+@{
+    ViewBag.Title = "ScegliCondominio";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<h2>Scegli Condomino</h2>
+<div class="list-container">
+    @(Html.DevExtreme().List()
+                        .Height("100%")
+                        .DataSource(ds => ds.WebApi()
+                        .Controller("CondominiumDati")
+                        .LoadAction("Get")
+                        .LoadParams(new { filter = "[3]" })
+                        .Key("Oid"))
+                        .ItemTemplate(@<text>
+                            <div class="product">
+                                <div class="tipo"><%- NomeCondominio %></div>
+                                <div class="price"><%- Oid %></div>
+                            </div>
+                        </text>)
+    )
+</div>
+
