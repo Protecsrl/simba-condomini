@@ -59,6 +59,10 @@
     <Compile Include="SimbaDataModelCode\CommunicationType.Designer.cs">
       <DependentUpon>CommunicationType.cs</DependentUpon>
     </Compile>
+    <Compile Include="SimbaDataModelCode\Comuni.cs" />
+    <Compile Include="SimbaDataModelCode\Comuni.Designer.cs">
+      <DependentUpon>Comuni.cs</DependentUpon>
+    </Compile>
     <Compile Include="SimbaDataModelCode\Condominium.cs" />
     <Compile Include="SimbaDataModelCode\Condominium.Designer.cs">
       <DependentUpon>Condominium.cs</DependentUpon>
@@ -76,9 +80,17 @@
     <Compile Include="SimbaDataModelCode\Environment.Designer.cs">
       <DependentUpon>Environment.cs</DependentUpon>
     </Compile>
+    <Compile Include="SimbaDataModelCode\Provincia.cs" />
+    <Compile Include="SimbaDataModelCode\Provincia.Designer.cs">
+      <DependentUpon>Provincia.cs</DependentUpon>
+    </Compile>
     <Compile Include="SimbaDataModelCode\P__RefactorLog.cs" />
     <Compile Include="SimbaDataModelCode\P__RefactorLog.Designer.cs">
       <DependentUpon>P__RefactorLog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SimbaDataModelCode\Regione.cs" />
+    <Compile Include="SimbaDataModelCode\Regione.Designer.cs">
+      <DependentUpon>Regione.cs</DependentUpon>
     </Compile>
     <Compile Include="SimbaDataModelCode\Stair.cs" />
     <Compile Include="SimbaDataModelCode\Stair.Designer.cs">
