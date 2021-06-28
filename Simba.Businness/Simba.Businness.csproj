@@ -86,6 +86,7 @@
     <Compile Include="Models\AddComunicazione.cs" />
     <Compile Include="Models\AddTicket.cs" />
     <Compile Include="Models\Ambiente.cs" />
+    <Compile Include="Models\Bacheca.cs" />
     <Compile Include="Models\ComunicazioniTicket.cs" />
     <Compile Include="Models\Condominio.cs" />
     <Compile Include="Models\Document.cs" />

@@ -172,5 +172,11 @@ namespace SimbaCondomini.Controllers
             }
             return View(model);
         }
+
+        [Authorize]
+        public ActionResult ScegliCondominio()
+        {
+            return View();
+        }
     }
 }
