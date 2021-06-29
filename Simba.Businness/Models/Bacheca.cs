@@ -10,7 +10,7 @@ namespace Simba.Businness.Models
     {
         public Bacheca(int idCondominio)
         {
-            this.IdCondominio = IdCondominio;
+            this.IdCondominio = idCondominio;
         }
 
         public int IdCondominio

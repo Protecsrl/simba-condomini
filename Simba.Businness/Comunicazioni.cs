@@ -33,6 +33,16 @@ namespace Simba.Businness
             }
         }
 
+        public List<Simba.DataLayer.simba_condomini.Communications> getComunicazioniCondominio(int idCom)
+        {
+            using (UnitOfWork uw = new UnitOfWork())
+            {
+                var data = uw.Query<Simba.DataLayer.simba_condomini.Communications>().
+                Where(c => c.Condominium.Oid == idCom).ToList();
+                return data;
+            }
+        }
+
         public void SaveComunicazione(AddComunicazione obj)
         {
             using (UnitOfWork uw = new UnitOfWork())

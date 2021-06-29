@@ -15,6 +15,8 @@ namespace SimbaCondomini.Controllers
         }
 
 
+
+        [Authorize]
         public ActionResult Index2(int? id)
         {
             if (Simba.Businness.User.GetUserType() == Simba.Businness.Roles.CondAdmin && !id.HasValue)
@@ -28,6 +30,8 @@ namespace SimbaCondomini.Controllers
             }
             return View();
         }
+
+        [Authorize]
         public ActionResult ComunicazioniController()
         {
             return View();

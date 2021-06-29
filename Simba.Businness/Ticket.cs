@@ -29,6 +29,17 @@ namespace Simba.Businness
             }
         }
 
+        public List<Simba.DataLayer.simba_condomini.Ticket> GetTicketCondominio(int condId)
+        {
+            using (UnitOfWork uw = new UnitOfWork())
+            {
+                var data = uw.Query<Simba.DataLayer.simba_condomini.Ticket>().
+                Where(c => c.Condominium.Oid == condId).
+                ToList();
+                return data;
+            }
+        }
+
         public List<Simba.DataLayer.simba_condomini.TicketStatuses> GetTicketStatuses(int idTicket)
         {
             using (UnitOfWork uw = new UnitOfWork())

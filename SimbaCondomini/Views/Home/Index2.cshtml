@@ -14,7 +14,7 @@
                         .DataSource(ds => ds.WebApi()
                         .Controller("ComunicazioniDati")
                         .LoadAction("Get")
-                        .LoadParams(new { filter = Model.IdCondominio }).Key("Oid"))
+                        .LoadParams(new { filter =  "[" + (Model!=null ? Model.IdCondominio.ToString() : null) + "]" } ).Key("Oid"))
                         .ItemTemplate(@<text>
                             <div class="product">
                                 <div class="tipo"><%- Tipo %></div>
