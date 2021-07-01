@@ -117,12 +117,20 @@ namespace Simba.DataLayer.simba_condomini
             get { return fCode; }
             set { SetPropertyValue<string>(nameof(Code), ref fCode, value); }
         }
+        bool fisPublic;
+        public bool isPublic
+        {
+            get { return fisPublic; }
+            set { SetPropertyValue<bool>(nameof(isPublic), ref fisPublic, value); }
+        }
         [Association(@"TicketDocumentReferencesTicket")]
         public XPCollection<TicketDocument> TicketDocuments { get { return GetCollection<TicketDocument>(nameof(TicketDocuments)); } }
         [Association(@"TicketClassificationsReferencesTicket")]
         public XPCollection<TicketClassifications> TicketClassificationsCollection { get { return GetCollection<TicketClassifications>(nameof(TicketClassificationsCollection)); } }
         [Association(@"TicketStatusesReferencesTicket")]
         public XPCollection<TicketStatuses> TicketStatusesCollection { get { return GetCollection<TicketStatuses>(nameof(TicketStatusesCollection)); } }
+        [Association(@"TicketSuplliersReferencesTicket")]
+        public XPCollection<TicketSuplliers> TicketSuplliersCollection { get { return GetCollection<TicketSuplliers>(nameof(TicketSuplliersCollection)); } }
     }
 
 }

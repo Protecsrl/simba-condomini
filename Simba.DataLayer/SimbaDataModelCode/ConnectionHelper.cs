@@ -36,7 +36,8 @@ namespace Simba.DataLayer.simba_condomini
             typeof(UserCondominium),
             typeof(Comuni),
             typeof(Provincia),
-            typeof(Regione)
+            typeof(Regione),
+            typeof(TicketSuplliers)
         };
         public static Type[] GetPersistentTypes()
         {

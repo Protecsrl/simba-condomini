@@ -124,6 +124,10 @@
     <Compile Include="SimbaDataModelCode\TicketStatuses.Designer.cs">
       <DependentUpon>TicketStatuses.cs</DependentUpon>
     </Compile>
+    <Compile Include="SimbaDataModelCode\TicketSuplliers.cs" />
+    <Compile Include="SimbaDataModelCode\TicketSuplliers.Designer.cs">
+      <DependentUpon>TicketSuplliers.cs</DependentUpon>
+    </Compile>
     <Compile Include="SimbaDataModelCode\User.cs" />
     <Compile Include="SimbaDataModelCode\User.Designer.cs">
       <DependentUpon>User.cs</DependentUpon>

@@ -14,11 +14,13 @@
     [Building]     INT           NULL,
     [Enviroment]   INT           NULL,
     [Code]         NVARCHAR (12) NULL,
+    [isPublic] BIT NULL, 
     CONSTRAINT [PK_Ticket] PRIMARY KEY CLUSTERED ([Oid] ASC),
     CONSTRAINT [FK_Ticket_Building] FOREIGN KEY ([Building]) REFERENCES [dbo].[Building] ([Oid]),
     CONSTRAINT [FK_Ticket_Condominium] FOREIGN KEY ([Condominium]) REFERENCES [dbo].[Condominium] ([Oid]),
     CONSTRAINT [FK_Ticket_Environment] FOREIGN KEY ([Enviroment]) REFERENCES [dbo].[Environment] ([Oid]),
-    CONSTRAINT [FK_Ticket_User] FOREIGN KEY ([User]) REFERENCES [dbo].[User] ([Oid])
+    CONSTRAINT [FK_Ticket_User] FOREIGN KEY ([User]) REFERENCES [dbo].[User] ([Oid]),
+    CONSTRAINT [FK_Ticket_Supplier] FOREIGN KEY ([User]) REFERENCES [dbo].[User] ([Oid])
 );
 
 
