@@ -17,7 +17,7 @@ namespace Simba.Businness
             using (UnitOfWork uw = new UnitOfWork())
             {
                 var data = uw.Query<Communications>().
-                Where(c=>!userId.HasValue || c.User.Oid == userId.Value).
+                Where(c => !userId.HasValue || c.User.Oid == userId.Value).
                 ToList();
                 return data;
             }
@@ -43,11 +43,17 @@ namespace Simba.Businness
             }
         }
 
+
+        public List<Simba.DataLayer.simba_condomini.Communications> getComunicazioniSupplier()
+        {
+            return new List<Communications>();
+        }
+
         public void SaveComunicazione(AddComunicazione obj)
         {
             using (UnitOfWork uw = new UnitOfWork())
             {
-                
+
                 var user = uw.GetObjectByKey<DataLayer.simba_condomini.User>(User.GetUserId());
                 var condominio = user.Building.Condominium;
 
@@ -58,7 +64,7 @@ namespace Simba.Businness
                     Titolo = obj.Titolo,
                     DateInsert = DateTime.Now,
                     Note = obj.Note,
-                    Number = obj.Number,                    
+                    Number = obj.Number,
                     User = user,
                     ParentCommunication = 0,
                     Code = obj.Codice
@@ -76,7 +82,7 @@ namespace Simba.Businness
             {
                 var commun = uw.GetObjectByKey<DataLayer.simba_condomini.Communications>(obj.Oid);
                 var user = uw.GetObjectByKey<DataLayer.simba_condomini.User>(User.GetUserId());
-                var condominio = user.Building.Condominium; 
+                var condominio = user.Building.Condominium;
 
                 commun.Descrizione = obj.Descrizione;
                 commun.Condominium = condominio;

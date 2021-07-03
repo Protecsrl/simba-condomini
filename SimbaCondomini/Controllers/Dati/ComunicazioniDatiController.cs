@@ -14,15 +14,18 @@ namespace SimbaCondomini.Controllers
         [HttpGet]
         public HttpResponseMessage Get(DataSourceLoadOptions loadOptions)
         {
-            bool isAdminCond = false;
+            var userType = Simba.Businness.User.GetUserType();
+
+            bool isPerson = userType == Roles.Cond;
+            bool isAdminCond = userType == Roles.CondAdmin;
+            bool isSupplier = userType == Roles.Supplier;
+
             int idCond = 0;
             try
             {
                 if (loadOptions.Filter == null || loadOptions.Filter.Count > 0)
                 {
                     idCond = Convert.ToInt32(loadOptions.Filter[0]);
-                    if (idCond > 0) isAdminCond = true;
-
                 }
 
             }
@@ -34,8 +37,9 @@ namespace SimbaCondomini.Controllers
 
             Comunicazioni c = new Comunicazioni();
             List<Simba.DataLayer.simba_condomini.Communications> data = null;
-            if (idCond <= 0) data = c.GetUserCommunication(Simba.Businness.User.GetUserId());
-            if (idCond > 0) data = c.getComunicazioniCondominio(idCond);
+            if (isPerson) data = c.GetUserCommunication(Simba.Businness.User.GetUserId());
+            if (isAdminCond) data = c.getComunicazioniCondominio(idCond);
+            if (isSupplier) data = c.getComunicazioniSupplier();
             var datac = new List<Simba.Businness.Models.ComunicazioniTicket>();
             foreach (var cc in data)
             {
@@ -46,8 +50,9 @@ namespace SimbaCondomini.Controllers
 
             Ticket t = new Ticket();
             List<Simba.DataLayer.simba_condomini.Ticket> dataT = null;
-            if (idCond <= 0) dataT = t.GetUserTicket(Simba.Businness.User.GetUserId());
-            if (idCond > 0) dataT = t.GetTicketCondominio(idCond);
+            if (isPerson) dataT = t.GetUserTicket(Simba.Businness.User.GetUserId());
+            if (isAdminCond) dataT = t.GetTicketCondominio(idCond);
+            if (isSupplier) dataT = t.GetTicketSupplier();
             foreach (var cc in dataT)
             {
                 var cond = cc.Condominium != null ? cc.Condominium.NomeCondominio : string.Empty;

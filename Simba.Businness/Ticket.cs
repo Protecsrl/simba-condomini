@@ -40,6 +40,21 @@ namespace Simba.Businness
             }
         }
 
+        public List<Simba.DataLayer.simba_condomini.Ticket> GetTicketSupplier()
+        {
+            using (UnitOfWork uw = new UnitOfWork())
+            {
+                var user = uw.GetObjectByKey<DataLayer.simba_condomini.User>(User.GetUserId());
+                var tiks = uw.Query<DataLayer.simba_condomini.TicketSuplliers>()
+                .Where(t => t.IdSuplier.Oid == user.Oid)
+                .Select(t => t.IdTicket.Oid);
+                var data = uw.Query<Simba.DataLayer.simba_condomini.Ticket>()
+                .Where(t => t.isPublic || tiks.Contains(t.Oid))
+                .ToList();
+                return data;
+            }
+        }
+
         public List<Simba.DataLayer.simba_condomini.TicketStatuses> GetTicketStatuses(int idTicket)
         {
             using (UnitOfWork uw = new UnitOfWork())

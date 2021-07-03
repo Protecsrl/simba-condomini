@@ -21,6 +21,20 @@ namespace Simba.Businness
             }
         }
 
+        public List<Condominium> GetForSupplier()
+        {
+            using (UnitOfWork uw = new UnitOfWork())
+            {
+                var user = uw.GetObjectByKey<DataLayer.simba_condomini.User>(User.GetUserId());
+                var ts = uw.Query<Simba.DataLayer.simba_condomini.TicketSuplliers>().Where(t => t.IdSuplier.Oid == user.Oid).Select(s => s.IdTicket.Oid); 
+                var data = uw.Query<Simba.DataLayer.simba_condomini.Ticket>()
+                .Where(t => ts.Contains(t.Oid) || t.isPublic)
+                .Select(x => x.Building.Condominium)
+                .ToList();
+                return data;
+            }
+        }
+
 
         public List<Condominium> GetAllByUser()
         {
@@ -32,14 +46,14 @@ namespace Simba.Businness
                 switch (type)
                 {
                     case Roles.Cond:
-                        var data = uw.Query<Condominium>().Where(c => user.Building.Condominium.Oid==c.Oid).ToList();
+                        var data = uw.Query<Condominium>().Where(c => user.Building.Condominium.Oid == c.Oid).ToList();
                         return data;
                     case Roles.CondAdmin:
                         var adminConds = user.UserCondominiums.Select(c => c.IdCondominium.Oid);
                         var dataA = uw.Query<Condominium>().Where(c => adminConds.Contains(c.Oid)).ToList();
                         return dataA;
                     case Roles.Supplier:
-                        return GetAll();
+                        return GetForSupplier();
                     case Roles.SysAdmin:
                         return GetAll();
                     default:

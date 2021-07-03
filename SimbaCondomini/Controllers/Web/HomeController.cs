@@ -23,7 +23,12 @@ namespace SimbaCondomini.Controllers
             {
                 return RedirectToAction("ScegliCondominio", "Comunicazioni", new { id = Simba.Businness.User.GetUserId() });
             }
-            if(id.HasValue)
+
+            if (Simba.Businness.User.GetUserType() == Simba.Businness.Roles.Supplier && !id.HasValue)
+            {
+                return RedirectToAction("ScegliCondominio", "Comunicazioni", new { id = Simba.Businness.User.GetUserId() });
+            }
+            if (id.HasValue)
             {
                 Bacheca b = new Bacheca(id.Value);
                 return View(b);
