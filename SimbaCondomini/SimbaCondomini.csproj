@@ -334,6 +334,8 @@
     <Content Include="Views\Comunicazioni\InsertComunicationTicket.cshtml" />
     <Content Include="Views\Comunicazioni\NuovaComunicazione.cshtml" />
     <Content Include="Views\Comunicazioni\ScegliCondominio.cshtml" />
+    <Content Include="Views\AdminCondomini\Index.cshtml" />
+    <Content Include="Views\Shared\_LayoutAdmin.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -352,6 +354,7 @@
     <Compile Include="Controllers\Dati\ClassificazioneTicketDatiController.cs" />
     <Compile Include="Controllers\Dati\CondominiumDatiController.cs" />
     <Compile Include="Controllers\Dati\ClasseTicketDatiController.cs" />
+    <Compile Include="Controllers\Web\AdminCondominiController.cs" />
     <Compile Include="Controllers\Web\LoginController.cs" />
     <Compile Include="Controllers\Web\ComunicazioniController.cs" />
     <Compile Include="Controllers\Dati\ComunicazioniDatiController.cs" />

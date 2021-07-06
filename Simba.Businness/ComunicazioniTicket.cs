@@ -11,7 +11,7 @@ namespace Simba.Businness
 {
     public class ComunicazioniTicket : BusinnessBase
     {
-        public int getNewId()
+        public int getNewId(int idCondominio)
         {
             using (UnitOfWork uw = new UnitOfWork())
             {
@@ -24,9 +24,9 @@ namespace Simba.Businness
             }
         }
 
-        public string GetNewCodice(){
-            int n = getNewId();
-            string codice = n.ToString().PadLeft(12, '0');
+        public string GetNewCodice(int idCondominio){
+            int n = getNewId(idCondominio);
+            string codice =string.Concat(idCondominio.ToString().PadLeft(6, '0'), n.ToString().PadLeft(6, '0'));
             return codice;
         }
 

@@ -1,0 +1,44 @@
+﻿@using Simba.DataLayer.simba_condomini
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Index</h2>
+
+
+<h2>Home</h2>
+
+@(Html.DevExtreme().DataGrid<Condominium>()
+        .ShowBorders(true)
+        .DataSource(d => d.WebApi().Controller("CondominiumDati").Key("Oid"))
+        .Columns(columns =>
+        {
+            columns.AddFor(m => m.Oid);
+            columns.AddFor(m => m.NomeCondominio);
+            columns.AddFor(m => m.Indirizzo);
+            columns.AddFor(m => m.PartitaIva);
+            columns.AddFor(m => m.Code);
+            columns.Add()
+            .Caption("Comandi")
+            .CellTemplate(@<text>
+                @(Html.DevExtreme().Button()
+                .Text("Modifica")
+                .Type(ButtonType.Success)
+                .UseSubmitBehavior(false).OnClick("OpenCondominio"))
+                
+            </text>);
+        })
+        .Paging(p => p.PageSize(10))
+        .FilterRow(f => f.Visible(true))
+        .HeaderFilter(f => f.Visible(true))
+        .GroupPanel(p => p.Visible(true))
+        .Grouping(g => g.AutoExpandAll(false))
+        .RemoteOperations(true)
+)
+
+<script>
+    function OpenCondominio(s,e) {
+        console.log(s, e);
+    }
+</script>

@@ -40,7 +40,7 @@ namespace Simba.Businness
             }
         }
 
-        public List<Simba.DataLayer.simba_condomini.Ticket> GetTicketSupplier()
+        public List<Simba.DataLayer.simba_condomini.Ticket> GetTicketSupplier(int? idCond)
         {
             using (UnitOfWork uw = new UnitOfWork())
             {
@@ -49,7 +49,7 @@ namespace Simba.Businness
                 .Where(t => t.IdSuplier.Oid == user.Oid)
                 .Select(t => t.IdTicket.Oid);
                 var data = uw.Query<Simba.DataLayer.simba_condomini.Ticket>()
-                .Where(t => t.isPublic || tiks.Contains(t.Oid))
+                .Where(t => (t.isPublic || tiks.Contains(t.Oid)) && t.Condominium.Oid == idCond)
                 .ToList();
                 return data;
             }
@@ -103,6 +103,7 @@ namespace Simba.Businness
                     User = user,
                     Code = obj.Codice
                 };
+
                 var classification = uw.GetObjectByKey<DataLayer.simba_condomini.TicketClassification>(obj.ClasseTicket);
                 ticket.classification = classification.Oid;
                 ticket.Save();
@@ -114,6 +115,12 @@ namespace Simba.Businness
                     IdClassification = classification
                 };
                 classeTicket.Save();
+                uw.CommitChanges();
+
+                var ticketNew = uw.GetObjectByKey<DataLayer.simba_condomini.Ticket>(obj.Oid);
+                string codice = string.Concat(ticket.Condominium.Oid.ToString().PadLeft(6, '0'), ticket.Number.ToString().PadLeft(6, '0'));
+                ticketNew.Code = codice;
+                ticketNew.Save();
                 uw.CommitChanges();
             }
         }

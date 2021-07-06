@@ -52,7 +52,7 @@ namespace SimbaCondomini.Controllers
             List<Simba.DataLayer.simba_condomini.Ticket> dataT = null;
             if (isPerson) dataT = t.GetUserTicket(Simba.Businness.User.GetUserId());
             if (isAdminCond) dataT = t.GetTicketCondominio(idCond);
-            if (isSupplier) dataT = t.GetTicketSupplier();
+            if (isSupplier) dataT = t.GetTicketSupplier(idCond);
             foreach (var cc in dataT)
             {
                 var cond = cc.Condominium != null ? cc.Condominium.NomeCondominio : string.Empty;

@@ -21,8 +21,8 @@ namespace SimbaCondomini.Controllers
 
         private ActionResult NuovoTicket()
         {
-            int number = new Simba.Businness.ComunicazioniTicket().getNewId();
-            string  codice = new Simba.Businness.ComunicazioniTicket().GetNewCodice();
+            int number = new Simba.Businness.ComunicazioniTicket().getNewId(0);
+            string  codice = new Simba.Businness.ComunicazioniTicket().GetNewCodice(0);
             string owner = new Simba.Businness.ComunicazioniTicket().getEnvironmenti(1).Text;
             var user = new Simba.Businness.User().GetUser();
             int locale = 0;
@@ -132,8 +132,8 @@ namespace SimbaCondomini.Controllers
         [Authorize]
         private ActionResult NuovaComunicazione()
         {
-            int number = new Simba.Businness.ComunicazioniTicket().getNewId();
-            string codice = new Simba.Businness.ComunicazioniTicket().GetNewCodice();
+            int number = new Simba.Businness.ComunicazioniTicket().getNewId(0);
+            string codice = new Simba.Businness.ComunicazioniTicket().GetNewCodice(0);
             string owner = new Simba.Businness.ComunicazioniTicket().getEnvironmenti(1).Text;
             AddComunicazione model = new AddComunicazione(0, number, owner, codice, 0, null, null, string.Empty, 0, 0, 0, null);
             return View(model);

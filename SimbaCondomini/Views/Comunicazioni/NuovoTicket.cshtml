@@ -23,9 +23,12 @@
                     <div>
                         <div>Owner</div><div>@(Html.DevExtreme().TextBoxFor(m=>m.Owner).ReadOnly(true))</div>
                     </div>
+                    @if (Model.Oid > 0)
+                    {
                     <div>
-                        <div>Codice</div><div>@(Html.DevExtreme().TextBoxFor(m=>m.Codice).ReadOnly(true))</div>
+                        <div>Codice</div><div>@(Html.DevExtreme().TextBoxFor(m => m.Codice).ReadOnly(true))</div>
                     </div>
+                    }
                     <div>
                         <div>Classe</div><div>
                             @(Html.DevExtreme().SelectBoxFor(m=>m.ClasseTicket)
