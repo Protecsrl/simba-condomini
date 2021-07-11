@@ -35,4 +35,39 @@
     <Property Name="ParentElementType" Value="SqlTable" />
     <Property Name="NewName" Value="Titolo" />
   </Operation>
+  <Operation Name="Rename Refactor" Key="546021d9-68b0-415a-8632-13bb4b051882" ChangeDateTime="07/11/2021 18:41:29">
+    <Property Name="ElementName" Value="[dbo].[Provincia].[OID]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Provincia]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Oid" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="658ca60c-1281-49f5-bb6d-4f9601960155" ChangeDateTime="07/11/2021 18:41:37">
+    <Property Name="ElementName" Value="[dbo].[Provincia].[DESCRIZIONE]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Provincia]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Descrizione" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="b6e98648-7425-4739-99ae-44937e79f896" ChangeDateTime="07/11/2021 18:41:42">
+    <Property Name="ElementName" Value="[dbo].[Provincia].[SIGLA]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Provincia]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Sigla" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="ec2146a4-3fcb-4200-a850-9c507b888654" ChangeDateTime="07/11/2021 18:41:50">
+    <Property Name="ElementName" Value="[dbo].[Provincia].[CODICEPROVINCIA]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Provincia]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="CodiceProvincia" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="e6be05bc-eec5-4918-abc7-5f318bbb8f4f" ChangeDateTime="07/11/2021 18:42:00">
+    <Property Name="ElementName" Value="[dbo].[Provincia].[REGIONE]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Provincia]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Regione" />
+  </Operation>
 </Operations>

@@ -16,35 +16,42 @@ using System.Reflection;
 namespace Simba.DataLayer.Database
 {
 
-    public partial class Provincia : XPObject
+    public partial class Provincia : XPLiteObject
     {
-        string fDESCRIZIONE;
+        int fOid;
+        [Key(true)]
+        public int Oid
+        {
+            get { return fOid; }
+            set { SetPropertyValue<int>(nameof(Oid), ref fOid, value); }
+        }
+        string fDescrizione;
         [Size(1000)]
-        public string DESCRIZIONE
+        public string Descrizione
         {
-            get { return fDESCRIZIONE; }
-            set { SetPropertyValue<string>(nameof(DESCRIZIONE), ref fDESCRIZIONE, value); }
+            get { return fDescrizione; }
+            set { SetPropertyValue<string>(nameof(Descrizione), ref fDescrizione, value); }
         }
-        string fSIGLA;
+        string fSigla;
         [Size(2)]
-        public string SIGLA
+        public string Sigla
         {
-            get { return fSIGLA; }
-            set { SetPropertyValue<string>(nameof(SIGLA), ref fSIGLA, value); }
+            get { return fSigla; }
+            set { SetPropertyValue<string>(nameof(Sigla), ref fSigla, value); }
         }
-        string fCODICEPROVINCIA;
+        string fCodiceProvincia;
         [Size(3)]
-        public string CODICEPROVINCIA
+        public string CodiceProvincia
         {
-            get { return fCODICEPROVINCIA; }
-            set { SetPropertyValue<string>(nameof(CODICEPROVINCIA), ref fCODICEPROVINCIA, value); }
+            get { return fCodiceProvincia; }
+            set { SetPropertyValue<string>(nameof(CodiceProvincia), ref fCodiceProvincia, value); }
         }
-        Regione fREGIONE;
+        Regione fRegione;
         [Association(@"ProvinciaReferencesRegione")]
-        public Regione REGIONE
+        public Regione Regione
         {
-            get { return fREGIONE; }
-            set { SetPropertyValue<Regione>(nameof(REGIONE), ref fREGIONE, value); }
+            get { return fRegione; }
+            set { SetPropertyValue<Regione>(nameof(Regione), ref fRegione, value); }
         }
         [Association(@"ComuniReferencesProvincia")]
         public XPCollection<Comuni> Comunis { get { return GetCollection<Comuni>(nameof(Comunis)); } }

@@ -18,7 +18,7 @@ namespace SimbaCondomini.Controllers
             var datac = new List<Simba.Businness.Models.Condominio>();
             foreach (var cc in data)
             {
-                datac.Add(new Simba.Businness.Models.Condominio(cc.Oid, cc.Comune.Oid, cc.NomeCondominio, cc.Indirizzo, cc.PartitaIva, cc.Latitudine, cc.Longitudine));
+                datac.Add(new Simba.Businness.Models.Condominio(cc.Oid, cc.Comune, cc.NomeCondominio, cc.Indirizzo, cc.PartitaIva, cc.Latitudine, cc.Longitudine));
             }
 
             // return Request.CreateResponse(DataSourceLoader.Load(datac, loadOptions));

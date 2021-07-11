@@ -25,12 +25,11 @@ namespace Simba.DataLayer.Database
             get { return fOid; }
             set { SetPropertyValue<int>(nameof(Oid), ref fOid, value); }
         }
-        Comuni fComune;
-        [Association(@"CondominiumReferencesComuni")]
-        public Comuni Comune
+        int fComune;
+        public int Comune
         {
             get { return fComune; }
-            set { SetPropertyValue<Comuni>(nameof(Comune), ref fComune, value); }
+            set { SetPropertyValue<int>(nameof(Comune), ref fComune, value); }
         }
         string fNomeCondominio;
         [Size(50)]
@@ -72,16 +71,16 @@ namespace Simba.DataLayer.Database
             get { return fCode; }
             set { SetPropertyValue<string>(nameof(Code), ref fCode, value); }
         }
-        [Association(@"BuildingReferencesCondominium")]
-        public XPCollection<Building> Buildings { get { return GetCollection<Building>(nameof(Buildings)); } }
-        [Association(@"CommunicationsReferencesCondominium")]
-        public XPCollection<Communications> CommunicationsCollection { get { return GetCollection<Communications>(nameof(CommunicationsCollection)); } }
+        [Association(@"UserCondominiumReferencesCondominium")]
+        public XPCollection<UserCondominium> UserCondominiums { get { return GetCollection<UserCondominium>(nameof(UserCondominiums)); } }
         [Association(@"ContractsReferencesCondominium")]
         public XPCollection<Contracts> ContractsCollection { get { return GetCollection<Contracts>(nameof(ContractsCollection)); } }
         [Association(@"TicketReferencesCondominium")]
         public XPCollection<Ticket> Tickets { get { return GetCollection<Ticket>(nameof(Tickets)); } }
-        [Association(@"UserCondominiumReferencesCondominium")]
-        public XPCollection<UserCondominium> UserCondominiums { get { return GetCollection<UserCondominium>(nameof(UserCondominiums)); } }
+        [Association(@"CommunicationsReferencesCondominium")]
+        public XPCollection<Communications> CommunicationsCollection { get { return GetCollection<Communications>(nameof(CommunicationsCollection)); } }
+        [Association(@"BuildingReferencesCondominium")]
+        public XPCollection<Building> Buildings { get { return GetCollection<Building>(nameof(Buildings)); } }
     }
 
 }
