@@ -1,7 +1,7 @@
 ﻿using System;
 using DevExpress.Xpo;
 using Simba.Businness.Models;
-using Simba.DataLayer.simba_condomini;
+using Simba.DataLayer.Database;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -9,68 +9,68 @@ namespace Simba.Businness
 {
     public class Ticket : BusinnessBase
     {
-        public Simba.DataLayer.simba_condomini.Ticket getTicketById(int idTicket)
+        public Simba.DataLayer.Database.Ticket getTicketById(int idTicket)
         {
             using (UnitOfWork uw = new UnitOfWork())
             {
-                var data = uw.Query<Simba.DataLayer.simba_condomini.Ticket>().
+                var data = uw.Query<Simba.DataLayer.Database.Ticket>().
                 Where(c => c.Oid == idTicket).First();
                 return data;
             }
         }
-        public List<Simba.DataLayer.simba_condomini.Ticket> GetUserTicket(int? userId)
+        public List<Simba.DataLayer.Database.Ticket> GetUserTicket(int? userId)
         {
             using (UnitOfWork uw = new UnitOfWork())
             {
-                var data = uw.Query<Simba.DataLayer.simba_condomini.Ticket>().
+                var data = uw.Query<Simba.DataLayer.Database.Ticket>().
                 Where(c => !userId.HasValue || c.User.Oid == userId.Value).
                 ToList();
                 return data;
             }
         }
 
-        public List<Simba.DataLayer.simba_condomini.Ticket> GetTicketCondominio(int condId)
+        public List<Simba.DataLayer.Database.Ticket> GetTicketCondominio(int condId)
         {
             using (UnitOfWork uw = new UnitOfWork())
             {
-                var data = uw.Query<Simba.DataLayer.simba_condomini.Ticket>().
+                var data = uw.Query<Simba.DataLayer.Database.Ticket>().
                 Where(c => c.Condominium.Oid == condId).
                 ToList();
                 return data;
             }
         }
 
-        public List<Simba.DataLayer.simba_condomini.Ticket> GetTicketSupplier(int? idCond)
+        public List<Simba.DataLayer.Database.Ticket> GetTicketSupplier(int? idCond)
         {
             using (UnitOfWork uw = new UnitOfWork())
             {
-                var user = uw.GetObjectByKey<DataLayer.simba_condomini.User>(User.GetUserId());
-                var tiks = uw.Query<DataLayer.simba_condomini.TicketSuplliers>()
+                var user = uw.GetObjectByKey<Simba.DataLayer.Database.User>(User.GetUserId());
+                var tiks = uw.Query<Simba.DataLayer.Database.TicketSuplliers>()
                 .Where(t => t.IdSuplier.Oid == user.Oid)
                 .Select(t => t.IdTicket.Oid);
-                var data = uw.Query<Simba.DataLayer.simba_condomini.Ticket>()
+                var data = uw.Query<Simba.DataLayer.Database.Ticket>()
                 .Where(t => (t.isPublic || tiks.Contains(t.Oid)) && t.Condominium.Oid == idCond)
                 .ToList();
                 return data;
             }
         }
 
-        public List<Simba.DataLayer.simba_condomini.TicketStatuses> GetTicketStatuses(int idTicket)
+        public List<Simba.DataLayer.Database.TicketStatuses> GetTicketStatuses(int idTicket)
         {
             using (UnitOfWork uw = new UnitOfWork())
             {
-                var data = uw.Query<Simba.DataLayer.simba_condomini.TicketStatuses>().
+                var data = uw.Query<Simba.DataLayer.Database.TicketStatuses>().
                 Where(c => c.IdTicket.Oid == idTicket).
                 ToList();
                 return data;
             }
         }
 
-        public List<Simba.DataLayer.simba_condomini.TicketClassification> GetLastTicketClassification(int idTicket)
+        public List<Simba.DataLayer.Database.TicketClassification> GetLastTicketClassification(int idTicket)
         {
             using (UnitOfWork uw = new UnitOfWork())
             {
-                var data = uw.Query<Simba.DataLayer.simba_condomini.TicketClassifications>().
+                var data = uw.Query<Simba.DataLayer.Database.TicketClassifications>().
                 Where(c => c.IdTicket.Oid == idTicket).
                 Select(c => c.IdClassification).
                 ToList();
@@ -82,13 +82,13 @@ namespace Simba.Businness
         {
             using (UnitOfWork uw = new UnitOfWork())
             {
-                var user = uw.GetObjectByKey<DataLayer.simba_condomini.User>(User.GetUserId());
+                var user = uw.GetObjectByKey<Simba.DataLayer.Database.User>(User.GetUserId());
 
-                var condominio = uw.GetObjectByKey<DataLayer.simba_condomini.Condominium>(obj.Condominio);
-                var edificio = uw.GetObjectByKey<DataLayer.simba_condomini.Building>(obj.Edificio);
-                var locale = uw.GetObjectByKey<DataLayer.simba_condomini.Environment>(obj.Locale);
+                var condominio = uw.GetObjectByKey<Simba.DataLayer.Database.Condominium>(obj.Condominio);
+                var edificio = uw.GetObjectByKey<Simba.DataLayer.Database.Building>(obj.Edificio);
+                var locale = uw.GetObjectByKey<Simba.DataLayer.Database.Environment>(obj.Locale);
 
-                DataLayer.simba_condomini.Ticket ticket = new DataLayer.simba_condomini.Ticket(uw)
+                Simba.DataLayer.Database.Ticket ticket = new Simba.DataLayer.Database.Ticket(uw)
                 {
                     Descrizione = obj.Descrizione,
                     Building = edificio,
@@ -104,12 +104,12 @@ namespace Simba.Businness
                     Code = obj.Codice
                 };
 
-                var classification = uw.GetObjectByKey<DataLayer.simba_condomini.TicketClassification>(obj.ClasseTicket);
+                var classification = uw.GetObjectByKey<Simba.DataLayer.Database.TicketClassification>(obj.ClasseTicket);
                 ticket.classification = classification.Oid;
                 ticket.Save();
                 uw.CommitChanges();
 
-                DataLayer.simba_condomini.TicketClassifications classeTicket = new DataLayer.simba_condomini.TicketClassifications(uw)
+                Simba.DataLayer.Database.TicketClassifications classeTicket = new Simba.DataLayer.Database.TicketClassifications(uw)
                 {
                     IdTicket = ticket,
                     IdClassification = classification
@@ -117,7 +117,7 @@ namespace Simba.Businness
                 classeTicket.Save();
                 uw.CommitChanges();
 
-                var ticketNew = uw.GetObjectByKey<DataLayer.simba_condomini.Ticket>(ticket.Oid);
+                var ticketNew = uw.GetObjectByKey<Simba.DataLayer.Database.Ticket>(ticket.Oid);
                 string codice = string.Concat(ticket.Condominium.Oid.ToString().PadLeft(6, '0'), ticket.Number.ToString().PadLeft(6, '0'));
                 ticketNew.Code = codice;
                 ticketNew.Save();
@@ -129,12 +129,12 @@ namespace Simba.Businness
         {
             using (UnitOfWork uw = new UnitOfWork())
             {
-                var user = uw.GetObjectByKey<DataLayer.simba_condomini.User>(User.GetUserId());
-                var ticket = uw.GetObjectByKey<DataLayer.simba_condomini.Ticket>(obj.Oid);
-                var condominio = uw.GetObjectByKey<DataLayer.simba_condomini.Condominium>(obj.Condominio);
-                var edificio = uw.GetObjectByKey<DataLayer.simba_condomini.Building>(obj.Edificio);
-                var locale = uw.GetObjectByKey<DataLayer.simba_condomini.Environment>(obj.Locale);
-                var stato = uw.GetObjectByKey<DataLayer.simba_condomini.TicketStatus>(obj.Stato);
+                var user = uw.GetObjectByKey<Simba.DataLayer.Database.User>(User.GetUserId());
+                var ticket = uw.GetObjectByKey<Simba.DataLayer.Database.Ticket>(obj.Oid);
+                var condominio = uw.GetObjectByKey<Simba.DataLayer.Database.Condominium>(obj.Condominio);
+                var edificio = uw.GetObjectByKey<Simba.DataLayer.Database.Building>(obj.Edificio);
+                var locale = uw.GetObjectByKey<Simba.DataLayer.Database.Environment>(obj.Locale);
+                var stato = uw.GetObjectByKey<Simba.DataLayer.Database.TicketStatus>(obj.Stato);
                 ticket.Data = DateTime.Now;
                 ticket.DateUpdate = DateTime.Now;
                 ticket.Note = obj.Note;
@@ -149,9 +149,9 @@ namespace Simba.Businness
                 if (obj.ClasseTicket != ticket.classification)
                 {
                     ticket.classification = obj.ClasseTicket;
-                    var classification = uw.GetObjectByKey<DataLayer.simba_condomini.TicketClassification>(obj.ClasseTicket);
+                    var classification = uw.GetObjectByKey<Simba.DataLayer.Database.TicketClassification>(obj.ClasseTicket);
 
-                    DataLayer.simba_condomini.TicketClassifications classeTicket = new DataLayer.simba_condomini.TicketClassifications(uw)
+                    Simba.DataLayer.Database.TicketClassifications classeTicket = new Simba.DataLayer.Database.TicketClassifications(uw)
                     {
                         IdTicket = ticket,
                         IdClassification = classification
@@ -162,7 +162,7 @@ namespace Simba.Businness
                 if (obj.Stato != ticket.TicketStatus)
                 {
 
-                    DataLayer.simba_condomini.TicketStatuses statoTicket = new DataLayer.simba_condomini.TicketStatuses(uw)
+                    Simba.DataLayer.Database.TicketStatuses statoTicket = new Simba.DataLayer.Database.TicketStatuses(uw)
                     {
                         IdTicket = ticket,
                         IdStatus = stato,

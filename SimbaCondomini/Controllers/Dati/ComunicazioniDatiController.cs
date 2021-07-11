@@ -36,7 +36,7 @@ namespace SimbaCondomini.Controllers
 
 
             Comunicazioni c = new Comunicazioni();
-            List<Simba.DataLayer.simba_condomini.Communications> data = null;
+            List<Simba.DataLayer.Database.Communications> data = null;
             if (isPerson) data = c.GetUserCommunication(Simba.Businness.User.GetUserId());
             if (isAdminCond) data = c.getComunicazioniCondominio(idCond);
             if (isSupplier) data = c.getComunicazioniSupplier();
@@ -49,7 +49,7 @@ namespace SimbaCondomini.Controllers
 
 
             Ticket t = new Ticket();
-            List<Simba.DataLayer.simba_condomini.Ticket> dataT = null;
+            List<Simba.DataLayer.Database.Ticket> dataT = null;
             if (isPerson) dataT = t.GetUserTicket(Simba.Businness.User.GetUserId());
             if (isAdminCond) dataT = t.GetTicketCondominio(idCond);
             if (isSupplier) dataT = t.GetTicketSupplier(idCond);

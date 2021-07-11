@@ -13,31 +13,33 @@ using DevExpress.Data.Filtering;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Reflection;
-namespace Simba.DataLayer.simba_condomini
+namespace Simba.DataLayer.Database
 {
     public static class ConnectionHelper
     {
         static Type[] persistentTypes = new Type[] {
+            typeof(P__RefactorLog),
+            typeof(Building),
+            typeof(Communications),
+            typeof(CommunicationType),
+            typeof(Comuni),
             typeof(Condominium),
             typeof(Contracts),
             typeof(Documents),
+            typeof(Environment),
+            typeof(Provincia),
+            typeof(Regione),
+            typeof(sysdiagrams),
             typeof(Ticket),
             typeof(TicketClassification),
             typeof(TicketClassifications),
             typeof(TicketDocument),
             typeof(TicketStatus),
-            typeof(User),
-            typeof(UserType),
             typeof(TicketStatuses),
-            typeof(Communications),
-            typeof(CommunicationType),
-            typeof(Building),
-            typeof(Environment),
+            typeof(TicketSuplliers),
+            typeof(User),
             typeof(UserCondominium),
-            typeof(Comuni),
-            typeof(Provincia),
-            typeof(Regione),
-            typeof(TicketSuplliers)
+            typeof(UserType)
         };
         public static Type[] GetPersistentTypes()
         {

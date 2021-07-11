@@ -5,11 +5,9 @@ using DevExpress.Data.Filtering;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Reflection;
-using System.Runtime.Serialization;
-
-namespace Simba.DataLayer.simba_condomini
+namespace Simba.DataLayer.Database
 {
-    [DataContractAttribute]
+
     public partial class Condominium
     {
         public Condominium(Session session) : base(session) { }

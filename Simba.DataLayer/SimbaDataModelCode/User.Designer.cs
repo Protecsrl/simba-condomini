@@ -13,7 +13,7 @@ using DevExpress.Data.Filtering;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Reflection;
-namespace Simba.DataLayer.simba_condomini
+namespace Simba.DataLayer.Database
 {
 
     public partial class User : XPLiteObject
@@ -110,22 +110,22 @@ namespace Simba.DataLayer.simba_condomini
             get { return fBuilding; }
             set { SetPropertyValue<Building>(nameof(Building), ref fBuilding, value); }
         }
-        [Association(@"TicketSuplliersReferencesUser")]
-        public XPCollection<TicketSuplliers> TicketSuplliersCollection { get { return GetCollection<TicketSuplliers>(nameof(TicketSuplliersCollection)); } }
-        [Association(@"UserCondominiumReferencesUser")]
-        public XPCollection<UserCondominium> UserCondominiums { get { return GetCollection<UserCondominium>(nameof(UserCondominiums)); } }
         [Association(@"CommunicationsReferencesUser")]
         public XPCollection<Communications> CommunicationsCollection { get { return GetCollection<Communications>(nameof(CommunicationsCollection)); } }
-        [Association(@"TicketDocumentReferencesUser")]
-        public XPCollection<TicketDocument> TicketDocuments { get { return GetCollection<TicketDocument>(nameof(TicketDocuments)); } }
-        [Association(@"TicketClassificationsReferencesUser")]
-        public XPCollection<TicketClassifications> TicketClassificationsCollection { get { return GetCollection<TicketClassifications>(nameof(TicketClassificationsCollection)); } }
-        [Association(@"TicketStatusesReferencesUser")]
-        public XPCollection<TicketStatuses> TicketStatusesCollection { get { return GetCollection<TicketStatuses>(nameof(TicketStatusesCollection)); } }
         [Association(@"TicketReferencesUser")]
         public XPCollection<Ticket> Tickets { get { return GetCollection<Ticket>(nameof(Tickets)); } }
+        [Association(@"TicketClassificationsReferencesUser")]
+        public XPCollection<TicketClassifications> TicketClassificationsCollection { get { return GetCollection<TicketClassifications>(nameof(TicketClassificationsCollection)); } }
+        [Association(@"TicketDocumentReferencesUser")]
+        public XPCollection<TicketDocument> TicketDocuments { get { return GetCollection<TicketDocument>(nameof(TicketDocuments)); } }
+        [Association(@"TicketStatusesReferencesUser")]
+        public XPCollection<TicketStatuses> TicketStatusesCollection { get { return GetCollection<TicketStatuses>(nameof(TicketStatusesCollection)); } }
+        [Association(@"TicketSuplliersReferencesUser")]
+        public XPCollection<TicketSuplliers> TicketSuplliersCollection { get { return GetCollection<TicketSuplliers>(nameof(TicketSuplliersCollection)); } }
         [Association(@"TicketSuplliersReferencesUser1")]
         public XPCollection<TicketSuplliers> TicketSuplliersCollection1 { get { return GetCollection<TicketSuplliers>(nameof(TicketSuplliersCollection1)); } }
+        [Association(@"UserCondominiumReferencesUser")]
+        public XPCollection<UserCondominium> UserCondominiums { get { return GetCollection<UserCondominium>(nameof(UserCondominiums)); } }
     }
 
 }

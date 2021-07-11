@@ -5,7 +5,7 @@ using DevExpress.Data.Filtering;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Reflection;
-namespace Simba.DataLayer.simba_condomini
+namespace Simba.DataLayer.Database
 {
 
     public partial class sysdiagrams

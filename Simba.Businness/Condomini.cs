@@ -1,6 +1,6 @@
 ﻿using DevExpress.Xpo;
 using DevExpress.Xpo.DB;
-using Simba.DataLayer.simba_condomini;
+using Simba.DataLayer.Database;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,9 +25,9 @@ namespace Simba.Businness
         {
             using (UnitOfWork uw = new UnitOfWork())
             {
-                var user = uw.GetObjectByKey<DataLayer.simba_condomini.User>(User.GetUserId());
-                var ts = uw.Query<Simba.DataLayer.simba_condomini.TicketSuplliers>().Where(t => t.IdSuplier.Oid == user.Oid).Select(s => s.IdTicket.Oid); 
-                var data = uw.Query<Simba.DataLayer.simba_condomini.Ticket>()
+                var user = uw.GetObjectByKey<Simba.DataLayer.Database.User>(User.GetUserId());
+                var ts = uw.Query<Simba.DataLayer.Database.TicketSuplliers>().Where(t => t.IdSuplier.Oid == user.Oid).Select(s => s.IdTicket.Oid); 
+                var data = uw.Query<Simba.DataLayer.Database.Ticket>()
                 .Where(t => ts.Contains(t.Oid) || t.isPublic)
                 .Select(x => x.Building.Condominium)
                 .ToList();
@@ -42,7 +42,7 @@ namespace Simba.Businness
 
             using (UnitOfWork uw = new UnitOfWork())
             {
-                var user = uw.GetObjectByKey<DataLayer.simba_condomini.User>(User.GetUserId());
+                var user = uw.GetObjectByKey<Simba.DataLayer.Database.User>(User.GetUserId());
                 switch (type)
                 {
                     case Roles.Cond:

@@ -1,6 +1,6 @@
 ﻿using DevExpress.Xpo;
 using Simba.Businness.Models;
-using Simba.DataLayer.simba_condomini;
+using Simba.DataLayer.Database;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,28 +23,28 @@ namespace Simba.Businness
             }
         }
 
-        public Simba.DataLayer.simba_condomini.Communications getComunicazioneById(int idCom)
+        public Simba.DataLayer.Database.Communications getComunicazioneById(int idCom)
         {
             using (UnitOfWork uw = new UnitOfWork())
             {
-                var data = uw.Query<Simba.DataLayer.simba_condomini.Communications>().
+                var data = uw.Query<Simba.DataLayer.Database.Communications>().
                 Where(c => c.Oid == idCom).First();
                 return data;
             }
         }
 
-        public List<Simba.DataLayer.simba_condomini.Communications> getComunicazioniCondominio(int idCom)
+        public List<Simba.DataLayer.Database.Communications> getComunicazioniCondominio(int idCom)
         {
             using (UnitOfWork uw = new UnitOfWork())
             {
-                var data = uw.Query<Simba.DataLayer.simba_condomini.Communications>().
+                var data = uw.Query<Simba.DataLayer.Database.Communications>().
                 Where(c => c.Condominium.Oid == idCom).ToList();
                 return data;
             }
         }
 
 
-        public List<Simba.DataLayer.simba_condomini.Communications> getComunicazioniSupplier()
+        public List<Simba.DataLayer.Database.Communications> getComunicazioniSupplier()
         {
             return new List<Communications>();
         }
@@ -54,10 +54,10 @@ namespace Simba.Businness
             using (UnitOfWork uw = new UnitOfWork())
             {
 
-                var user = uw.GetObjectByKey<DataLayer.simba_condomini.User>(User.GetUserId());
+                var user = uw.GetObjectByKey<Simba.DataLayer.Database.User>(User.GetUserId());
                 var condominio = user.Building.Condominium;
 
-                DataLayer.simba_condomini.Communications communuic = new DataLayer.simba_condomini.Communications(uw)
+                Simba.DataLayer.Database.Communications communuic = new Simba.DataLayer.Database.Communications(uw)
                 {
                     Descrizione = obj.Descrizione,
                     Condominium = condominio,
@@ -73,7 +73,7 @@ namespace Simba.Businness
                 communuic.Save();
                 uw.CommitChanges();
 
-                var commNew = uw.GetObjectByKey<DataLayer.simba_condomini.Communications>(communuic.Oid);
+                var commNew = uw.GetObjectByKey<Simba.DataLayer.Database.Communications>(communuic.Oid);
                 string codice = string.Concat(commNew.Condominium.Oid.ToString().PadLeft(6, '0'), commNew.Number.ToString().PadLeft(6, '0'));
                 commNew.Code = codice;
                 commNew.Save();
@@ -86,8 +86,8 @@ namespace Simba.Businness
 
             using (UnitOfWork uw = new UnitOfWork())
             {
-                var commun = uw.GetObjectByKey<DataLayer.simba_condomini.Communications>(obj.Oid);
-                var user = uw.GetObjectByKey<DataLayer.simba_condomini.User>(User.GetUserId());
+                var commun = uw.GetObjectByKey<Simba.DataLayer.Database.Communications>(obj.Oid);
+                var user = uw.GetObjectByKey<Simba.DataLayer.Database.User>(User.GetUserId());
                 var condominio = user.Building.Condominium;
 
                 commun.Descrizione = obj.Descrizione;

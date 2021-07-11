@@ -1,5 +1,5 @@
 ﻿using DevExpress.Xpo;
-using Simba.DataLayer.simba_condomini;
+using Simba.DataLayer.Database;
 using System;
 using System.Collections.Generic;
 using System.Linq;

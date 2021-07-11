@@ -13,7 +13,7 @@ using DevExpress.Data.Filtering;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Reflection;
-namespace Simba.DataLayer.simba_condomini
+namespace Simba.DataLayer.Database
 {
 
     public partial class Ticket : XPLiteObject
@@ -123,14 +123,14 @@ namespace Simba.DataLayer.simba_condomini
             get { return fisPublic; }
             set { SetPropertyValue<bool>(nameof(isPublic), ref fisPublic, value); }
         }
-        [Association(@"TicketSuplliersReferencesTicket")]
-        public XPCollection<TicketSuplliers> TicketSuplliersCollection { get { return GetCollection<TicketSuplliers>(nameof(TicketSuplliersCollection)); } }
-        [Association(@"TicketStatusesReferencesTicket")]
-        public XPCollection<TicketStatuses> TicketStatusesCollection { get { return GetCollection<TicketStatuses>(nameof(TicketStatusesCollection)); } }
-        [Association(@"TicketDocumentReferencesTicket")]
-        public XPCollection<TicketDocument> TicketDocuments { get { return GetCollection<TicketDocument>(nameof(TicketDocuments)); } }
         [Association(@"TicketClassificationsReferencesTicket")]
         public XPCollection<TicketClassifications> TicketClassificationsCollection { get { return GetCollection<TicketClassifications>(nameof(TicketClassificationsCollection)); } }
+        [Association(@"TicketDocumentReferencesTicket")]
+        public XPCollection<TicketDocument> TicketDocuments { get { return GetCollection<TicketDocument>(nameof(TicketDocuments)); } }
+        [Association(@"TicketStatusesReferencesTicket")]
+        public XPCollection<TicketStatuses> TicketStatusesCollection { get { return GetCollection<TicketStatuses>(nameof(TicketStatusesCollection)); } }
+        [Association(@"TicketSuplliersReferencesTicket")]
+        public XPCollection<TicketSuplliers> TicketSuplliersCollection { get { return GetCollection<TicketSuplliers>(nameof(TicketSuplliersCollection)); } }
     }
 
 }

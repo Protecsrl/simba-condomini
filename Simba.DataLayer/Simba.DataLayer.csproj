@@ -45,7 +45,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SimbaDataModelCode\Building.cs" />
     <Compile Include="SimbaDataModelCode\Building.Designer.cs">
@@ -91,10 +90,6 @@
     <Compile Include="SimbaDataModelCode\Regione.cs" />
     <Compile Include="SimbaDataModelCode\Regione.Designer.cs">
       <DependentUpon>Regione.cs</DependentUpon>
-    </Compile>
-    <Compile Include="SimbaDataModelCode\Stair.cs" />
-    <Compile Include="SimbaDataModelCode\Stair.Designer.cs">
-      <DependentUpon>Stair.cs</DependentUpon>
     </Compile>
     <Compile Include="SimbaDataModelCode\sysdiagrams.cs" />
     <Compile Include="SimbaDataModelCode\sysdiagrams.Designer.cs">

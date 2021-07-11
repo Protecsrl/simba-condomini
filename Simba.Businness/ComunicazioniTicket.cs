@@ -1,6 +1,6 @@
 ﻿using DevExpress.Xpo;
 using DevExpress.Xpo.DB;
-using Simba.DataLayer.simba_condomini;
+using Simba.DataLayer.Database;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,7 +17,7 @@ namespace Simba.Businness
             {
                 var mc = uw.Query<Communications>().
                 Max(c => c.Number);
-                var mt = uw.Query<Simba.DataLayer.simba_condomini.Ticket>().
+                var mt = uw.Query<Simba.DataLayer.Database.Ticket>().
                 Max(t => t.Number);
                 var max = mc > mt ? mc : mt;
                 return max + 1;

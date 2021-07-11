@@ -13,7 +13,7 @@ using DevExpress.Data.Filtering;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Reflection;
-namespace Simba.DataLayer.simba_condomini
+namespace Simba.DataLayer.Database
 {
 
     public partial class Building : XPLiteObject
@@ -41,10 +41,10 @@ namespace Simba.DataLayer.simba_condomini
         }
         [Association(@"EnvironmentReferencesBuilding")]
         public XPCollection<Environment> Environments { get { return GetCollection<Environment>(nameof(Environments)); } }
-        [Association(@"UserReferencesBuilding")]
-        public XPCollection<User> Users { get { return GetCollection<User>(nameof(Users)); } }
         [Association(@"TicketReferencesBuilding")]
         public XPCollection<Ticket> Tickets { get { return GetCollection<Ticket>(nameof(Tickets)); } }
+        [Association(@"UserReferencesBuilding")]
+        public XPCollection<User> Users { get { return GetCollection<User>(nameof(Users)); } }
     }
 
 }
