@@ -70,4 +70,186 @@
     <Property Name="ParentElementType" Value="SqlTable" />
     <Property Name="NewName" Value="Regione" />
   </Operation>
+  <Operation Name="Rename Refactor" Key="6dddac3a-27f9-49df-a09c-7ad3944df07c" ChangeDateTime="07/11/2021 21:09:41">
+    <Property Name="ElementName" Value="[dbo].[Regione].[OID]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Regione]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Oid" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="97b62aeb-f514-42b8-a807-c5972eb21e3c" ChangeDateTime="07/11/2021 21:09:49">
+    <Property Name="ElementName" Value="[dbo].[Regione].[CODICEREGIONE]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Regione]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="CodiceRegione" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="9f406e75-f47f-4fd8-82c1-8aa2aeb28932" ChangeDateTime="07/11/2021 21:09:55">
+    <Property Name="ElementName" Value="[dbo].[Regione].[DESCRIZIONE]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Regione]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Descrizione" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="8faeb19a-8181-45c4-8eac-222e184c6a86" ChangeDateTime="07/11/2021 21:10:00">
+    <Property Name="ElementName" Value="[dbo].[Regione].[NAZIONE]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Regione]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Nazione" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="380e59d7-a721-4561-a117-2268ffc72928" ChangeDateTime="07/11/2021 21:17:51">
+    <Property Name="ElementName" Value="[dbo].[Comuni].[RIPARTIZIONEGEOGRAFICA]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Comuni]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="RipartizioneGeografica" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="715ac4b1-eede-405f-ae2a-a69ff22cdca2" ChangeDateTime="07/11/2021 21:18:05">
+    <Property Name="ElementName" Value="[dbo].[Comuni].[CODICENUTS22010]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Comuni]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="CodiceNuts22010" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="bf66cc24-ba19-4952-8220-0bc361699b25" ChangeDateTime="07/11/2021 21:18:14">
+    <Property Name="ElementName" Value="[dbo].[Comuni].[CODICENUTS32010]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Comuni]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="CodiceNuts32010" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="81991305-06b4-462e-b370-a62317219b6f" ChangeDateTime="07/11/2021 21:18:21">
+    <Property Name="ElementName" Value="[dbo].[Comuni].[CODICEREGIONE]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Comuni]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="CodiceRegione" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="0f8d94fa-3f69-49ac-8e3a-8713f62ecb82" ChangeDateTime="07/11/2021 21:18:30">
+    <Property Name="ElementName" Value="[dbo].[Comuni].[CODICEPROVINCIA]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Comuni]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="CodiceProvincia" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="1695201e-9b2c-4066-a218-3f54d9678298" ChangeDateTime="07/11/2021 21:18:38">
+    <Property Name="ElementName" Value="[dbo].[Comuni].[CODICECITTAMETROPOLITANA]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Comuni]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="CodiceCittaMetropolitana" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="8f0a9f2b-8395-4129-b70f-2794c46d3d1e" ChangeDateTime="07/11/2021 21:18:51">
+    <Property Name="ElementName" Value="[dbo].[Comuni].[NUMPROGRESSIVOCOMUNE]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Comuni]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="NumeroProgressivoComune" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="f6daa768-3fd6-4b21-b0eb-e29041aa75ee" ChangeDateTime="07/11/2021 21:19:00">
+    <Property Name="ElementName" Value="[dbo].[Comuni].[CODICEISTAT]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Comuni]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="CodiceIstat" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="14e76e51-f69e-4d9d-ae3c-9943552efd10" ChangeDateTime="07/11/2021 21:19:08">
+    <Property Name="ElementName" Value="[dbo].[Comuni].[CODICEISTATNUM]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Comuni]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="CodiceIstatNum" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="9ef34241-60a8-4d5d-b559-f5baf6f11cd8" ChangeDateTime="07/11/2021 21:19:31">
+    <Property Name="ElementName" Value="[dbo].[Comuni].[CODICEISTAT107PROV]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Comuni]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="CodiceIstat107Prov" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="184f624e-419b-4990-89fc-78829d0f774b" ChangeDateTime="07/11/2021 21:19:41">
+    <Property Name="ElementName" Value="[dbo].[Comuni].[CODICEISTAT103PROV]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Comuni]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="CodiceIstat103Prov" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="096f14c4-b563-491a-ba54-b9fe6bd92004" ChangeDateTime="07/11/2021 21:19:49">
+    <Property Name="ElementName" Value="[dbo].[Comuni].[CODICECATASTALE]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Comuni]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="CodiceCatastale" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="b8aa9e59-74bd-4394-ae5f-3983661b4c4d" ChangeDateTime="07/11/2021 21:20:07">
+    <Property Name="ElementName" Value="[dbo].[Comuni].[DENOMINAZIONEITALIANO]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Comuni]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="DenominazioneItaliano" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="4860c7dc-75c4-4bf5-b397-90a0ed770bff" ChangeDateTime="07/11/2021 21:20:16">
+    <Property Name="ElementName" Value="[dbo].[Comuni].[CAPOLUOGODIPROVINCIA]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Comuni]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="CapoluogoDiProvincia" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="1f0b2565-f949-48b1-b966-7a3bbe1cf506" ChangeDateTime="07/11/2021 21:20:26">
+    <Property Name="ElementName" Value="[dbo].[Comuni].[ZONAALTIMETRICA]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Comuni]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="ZonaAltimetrica" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="cd6c9fc2-51ac-4e97-813d-e8b6c6c9cfdc" ChangeDateTime="07/11/2021 21:20:34">
+    <Property Name="ElementName" Value="[dbo].[Comuni].[ALTITUDINEDELCENTRO]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Comuni]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="AltitudineDelCentro" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="ae6a0b6a-5d26-4e3c-84df-11f2b3ef8536" ChangeDateTime="07/11/2021 21:20:43">
+    <Property Name="ElementName" Value="[dbo].[Comuni].[COMUNELITORANEO]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Comuni]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="ComuneLitoraneo" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="7ad681af-55f6-4f4c-9c41-af4b0d1b59be" ChangeDateTime="07/11/2021 21:20:49">
+    <Property Name="ElementName" Value="[dbo].[Comuni].[COMUNEMONTANO]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Comuni]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="ComuneMontano" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="bb7f6a7e-0547-4581-8be2-4879b975521e" ChangeDateTime="07/11/2021 21:20:58">
+    <Property Name="ElementName" Value="[dbo].[Comuni].[SUPERFICIETERRITORIALE]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Comuni]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="SuperficieTerritoriale" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="e072e039-2746-4bab-b4d7-7660546ebd42" ChangeDateTime="07/11/2021 21:21:06">
+    <Property Name="ElementName" Value="[dbo].[Comuni].[POPOLAZIONE2001]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Comuni]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Popolazione2001" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="dab5a1fc-5ecf-4f8f-b052-82ae99758d42" ChangeDateTime="07/11/2021 21:21:13">
+    <Property Name="ElementName" Value="[dbo].[Comuni].[POPOLAZIONE2011]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Comuni]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Popolazione2011" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="05d6688a-fa99-4e90-b66d-c4036013a699" ChangeDateTime="07/11/2021 21:21:23">
+    <Property Name="ElementName" Value="[dbo].[Comuni].[PROVINCIA]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Comuni]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Provincia" />
+  </Operation>
 </Operations>

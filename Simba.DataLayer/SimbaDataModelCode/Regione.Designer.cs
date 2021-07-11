@@ -16,28 +16,35 @@ using System.Reflection;
 namespace Simba.DataLayer.Database
 {
 
-    public partial class Regione : XPObject
+    public partial class Regione : XPLiteObject
     {
-        string fCODICEREGIONE;
+        int fOid;
+        [Key(true)]
+        public int Oid
+        {
+            get { return fOid; }
+            set { SetPropertyValue<int>(nameof(Oid), ref fOid, value); }
+        }
+        string fCodiceRegione;
         [Size(2)]
-        public string CODICEREGIONE
+        public string CodiceRegione
         {
-            get { return fCODICEREGIONE; }
-            set { SetPropertyValue<string>(nameof(CODICEREGIONE), ref fCODICEREGIONE, value); }
+            get { return fCodiceRegione; }
+            set { SetPropertyValue<string>(nameof(CodiceRegione), ref fCodiceRegione, value); }
         }
-        string fDESCRIZIONE;
+        string fDescrizione;
         [Size(1000)]
-        public string DESCRIZIONE
+        public string Descrizione
         {
-            get { return fDESCRIZIONE; }
-            set { SetPropertyValue<string>(nameof(DESCRIZIONE), ref fDESCRIZIONE, value); }
+            get { return fDescrizione; }
+            set { SetPropertyValue<string>(nameof(Descrizione), ref fDescrizione, value); }
         }
-        string fNAZIONE;
+        string fNazione;
         [Size(500)]
-        public string NAZIONE
+        public string Nazione
         {
-            get { return fNAZIONE; }
-            set { SetPropertyValue<string>(nameof(NAZIONE), ref fNAZIONE, value); }
+            get { return fNazione; }
+            set { SetPropertyValue<string>(nameof(Nazione), ref fNazione, value); }
         }
         [Association(@"ProvinciaReferencesRegione")]
         public XPCollection<Provincia> Provincias { get { return GetCollection<Provincia>(nameof(Provincias)); } }

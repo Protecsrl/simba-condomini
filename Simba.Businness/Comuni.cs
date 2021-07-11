@@ -12,7 +12,7 @@ namespace Simba.Businness
             using (UnitOfWork uw = new UnitOfWork())
             {
                 var data = uw.Query<Simba.DataLayer.Database.Comuni>()
-                .Where(e => e.PROVINCIA.Oid == provincia || !provincia.HasValue).ToList();
+                .Where(e => e.Provincia.Oid == provincia || !provincia.HasValue).ToList();
                 return data;
             }
         }

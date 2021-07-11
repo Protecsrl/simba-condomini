@@ -18,7 +18,6 @@ namespace Simba.DataLayer.Database
     public static class ConnectionHelper
     {
         static Type[] persistentTypes = new Type[] {
-            typeof(P__RefactorLog),
             typeof(Building),
             typeof(Communications),
             typeof(CommunicationType),
@@ -29,7 +28,6 @@ namespace Simba.DataLayer.Database
             typeof(Environment),
             typeof(Provincia),
             typeof(Regione),
-            typeof(sysdiagrams),
             typeof(Ticket),
             typeof(TicketClassification),
             typeof(TicketClassifications),

@@ -52,10 +52,10 @@ namespace Simba.DataLayer.Database
             get { return fValid; }
             set { SetPropertyValue<bool>(nameof(Valid), ref fValid, value); }
         }
-        [Association(@"UserReferencesEnvironment")]
-        public XPCollection<User> Users { get { return GetCollection<User>(nameof(Users)); } }
         [Association(@"TicketReferencesEnvironment")]
         public XPCollection<Ticket> Tickets { get { return GetCollection<Ticket>(nameof(Tickets)); } }
+        [Association(@"UserReferencesEnvironment")]
+        public XPCollection<User> Users { get { return GetCollection<User>(nameof(Users)); } }
     }
 
 }

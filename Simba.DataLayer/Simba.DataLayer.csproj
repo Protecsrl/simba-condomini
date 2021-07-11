@@ -83,17 +83,9 @@
     <Compile Include="SimbaDataModelCode\Provincia.Designer.cs">
       <DependentUpon>Provincia.cs</DependentUpon>
     </Compile>
-    <Compile Include="SimbaDataModelCode\P__RefactorLog.cs" />
-    <Compile Include="SimbaDataModelCode\P__RefactorLog.Designer.cs">
-      <DependentUpon>P__RefactorLog.cs</DependentUpon>
-    </Compile>
     <Compile Include="SimbaDataModelCode\Regione.cs" />
     <Compile Include="SimbaDataModelCode\Regione.Designer.cs">
       <DependentUpon>Regione.cs</DependentUpon>
-    </Compile>
-    <Compile Include="SimbaDataModelCode\sysdiagrams.cs" />
-    <Compile Include="SimbaDataModelCode\sysdiagrams.Designer.cs">
-      <DependentUpon>sysdiagrams.cs</DependentUpon>
     </Compile>
     <Compile Include="SimbaDataModelCode\Ticket.cs" />
     <Compile Include="SimbaDataModelCode\Ticket.Designer.cs">

@@ -25,160 +25,162 @@ namespace Simba.DataLayer.Database
             get { return fOid; }
             set { SetPropertyValue<int>(nameof(Oid), ref fOid, value); }
         }
-        string fRIPARTIZIONEGEOGRAFICA;
+        string fRipartizioneGeografica;
         [Size(1000)]
-        public string RIPARTIZIONEGEOGRAFICA
+        public string RipartizioneGeografica
         {
-            get { return fRIPARTIZIONEGEOGRAFICA; }
-            set { SetPropertyValue<string>(nameof(RIPARTIZIONEGEOGRAFICA), ref fRIPARTIZIONEGEOGRAFICA, value); }
+            get { return fRipartizioneGeografica; }
+            set { SetPropertyValue<string>(nameof(RipartizioneGeografica), ref fRipartizioneGeografica, value); }
         }
-        string fCODICENUTS22010;
+        string fCodiceNuts22010;
         [Size(1000)]
-        public string CODICENUTS22010
+        public string CodiceNuts22010
         {
-            get { return fCODICENUTS22010; }
-            set { SetPropertyValue<string>(nameof(CODICENUTS22010), ref fCODICENUTS22010, value); }
+            get { return fCodiceNuts22010; }
+            set { SetPropertyValue<string>(nameof(CodiceNuts22010), ref fCodiceNuts22010, value); }
         }
-        string fCODICENUTS32010;
+        string fCodiceNuts32010;
         [Size(1000)]
-        public string CODICENUTS32010
+        public string CodiceNuts32010
         {
-            get { return fCODICENUTS32010; }
-            set { SetPropertyValue<string>(nameof(CODICENUTS32010), ref fCODICENUTS32010, value); }
+            get { return fCodiceNuts32010; }
+            set { SetPropertyValue<string>(nameof(CodiceNuts32010), ref fCodiceNuts32010, value); }
         }
-        string fCODICEREGIONE;
+        string fCodiceRegione;
         [Size(1000)]
-        public string CODICEREGIONE
+        public string CodiceRegione
         {
-            get { return fCODICEREGIONE; }
-            set { SetPropertyValue<string>(nameof(CODICEREGIONE), ref fCODICEREGIONE, value); }
+            get { return fCodiceRegione; }
+            set { SetPropertyValue<string>(nameof(CodiceRegione), ref fCodiceRegione, value); }
         }
-        string fCODICEPROVINCIA;
+        string fCodiceProvincia;
         [Size(1000)]
-        public string CODICEPROVINCIA
+        public string CodiceProvincia
         {
-            get { return fCODICEPROVINCIA; }
-            set { SetPropertyValue<string>(nameof(CODICEPROVINCIA), ref fCODICEPROVINCIA, value); }
+            get { return fCodiceProvincia; }
+            set { SetPropertyValue<string>(nameof(CodiceProvincia), ref fCodiceProvincia, value); }
         }
-        string fCODICECITTAMETROPOLITANA;
+        string fCodiceCittaMetropolitana;
         [Size(1000)]
-        public string CODICECITTAMETROPOLITANA
+        public string CodiceCittaMetropolitana
         {
-            get { return fCODICECITTAMETROPOLITANA; }
-            set { SetPropertyValue<string>(nameof(CODICECITTAMETROPOLITANA), ref fCODICECITTAMETROPOLITANA, value); }
+            get { return fCodiceCittaMetropolitana; }
+            set { SetPropertyValue<string>(nameof(CodiceCittaMetropolitana), ref fCodiceCittaMetropolitana, value); }
         }
-        string fNUMPROGRESSIVOCOMUNE;
+        string fNumeroProgressivoComune;
         [Size(1000)]
-        public string NUMPROGRESSIVOCOMUNE
+        public string NumeroProgressivoComune
         {
-            get { return fNUMPROGRESSIVOCOMUNE; }
-            set { SetPropertyValue<string>(nameof(NUMPROGRESSIVOCOMUNE), ref fNUMPROGRESSIVOCOMUNE, value); }
+            get { return fNumeroProgressivoComune; }
+            set { SetPropertyValue<string>(nameof(NumeroProgressivoComune), ref fNumeroProgressivoComune, value); }
         }
-        string fCODICEISTAT;
+        string fCodiceIstat;
         [Size(1000)]
-        public string CODICEISTAT
+        public string CodiceIstat
         {
-            get { return fCODICEISTAT; }
-            set { SetPropertyValue<string>(nameof(CODICEISTAT), ref fCODICEISTAT, value); }
+            get { return fCodiceIstat; }
+            set { SetPropertyValue<string>(nameof(CodiceIstat), ref fCodiceIstat, value); }
         }
-        string fCODICEISTATNUM;
+        string fCodiceIstatNum;
         [Size(1000)]
-        public string CODICEISTATNUM
+        public string CodiceIstatNum
         {
-            get { return fCODICEISTATNUM; }
-            set { SetPropertyValue<string>(nameof(CODICEISTATNUM), ref fCODICEISTATNUM, value); }
+            get { return fCodiceIstatNum; }
+            set { SetPropertyValue<string>(nameof(CodiceIstatNum), ref fCodiceIstatNum, value); }
         }
-        string fCODICEISTAT107PROV;
+        string fCodiceIstat107Prov;
         [Size(1000)]
-        public string CODICEISTAT107PROV
+        public string CodiceIstat107Prov
         {
-            get { return fCODICEISTAT107PROV; }
-            set { SetPropertyValue<string>(nameof(CODICEISTAT107PROV), ref fCODICEISTAT107PROV, value); }
+            get { return fCodiceIstat107Prov; }
+            set { SetPropertyValue<string>(nameof(CodiceIstat107Prov), ref fCodiceIstat107Prov, value); }
         }
-        string fCODICEISTAT103PROV;
+        string fCodiceIstat103Prov;
         [Size(1000)]
-        public string CODICEISTAT103PROV
+        public string CodiceIstat103Prov
         {
-            get { return fCODICEISTAT103PROV; }
-            set { SetPropertyValue<string>(nameof(CODICEISTAT103PROV), ref fCODICEISTAT103PROV, value); }
+            get { return fCodiceIstat103Prov; }
+            set { SetPropertyValue<string>(nameof(CodiceIstat103Prov), ref fCodiceIstat103Prov, value); }
         }
-        string fCODICECATASTALE;
+        string fCodiceCatastale;
         [Size(1000)]
-        public string CODICECATASTALE
+        public string CodiceCatastale
         {
-            get { return fCODICECATASTALE; }
-            set { SetPropertyValue<string>(nameof(CODICECATASTALE), ref fCODICECATASTALE, value); }
+            get { return fCodiceCatastale; }
+            set { SetPropertyValue<string>(nameof(CodiceCatastale), ref fCodiceCatastale, value); }
         }
-        string fDENOMINAZIONEITALIANO;
+        string fDenominazioneItaliano;
         [Size(1000)]
-        public string DENOMINAZIONEITALIANO
+        public string DenominazioneItaliano
         {
-            get { return fDENOMINAZIONEITALIANO; }
-            set { SetPropertyValue<string>(nameof(DENOMINAZIONEITALIANO), ref fDENOMINAZIONEITALIANO, value); }
+            get { return fDenominazioneItaliano; }
+            set { SetPropertyValue<string>(nameof(DenominazioneItaliano), ref fDenominazioneItaliano, value); }
         }
-        string fCAPOLUOGODIPROVINCIA;
+        string fCapoluogoDiProvincia;
         [Size(1000)]
-        public string CAPOLUOGODIPROVINCIA
+        public string CapoluogoDiProvincia
         {
-            get { return fCAPOLUOGODIPROVINCIA; }
-            set { SetPropertyValue<string>(nameof(CAPOLUOGODIPROVINCIA), ref fCAPOLUOGODIPROVINCIA, value); }
+            get { return fCapoluogoDiProvincia; }
+            set { SetPropertyValue<string>(nameof(CapoluogoDiProvincia), ref fCapoluogoDiProvincia, value); }
         }
-        string fZONAALTIMETRICA;
+        string fZonaAltimetrica;
         [Size(1000)]
-        public string ZONAALTIMETRICA
+        public string ZonaAltimetrica
         {
-            get { return fZONAALTIMETRICA; }
-            set { SetPropertyValue<string>(nameof(ZONAALTIMETRICA), ref fZONAALTIMETRICA, value); }
+            get { return fZonaAltimetrica; }
+            set { SetPropertyValue<string>(nameof(ZonaAltimetrica), ref fZonaAltimetrica, value); }
         }
-        string fALTITUDINEDELCENTRO;
+        string fAltitudineDelCentro;
         [Size(1000)]
-        public string ALTITUDINEDELCENTRO
+        public string AltitudineDelCentro
         {
-            get { return fALTITUDINEDELCENTRO; }
-            set { SetPropertyValue<string>(nameof(ALTITUDINEDELCENTRO), ref fALTITUDINEDELCENTRO, value); }
+            get { return fAltitudineDelCentro; }
+            set { SetPropertyValue<string>(nameof(AltitudineDelCentro), ref fAltitudineDelCentro, value); }
         }
-        string fCOMUNELITORANEO;
+        string fComuneLitoraneo;
         [Size(1000)]
-        public string COMUNELITORANEO
+        public string ComuneLitoraneo
         {
-            get { return fCOMUNELITORANEO; }
-            set { SetPropertyValue<string>(nameof(COMUNELITORANEO), ref fCOMUNELITORANEO, value); }
+            get { return fComuneLitoraneo; }
+            set { SetPropertyValue<string>(nameof(ComuneLitoraneo), ref fComuneLitoraneo, value); }
         }
-        string fCOMUNEMONTANO;
+        string fComuneMontano;
         [Size(1000)]
-        public string COMUNEMONTANO
+        public string ComuneMontano
         {
-            get { return fCOMUNEMONTANO; }
-            set { SetPropertyValue<string>(nameof(COMUNEMONTANO), ref fCOMUNEMONTANO, value); }
+            get { return fComuneMontano; }
+            set { SetPropertyValue<string>(nameof(ComuneMontano), ref fComuneMontano, value); }
         }
-        string fSUPERFICIETERRITORIALE;
+        string fSuperficieTerritoriale;
         [Size(1000)]
-        public string SUPERFICIETERRITORIALE
+        public string SuperficieTerritoriale
         {
-            get { return fSUPERFICIETERRITORIALE; }
-            set { SetPropertyValue<string>(nameof(SUPERFICIETERRITORIALE), ref fSUPERFICIETERRITORIALE, value); }
+            get { return fSuperficieTerritoriale; }
+            set { SetPropertyValue<string>(nameof(SuperficieTerritoriale), ref fSuperficieTerritoriale, value); }
         }
-        string fPOPOLAZIONE2001;
+        string fPopolazione2001;
         [Size(1000)]
-        public string POPOLAZIONE2001
+        public string Popolazione2001
         {
-            get { return fPOPOLAZIONE2001; }
-            set { SetPropertyValue<string>(nameof(POPOLAZIONE2001), ref fPOPOLAZIONE2001, value); }
+            get { return fPopolazione2001; }
+            set { SetPropertyValue<string>(nameof(Popolazione2001), ref fPopolazione2001, value); }
         }
-        string fPOPOLAZIONE2011;
+        string fPopolazione2011;
         [Size(1000)]
-        public string POPOLAZIONE2011
+        public string Popolazione2011
         {
-            get { return fPOPOLAZIONE2011; }
-            set { SetPropertyValue<string>(nameof(POPOLAZIONE2011), ref fPOPOLAZIONE2011, value); }
+            get { return fPopolazione2011; }
+            set { SetPropertyValue<string>(nameof(Popolazione2011), ref fPopolazione2011, value); }
         }
-        Provincia fPROVINCIA;
+        Provincia fProvincia;
         [Association(@"ComuniReferencesProvincia")]
-        public Provincia PROVINCIA
+        public Provincia Provincia
         {
-            get { return fPROVINCIA; }
-            set { SetPropertyValue<Provincia>(nameof(PROVINCIA), ref fPROVINCIA, value); }
+            get { return fProvincia; }
+            set { SetPropertyValue<Provincia>(nameof(Provincia), ref fProvincia, value); }
         }
+        [Association(@"CondominiumReferencesComuni")]
+        public XPCollection<Condominium> Condominiums { get { return GetCollection<Condominium>(nameof(Condominiums)); } }
     }
 
 }

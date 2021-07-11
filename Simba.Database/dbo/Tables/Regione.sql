@@ -1,8 +1,8 @@
 ﻿CREATE TABLE [dbo].[Regione]
 (
-	[OID] [int] IDENTITY(1,1) NOT FOR REPLICATION NOT NULL,
-	[CODICEREGIONE] [varchar](2) NULL,
-	[DESCRIZIONE] [varchar](1000) NULL,
-	[NAZIONE] [varchar](500) NULL, 
-    CONSTRAINT [PK_Regione] PRIMARY KEY ([OID])
+	[Oid] [int] IDENTITY(1,1) NOT FOR REPLICATION NOT NULL,
+	[CodiceRegione] [varchar](2) NULL,
+	[Descrizione] [varchar](1000) NULL,
+	[Nazione] [varchar](500) NULL, 
+    CONSTRAINT [PK_Regione] PRIMARY KEY ([Oid])
 )

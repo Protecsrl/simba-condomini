@@ -28,7 +28,7 @@ namespace SimbaCondomini.Controllers
             List<Simba.Businness.LookupItem> list = new List<Simba.Businness.LookupItem>();
             foreach (var c in ccc)
             {
-                list.Add(new Simba.Businness.LookupItem(c.Oid, c.DENOMINAZIONEITALIANO));
+                list.Add(new Simba.Businness.LookupItem(c.Oid, c.DenominazioneItaliano));
             }
 
             // return Request.CreateResponse(DataSourceLoader.Load(list, loadOptions));
