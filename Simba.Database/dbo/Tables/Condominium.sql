@@ -7,6 +7,7 @@
     [Latitudine]     FLOAT (53)     NULL,
     [Longitudine]    FLOAT (53)     NULL,
     [Code] NVARCHAR(6) NULL, 
-    CONSTRAINT [PK_Condominium] PRIMARY KEY CLUSTERED ([Oid] ASC)
+    CONSTRAINT [PK_Condominium] PRIMARY KEY CLUSTERED ([Oid] ASC),
+    CONSTRAINT [FK_Condominuim_Comune] FOREIGN KEY ([Comune]) REFERENCES [dbo].[Comuni] ([Oid])
 );
 

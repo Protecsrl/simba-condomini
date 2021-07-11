@@ -13,5 +13,11 @@ namespace SimbaCondomini.Controllers
         {
             return View();
         }
+
+        public ActionResult Edit()
+        {
+            var model = new Simba.Businness.Models.Admin.Condominio(0, 0, string.Empty, string.Empty, string.Empty, 0, 0, string.Empty);
+            return View(model);
+        }
     }
 }

@@ -1,0 +1,85 @@
+﻿@using Simba.Businness.Models.Admin
+@model Condominio
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm("Edit", "AdminCondomini", FormMethod.Post))
+{
+
+    using (Html.DevExtreme().ValidationGroup())
+    {
+        @(Html.DevExtreme().TextBoxFor(m => m.Oid).ReadOnly(true))
+        <div id="form-demo">
+            <div class="widget-container">
+                <div>Nuovo ticket:</div>
+                <div>
+                    <div>
+                        <div>Code</div><div>@(Html.DevExtreme().TextBoxFor(m => m.Code).ReadOnly(true))</div>
+                    </div>
+                    <div>
+                        <div>Nome</div><div>@(Html.DevExtreme().TextBoxFor(m => m.NomeCondominio).ReadOnly(true))</div>
+                    </div>
+                    <div>
+                        <div>Regione</div><div>
+                            @(Html.DevExtreme().SelectBoxFor(m => m.Regione)
+                            .ID("comboRegioni")
+                            .DisplayExpr("Text")
+                            .ValueExpr("Oid")
+                            .Value(Model.Regione)
+                            .DataSource(ds => ds.WebApi()
+                            .Controller("RegioniDati")
+                            .LoadAction("Get").Key("Oid"))
+                            .OnValueChanged("onValueRegioneChanged")
+                        )
+                        </div>
+                    </div>
+                    <div>
+                        <div>Provincia</div><div>
+                            @(Html.DevExtreme().SelectBoxFor(m => m.Provincia)
+                            .ID("comboProvince")
+                            .DisplayExpr("Text")
+                            .ValueExpr("Oid")
+                            .Value(Model.Provincia)
+                            .DataSource(ds => ds.WebApi()
+                            .Controller("ProvinceDati")
+                            .LoadAction("Get")
+                            .Key("Oid"))
+                            .OnValueChanged("onValueProvinciaChanged")
+
+                        )
+                        </div>
+                    </div>
+                    <div>
+                        <div>Comune</div><div>
+                            @(Html.DevExtreme().SelectBoxFor(m => m.Comune)
+                            .ID("comboLocali")
+                            .DisplayExpr("Text")
+                            .ValueExpr("Oid")
+                            .Value(Model.Comune)
+                            .DataSource(ds => ds.WebApi()
+                            .Controller("ComuniDati")
+                            .LoadAction("Get").Key("Oid"))
+                        )
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        @(Html.DevExtreme().ValidationSummary()
+                .ID("summary")
+        )
+
+        @(Html.DevExtreme().Button()
+                .ID("button")
+                .Text("Salva")
+                .Type(ButtonType.Success)
+                .UseSubmitBehavior(true)
+        )
+     }
+ }

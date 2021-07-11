@@ -4,10 +4,10 @@
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<h2>Index</h2>
-
-
-<h2>Home</h2>
+<h2>Lista condomini</h2>
+<div>
+    @Html.DevExtreme().Button().Text("Nuovo").Type(ButtonType.Normal).OnClick("GoToNewCondominio")
+</div>
 
 @(Html.DevExtreme().DataGrid<Condominium>()
         .ShowBorders(true)

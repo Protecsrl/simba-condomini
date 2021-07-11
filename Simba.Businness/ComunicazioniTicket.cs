@@ -32,11 +32,7 @@ namespace Simba.Businness
 
         public LookupItem getEnvironmenti(int userId)
         {
-            return new LookupItem()
-            {
-                Id = 1,
-                Text = "app2 cond 3"
-            };
+            return new LookupItem(1, "app2 cond 3");
         }
     }
 }

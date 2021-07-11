@@ -25,11 +25,12 @@ namespace Simba.DataLayer.simba_condomini
             get { return fOid; }
             set { SetPropertyValue<int>(nameof(Oid), ref fOid, value); }
         }
-        int fComune;
-        public int Comune
+        Comuni fComune;
+        [Association(@"CondominiumReferencesComuni")]
+        public Comuni Comune
         {
             get { return fComune; }
-            set { SetPropertyValue<int>(nameof(Comune), ref fComune, value); }
+            set { SetPropertyValue<Comuni>(nameof(Comune), ref fComune, value); }
         }
         string fNomeCondominio;
         [Size(50)]

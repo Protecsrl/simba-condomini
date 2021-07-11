@@ -179,6 +179,8 @@ namespace Simba.DataLayer.simba_condomini
             get { return fPROVINCIA; }
             set { SetPropertyValue<Provincia>(nameof(PROVINCIA), ref fPROVINCIA, value); }
         }
+        [Association(@"CondominiumReferencesComuni")]
+        public XPCollection<Condominium> Condominiums { get { return GetCollection<Condominium>(nameof(Condominiums)); } }
     }
 
 }

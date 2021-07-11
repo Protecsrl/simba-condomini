@@ -1,23 +1,20 @@
 ﻿using DevExpress.Xpo;
-using DevExpress.Xpo.DB;
+using Simba.Businness.Models;
 using Simba.DataLayer.simba_condomini;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 
 namespace Simba.Businness
 {
-    public class StatiTicket : BusinnessBase
+    public class Regioni : BusinnessBase
     {
-        public List<TicketStatus> GetAll()
+        public List<DataLayer.simba_condomini.Regione> GetAll()
         {
             using (UnitOfWork uw = new UnitOfWork())
             {
-                var data = uw.Query<TicketStatus>().ToList();
-                return data;
+                var data = uw.Query<DataLayer.simba_condomini.Regione>();
+                return data.ToList();
             }
         }
     }

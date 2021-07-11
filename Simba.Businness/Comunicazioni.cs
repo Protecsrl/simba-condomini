@@ -73,7 +73,7 @@ namespace Simba.Businness
                 communuic.Save();
                 uw.CommitChanges();
 
-                var commNew = uw.GetObjectByKey<DataLayer.simba_condomini.Communications>(obj.Oid);
+                var commNew = uw.GetObjectByKey<DataLayer.simba_condomini.Communications>(communuic.Oid);
                 string codice = string.Concat(commNew.Condominium.Oid.ToString().PadLeft(6, '0'), commNew.Number.ToString().PadLeft(6, '0'));
                 commNew.Code = codice;
                 commNew.Save();

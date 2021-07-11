@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Simba.Businness
 {
-    public class Locali
+    public class Locali : BusinnessBase
     {
         public List<DataLayer.simba_condomini.Environment> GetAll(int? edificio)
         {

@@ -117,7 +117,7 @@ namespace Simba.Businness
                 classeTicket.Save();
                 uw.CommitChanges();
 
-                var ticketNew = uw.GetObjectByKey<DataLayer.simba_condomini.Ticket>(obj.Oid);
+                var ticketNew = uw.GetObjectByKey<DataLayer.simba_condomini.Ticket>(ticket.Oid);
                 string codice = string.Concat(ticket.Condominium.Oid.ToString().PadLeft(6, '0'), ticket.Number.ToString().PadLeft(6, '0'));
                 ticketNew.Code = codice;
                 ticketNew.Save();
