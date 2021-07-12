@@ -1,4 +1,8 @@
-﻿function onValueRegioneChanged(e) {
+﻿
+var markerUrl = "https://js.devexpress.com/Demos/RealtorApp/images/map-marker.png";
+
+
+function onValueRegioneChanged(e) {
     let comboProvincie = $("#comboProvince").dxSelectBox("instance");
     let dataSource = comboProvincie.getDataSource();
     dataSource.filter("Id", "=", e.value);
@@ -20,4 +24,8 @@ function GoToNewCondominio(e) {
     var buttonText = e.component.option("text");
     // DevExpress.ui.notify("The " + buttonText + " button was clicked");
     window.location.href = "AdminCondomini/Edit";
+}
+
+function CondominioMapClicked(e) {
+    console.log(e);
 }

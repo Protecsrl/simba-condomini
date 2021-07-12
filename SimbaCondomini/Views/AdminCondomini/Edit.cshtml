@@ -66,7 +66,26 @@
                         )
                         </div>
                     </div>
-
+                    <div>
+                        @(Html.DevExtreme().Map()
+                            .ID("map")
+                            .Center("Roma, Italy")
+                            .Zoom(8)
+                            .Height(400)
+                            .Width("100%")
+                            .Controls(true)
+                            .MarkerIconSrc(new JS("markerUrl"))
+                            .OnClick("CondominioMapClicked")
+                            .Provider(GeoMapProvider.Google)
+                            // Specify your API keys for each map provider:
+                            .ApiKey(k => k
+                            //    .Bing("YOUR_BING_MAPS_API_KEY")
+                            .Google("AIzaSyARjwT8VrlGL4l1UwNjUhEcsKQslyiGBe4")
+                            //    .GoogleStatic("YOUR_GOOGLE_STATIC_MAPS_API_KEY")
+                            )
+                            .Type(GeoMapType.Roadmap)
+)
+                    </div>
                 </div>
             </div>
         </div>
