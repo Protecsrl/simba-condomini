@@ -1,18 +1,18 @@
 ﻿function onValueRegioneChanged(e) {
-    let comboRegioni = $("#comboRegioni").dxSelectBox("instance");
-    let dataSource = comboRegioni.getDataSource();
+    let comboProvincie = $("#comboProvince").dxSelectBox("instance");
+    let dataSource = comboProvincie.getDataSource();
     dataSource.filter("Id", "=", e.value);
     dataSource.load();
-    comboRegioni.option("value", null);
+    comboProvincie.option("value", null);
 }
 
 
 function onValueProvinciaChanged(e) {
-    let comboProvincia = $("#comboProvincie").dxSelectBox("instance");
-    let dataSource = comboProvincia.getDataSource();
+    let comboComune = $("#comboComuni").dxSelectBox("instance");
+    let dataSource = comboComune.getDataSource();
     dataSource.filter("Id", "=", e.value);
     dataSource.load();
-    comboProvincia.option("value", 0);
+    comboComune.option("value", 0);
 }
 
 

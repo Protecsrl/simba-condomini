@@ -11,11 +11,10 @@ namespace SimbaCondomini.Controllers
 {
     public class ComuniDatiController : ApiController
     {
-        public HttpResponseMessage Get(int id, DataSourceLoadOptions loadOptions)
+        public HttpResponseMessage Get(DataSourceLoadOptions loadOptions)
         {
             loadOptions.Take = 10;
-            var IdProvincia
-            = id;
+            var IdProvincia = 0;
             if (loadOptions.Filter != null && loadOptions.Filter.Count >= 2)
             {
                 if (loadOptions.Filter[1].ToString() == "=")
