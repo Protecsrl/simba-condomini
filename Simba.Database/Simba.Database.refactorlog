@@ -252,4 +252,11 @@
     <Property Name="ParentElementType" Value="SqlTable" />
     <Property Name="NewName" Value="Provincia" />
   </Operation>
+  <Operation Name="Rename Refactor" Key="c4b3f522-3442-4a50-b434-c0fedc81083b" ChangeDateTime="07/12/2021 19:10:35">
+    <Property Name="ElementName" Value="[dbo].[Comuni].[NumeroProgressivoComune]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Comuni]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="NumProgressivoComune" />
+  </Operation>
 </Operations>

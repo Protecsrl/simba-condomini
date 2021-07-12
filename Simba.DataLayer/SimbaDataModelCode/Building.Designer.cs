@@ -41,10 +41,10 @@ namespace Simba.DataLayer.Database
         }
         [Association(@"UserReferencesBuilding")]
         public XPCollection<User> Users { get { return GetCollection<User>(nameof(Users)); } }
-        [Association(@"EnvironmentReferencesBuilding")]
-        public XPCollection<Environment> Environments { get { return GetCollection<Environment>(nameof(Environments)); } }
         [Association(@"TicketReferencesBuilding")]
         public XPCollection<Ticket> Tickets { get { return GetCollection<Ticket>(nameof(Tickets)); } }
+        [Association(@"EnvironmentReferencesBuilding")]
+        public XPCollection<Environment> Environments { get { return GetCollection<Environment>(nameof(Environments)); } }
     }
 
 }

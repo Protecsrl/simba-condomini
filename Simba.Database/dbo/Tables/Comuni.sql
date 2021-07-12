@@ -7,7 +7,7 @@
 	[CodiceRegione] [varchar](1000) NULL,
 	[CodiceProvincia] [varchar](1000) NULL,
 	[CodiceCittaMetropolitana] [varchar](1000) NULL,
-	[NumeroProgressivoComune] [varchar](1000) NULL,
+	[NumProgressivoComune] [varchar](1000) NULL,
 	[CodiceIstat] [varchar](1000) NULL,
 	[CodiceIstatNum] [varchar](1000) NULL,
 	[CodiceIstat107Prov] [varchar](1000) NULL,

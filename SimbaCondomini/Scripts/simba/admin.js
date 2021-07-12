@@ -1,7 +1,7 @@
 ﻿function onValueRegioneChanged(e) {
     let comboRegioni = $("#comboRegioni").dxSelectBox("instance");
     let dataSource = comboRegioni.getDataSource();
-    dataSource.filter("Oid", "=", e.value);
+    dataSource.filter("Id", "=", e.value);
     dataSource.load();
     comboRegioni.option("value", null);
 }
@@ -10,7 +10,7 @@
 function onValueProvinciaChanged(e) {
     let comboProvincia = $("#comboProvincie").dxSelectBox("instance");
     let dataSource = comboProvincia.getDataSource();
-    dataSource.filter("Oid", "=", e.value);
+    dataSource.filter("Id", "=", e.value);
     dataSource.load();
     comboProvincia.option("value", 0);
 }

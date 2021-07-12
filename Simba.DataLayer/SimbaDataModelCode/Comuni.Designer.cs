@@ -67,12 +67,12 @@ namespace Simba.DataLayer.Database
             get { return fCodiceCittaMetropolitana; }
             set { SetPropertyValue<string>(nameof(CodiceCittaMetropolitana), ref fCodiceCittaMetropolitana, value); }
         }
-        string fNumeroProgressivoComune;
+        string fNumProgressivoComune;
         [Size(1000)]
-        public string NumeroProgressivoComune
+        public string NumProgressivoComune
         {
-            get { return fNumeroProgressivoComune; }
-            set { SetPropertyValue<string>(nameof(NumeroProgressivoComune), ref fNumeroProgressivoComune, value); }
+            get { return fNumProgressivoComune; }
+            set { SetPropertyValue<string>(nameof(NumProgressivoComune), ref fNumProgressivoComune, value); }
         }
         string fCodiceIstat;
         [Size(1000)]
