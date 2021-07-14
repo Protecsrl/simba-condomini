@@ -14,7 +14,7 @@ namespace Simba.Businness.Models.Admin
         }
         public Condominio(
         int oid, int comune, string nomeCondominio, string indirizzo,
-        string partitaIva, double latitudine, double longitudine, string code)
+        string partitaIva, string latitudine, string longitudine, string code)
         {
             this.Oid = oid;
             this.Comune = comune;
@@ -27,35 +27,35 @@ namespace Simba.Businness.Models.Admin
         }
         public int Oid
         {
-            get; private set;
+            get; set;
         }
         public int Comune
         {
-            get; private set;
+            get; set;
         }
         public string NomeCondominio
         {
-            get; private set;
+            get; set;
         }
         public string Indirizzo
         {
-            get; private set;
+            get; set;
         }
         public string PartitaIva
         {
-            get; private set;
+            get; set;
         }
-        public double Latitudine
+        public string Latitudine
         {
-            get; private set;
+            get; set;
         }
-        public double Longitudine
+        public string Longitudine
         {
-            get; private set;
+            get; set;
         }
         public string Code
         {
-            get; private set;
+            get; set;
         }
 
 

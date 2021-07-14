@@ -69,11 +69,12 @@ namespace Simba.Businness
                 Simba.DataLayer.Database.Comuni comune = uw.GetObjectByKey<Simba.DataLayer.Database.Comuni>(condominio.Comune);
                 Condominium condom = new Condominium(uw)
                 {
+                    NomeCondominio = condominio.NomeCondominio,
                     Code = condominio.Code,
                     Comune = comune,
                     Indirizzo = condominio.Indirizzo,
-                    Latitudine = condominio.Latitudine,
-                    Longitudine = condominio.Longitudine,
+                    Latitudine = float.Parse(condominio.Latitudine),
+                    Longitudine = float.Parse(condominio.Longitudine),
                     PartitaIva = condominio.PartitaIva
                 };
                 condom.Save();
@@ -91,8 +92,8 @@ namespace Simba.Businness
                 condom.Code = condominio.Code;
                 condom.Comune = comune;
                 condom.Indirizzo = condominio.Indirizzo;
-                condom.Latitudine = condominio.Latitudine;
-                condom.Longitudine = condominio.Longitudine;
+                condom.Latitudine = float.Parse(condominio.Latitudine);
+                condom.Longitudine = float.Parse(condominio.Longitudine);
                 condom.PartitaIva = condominio.PartitaIva;
 
                 condom.Save();

@@ -17,7 +17,7 @@ namespace SimbaCondomini.Controllers
 
         private ActionResult Edit()
         {
-            var model = new Condominio(0, 0, string.Empty, string.Empty, string.Empty, 0, 0, string.Empty);
+            var model = new Condominio(0, 0, string.Empty, string.Empty, string.Empty, "0", "0", string.Empty);
             return View(model);
         }
 
@@ -27,8 +27,7 @@ namespace SimbaCondomini.Controllers
             {
                 return Edit();
             }
-            var model = new Condominio(0, 0, string.Empty, string.Empty, string.Empty, 0, 0, string.Empty);
-            return View(model);
+            return Edit();
         }
 
         [HttpPost]
