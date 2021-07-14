@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Simba.Businness.Models.Admin;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -14,9 +15,32 @@ namespace SimbaCondomini.Controllers
             return View();
         }
 
-        public ActionResult Edit()
+        private ActionResult Edit()
         {
-            var model = new Simba.Businness.Models.Admin.Condominio(0, 0, string.Empty, string.Empty, string.Empty, 0, 0, string.Empty);
+            var model = new Condominio(0, 0, string.Empty, string.Empty, string.Empty, 0, 0, string.Empty);
+            return View(model);
+        }
+
+        public ActionResult Edit(int? id)
+        {
+            if (!id.HasValue)
+            {
+                return Edit();
+            }
+            var model = new Condominio(0, 0, string.Empty, string.Empty, string.Empty, 0, 0, string.Empty);
+            return View(model);
+        }
+
+        [HttpPost]
+        [Authorize]
+        public ActionResult Edit(Condominio model)
+        {
+            Simba.Businness.Condomini c = new Simba.Businness.Condomini();
+            if(model.Oid>0){
+                c.UpdateCondominio(model);
+            } else {
+                c.SalvaCondominio(model);
+            }
             return View(model);
         }
     }

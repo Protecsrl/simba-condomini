@@ -8,6 +8,10 @@ namespace Simba.Businness.Models.Admin
 {
     public class Condominio
     {
+        public Condominio()
+        {
+
+        }
         public Condominio(
         int oid, int comune, string nomeCondominio, string indirizzo,
         string partitaIva, double latitudine, double longitudine, string code)

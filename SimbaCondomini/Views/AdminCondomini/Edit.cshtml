@@ -18,10 +18,13 @@
                 <div>Nuovo ticket:</div>
                 <div>
                     <div>
-                        <div>Code</div><div>@(Html.DevExtreme().TextBoxFor(m => m.Code).ReadOnly(true))</div>
+                        <div>Code</div><div>@(Html.DevExtreme().TextBoxFor(m => m.Code))</div>
                     </div>
                     <div>
-                        <div>Nome</div><div>@(Html.DevExtreme().TextBoxFor(m => m.NomeCondominio).ReadOnly(true))</div>
+                        <div>Nome</div><div>@(Html.DevExtreme().TextBoxFor(m => m.NomeCondominio))</div>
+                    </div>
+                    <div>
+                        <div>Indirizzo</div><div>@(Html.DevExtreme().TextBoxFor(m => m.Indirizzo))</div>
                     </div>
                     <div>
                         <div>Regione</div><div>
@@ -66,6 +69,13 @@
                         )
                         </div>
                     </div>
+
+                    <div>
+                        <div>Latitudine</div><div>@(Html.DevExtreme().TextBoxFor(m => m.Latitudine).ID("Latitude").ReadOnly(true))</div>
+                    </div>
+                    <div>
+                        <div>Longitudine</div><div>@(Html.DevExtreme().TextBoxFor(m => m.Longitudine).ID("Longitude").ReadOnly(true))</div>
+                    </div>
                     <div>
                         @(Html.DevExtreme().Map()
                             .ID("map")
@@ -80,7 +90,7 @@
                             // Specify your API keys for each map provider:
                             .ApiKey(k => k
                             //    .Bing("YOUR_BING_MAPS_API_KEY")
-                            .Google("AIzaSyARjwT8VrlGL4l1UwNjUhEcsKQslyiGBe4")
+                            .Google("AIzaSyDznSU8wRpOjerYuXcmjoS9c2gqC4LqgM4")
                             //    .GoogleStatic("YOUR_GOOGLE_STATIC_MAPS_API_KEY")
                             )
                             .Type(GeoMapType.Roadmap)

@@ -28,4 +28,8 @@ function GoToNewCondominio(e) {
 
 function CondominioMapClicked(e) {
     console.log(e);
+    let txtLatitude = $("#Latitude").dxTextBox("instance");
+    let txtLongitude = $("#Longitude").dxTextBox("instance");
+    txtLatitude.option("value", e.location.lat)
+    txtLongitude.option("value", e.location.lng)
 }

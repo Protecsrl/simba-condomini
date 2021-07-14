@@ -26,7 +26,7 @@ namespace Simba.Businness
             using (UnitOfWork uw = new UnitOfWork())
             {
                 var user = uw.GetObjectByKey<Simba.DataLayer.Database.User>(User.GetUserId());
-                var ts = uw.Query<Simba.DataLayer.Database.TicketSuplliers>().Where(t => t.IdSuplier.Oid == user.Oid).Select(s => s.IdTicket.Oid); 
+                var ts = uw.Query<Simba.DataLayer.Database.TicketSuplliers>().Where(t => t.IdSuplier.Oid == user.Oid).Select(s => s.IdTicket.Oid);
                 var data = uw.Query<Simba.DataLayer.Database.Ticket>()
                 .Where(t => ts.Contains(t.Oid) || t.isPublic)
                 .Select(x => x.Building.Condominium)
@@ -59,6 +59,44 @@ namespace Simba.Businness
                     default:
                         return new List<Condominium>();
                 }
+            }
+        }
+
+        public void SalvaCondominio(Models.Admin.Condominio condominio)
+        {
+            using (UnitOfWork uw = new UnitOfWork())
+            {
+                Simba.DataLayer.Database.Comuni comune = uw.GetObjectByKey<Simba.DataLayer.Database.Comuni>(condominio.Comune);
+                Condominium condom = new Condominium(uw)
+                {
+                    Code = condominio.Code,
+                    Comune = comune,
+                    Indirizzo = condominio.Indirizzo,
+                    Latitudine = condominio.Latitudine,
+                    Longitudine = condominio.Longitudine,
+                    PartitaIva = condominio.PartitaIva
+                };
+                condom.Save();
+                uw.CommitChanges();
+            }
+        }
+
+        public void UpdateCondominio(Models.Admin.Condominio condominio)
+        {
+            using (UnitOfWork uw = new UnitOfWork())
+            {
+                Simba.DataLayer.Database.Comuni comune = uw.GetObjectByKey<Simba.DataLayer.Database.Comuni>(condominio.Comune);
+                Simba.DataLayer.Database.Condominium condom = uw.GetObjectByKey<Simba.DataLayer.Database.Condominium>(condominio.Oid);
+
+                condom.Code = condominio.Code;
+                condom.Comune = comune;
+                condom.Indirizzo = condominio.Indirizzo;
+                condom.Latitudine = condominio.Latitudine;
+                condom.Longitudine = condominio.Longitudine;
+                condom.PartitaIva = condominio.PartitaIva;
+
+                condom.Save();
+                uw.CommitChanges();
             }
         }
     }
